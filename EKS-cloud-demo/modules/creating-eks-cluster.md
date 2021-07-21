@@ -11,8 +11,10 @@
     ```bash
     export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
     export AZS=($(aws ec2 describe-availability-zones --query 'AvailabilityZones[].ZoneName' --output text --region $AWS_REGION))
+    EKS_CLUSTER='jessie-worksho'
     EKS_VERSION="1.20"
     IAM_ROLE='jessie-demo-admin'
+
     
     # check if AWS_REGION is configured
     test -n "$AWS_REGION" && echo AWS_REGION is "$AWS_REGION" || echo AWS_REGION is not set
@@ -55,7 +57,7 @@
     kind: ClusterConfig
 
     metadata:
-      name: "jessie-workshop"
+      name: "${EKS_CLUSTER}"
       region: "${AWS_REGION}"
       version: "${EKS_VERSION}"
 

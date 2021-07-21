@@ -53,5 +53,15 @@
     ```bash
     kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"policySyncPathPrefix":"/var/run/nodeagent","l7LogsFileEnabled":true}}'
     ```
+4. Configure Felix for enabling TCP socket stats
+
+    >Calico Enterprise can collect additional TCP socket statistics. While this feature is available in both iptables and eBPF dataplane modes, it uses eBPF to collect the statistics. Therefore it requires a recent Linux kernel (at least v5.3.0/v4.18.0-193 for RHEL).
+
+    ```bash
+     kubectl patch felixconfiguration default -p '{"spec":{"flowLogsCollectTcpStats":true}}'
+
+    ```
+
+
 
 [Next -> Module 4](../modules/configuring-demo-apps.md)
