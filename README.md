@@ -10,3 +10,16 @@ This is the master folder for Calicocloud demo for managed K8S clusters in diffe
 - [Calico Cloud trial account](https://www.tigera.io/tigera-products/calico-cloud/)
   - for instructor-led workshop use instructions in the email you receive to request a Calico Trial account
   - for self-paced workshop follow the [link to register](https://www.tigera.io/tigera-products/calico-cloud/) for a Calico Trial account
+
+## Workshop objectives
+
+The intent of this workshop is to educate any person working with K8S cluster in one way or another about Calico features and how to use them. While there are many capabilities that Calico provides, this workshop focuses on a subset of those that are used most often by different types of technical users.
+
+## Use cases
+
+In this workshop we are going to focus on these main use cases:
+
+- **North-South Controls: Egress access controls & DNS policies**
+- **East-West Controls: App service control & Microsegmentation & Host protection**
+- **Security and Compliance: Compliance & Intrusion Detection & Intrusion Prevention**
+- **Observability: Dynamic Packet Capture & Dynamic Service Graph**
