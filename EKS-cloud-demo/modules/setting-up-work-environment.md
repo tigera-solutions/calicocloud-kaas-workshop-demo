@@ -60,7 +60,7 @@ The simplest ways to configure your working environment is to either use your lo
 
     ```bash
     # go to cloned repo
-    cd ./jessie-workshop-demo/eks-cloud-demo
+    cd ./jessie-workshop-demo/EKS-cloud-demo
 
     IAM_ROLE='jessie-demo-admin'
     # assign AdministratorAccess default policy. You can use a custom policy if required.
