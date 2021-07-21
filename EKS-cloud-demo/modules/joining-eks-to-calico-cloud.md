@@ -41,8 +41,8 @@
 2. Configure log aggregation and flush intervals.
 
     ```bash
-    kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFlushInterval":"10s"}}'
-    kubectl patch felixconfiguration.p default -p '{"spec":{"dnsLogsFlushInterval":"10s"}}'
+    kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFlushInterval":"30s"}}'
+    kubectl patch felixconfiguration.p default -p '{"spec":{"dnsLogsFlushInterval":"30s"}}'
     kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFileAggregationKindForAllowed":1}}'
     ```
 
@@ -58,7 +58,7 @@
     >Calico Enterprise can collect additional TCP socket statistics. While this feature is available in both iptables and eBPF dataplane modes, it uses eBPF to collect the statistics. Therefore it requires a recent Linux kernel (at least v5.3.0/v4.18.0-193 for RHEL).
 
     ```bash
-     kubectl patch felixconfiguration default -p '{"spec":{"flowLogsCollectTcpStats":true}}'
+    kubectl patch felixconfiguration default -p '{"spec":{"flowLogsCollectTcpStats":true}}'
 
     ```
 
