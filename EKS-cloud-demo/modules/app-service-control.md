@@ -1,4 +1,4 @@
-# Module 5: East-West controls-App service control
+# Module 5: East-West controls: App service control
 
 **Goal:** Leverage network policies to segment connections within Kubernetes cluster and prevent known bad actors from accessing the workloads.
 
