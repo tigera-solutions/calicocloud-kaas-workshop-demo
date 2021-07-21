@@ -4,8 +4,6 @@
 
 ## Steps
 
-
-
 1. Implement DNS policy to allow the external endpoint access from a specific workload, e.g. `dev/centos`.
 
     a. Apply a policy to allow access to `api.twilio.com` endpoint using DNS rule.
