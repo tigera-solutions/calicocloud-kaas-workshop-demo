@@ -1,4 +1,4 @@
-# Module 6: Using egress access controls
+# Module 7: Using egress access controls
 
 **Goal:** Configure egress access for specific workloads.
 
@@ -65,4 +65,24 @@
 
     >As a bonus example, you can modify the `external-apis` network set to include `*.google.com` domain name which would allow access to Google subdomains. If you do it, you can would allow acess to subdomains like `www.google.com`, `docs.google.com`, etc.
 
-[Next -> Module 7](../modules/securing-heps.md)
+4. Protect workloads from known bad actors.
+
+    Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods.
+
+    ```bash
+    # deploy feodo tracker threatfeed
+    kubectl apply -f demo/10-security-controls/feodotracker.threatfeed.yaml
+    # deploy network policy that uses the threadfeed
+    kubectl apply -f demo/10-security-controls/feodo-block-policy.yaml
+
+    # try to ping any of the IPs in from the feodo tracker list
+    IP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq .spec.nets[0] | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
+    kubectl -n dev exec -t centos -- sh -c "ping -c1 $IP"
+
+    #The ip block list from feodo
+    #https://feodotracker.abuse.ch/downloads/ipblocklist.txt
+
+    # The sample IP from the list can be 111.235.66.83
+    ```
+
+[Next -> Module 8](../modules/host-protection.md)
