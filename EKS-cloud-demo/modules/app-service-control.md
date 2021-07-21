@@ -92,7 +92,7 @@
     kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'curl -m3 -sI frontend 2>/dev/null | grep -i http'
     ```
 
-    b. The connections across `dev` and `default` namespaces should be blocked by the global `default-deny` policy.
+    b. The connections across `dev/centos` pod and `default/frontend` pod should be blocked by the global `default-deny` policy.
 
     ```bash
     # test connectivity from dev namespace to default namespace
@@ -102,7 +102,7 @@
     kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
     ```
 
-    c. The connections to the Internet should be blocked by the configured policies.
+    c. Test connectivity from `dev` and  `default` namespace to the Internet, should be blocked by the configured policies.
 
     ```bash
     # test connectivity from dev namespace to the Internet
@@ -113,5 +113,21 @@
     ```
 
 
+
+5. Implement egress policy to allow egress access from a workload in one namespace, e.g. `dev/centos`, to a service in another namespace, e.g. `default/frontend`.
+
+    a. Deploy egress policy.
+
+    ```bash
+    kubectl apply -f demo/20-egress-access-controls/centos-to-frontend.yaml
+    ```
+
+    b. Test connectivity between `dev/centos` pod and `default/frontend` service.
+
+    ```bash
+    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.default 2>/dev/null | grep -i http'
+    ```
+
+    The access should be allowed once the egress policy is in place.
 
 [Next -> Module 6](../modules/host-protection.md)

@@ -1,4 +1,4 @@
-# Module 6: East-West controls-Host protection
+# Module 6: Host protection
 
 **Goal:** Secure EKS hosts ports with network policies.
 
@@ -15,15 +15,15 @@ Calico network policies not only can secure pod to pod communications but also c
     kubectl expose deployment frontend --type=NodePort --name=frontend-nodeport --overrides='{"apiVersion":"v1","spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":8080}]}}'
 
     # open access to the port in AWS security group
-    CLUSTER_NAME='jessie-workshop' # adjust the name if you used a different name for your EKS cluster
+    EKS_CLUSTER='jessie-workshop' # adjust the name if you used a different name for your EKS cluster
     AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
     # pick one EKS node and use it's ID to get securigy group
-    SG_ID=$(aws ec2 describe-instances --region $AWS_REGION --filters "Name=tag:Name,Values=$CLUSTER_NAME*" "Name=instance-state-name,Values=running" --query 'Reservations[0].Instances[*].NetworkInterfaces[0].Groups[0].GroupId' --output text --output text)
+    SG_ID=$(aws ec2 describe-instances --region $AWS_REGION --filters "Name=tag:Name,Values=$EKS_CLUSTER*" "Name=instance-state-name,Values=running" --query 'Reservations[0].Instances[*].NetworkInterfaces[0].Groups[0].GroupId' --output text --output text)
     # open SSH port in the security group for public access
     aws ec2 authorize-security-group-ingress --region $AWS_REGION --group-id $SG_ID --protocol tcp --port 30080 --cidr 0.0.0.0/0
 
     # get public IP of an EKS node
-    PUB_IP=$(aws ec2 describe-instances --region $AWS_REGION --filters "Name=tag:Name,Values=$CLUSTER_NAME*" "Name=instance-state-name,Values=running" --query 'Reservations[0].Instances[0].PublicIpAddress' --output text --output text)
+    PUB_IP=$(aws ec2 describe-instances --region $AWS_REGION --filters "Name=tag:Name,Values=$EKS_CLUSTER*" "Name=instance-state-name,Values=running" --query 'Reservations[0].Instances[0].PublicIpAddress' --output text --output text)
     # test connection to SSH port
     nc -zv $PUB_IP 30080
     ```
@@ -54,8 +54,8 @@ Calico network policies not only can secure pod to pod communications but also c
 
     ```bash
     # from your local shell test connection to the node port, i.e. 30080, using netcat or telnet or other connectivity testing tool
-    EKS_NODE_PUB_IP=XX.XX.XX.XX
-    nc -zv $EKS_NODE_PUB_IP 30080
+    PUB_IP=XX.XX.XX.XX #export same public IP to your local shell and test 
+    nc -zv $PUB_IP 30080
     #You should able to connect 30080 before applying hostendpoint policy
 
     # get public IP of Cloud9 instance in the Cloud9 shell
@@ -65,10 +65,10 @@ Calico network policies not only can secure pod to pod communications but also c
     sed -e "s/\${CLOUD9_IP}/${CLOUD9_IP}\/32/g" demo/30-secure-hep/frontend-nodeport-access.yaml | kubectl apply -f -
     
     # test access from Cloud9 shell
-    nc -zv $EKS_NODE_PUB_IP 30080 #expecting pass
+    nc -zv $PUB_IP 30080 #expecting pass
 
     # test access from local shell again
-    nc -zv $EKS_NODE_PUB_IP 30080 #expecting fail
+    nc -zv $PUB_IP 30080 #expecting fail
 
     ```
 

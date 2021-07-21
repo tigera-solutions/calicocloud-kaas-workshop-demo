@@ -25,7 +25,8 @@
 - [Module 4: Configuring demo applications](modules/configuring-demo-apps.md)
 
 - [Module 5: East-West controls-App service control](modules/app-service-control.md)
-- [Module 6: East-West controls-Host protection](modules/host-protection.md)
+
+- [Module 6: Host protection](modules/host-protection.md)
 
 - [Module 7: North-South Controls-Egress access controls](modules/using-egress-access-controls.md)
 
