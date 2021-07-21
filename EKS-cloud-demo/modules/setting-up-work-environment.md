@@ -40,7 +40,7 @@ The simplest ways to configure your working environment is to either use your lo
 3. Download this repo into your environment:
 
     ```bash
-    git clone https://github.com/tigera-solutions/tigera-eks-workshop  
+    git clone https://github.com/tigera-solutions/jessie-workshop-demo
     ```
 
 4. Configure AMI role for Cloud9 workspace.
@@ -60,7 +60,7 @@ The simplest ways to configure your working environment is to either use your lo
 
     ```bash
     # go to cloned repo
-    cd ./tigera-eks-workshop
+    cd ./jessie-workshop-demo
 
     IAM_ROLE='jessie-demo-admin'
     # assign AdministratorAccess default policy. You can use a custom policy if required.
