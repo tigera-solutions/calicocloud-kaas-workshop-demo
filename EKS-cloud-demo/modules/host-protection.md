@@ -1,4 +1,4 @@
-# Module 6: Host protection
+# Module 7: Host protection
 
 **Goal:** Secure EKS hosts ports with network policies.
 
@@ -88,6 +88,8 @@ Calico network policies not only can secure pod to pod communications but also c
     CLOUD9_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
     # allow SSH access to EKS nodes only from the Cloud9 instance
     sed -e "s/\${CLOUD9_IP}/${CLOUD9_IP}\/32/g" demo/30-secure-hep/ssh-access.yaml | kubectl apply -f -
+
+
     ```
 
-[Next -> Module 7](../modules/using-observability-tools.md)
+[Next -> Module 8](../modules/egress-access-controls.md)

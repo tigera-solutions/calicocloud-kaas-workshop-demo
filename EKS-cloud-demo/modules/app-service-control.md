@@ -112,8 +112,6 @@
     kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'curl -m3 -sI www.google.com 2>/dev/null | grep -i http'
     ```
 
-
-
 5. Implement egress policy to allow egress access from a workload in one namespace, e.g. `dev/centos`, to a service in another namespace, e.g. `default/frontend`.
 
     a. Deploy egress policy.
@@ -130,4 +128,6 @@
 
     The access should be allowed once the egress policy is in place.
 
-[Next -> Module 6](../modules/host-protection.md)
+[Next -> Module 6](../modules/Microsegmentation.md)
+
+

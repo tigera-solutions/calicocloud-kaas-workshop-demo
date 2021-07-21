@@ -25,14 +25,15 @@
 - [Module 4: Configuring demo applications](modules/configuring-demo-apps.md)
 
 - [Module 5: East-West controls-App service control](modules/app-service-control.md)
+- [Module 6: East-West controls-Microsegmentation](modules/Microsegmentation.md)
 
-- [Module 6: Host protection](modules/host-protection.md)
+- [Module 7: Host protection](modules/host-protection.md)
 
-- [Module 7: North-South Controls-Egress access controls](modules/using-egress-access-controls.md)
+- [Module 8: North-South Controls-Egress access controls](modules/egress-access-controls.md)
 
-- [Module 8: Observability-Dynamic service graph](modules/using-observability-tools.md)
-- [Module 9: Security and Compliance-Using compliance reports](modules/using-compliance-reports.md)
-- [Module 10: Security and Compliance-Intrusion Detection](modules/using-alerts.md)
+- [Module 8: Observability-Dynamic Service Graph](modules/using-observability-tools.md)
+- [Module 9: Compliance](modules/using-compliance-reports.md)
+- [Module 10: Security-Intrusion Detection](modules/using-alerts.md)
 - [Module 11: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md)
 
 ## Cleanup
