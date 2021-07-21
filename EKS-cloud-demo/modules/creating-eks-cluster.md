@@ -11,7 +11,7 @@
     ```bash
     export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
     export AZS=($(aws ec2 describe-availability-zones --query 'AvailabilityZones[].ZoneName' --output text --region $AWS_REGION))
-    EKS_CLUSTER='jessie-worksho'
+    EKS_CLUSTER='jessie-workshop'
     EKS_VERSION="1.20"
     IAM_ROLE='jessie-demo-admin'
 
@@ -95,7 +95,7 @@
     Once cluster is created you can list it using `eksctl`.
 
     ```bash
-    eksctl get cluster jessie-workshop
+    eksctl get cluster $EKS_CLUSTER
     ```
 
 6. Test access to EKS cluster with `kubectl`
