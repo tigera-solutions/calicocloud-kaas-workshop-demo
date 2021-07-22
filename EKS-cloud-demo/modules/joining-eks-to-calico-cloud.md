@@ -41,8 +41,8 @@
 2. Configure log aggregation and flush intervals.
 
     ```bash
-    kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFlushInterval":"30s"}}'
-    kubectl patch felixconfiguration.p default -p '{"spec":{"dnsLogsFlushInterval":"30s"}}'
+    kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFlushInterval":"10s"}}'
+    kubectl patch felixconfiguration.p default -p '{"spec":{"dnsLogsFlushInterval":"10s"}}'
     kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFileAggregationKindForAllowed":1}}'
     ```
 

@@ -76,20 +76,6 @@ Calico network policies not only can secure pod to pod communications but also c
 
     >Note that in order to control access to the NodePort service, you need to enable `preDNAT` and `applyOnForward` policy settings.
 
-4. *[Bonus task]* Implement a Calico policy to control access to the SSH port on EKS hosts.
 
-    When dealing with SSH and platform required ports, Calico provides a fail safe mechanism to manage such posrts so that you don't lock yourself out of the node by accident. Once you configure and test host targeting policy, you can selectively disable fail safe ports.
-
-    ```bash
-    # deploy FelixConfiguration to disable fail safe for SSH port
-    kubectl apply -f demo/30-secure-hep/felixconfiguration.yaml
-
-    # get public IP of Cloud9 instance
-    CLOUD9_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
-    # allow SSH access to EKS nodes only from the Cloud9 instance
-    sed -e "s/\${CLOUD9_IP}/${CLOUD9_IP}\/32/g" demo/30-secure-hep/ssh-access.yaml | kubectl apply -f -
-
-
-    ```
 
 [Next -> Module 8](../modules/egress-access-controls.md)
