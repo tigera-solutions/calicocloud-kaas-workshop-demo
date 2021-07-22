@@ -36,7 +36,11 @@ Calico network policies not only can secure pod to pod communications but also c
 
     When working with managed Kubernetes services, such as EKS, we recommend using `HostEndpoint` (HEP) auto-creation feature which allows you to automate the management of `HostEndpoint` resources for managed Kubernetes clusters whenever the cluster is scaled.
 
-    >Before you enable HEP auto-creation feature, make sure there are no `HostEndpoint` resources manually defined for your cluster: `kubectl get hostendpoints`.
+    
+    ```bash
+    # Before you enable HEP auto-creation feature, make sure there are no `HostEndpoint` resources manually defined for your cluster
+    kubectl get hostendpoints
+    ```
 
     ```bash
     # check whether auto-creation for HEPs is enabled. Default: Disabled
