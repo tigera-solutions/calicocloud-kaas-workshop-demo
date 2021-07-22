@@ -20,7 +20,6 @@ The intent of this workshop is to educate any person working with K8S cluster in
 In this workshop we are going to focus on these main use cases:
 
 - **East-West Controls: App service control & Microsegmentation**
-- **East-West Controls: App service control**
 - **Host protection**
 - **North-South Controls: Egress access controls & DNS policies**
 - **Compliance and Security: Compliance & Intrusion Detection**

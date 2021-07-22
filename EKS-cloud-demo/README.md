@@ -26,10 +26,8 @@
 
 - [Module 5: East-West controls-App service control](modules/app-service-control.md)
 - [Module 6: East-West controls-Microsegmentation](modules/Microsegmentation.md)
-
 - [Module 7: Host protection](modules/host-protection.md)
-
-- [Module 8: North-South Controls-Egress access controls](modules/egress-access-controls.md)
+- [Module 8: North-South Controls-Egress access controls and DNS](modules/egress-access-controls.md)
 
 - [Module 9: Observability-Dynamic Service Graph](modules/using-observability-tools.md)
 - [Module 10: Compliance](modules/compliance-reports.md)
