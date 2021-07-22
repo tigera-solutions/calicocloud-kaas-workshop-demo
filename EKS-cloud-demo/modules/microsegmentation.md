@@ -15,68 +15,45 @@
     kubectl apply -f demo/tiers/devops-tier.yaml
 
     ```
-    
+
     b. Create storefront application in devops tier.
 
     ```bash
     kubectl apply -f demo/storefront
     ```
 
-
-2.  Test connectivity from pod `frontend` to  `backend`, should be allowed as there is no policies in place.
+    c. Implement Zone-Based policy for devops team 
 
     ```bash
-    # test connectivity from dev namespace to the Internet
-    kubectl -n devops exec -t frontend -- sh -c 'curl -m3 -sI http://backen 2>/dev/null | grep -i http'
+    kkubectl apply -f demo/10-security-controls/FirewallZonesPolicies.yaml
+
+    ```
+2. Confirm the connection from microservice2 to backend are been allowed from flow visualization.
+
+
+3. Change the lable of pod mircoservice2 and see the deny traffic in flow visualization. 
+
+    ```bash
+    #remove the label 
+    kubectl -n storefront label pod microservice2-7f7f575784-g9926 fw-zone-
+
+    #add the label as dmz zone
+    kubectl -n storefront label pod microservice2-7f7f575784-g9926 fw-zone=dmz
     ```
 
-3. Implement Zone-Based policy for devops team. 
+4. Confirm the connection from microservice2 to backend are been denied.
+
+
+5. Reverse the lable of pod mircoservice2. 
+   
    ```bash
-   kubectl apply -f demo/10-security-controls/FirewallZonesPolicies.yaml
-   ```
+    #remove the label 
+    kubectl -n storefront label pod microservice2-7f7f575784-g9926 fw-zone-
 
-    Edit the policy to use a `NetworkSet` with DNS domain instead of inline DNS rule.
-
-    a. Apply a policy to allow access to `api.twilio.com` endpoint using DNS policy.
-
-    ```bash
-    # deploy network set
-    kubectl apply -f demo/20-egress-access-controls/netset.external-apis.yaml
-    # deploy DNS policy using the network set
-    kubectl apply -f demo/20-egress-access-controls/dns-policy.netset.yaml
-
-
-    # test egress access to api.twilio.com
-    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://api.twilio.com 2>/dev/null | grep -i http'
-    # test egress access to www.google.com
-    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://www.google.com 2>/dev/null | grep -i http'
-    ```
-    
-    b. Modify the `NetworkSet` to include `www.google.com` in dns domain and test egress access to www.google.com again.
-
-    ```bash
-    # test egress access to www.google.com again and it should be allowed.
-    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://www.google.com 2>/dev/null | grep -i http'
+    #add the label as trusted zone
+    kubectl -n storefront label pod microservice2-7f7f575784-g9926 fw-zone=trusted
     ```
 
-3. Protect workloads from known bad actors.
 
-    Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods.
-
-    ```bash
-    # deploy feodo tracker threatfeed
-    kubectl apply -f demo/10-security-controls/feodotracker.threatfeed.yaml
-    # deploy network policy that uses the threadfeed
-    kubectl apply -f demo/10-security-controls/feodo-block-policy.yaml
-
-    # try to ping any of the IPs in from the feodo tracker list
-    IP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq .spec.nets[0] | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
-    kubectl -n dev exec -t centos -- sh -c "ping -c1 $IP"
-
-    #The ip block list from feodo
-    https://feodotracker.abuse.ch/downloads/ipblocklist.txt
-
-    # The sample IP from the list can be 111.235.66.83
-    ```
 
 [Next -> Module 7](../modules/host-protection.md)

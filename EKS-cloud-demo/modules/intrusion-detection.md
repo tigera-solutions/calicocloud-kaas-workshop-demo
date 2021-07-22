@@ -1,24 +1,12 @@
-# Module 11: Using alerts
+# Module 11: Security-Intrusion Detection
 
 **Goal:** Use global alerts to notify security and operations teams about unsanctioned or suspicious activity.
 
 ## Steps
 
-
-
 1. Review alerts manifests.
 
     Navigate to `demo/50-alerts` and review YAML manifests that represent alerts definitions. Each file containes an alert template and alert definition. Alerts templates can be used to quickly create an alert definition in the UI.
-
-5. Deploy global alerts.
-
-    >The alerts will be explored in a later lab.
-
-    ```bash
-    kubectl apply -f demo/50-alerts/globalnetworkset.changed.yaml
-    kubectl apply -f demo/50-alerts/unsanctioned.dns.access.yaml
-    kubectl apply -f demo/50-alerts/unsanctioned.lateral.access.yaml
-    ```
 
 
 2. View triggered alerts.
@@ -31,9 +19,17 @@
 
     You can also review the alerts configuration and templates by navigating to alerts configuration in the top right corner.
 
+3. Trigger an alert by curl google from namespace storefront.
+   
+   ```bash
+   #create nginx pod in storefront
+   kubectl run nginx -n storefront --port=80 --image=nginx
 
+   #curl google couple times to trigger the dns aler
+   kubectl exec -it nginx -n storefront -- sh -c 'curl -m3 -sI2 http://www.google.com 2>/dev/null | grep -i http'
+   ```
 
-3. Protect workloads from known bad actors.
+4. Protect workloads from known bad actors.
 
     Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods.
 
@@ -47,6 +43,11 @@
     IP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq .spec.nets[0] | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
     kubectl -n dev exec -t centos -- sh -c "ping -c1 $IP"
     ```
+
+5. Confirm the embedded alerts for threatfeeds have been trigger.
+
+
+6. Change one of the globalnetworksets from UI and confirm it will trigger alert by pre-defined globalalert policy
 
 
 

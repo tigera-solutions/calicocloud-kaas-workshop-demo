@@ -1,4 +1,4 @@
-# Module 12: Dynamic packet capture
+# Module 12: Observability-Dynamic packet capture
 
 **Goal:** Configure packet capture for specific pods and review captured payload.
 

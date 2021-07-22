@@ -32,9 +32,9 @@
 - [Module 8: North-South Controls-Egress access controls](modules/egress-access-controls.md)
 
 - [Module 9: Observability-Dynamic Service Graph](modules/using-observability-tools.md)
-- [Module 10: Compliance](modules/using-compliance-reports.md)
-- [Module 11: Security-Intrusion Detection](modules/using-alerts.md)
-- [Module 12: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md)
+- [Module 10: Compliance](modules/compliance-reports.md)
+- [Module 11: Security-Intrusion Detection](modules/intrusion-detection.md)
+#- [Module 12: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md)
 
 ## Cleanup
 
