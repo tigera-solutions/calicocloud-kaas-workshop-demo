@@ -57,6 +57,9 @@ Calico network policies not only can secure pod to pod communications but also c
     Deploy a policy that only allows access to the node port from the Cloud9 instance.
 
     ```bash
+    # get the public IP from cloud9 shell
+    echo $PUB_IP
+    
     # from your local shell test connection to the node port, i.e. 30080, using netcat or telnet or other connectivity testing tool
     PUB_IP=XX.XX.XX.XX #export same public IP to your local shell and test 
     nc -zv $PUB_IP 30080

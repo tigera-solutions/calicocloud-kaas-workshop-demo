@@ -21,6 +21,6 @@ In this workshop we are going to focus on these main use cases:
 
 - **East-West Controls: App service control & Microsegmentation**
 - **Host protection**
-- **North-South Controls: Egress access controls & DNS policies**
+- **North-South Controls: Egress access controls and DNS policies**
 - **Compliance and Security: Compliance & Intrusion Detection**
 - **Observability: Dynamic Service Graph & Dynamic Packet Capture**
