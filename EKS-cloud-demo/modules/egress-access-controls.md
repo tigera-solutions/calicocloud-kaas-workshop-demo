@@ -62,14 +62,10 @@
     # deploy network policy that uses the threadfeed
     kubectl apply -f demo/10-security-controls/feodo-block-policy.yaml
 
-    # try to ping any of the IPs in from the feodo tracker list
-    IP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq .spec.nets[0] | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
-    kubectl -n dev exec -t centos -- sh -c "ping -c1 $IP"
-
     #The ip block list from feodo
     https://feodotracker.abuse.ch/downloads/ipblocklist.txt
 
-    # The sample IP from the list can be 111.235.66.83
+   
     ```
 
 [Next -> Module 9](../modules/using-observability-tools.md)

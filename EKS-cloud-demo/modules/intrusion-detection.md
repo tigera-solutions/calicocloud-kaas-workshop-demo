@@ -29,16 +29,11 @@
    kubectl exec -it nginx -n storefront -- sh -c 'curl -m3 -sI2 http://www.google.com 2>/dev/null | grep -i http'
    ```
 
-4. Protect workloads from known bad actors.
+4. Trigger the embedded alerts for threatfeeds.
 
-    Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods.
+    Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods, including embedded alerts for threatfeeds.
 
     ```bash
-    # deploy feodo tracker threatfeed
-    kubectl apply -f demo/10-security-controls/feodotracker.threatfeed.yaml
-    # deploy network policy that uses the threadfeed
-    kubectl apply -f demo/10-security-controls/feodo-block-policy.yaml
-
     # try to ping any of the IPs in from the feodo tracker list
     IP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq .spec.nets[0] | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
     kubectl -n dev exec -t centos -- sh -c "ping -c1 $IP"
