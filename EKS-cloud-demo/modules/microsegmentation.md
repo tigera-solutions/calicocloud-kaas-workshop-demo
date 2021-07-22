@@ -25,7 +25,7 @@
     c. Implement Zone-Based policy for devops team 
 
     ```bash
-    kkubectl apply -f demo/10-security-controls/FirewallZonesPolicies.yaml
+    kubectl apply -f demo/10-security-controls/FirewallZonesPolicies.yaml
 
     ```
 2. Confirm the connection from microservice2 to backend are been allowed from flow visualization.
