@@ -1,4 +1,4 @@
-# Module 10: Using alerts
+# Module 11: Using alerts
 
 **Goal:** Use global alerts to notify security and operations teams about unsanctioned or suspicious activity.
 
@@ -51,4 +51,4 @@
 
 
 
-[Next -> Module 11](../modules/dynamic-packet-capture.md)
+[Next -> Module 12](../modules/dynamic-packet-capture.md)

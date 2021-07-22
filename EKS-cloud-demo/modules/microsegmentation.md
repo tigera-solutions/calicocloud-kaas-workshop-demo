@@ -15,9 +15,7 @@
     kubectl apply -f demo/tiers/devops-tier.yaml
 
     ```
-
     
-
     b. Create storefront application in devops tier.
 
     ```bash
@@ -25,7 +23,19 @@
     ```
 
 
-2.  Edit the policy to use a `NetworkSet` with DNS domain instead of inline DNS rule.
+2.  Test connectivity from pod `frontend` to  `backend`, should be allowed as there is no policies in place.
+
+    ```bash
+    # test connectivity from dev namespace to the Internet
+    kubectl -n devops exec -t frontend -- sh -c 'curl -m3 -sI http://backen 2>/dev/null | grep -i http'
+    ```
+
+3. Implement Zone-Based policy for devops team. 
+   ```bash
+   kubectl apply -f demo/10-security-controls/FirewallZonesPolicies.yaml
+   ```
+
+    Edit the policy to use a `NetworkSet` with DNS domain instead of inline DNS rule.
 
     a. Apply a policy to allow access to `api.twilio.com` endpoint using DNS policy.
 
@@ -69,4 +79,4 @@
     # The sample IP from the list can be 111.235.66.83
     ```
 
-[Next -> Module 8](../modules/using-observability-tools.md)
+[Next -> Module 7](../modules/host-protection.md)

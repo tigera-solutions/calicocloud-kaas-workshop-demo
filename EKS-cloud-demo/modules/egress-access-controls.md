@@ -72,4 +72,4 @@
     # The sample IP from the list can be 111.235.66.83
     ```
 
-[Next -> Module 8](../modules/using-observability-tools.md)
+[Next -> Module 9](../modules/using-observability-tools.md)

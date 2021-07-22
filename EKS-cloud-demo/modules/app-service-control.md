@@ -128,6 +128,6 @@
 
     The access should be allowed once the egress policy is in place.
 
-[Next -> Module 6](../modules/Microsegmentation.md)
+[Next -> Module 6](../modules/microsegmentation.md)
 
 
