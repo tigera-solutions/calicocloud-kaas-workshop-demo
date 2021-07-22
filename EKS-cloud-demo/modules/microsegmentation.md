@@ -34,11 +34,12 @@
 3. Change the lable of pod mircoservice2 and see the deny traffic in flow visualization. 
 
     ```bash
+
     #remove the label 
-    kubectl -n storefront label pod microservice2-7f7f575784-g9926 fw-zone-
+    kubectl -n storefront label pod $(kubectl -n storefront get po -l app=microservice2 -ojsonpath='{.items[0].metadata.name}') fw-zone-
 
     #add the label as dmz zone
-    kubectl -n storefront label pod microservice2-7f7f575784-g9926 fw-zone=dmz
+    kubectl -n storefront label pod $(kubectl -n storefront get po -l app=microservice2 -ojsonpath='{.items[0].metadata.name}')  fw-zone=dmz
     ```
 
 4. Confirm the connection from microservice2 to backend are been denied.
@@ -48,10 +49,10 @@
    
    ```bash
     #remove the label 
-    kubectl -n storefront label pod microservice2-7f7f575784-g9926 fw-zone-
+    kubectl -n storefront label pod $(kubectl -n storefront get po -l app=microservice2 -ojsonpath='{.items[0].metadata.name}') fw-zone-
 
     #add the label as trusted zone
-    kubectl -n storefront label pod microservice2-7f7f575784-g9926 fw-zone=trusted
+    kubectl -n storefront label pod $(kubectl -n storefront get po -l app=microservice2 -ojsonpath='{.items[0].metadata.name}') fw-zone=trusted
     ```
 
 
