@@ -19,7 +19,7 @@
     In order to explicitly allow workloads to connect to the Kubernetes DNS component, we are going to implement a policy that controls such traffic.
 
     ```bash
-    kubectl apply -f demo/10-security-controls/allow-kube-dns.yaml
+    kubectl apply -f demo/10-security-controls/platform-team.allow-kube-dns.yaml
     ```
 
 3. Deploy demo applications.
