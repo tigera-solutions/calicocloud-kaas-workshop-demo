@@ -91,7 +91,9 @@
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://nginx-svc 2>/dev/null | grep -i http'
 
     # test connectivity within default namespace
-    kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'curl -m3 -sI frontend 2>/dev/null | grep -i http'
+    kubectl exec -it $(kubectl get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv productcatalogservice 3550'
+
+    kubectl exec -it $(kubectl get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv recommendationservice 8080'
     ```
 
     b. The connections across `dev/centos` pod and `default/frontend` pod should be blocked by the global `default-deny` policy.
@@ -113,21 +115,29 @@
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://www.google.com 2>/dev/null | grep -i http'
 
     # test connectivity from default namespace to the Internet
-    kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'curl -m3 -sI www.google.com 2>/dev/null | grep -i http'
+    kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.google.com 2>/dev/null | grep -i http'
     ```
 
 5. Implement egress policy to allow egress access from a workload in one namespace, e.g. `dev/centos`, to a service in another namespace, e.g. `default/frontend`.
 
-    a. Deploy egress policy.
+    a. Test connectivity between `dev/centos` pod and `default/frontend` service, should be blocked now.
+    ```bash
+    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.default 2>/dev/null | grep -i http'
+
+    #output is command terminated with exit code 1
+    ```
+    
+    b. Deploy egress policy.
 
     ```bash
     kubectl apply -f demo/20-egress-access-controls/centos-to-frontend.yaml
     ```
 
-    b. Test connectivity between `dev/centos` pod and `default/frontend` service.
+    c. Test connectivity between `dev/centos` pod and `default/frontend` service again, should be allowed now.
 
     ```bash
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.default 2>/dev/null | grep -i http'
+    #output is HTTP/1.1 200 OK
     ```
 
     The access should be allowed once the egress policy is in place.
