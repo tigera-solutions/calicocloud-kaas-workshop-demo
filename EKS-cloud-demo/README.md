@@ -24,16 +24,26 @@
 - [Module 3: Joining EKS cluster to Calico Cloud](modules/joining-eks-to-calico-cloud.md)
 - [Module 4: Configuring demo applications](modules/configuring-demo-apps.md)
 
-- [Module 5: East-West controls-App service control](modules/app-service-control.md)
-- [Module 6: East-West controls-Microsegmentation](modules/microsegmentation.md)
-- [Module 7: East-West controls-Host protection](modules/host-protection.md)
-- [Module 8: North-South Controls-Egress access controls and DNS](modules/egress-access-controls.md)
+- [Module 5-1: East-West controls-App service control](modules/app-service-control.md)
+- [Module 5-2: East-West controls-Microsegmentation](modules/microsegmentation.md)
+- [Module 5-3: East-West controls-Host protection](modules/host-protection.md)
 
-- [Module 9: Observability-Dynamic Service Graph](modules/using-observability-tools.md)
-- [Module 10: Compliance](modules/compliance-reports.md)
-- [Module 11: Security-Intrusion Detection](modules/intrusion-detection.md)
+- [Module 6-1: North-South Controls-Egress access controls and DNS policy](modules/egress-access-controls.md)
+- [Module 6-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) [WIP]
 
-- [Module 12: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) ### 
+- [Module 7-1: Integration-Firewall Integration](modules/firewall-integration.md) [WIP]
+- [Module 7-2: Integration-SIEM Integration](modules/siem-integration.md) [WIP]
+
+- [Module 8-1: Compliance and Security-Compliance](modules/compliance-reports.md) [WIP]
+- [Module 8-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) [WIP]
+- [Module 8-3: Compliance and Security-Encryption](modules/encryption.md) [WIP]
+
+- [Module 9-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
+- [Module 9-2: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
+- [Module 9-3: Compliance](modules/kibana-dashboard.md)
+
+
+
 
 ## Cleanup
 

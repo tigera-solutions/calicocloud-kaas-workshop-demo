@@ -20,6 +20,7 @@ The intent of this workshop is to educate any person working with K8S cluster in
 In this workshop we are going to focus on these main use cases:
 
 - **East-West Controls: App service control & Microsegmentation & Host protection**
-- **North-South Controls: Ingress/Egress access controls and DNS policies**
-- **Compliance and Security: Compliance & Intrusion Detection & Encryption**
-- **Observability: Dynamic Service Graph & Dynamic Packet Capture**
+- **North-South Controls: Egress access controls and DNS policies & Egress Gateway**
+- **Integration: Firewall Integration & SIEM Integration**
+- **Compliance and Security: Compliance & Intrusion Detection and Prevention & Encryption**
+- **Observability: Dynamic Service Graph & Dynamic Packet Capture & Kibana dashboard**
