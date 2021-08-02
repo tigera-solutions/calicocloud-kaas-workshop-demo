@@ -2,6 +2,6 @@
 apiVersion: projectcalico.org/v3
 kind: Tier
 metadata:
-  name: devops
+  name: devops-team
 spec:
   order: 600
