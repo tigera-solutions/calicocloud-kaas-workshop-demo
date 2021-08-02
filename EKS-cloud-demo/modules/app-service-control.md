@@ -1,4 +1,4 @@
-# Module 5: East-West controls: App service control
+# Module 5-1: East-West controls: App service control
 
 **Goal:** Leverage network policies to segment connections within Kubernetes cluster.
 
@@ -142,6 +142,11 @@
 
     The access should be allowed once the egress policy is in place.
 
-[Next -> Module 6](../modules/microsegmentation.md)
+[Next -> Module 5-2](../modules/microsegmentation.md)
+
+[Previous -> Module 4](../modules/configuring-demo-apps.md)
+
+[Menu](../modules/README.md)
+
 
 

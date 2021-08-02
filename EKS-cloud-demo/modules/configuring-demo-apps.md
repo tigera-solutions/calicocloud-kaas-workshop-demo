@@ -58,4 +58,11 @@
    
     ```
 
-[Next -> Module 5](../modules/app-service-control.md)
+[Next -> Module 5-1](../modules/app-service-control.md)
+
+[Previous -> Module 3](../modules/joining-eks-to-calico-cloud.md)
+
+[Menu](../modules/README.md)
+
+
+

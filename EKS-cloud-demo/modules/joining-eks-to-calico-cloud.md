@@ -65,3 +65,7 @@
 
 
 [Next -> Module 4](../modules/configuring-demo-apps.md)
+
+[Previous -> Module 2](../modules/creating-eks-cluster.md)
+
+[Menu](../modules/README.md)

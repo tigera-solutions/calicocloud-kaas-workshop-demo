@@ -110,3 +110,7 @@
     ```
 
 [Next -> Module 3](../modules/joining-eks-to-calico-cloud.md)
+
+[Previous -> Module 1](../modules/setting-up-work-environment.md)
+
+[Menu](../modules/README.md)
