@@ -130,7 +130,7 @@
     b. Deploy egress policy.
 
     ```bash
-    kubectl apply -f demo/20-egress-access-controls/centos-to-frontend.yaml
+    kubectl apply -f demo/dev-stack/centos-to-frontend.yaml
     ```
 
     c. Test connectivity between `dev/centos` pod and `default/frontend` service again, should be allowed now.
