@@ -41,8 +41,8 @@
     >The compliance reports will be needed for one of a later lab, is cronjob in your cluster, you can change the schedule by edit it.
 
     ```bash
-    kubectl apply -f demo/40-compliance-reports/daily-cis-results.yaml
-    kubectl apply -f demo/40-compliance-reports/cluster-reports.yaml
+    kubectl apply -f demo/compliance-reports/daily-cis-results.yaml
+    kubectl apply -f demo/compliance-reports/cluster-reports.yaml
     ```
 
 5. Deploy global alerts.
@@ -50,9 +50,9 @@
     >The alerts will be explored in a later lab.
 
     ```bash
-    kubectl apply -f demo/50-alerts/globalnetworkset.changed.yaml
-    kubectl apply -f demo/50-alerts/unsanctioned.dns.access.yaml
-    kubectl apply -f demo/50-alerts/unsanctioned.lateral.access.yaml
+    kubectl apply -f demo/alerts/globalnetworkset.changed.yaml
+    kubectl apply -f demo/alerts/unsanctioned.dns.access.yaml
+    kubectl apply -f demo/alerts/unsanctioned.lateral.access.yaml
     ```
 
 [Next -> Module 5](../modules/app-service-control.md)
