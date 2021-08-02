@@ -1,4 +1,4 @@
-# Module 7: Host protection
+# Module 7: East-West controls-Host protection
 
 **Goal:** Secure EKS hosts ports with network policies.
 

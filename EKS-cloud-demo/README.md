@@ -25,8 +25,8 @@
 - [Module 4: Configuring demo applications](modules/configuring-demo-apps.md)
 
 - [Module 5: East-West controls-App service control](modules/app-service-control.md)
-- [Module 6: East-West controls-Microsegmentation](modules/Microsegmentation.md)
-- [Module 7: Host protection](modules/host-protection.md)
+- [Module 6: East-West controls-Microsegmentation](modules/microsegmentation.md)
+- [Module 7: East-West controls-Host protection](modules/host-protection.md)
 - [Module 8: North-South Controls-Egress access controls and DNS](modules/egress-access-controls.md)
 
 - [Module 9: Observability-Dynamic Service Graph](modules/using-observability-tools.md)
