@@ -108,3 +108,7 @@ The simplest ways to configure your working environment is to either use your lo
     ```
 
 [Next -> Module 2](../modules/creating-eks-cluster.md)
+
+[Previous -> Module 0](../modules/README.md)
+
+[Menu](../modules/README.md)

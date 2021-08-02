@@ -40,7 +40,7 @@
 
 - [Module 9-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
 - [Module 9-2: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
-- [Module 9-3: Compliance](modules/kibana-dashboard.md)
+- [Module 9-3: Observability-Kibana dashboard](modules/kibana-dashboard.md)
 
 
 
