@@ -1,0 +1,27 @@
+# Network set for Embargo countries. 
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkSet
+metadata:
+  name: 3-embargo-countries
+  labels:
+    embargo: "true"
+spec:
+  nets:
+  # List of IP addresses Syria
+  - 5.0.0.0/16
+  - 5.104.128.0/21
+  - 5.134.200.0/21
+  - 5.134.224.0/19
+  - 31.9.0.0/16
+  - 31.14.164.0/22
+  - 31.193.64.0/20
+  - 37.48.128.0/18
+  - 37.48.192.0/19
+  - 46.40.128.0/18
+  - 46.53.0.0/18
+  - 46.53.64.0/21
+  - 46.53.72.0/21
+  - 46.53.80.0/20
+  - 46.53.96.0/19
+  - 46.57.128.0/17
+  - 46.58.128.0/17

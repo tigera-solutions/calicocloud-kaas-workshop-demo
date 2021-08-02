@@ -1,10 +1,10 @@
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: devops.restricted
+  name: devops-team.restricted
   namespace: storefront
 spec:
-  tier: devops
+  tier: devops-team
   order: 20
   selector: fw-zone == "restricted"
   ingress:
@@ -30,10 +30,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: StagedNetworkPolicy
 metadata:
-  name: devops.restricted
+  name: devops-team.restricted
   namespace: storefront
 spec:
-  tier: devops
+  tier: devops-team
   order: 20
   selector: fw-zone == "restricted"
   ingress:

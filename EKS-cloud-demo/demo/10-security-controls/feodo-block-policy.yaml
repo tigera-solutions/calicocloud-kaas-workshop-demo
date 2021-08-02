@@ -2,9 +2,9 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security.block-feodo
+  name: security-team.block-feodo
 spec:
-  tier: security
+  tier: security-team
   order: 210
   selector: all()
   types:

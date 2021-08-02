@@ -19,7 +19,7 @@
     b. Create storefront application in devops tier.
 
     ```bash
-    kubectl apply -f demo/storefront
+    kubectl apply -f demo/storefront-stack
     ```
 
     c. Implement Zone-Based policy for devops team 
