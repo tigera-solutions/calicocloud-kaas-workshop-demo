@@ -6,7 +6,7 @@
 
 1. Test connectivity between application components and across application stacks.
 
-    a. Test connectivity between workloads within each namespace.
+    a. Test connectivity between workloads within each namespace, use `dev` and `default` namespaces as example
 
     ```bash
     # test connectivity within dev namespace
@@ -22,7 +22,7 @@
     kubectl exec -it $(kubectl get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv productcatalogservice 3550'
     ```
 
-    b. Test connectivity across namespaces.
+    b. Test connectivity across namespaces `dev` and `default`.
 
     ```bash
     # test connectivity from dev namespace to default namespace
@@ -32,7 +32,7 @@
     kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
     ```
 
-    c. Test connectivity from each namespace to the Internet.
+    c. Test connectivity from each namespace `dev` and `default` to the Internet.
 
     ```bash
     # test connectivity from dev namespace to the Internet
@@ -49,7 +49,7 @@
     >Staged `default-deny` policy is a good way of catching any traffic that is not explicitly allowed by a policy without explicitly blocking it.
 
     ```bash
-    kubectl apply -f demo/10-security-controls/staged.default-deny.yaml
+    kubectl apply -f demo/10-security-controls/staged.default-dev-deny.yaml
     ```
 
     You should be able to view the potential affect of the staged `default-deny` policy if you navigate to the `Dashboard` view in the Enterprise Manager UI and look at the `Packets by Policy` histogram.
@@ -75,14 +75,14 @@
 
     ```bash
     # apply enforcing default-deny policy manifest
-    kubectl apply -f demo/10-security-controls/default-deny.yaml
+    kubectl apply -f demo/10-security-controls/default-dev-deny.yaml
     # you can delete staged default-deny policy
-    kubectl delete -f demo/10-security-controls/staged.default-deny.yaml
+    kubectl delete -f demo/10-security-controls/staged.default-dev-deny.yaml
     ```
 
 4. Test connectivity with policies in place.
 
-    a. The only connections between the components within each namespaces should be allowed as configured by the policies.
+    a. The only connections between the components within each namespaces `dev` and `default` should be allowed as configured by the policies.
 
     ```bash
     # test connectivity within dev namespace

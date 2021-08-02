@@ -6,12 +6,12 @@
 
 1. Configure packet capture.
 
-    Navigate to `demo/60-packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
+    Navigate to `demo/packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
 
     Deploy packet capture definition to capture packets for `dev/nginx` pods.
 
     ```bash
-    kubectl apply -f demo/60-packet-capture/nginx-pcap.yaml
+    kubectl apply -f demo/packet-capture/nginx-pcap.yaml
     ```
 
     >Once the `PacketCapture` resource is deployed, Calico starts capturing packets for all endpoints configured in the `selector` field.
@@ -48,7 +48,7 @@
     Stop packet capture by removing the `PacketCapture` resource.
 
     ```bash
-    kubectl delete -f demo/60-packet-capture/nginx-pcap.yaml
+    kubectl delete -f demo/packet-capture/nginx-pcap.yaml
     ```
 
 Congratulations! You have finished all the labs in the workshop.

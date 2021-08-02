@@ -57,15 +57,10 @@
     Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods.
 
     ```bash
-    # deploy feodo tracker threatfeed
-    kubectl apply -f demo/10-security-controls/feodotracker.threatfeed.yaml
-    # deploy network policy that uses the threadfeed
-    kubectl apply -f demo/10-security-controls/feodo-block-policy.yaml
+    # deploy feodo and other tracker threatfeed
+    kubectl apply -f demo/threatfeeds/
 
-    #The ip block list from feodo
-    https://feodotracker.abuse.ch/downloads/ipblocklist.txt
 
-   
     ```
 
 [Next -> Module 9](../modules/using-observability-tools.md)

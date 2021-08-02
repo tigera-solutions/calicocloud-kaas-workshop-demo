@@ -8,26 +8,15 @@
 
 1. Implement tiered policy for devops team. 
 
-    a. Apply a tier for devops
+   
 
-    ```bash
-    # deploy devops tier policy
-    kubectl apply -f demo/tiers/devops-tier.yaml
-
-    ```
-
-    b. Create storefront application in devops tier.
+    a. Create storefront application in devops tier, including implement Zone-Based policy for devops team 
 
     ```bash
     kubectl apply -f demo/storefront-stack
     ```
 
-    c. Implement Zone-Based policy for devops team 
-
-    ```bash
-    kubectl apply -f demo/10-security-controls/FirewallZonesPolicies.yaml
-
-    ```
+   
 2. Confirm the connection from microservice2 to backend are been allowed from flow visualization.
 
 
