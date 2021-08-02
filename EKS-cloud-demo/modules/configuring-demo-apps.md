@@ -27,7 +27,7 @@
     ```bash
     # deploy dev app stack
     kubectl apply -f demo/dev-stack/app.manifests.yaml
-    kubectl apply -f demo/acme-stack/acme.yaml
+    #kubectl apply -f demo/acme-stack/acme.yaml
   
 
 
