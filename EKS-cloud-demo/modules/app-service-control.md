@@ -65,10 +65,10 @@
 
     ```bash
     # deploy dev policies
-    kubectl apply -f demo/dev/policies.yaml
+    kubectl apply -f demo/dev-stack/policies.yaml
 
     # deploy boutiqueshop policies
-    kubectl apply -f demo/boutiqueshop/policies.yaml
+    kubectl apply -f demo/boutiqueshop-policy/policies.yaml
     ```
 
     Now as we have proper policies in place, we can enforce `default-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `default-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `default-deny` policy manifest.
