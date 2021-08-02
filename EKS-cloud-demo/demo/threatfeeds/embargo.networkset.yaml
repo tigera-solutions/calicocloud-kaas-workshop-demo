@@ -2,7 +2,7 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkSet
 metadata:
-  name: 3-embargo-countries
+  name: embargo-countries
   labels:
     embargo: "true"
 spec:

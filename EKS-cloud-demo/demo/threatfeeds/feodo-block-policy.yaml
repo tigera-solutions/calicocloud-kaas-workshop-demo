@@ -2,7 +2,7 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security-team.block-feodo
+  name: security-team.block-threadfeed
 spec:
   tier: security-team
   order: 210
@@ -12,5 +12,5 @@ spec:
   egress:
   - action: Deny
     destination:
-      selector: threatfeed == 'feodo'
+      selector: threatfeed == "feodo"||threatfeed == "snort"
   - action: Pass
