@@ -40,7 +40,9 @@
 1. Delete application stack to clean up any `loadbalancer` services.
 
     ```bash
-    kubectl delete -f demo/dev/app.manifests.yaml
+    kubectl delete -f demo/dev-stack/app.manifests.yaml
+    kubectl delete -f demo/acme-stack/acme.yaml
+    kubectl delete -f demo/storefront-stack
     kubectl delete -f https://raw.githubusercontent.com/GoogleCloudPlatform/microservices-demo/master/release/kubernetes-manifests.yaml
     ```
 

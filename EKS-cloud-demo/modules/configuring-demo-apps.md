@@ -27,6 +27,10 @@
     ```bash
     # deploy dev app stack
     kubectl apply -f demo/dev-stack/app.manifests.yaml
+    kubectl apply -f demo/acme-stack/acme.yaml
+    kubectl apply -f demo/storefront-stack
+
+
 
     # deploy boutiqueshop app stack
     kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/microservices-demo/master/release/kubernetes-manifests.yaml
@@ -41,8 +45,8 @@
     >The compliance reports will be needed for one of a later lab, is cronjob in your cluster, you can change the schedule by edit it.
 
     ```bash
-    kubectl apply -f demo/compliance-reports/daily-cis-results.yaml
-    kubectl apply -f demo/compliance-reports/cluster-reports.yaml
+    kubectl apply -f demo/compliance-reports
+
     ```
 
 5. Deploy global alerts.
@@ -50,9 +54,8 @@
     >The alerts will be explored in a later lab.
 
     ```bash
-    kubectl apply -f demo/alerts/globalnetworkset.changed.yaml
-    kubectl apply -f demo/alerts/unsanctioned.dns.access.yaml
-    kubectl apply -f demo/alerts/unsanctioned.lateral.access.yaml
+    kubectl apply -f demo/alerts/
+   
     ```
 
 [Next -> Module 5](../modules/app-service-control.md)

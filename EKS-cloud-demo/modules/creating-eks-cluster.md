@@ -52,7 +52,7 @@
 
     ```bash
     # create EKS manifest file
-    cat > configs/tigera-workshop.yaml << EOF
+    cat > configs/calicocloud-workshop.yaml << EOF
     apiVersion: eksctl.io/v1alpha5
     kind: ClusterConfig
 
@@ -87,7 +87,7 @@
 4. Use `eksctl` to create EKS cluster.
 
     ```bash
-    eksctl create cluster -f configs/tigera-workshop.yaml
+    eksctl create cluster -f configs/calicocloud-workshop.yaml
     ```
 
 5. View EKS cluster.
