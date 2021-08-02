@@ -1,10 +1,10 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: platform.allow-kube-dns
+  name: platform-team.allow-kube-dns
 spec:
   # requires platform tier to exist
-  tier: platform
+  tier: platform-team
   order: 2000
   selector: all()
   types:

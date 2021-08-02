@@ -9,10 +9,10 @@
     We are going to deploy some policies into policy tier to take advantage of hierarcical policy management.
 
     ```bash
-    kubectl apply -f demo/tiers/tiers.yaml
+    kubectl apply -f demo/tiers
     ```
 
-    This will add tiers `security` and `platform` to the Calico cluster.
+    This will add tiers `devops-team``security-team` and `platform-team` to the Calico cluster.
 
 2. Deploy base policy.
 
