@@ -59,10 +59,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: devops.dmz
+  name: devops-team.dmz
   namespace: storefront
 spec:
-  tier: devops
+  tier: devops-team
   order: 0
   selector: fw-zone == "dmz"
   ingress:
@@ -89,10 +89,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: StagedNetworkPolicy
 metadata:
-  name: devops.dmz
+  name: devops-team.dmz
   namespace: storefront
 spec:
-  tier: devops
+  tier: devops-team
   order: 0
   selector: fw-zone == "dmz"
   ingress:
@@ -119,10 +119,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: devops.trusted
+  name: devops-team.trusted
   namespace: storefront
 spec:
-  tier: devops
+  tier: devops-team
   order: 10
   selector: fw-zone == "trusted"
   ingress:
@@ -156,10 +156,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: StagedNetworkPolicy
 metadata:
-  name: devops.trusted
+  name: devops-team.trusted
   namespace: storefront
 spec:
-  tier: devops
+  tier: devops-team
   order: 10
   selector: fw-zone == "trusted"
   ingress:
