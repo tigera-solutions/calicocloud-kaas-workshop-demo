@@ -12,7 +12,7 @@ spec:
   - from:
     - namespaceSelector:
         matchLabels:
-          compliance: open
+          app: centos
   policyTypes:
   - Ingress
 
