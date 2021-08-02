@@ -1,4 +1,4 @@
-# Module 12: Observability-Dynamic packet capture
+# Module 9-2: Observability-Dynamic packet capture
 
 **Goal:** Configure packet capture for specific pods and review captured payload.
 
@@ -51,4 +51,9 @@
     kubectl delete -f demo/packet-capture/nginx-pcap.yaml
     ```
 
-Congratulations! You have finished all the labs in the workshop.
+
+[Next -> Module 9-3](../modules/kibana-dashboard.md)
+
+[Previous -> Module 9-1](../modules/dynamic-service-graph.md)
+
+[Menu](../README.md)

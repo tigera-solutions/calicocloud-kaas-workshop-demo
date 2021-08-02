@@ -1,4 +1,4 @@
-# Module 7: North-South Controls-Egress access controls
+# Module 6-1: North-South Controls-Egress access controls
 
 **Goal:** Configure egress access control for specific workloads so they are allow to external DNS domain.
 
@@ -63,4 +63,8 @@
 
     ```
 
-[Next -> Module 9](../modules/using-observability-tools.md)
+[Next -> Module 6-2](../modules/egress-gateway.md)
+
+[Previous -> Module 5-3](../modules/host-protection.md)
+
+[Menu](../README.md)

@@ -1,4 +1,4 @@
-# Module 10: Compliance reports
+# Module 8-1: Compliance and Security-Compliance
 
 **Goal:** Use global reports to satisfy compliance requirements.
 
@@ -25,4 +25,8 @@
 
 
 
-[Next -> Module 11](../modules/intrusion-detection.md)
+[Next -> Module 8-2](../modules/intrusion-detection-protection.md)
+
+[Previous -> Module 7-2](../modules/host-protection.md)
+
+[Menu](../README.md)

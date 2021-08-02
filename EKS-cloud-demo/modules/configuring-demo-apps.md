@@ -62,7 +62,7 @@
 
 [Previous -> Module 3](../modules/joining-eks-to-calico-cloud.md)
 
-[Menu](../modules/README.md)
+[Menu](../README.md)
 
 
 

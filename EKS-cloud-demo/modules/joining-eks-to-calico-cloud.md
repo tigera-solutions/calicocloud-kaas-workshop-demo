@@ -68,4 +68,4 @@
 
 [Previous -> Module 2](../modules/creating-eks-cluster.md)
 
-[Menu](../modules/README.md)
+[Menu](../README.md)

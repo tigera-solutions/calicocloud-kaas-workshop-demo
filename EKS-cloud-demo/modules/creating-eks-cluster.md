@@ -113,4 +113,4 @@
 
 [Previous -> Module 1](../modules/setting-up-work-environment.md)
 
-[Menu](../modules/README.md)
+[Menu](../README.md)

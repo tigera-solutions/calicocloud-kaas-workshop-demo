@@ -34,8 +34,8 @@
 - [Module 7-1: Integration-Firewall Integration](modules/firewall-integration.md) [WIP]
 - [Module 7-2: Integration-SIEM Integration](modules/siem-integration.md) [WIP]
 
-- [Module 8-1: Compliance and Security-Compliance](modules/compliance-reports.md) [WIP]
-- [Module 8-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) [WIP]
+- [Module 8-1: Compliance and Security-Compliance](modules/compliance-reports.md) 
+- [Module 8-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) 
 - [Module 8-3: Compliance and Security-Encryption](modules/encryption.md) [WIP]
 
 - [Module 9-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)

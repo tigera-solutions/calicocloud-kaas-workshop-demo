@@ -146,7 +146,7 @@
 
 [Previous -> Module 4](../modules/configuring-demo-apps.md)
 
-[Menu](../modules/README.md)
+[Menu](../README.md)
 
 
 

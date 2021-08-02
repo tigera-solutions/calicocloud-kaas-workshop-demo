@@ -1,4 +1,4 @@
-# Module 9: Using observability tools
+# Module 9-1: Observability-Dynamic Service Graph
 
 **Goal:** Explore Calico observability tools.
 
@@ -65,4 +65,8 @@
 
     Some of the default dashboards you get access to are DNS Logs, Flow Logs, Audit Logs, Kuernetes API calls, L7 HTTP metrics, and others.
 
-[Next -> Module 10](../modules/compliance-reports.md)
+[Next -> Module 9-2](../modules/dynamic-packet-capture.md)
+
+[Previous -> Module 8-3](../modules/encryption.md)
+
+[Menu](../README.md)

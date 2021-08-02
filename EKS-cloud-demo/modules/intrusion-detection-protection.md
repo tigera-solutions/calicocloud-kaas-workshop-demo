@@ -1,4 +1,4 @@
-# Module 11: Security-Intrusion Detection
+# Module 8-2: Compliance and Security-Intrusion Detection and Prevention
 
 **Goal:** Use global alerts to notify security and operations teams about unsanctioned or suspicious activity.
 
@@ -47,4 +47,8 @@
 
 
 
-[Next -> Module 12](../modules/dynamic-packet-capture.md)
+[Next -> Module 8-3](../modules/encryption.md)
+
+[Previous -> Module 8-1](../modules/compliance-reports.md)
+
+[Menu](../README.md)
