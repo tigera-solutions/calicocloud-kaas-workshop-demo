@@ -6,7 +6,7 @@ spec:
   # requires platform tier to exist
   tier: platform-team
   order: 2000
-  selector: all()
+  selector: projectcalico.org/namespace != "acme"
   types:
   - Egress
   egress:
