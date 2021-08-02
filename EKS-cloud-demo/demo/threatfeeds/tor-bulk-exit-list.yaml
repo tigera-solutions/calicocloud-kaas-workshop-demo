@@ -1,0 +1,11 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalThreatFeed
+metadata:
+  name: tor-bulk-exit-list
+spec:
+  pull:
+    http:
+      url: https://check.torproject.org/cgi-bin/TorBulkExitList.py?ip=1.1.1.1
+  globalNetworkSet:
+    labels:
+      threatfeed: tor

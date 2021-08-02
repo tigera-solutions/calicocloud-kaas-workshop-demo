@@ -13,3 +13,11 @@ metadata:
   name: platform-team
 spec:
   order: 500
+  
+---
+apiVersion: projectcalico.org/v3
+kind: Tier
+metadata:
+  name: devops-team
+spec:
+  order: 600
