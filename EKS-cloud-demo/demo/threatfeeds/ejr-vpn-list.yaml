@@ -1,0 +1,14 @@
+#EJR VPN feed targets major VPN providers and their infrastructure used in anonymization activity over the internet. 
+# The feed is updated bi-monthly, which helps network security teams to stay on top of threats from such anonymizing infrastructure and detect them early in the enumeration phase.
+
+apiVersion: projectcalico.org/v3
+kind: GlobalThreatFeed
+metadata:
+  name: ejr-vpn
+spec:
+  pull:
+    http:
+      url: https://raw.githubusercontent.com/ejrv/VPNs/master/vpn-ipv4.txt
+  globalNetworkSet:
+    labels:
+      threatfeed: ejr-vpn

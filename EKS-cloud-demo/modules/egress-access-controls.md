@@ -52,7 +52,7 @@
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://www.google.com 2>/dev/null | grep -i http'
     ```
 
-3. Protect workloads from known bad actors.
+3. Protect workloads with GlobalThreatfeed from known bad actors.
 
     Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods.
 
@@ -61,7 +61,12 @@
     kubectl apply -f demo/threatfeeds/
 
 
+    # Confirm and check the tracker threatfeed
+    kubectl get globalthreatfeeds 
+
     ```
+
+
 
 [Next -> Module 6-2](../modules/egress-gateway.md)
 

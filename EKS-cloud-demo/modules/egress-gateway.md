@@ -28,7 +28,7 @@ kubectl get secret tigera-pull-secret --namespace=calico-system -o yaml | \
    kubectl apply --namespace=$EG_NAMESPACE -f -
 
 # deploy egress gateway
-kubectl apply -f 50-egress-gateways/egress-gateways.yaml
+kubectl apply -f egress-gateways/egress-gateways.yaml
 
 # annotate client service namespace with EG label
 CLIENT_NAMESPACE="dev"

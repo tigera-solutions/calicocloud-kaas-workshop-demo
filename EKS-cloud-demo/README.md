@@ -28,7 +28,7 @@
 - [Module 5-2: East-West controls-Microsegmentation](modules/microsegmentation.md)
 - [Module 5-3: East-West controls-Host protection](modules/host-protection.md)
 
-- [Module 6-1: North-South Controls-Egress access controls and DNS policy](modules/egress-access-controls.md)
+- [Module 6-1: North-South Controls-Egress access controls, DNS policy and Global threadfeed ](modules/egress-access-controls.md)
 - [Module 6-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) [WIP]
 
 - [Module 7-1: Integration-Firewall Integration](modules/firewall-integration.md) [WIP]
