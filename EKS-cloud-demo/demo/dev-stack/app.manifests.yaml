@@ -78,6 +78,8 @@ spec:
   containers:
   - name: centos
     image: centos:latest
+    command: [ "/bin/bash", "-c", "--" ]
+    args: [ "while true; do curl -m3 http://nginx-svc; sleep 3; done;" ]
     resources: {}
 
 ---

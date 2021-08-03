@@ -32,7 +32,7 @@
     kubectl apply -f demo/acme-stack/acme.yaml
 
     # deploy boutiqueshop app stack
-    kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/microservices-demo/master/release/kubernetes-manifests.yaml
+    kubectl apply -f demo/boutiqueshop/manifest.yaml
 
     # deploy shell demo pod
     #kubectl apply -f https://k8s.io/examples/application/shell-demo.yaml

@@ -3,13 +3,11 @@ apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
   name: boutiqueshop-inventory
-  labels:
-    deployment: production
 spec:
   reportType: inventory
   endpoints:
     namespaces:
-      names: ["default"]
+      names: ["hipstershop"]
   schedule: '*/30 * * * *'
 
 ---
@@ -17,13 +15,11 @@ apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
   name: boutiqueshop-network-access
-  labels:
-    deployment: production
 spec:
   reportType: network-access
   endpoints:
     namespaces:
-      names: ["default"]
+      names: ["hipstershop"]
   schedule: '*/30 * * * *'
 
 # uncomment policy-audit report if you configured audit logs for EKS cluster https://docs.tigera.io/compliance/compliance-reports/compliance-managed-cloud#enable-audit-logs-in-eks
@@ -32,11 +28,9 @@ apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
   name: boutiqueshop-policy-audit
-  labels:
-    deployment: production
 spec:
   reportType: policy-audit
   endpoints:
     namespaces:
-      names: ["default"]
+      names: ["hipstershop"]
   schedule: '*/30 * * * *'

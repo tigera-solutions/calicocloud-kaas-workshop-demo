@@ -6,7 +6,7 @@
 
 1. Test connectivity between application components and across application stacks.
 
-    a. Test connectivity between workloads within each namespace, use `dev` and `default` namespaces as example
+    a. Test connectivity between workloads within each namespace, use `dev` and `hipstershop` namespaces as example
 
     ```bash
     # test connectivity within dev namespace
@@ -17,18 +17,18 @@
 
     #kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'apt-get install curl -y'
     
-    # test connectivity within default namespace
+    # test connectivity within hipstershop namespace
     
-    kubectl exec -it $(kubectl get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv productcatalogservice 3550'
+    kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv productcatalogservice 3550'
 
-    kubectl exec -it $(kubectl get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv recommendationservice 8080'
+    kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv recommendationservice 8080'
     ```
 
-    b. Test connectivity across namespaces `dev` and `default`.
+    b. Test connectivity across namespaces `dev` and `hipstershop`.
 
     ```bash
-    # test connectivity from dev namespace to default namespace
-    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.default 2>/dev/null | grep -i http'
+    # test connectivity from dev namespace to hipstershop namespace
+    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.hipstershop 2>/dev/null | grep -i http'
 
     # test connectivity from default namespace to dev namespace
     kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
