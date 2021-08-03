@@ -109,6 +109,17 @@
     kubectl get nodes
     ```
 
+7. Adding more nodes in your cluster
+    ```bash
+    eksctl create nodegroup --cluster jessie-workshop --node-type t3.xlarge --node-ami auto --max-pods-per-node 100     
+
+    #delete your k8s config file if you hit EKS bug
+    rm /home/ec2-user/.kube/config
+
+    #generate new config file to your home directory
+    aws eks update-kubeconfig --name jessie-workshop --region us-east-1
+    ```        
+
 [Next -> Module 3](../modules/joining-eks-to-calico-cloud.md)
 
 [Previous -> Module 1](../modules/setting-up-work-environment.md)
