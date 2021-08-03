@@ -22,13 +22,13 @@ kind: GlobalAlert
 metadata:
   name: dns.unsanctioned.access
 spec:
-  description: "Pod attempted to access google.com domain"
+  description: "Pod attempted to access example.com domain"
   summary: "[dns] pod ${client_namespace}/${client_name_aggr} attempted to access '${qname}'"
   severity: 100
   dataSet: dns
   period: 1m
   lookback: 1m
-  query: '(qname = "www.google.com" OR qname = "google.com")'
+  query: '(qname = "www.example.com" OR qname = "example.com")'
   aggregateBy: [client_namespace, client_name_aggr, qname]
   metric: count
   condition: gt

@@ -79,3 +79,17 @@ spec:
   - name: centos
     image: centos:latest
     resources: {}
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: netshoot
+  namespace: dev
+  labels:
+    app: netshoot
+spec:
+  containers:
+  - name: netshoot
+    image: nicolaka/netshoot:latest
+    resources: {}

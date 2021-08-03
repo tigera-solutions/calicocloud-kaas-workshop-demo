@@ -177,9 +177,15 @@ kubectl apply -f demo/attacker-rogue/rogue.yaml
 
 #confirm the rogue from service graph
 ```
+2. deploy the quarantine networkpolicy to protect your cluster
 
+```bash
+kubectl apply -f demo/10-security-controls/security-team.quarantine.yaml
 
-2. quarantine the rogue pod
+#confirm the rogue been quarantined from policy dashboard
+```
+
+3. quarantine the rogue pod
 
 ```bash
 ./demo/attacker-rogue/QuarantineRogue.sh
@@ -187,7 +193,7 @@ kubectl apply -f demo/attacker-rogue/rogue.yaml
 #confirm the rogue been quarantined from policy dashboard
 ```
 
-3. delete the rogue pod
+4. delete the rogue pod
 
 ```bash
 kubectl delete -f demo/attacker-rogue/rogue.yaml
