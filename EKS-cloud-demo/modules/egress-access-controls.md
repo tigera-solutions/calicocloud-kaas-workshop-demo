@@ -68,7 +68,7 @@
 
 
 
-[Next -> Module 6-2](../modules/egress-gateway.md)
+[WIP][Next -> Module 6-2](../modules/egress-gateway.md)
 
 [Previous -> Module 5-3](../modules/host-protection.md)
 

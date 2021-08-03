@@ -52,7 +52,7 @@
     ```
 
 
-[Next -> Module 9-3](../modules/kibana-dashboard.md)
+[WIP][Next -> Module 9-3](../modules/kibana-dashboard.md)
 
 [Previous -> Module 9-1](../modules/dynamic-service-graph.md)
 
