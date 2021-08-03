@@ -102,28 +102,34 @@
     ```bash
     # test connectivity from dev namespace to hipstershop namespace
 
-    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.default 2>/dev/null | grep -i http'
+    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.hipstershop 2>/dev/null | grep -i http'
 
     # test connectivity from default namespace to dev namespace
     kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
   
     ```
 
-    c. Test connectivity from `dev` and  `default` namespace to the Internet, should be blocked by the configured policies.
+    c. Test connectivity from `dev` namespace to the Internet, should be blocked by the configured policies.
 
     ```bash
     # test connectivity from dev namespace to the Internet
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://www.google.com 2>/dev/null | grep -i http'
 
+    ```
+
+    d. Test connectivity from `default` namespace to the Internet, should be allowed right now.
+    ```bash
+
     # test connectivity from default namespace to the Internet
     kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.google.com 2>/dev/null | grep -i http'
     ```
 
-5. Implement egress policy to allow egress access from a workload in one namespace, e.g. `dev/centos`, to a service in another namespace, e.g. `default/frontend`.
 
-    a. Test connectivity between `dev/centos` pod and `default/frontend` service, should be blocked now.
+5. Implement egress policy to allow egress access from a workload in one namespace, e.g. `dev/centos`, to a service in another namespace, e.g. `hipstershop/frontend`.
+
+    a. Test connectivity between `dev/centos` pod and `hipstershop/frontend` service, should be blocked now.
     ```bash
-    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.default 2>/dev/null | grep -i http'
+    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.hipstershop 2>/dev/null | grep -i http'
 
     #output is command terminated with exit code 1
     ```
@@ -134,10 +140,10 @@
     kubectl apply -f demo/dev-stack/centos-to-frontend.yaml
     ```
 
-    c. Test connectivity between `dev/centos` pod and `default/frontend` service again, should be allowed now.
+    c. Test connectivity between `dev/centos` pod and `hipstershop/frontend` service again, should be allowed now.
 
     ```bash
-    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.default 2>/dev/null | grep -i http'
+    kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.hipstershop 2>/dev/null | grep -i http'
     #output is HTTP/1.1 200 OK
     ```
 

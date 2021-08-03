@@ -23,4 +23,4 @@ spec:
     source: {}
     destination:
       selector: app == "frontend"
-      namespaceSelector: projectcalico.org/name == "default"
+      namespaceSelector: projectcalico.org/name == "hipstershop"
