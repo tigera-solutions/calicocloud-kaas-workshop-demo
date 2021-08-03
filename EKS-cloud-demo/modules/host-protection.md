@@ -19,13 +19,19 @@ Calico network policies not only can secure pod to pod communications but also c
     AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
     # pick one EKS node and use it's ID to get securigy group
     SG_ID=$(aws ec2 describe-instances --region $AWS_REGION --filters "Name=tag:Name,Values=$EKS_CLUSTER*" "Name=instance-state-name,Values=running" --query 'Reservations[0].Instances[*].NetworkInterfaces[0].Groups[0].GroupId' --output text --output text)
-    # open SSH port in the security group for public access
-    aws ec2 authorize-security-group-ingress --region $AWS_REGION --group-id $SG_ID --protocol tcp --port 30080 --cidr 0.0.0.0/0
 
     # get public IP of an EKS node
     PUB_IP=$(aws ec2 describe-instances --region $AWS_REGION --filters "Name=tag:Name,Values=$EKS_CLUSTER*" "Name=instance-state-name,Values=running" --query 'Reservations[0].Instances[0].PublicIpAddress' --output text --output text)
-    # test connection to SSH port
+    
+    # test connection to frontend 30080 port
     nc -zv $PUB_IP 30080
+
+    # open SSH port in the security group for public access
+    aws ec2 authorize-security-group-ingress --region $AWS_REGION --group-id $SG_ID --protocol tcp --port 30080 --cidr 0.0.0.0/0
+
+    # test connection to frontend 30080 port again
+    nc -zv $PUB_IP 30080
+   
     ```
 
     >It can take a moment for the node port to become accessible.
