@@ -182,7 +182,7 @@ kubectl apply -f demo/attacker-rogue/rogue.yaml
 ```bash
 kubectl apply -f demo/10-security-controls/security-team.quarantine.yaml
 
-#confirm the rogue been quarantined from policy dashboard
+#confirm the quarantine policy from policy dashboard
 ```
 
 3. quarantine the rogue pod
