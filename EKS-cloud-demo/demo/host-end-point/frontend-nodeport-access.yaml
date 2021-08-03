@@ -1,9 +1,9 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security.frontend-nodeport-access
+  name: security-team.frontend-nodeport-access
 spec:
-  tier: security
+  tier: security-team
   order: 100
   selector: has(eks.amazonaws.com/nodegroup)
   # Allow all traffic to localhost.
