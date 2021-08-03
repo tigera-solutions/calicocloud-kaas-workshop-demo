@@ -92,4 +92,7 @@ spec:
   containers:
   - name: netshoot
     image: nicolaka/netshoot:latest
+    # Just spin & wait forever
+    command: [ "/bin/bash", "-c", "--" ]
+    args: [ "while true; do curl -m3 http://nginx-svc; sleep 3; done;" ]
     resources: {}
