@@ -75,7 +75,7 @@ Calico network policies not only can secure pod to pod communications but also c
     CLOUD9_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
     
     # deploy HEP policy
-    sed -e "s/\${CLOUD9_IP}/${CLOUD9_IP}\/32/g" demo/30-secure-hep/frontend-nodeport-access.yaml | kubectl apply -f -
+    sed -e "s/\${CLOUD9_IP}/${CLOUD9_IP}\/32/g" demo/host-end-point/frontend-nodeport-access.yaml | kubectl apply -f -
     
     # test access from Cloud9 shell
     nc -zv $PUB_IP 30080 #expecting pass
