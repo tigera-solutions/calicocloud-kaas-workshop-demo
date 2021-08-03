@@ -36,7 +36,7 @@ Calico network policies not only can secure pod to pod communications but also c
 
     >It can take a moment for the node port to become accessible.
 
-    If the SSH port was configured correctly, the `nc` command should show you that the port is open.
+    If the frontend service port was configured correctly, the `nc` command should show you that the port is open.
 
 2. Enable `HostEndpoint` auto-creation for EKS cluster.
 
