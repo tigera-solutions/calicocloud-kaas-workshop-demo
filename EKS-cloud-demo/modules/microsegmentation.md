@@ -34,14 +34,10 @@
 4. Confirm the connection from microservice2 to backend are been denied.
 
 
-5. Reverse the lable of pod mircoservice2. 
+5. Reverse the lable of pod mircoservice2 with overwrite. 
    
    ```bash
-    #remove the label 
-    kubectl -n storefront label pod $(kubectl -n storefront get po -l app=microservice2 -ojsonpath='{.items[0].metadata.name}') fw-zone-
-
-    #add the label as trusted zone
-    kubectl -n storefront label pod $(kubectl -n storefront get po -l app=microservice2 -ojsonpath='{.items[0].metadata.name}') fw-zone=trusted
+    kubectl -n storefront label pod $(kubectl -n storefront get po -l app=microservice2 -ojsonpath='{.items[0].metadata.name}') fw-zone=trusted --overwrite
     ```
 
 
