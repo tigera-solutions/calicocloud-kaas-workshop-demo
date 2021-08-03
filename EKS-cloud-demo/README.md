@@ -29,14 +29,14 @@
 - [Module 5-3: East-West controls-Host protection](modules/host-protection.md)
 
 - [Module 6-1: North-South Controls-Egress access controls, DNS policy and Global threadfeed ](modules/egress-access-controls.md)
-- [Module 6-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) [WIP]
+- [WIP][Module 6-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) 
 
-- [Module 7-1: Integration-Firewall Integration](modules/firewall-integration.md) [WIP]
-- [Module 7-2: Integration-SIEM Integration](modules/siem-integration.md) [WIP]
+- [WIP][Module 7-1: Integration-Firewall Integration](modules/firewall-integration.md) 
+- [WIP][Module 7-2: Integration-SIEM Integration](modules/siem-integration.md) 
 
 - [Module 8-1: Compliance and Security-Compliance](modules/compliance-reports.md) 
 - [Module 8-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) 
-- [Module 8-3: Compliance and Security-Encryption](modules/encryption.md) [WIP]
+- [WIP][Module 8-3: Compliance and Security-Encryption](modules/encryption.md) 
 
 - [Module 9-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
 - [Module 9-2: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
