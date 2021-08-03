@@ -5,7 +5,7 @@ metadata:
   name: cluster-inventory
 spec:
   reportType: inventory
-  schedule: '0 * * * *'
+  schedule: 0 * * * *
 
 ---
 apiVersion: projectcalico.org/v3
@@ -14,7 +14,7 @@ metadata:
   name: cluster-network-access
 spec:
   reportType: network-access
-  schedule: '0 * * * *'
+  schedule: 0 * * * *
 
 # uncomment policy-audit report if you configured audit logs for EKS cluster https://docs.tigera.io/compliance/compliance-reports/compliance-managed-cloud#enable-audit-logs-in-eks
 ---
@@ -24,4 +24,4 @@ metadata:
   name: cluster-policy-audit
 spec:
   reportType: policy-audit
-  schedule: '0 * * * *'
+  schedule: 0 * * * *

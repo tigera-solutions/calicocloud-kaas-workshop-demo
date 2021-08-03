@@ -3,7 +3,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.adservice
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 100
@@ -32,7 +32,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.cartservice
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 110
@@ -75,7 +75,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.checkoutservice
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 120
@@ -146,7 +146,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.currencyservice
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 130
@@ -174,7 +174,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.emailservice
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 140
@@ -195,7 +195,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.frontend
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 150
@@ -292,7 +292,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.loadgenerator
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 160
@@ -320,7 +320,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.paymentservice
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 170
@@ -341,7 +341,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.productcatalogservice
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 180
@@ -393,7 +393,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.recommendationservice
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 190
@@ -429,7 +429,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.redis-cart
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 200
@@ -450,7 +450,7 @@ apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
   name: default.shippingservice
-  namespace: default
+  namespace: hipstershop
 spec:
   tier: default
   order: 210

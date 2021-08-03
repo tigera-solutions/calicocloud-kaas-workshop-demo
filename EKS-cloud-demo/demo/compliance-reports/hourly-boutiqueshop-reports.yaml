@@ -8,7 +8,7 @@ spec:
   endpoints:
     namespaces:
       names: ["hipstershop"]
-  schedule: '*/30 * * * *'
+  schedule: 0 * * * *
 
 ---
 apiVersion: projectcalico.org/v3
@@ -20,7 +20,7 @@ spec:
   endpoints:
     namespaces:
       names: ["hipstershop"]
-  schedule: '*/30 * * * *'
+  schedule: 0 * * * *
 
 # uncomment policy-audit report if you configured audit logs for EKS cluster https://docs.tigera.io/compliance/compliance-reports/compliance-managed-cloud#enable-audit-logs-in-eks
 ---
@@ -33,4 +33,4 @@ spec:
   endpoints:
     namespaces:
       names: ["hipstershop"]
-  schedule: '*/30 * * * *'
+  schedule: 0 * * * *

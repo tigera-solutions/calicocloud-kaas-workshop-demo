@@ -30,7 +30,7 @@
     # test connectivity from dev namespace to hipstershop namespace
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.hipstershop 2>/dev/null | grep -i http'
 
-    # test connectivity from default namespace to dev namespace
+    # test connectivity from default namespace to dev namespace, this command will generate an alert as "[lateral movement"
     kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
     ```
 
@@ -40,8 +40,8 @@
     # test connectivity from dev namespace to the Internet
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://www.google.com 2>/dev/null | grep -i http'
 
-    # test connectivity from default namespace to the Internet
-    kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.google.com 2>/dev/null | grep -i http'
+    # test connectivity from default namespace to the Internet, this command will generate an alert as "dns"
+    kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.example.com 2>/dev/null | grep -i http'
     ```
 
     All of these tests should succeed if there are no policies in place to govern the traffic for `dev` and `default` namespaces.
@@ -58,7 +58,7 @@
 
     ```bash
     # make a request across namespaces and view Packets by Policy histogram
-    for i in {1..5}; do kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.default 2>/dev/null | grep -i http'; sleep 2; done
+    for i in {1..5}; do kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.hipstershop 2>/dev/null | grep -i http'; sleep 2; done
     ```
 
     >The staged policy does not affect the traffic directly but allows you to view the policy impact if it were to be enforced.
@@ -70,7 +70,7 @@
     kubectl apply -f demo/dev-stack/policies.yaml
 
     # deploy boutiqueshop policies
-    kubectl apply -f demo/boutiqueshop-policy/policies.yaml
+    kubectl apply -f demo/boutiqueshop/policies.yaml
     ```
 
     Now as we have proper policies in place, we can enforce `default-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `default-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `default-deny` policy manifest.
@@ -84,22 +84,23 @@
 
 4. Test connectivity with policies in place.
 
-    a. The only connections between the components within each namespaces `dev` and `default` should be allowed as configured by the policies.
+    a. The only connections between the components within each namespaces `dev` and `hipstershop` should be allowed as configured by the policies.
 
     ```bash
     # test connectivity within dev namespace
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://nginx-svc 2>/dev/null | grep -i http'
 
-    # test connectivity within default namespace
-    kubectl exec -it $(kubectl get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv productcatalogservice 3550'
+    # test connectivity within hipstershop namespace
+    
+    kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv productcatalogservice 3550'
 
-    kubectl exec -it $(kubectl get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv recommendationservice 8080'
+    kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv recommendationservice 8080'
     ```
 
-    b. The connections across `dev/centos` pod and `default/frontend` pod should be blocked by the global `default-deny` policy.
+    b. The connections across `dev/centos` pod and `hipstershop/frontend` pod should be blocked by the global `default-deny` policy.
 
     ```bash
-    # test connectivity from dev namespace to default namespace
+    # test connectivity from dev namespace to hipstershop namespace
 
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.default 2>/dev/null | grep -i http'
 

@@ -34,8 +34,8 @@
     # deploy boutiqueshop app stack
     kubectl apply -f demo/boutiqueshop/manifest.yaml
 
-    # deploy shell demo pod
-    #kubectl apply -f https://k8s.io/examples/application/shell-demo.yaml
+    # deploy storefront app stack
+    kubectl apply -f demo/storefront-stack
 
     ```
 
