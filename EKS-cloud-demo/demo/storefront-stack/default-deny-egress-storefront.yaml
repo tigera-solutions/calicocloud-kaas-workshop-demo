@@ -8,7 +8,7 @@ spec:
   order: 1350
   selector: all()
   egress:
-    - action: Deny
+    - action: Pass
       source: {}
       destination: {}
   types:
