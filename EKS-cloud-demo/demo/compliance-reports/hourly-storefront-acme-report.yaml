@@ -1,7 +1,7 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: daily-storefront-inventory
+  name: storefront-inventory
   labels:
     deployment: production
 spec:
@@ -10,12 +10,12 @@ spec:
     namespaces: 
       names:
         ["storefront","acme"]
-  schedule: 0 0 * * *
+  schedule: 0 * * * *
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: daily-storefront-network-access
+  name: storefront-network-access
   labels:
     deployment: production
 spec:
@@ -24,12 +24,12 @@ spec:
     namespaces:
       names:
         ["storefront","acme"]
-  schedule: 0 0 * * *
+  schedule: 0 * * * *
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: daily-storefront-policy-audit
+  name: storefront-policy-audit
   labels:
     deployment: production
 spec:
@@ -38,4 +38,4 @@ spec:
     namespaces: 
       names:
         ["storefront","acme"]
-  schedule: 0 0 * * *
+  schedule: 0 * * * *
