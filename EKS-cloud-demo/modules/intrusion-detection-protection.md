@@ -47,9 +47,38 @@
 
 6. Change one of the globalnetworksets from UI and confirm it will trigger alert by pre-defined globalalert policy
 
+## Steps 2: Introducing a malicious rogue pod to the cluster of storefront, and quarantine it later.
 
+1. Introducing a malicious rogue pod
+```bash
+kubectl apply -f demo/attacker-rogue/rogue.yaml
 
-## Steps 2: Honeypod Threat Detection
+#confirm the rogue from service graph
+```
+2. deploy the quarantine networkpolicy to protect your cluster
+
+```bash
+kubectl apply -f demo/10-security-controls/security-team.quarantine.yaml
+
+#confirm the quarantine policy from policy dashboard
+```
+
+3. quarantine the rogue pod
+
+```bash
+./demo/attacker-rogue/QuarantineRogue.sh
+
+#confirm the rogue been quarantined from policy dashboard
+```
+
+4. delete the rogue pod
+
+```bash
+kubectl delete -f demo/attacker-rogue/rogue.yaml
+
+```
+
+## Steps 3: Honeypod Threat Detection [WIP]
 
 Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability which is based upon the same principles as traditional honeypots. Calico is able to detect traffic which probes the Honeypod resources which can be an indicator of compromise. Refer to the [official honeypod configuration documentation](https://docs.tigera.io/threat/honeypod/honeypods) for more details.
 
@@ -172,38 +201,9 @@ Head to `Alerts` view in the Enterprise Manager UI to view the related alerts. N
 <img src="../img/honeypod-threat-alert.png" alt="honeypod-threat-alert" width="100%"/>
 
     
-## Steps 3: Introducing a malicious rogue pod to the cluster of storefront, and quarantine it later.
 
-1. Introducing a malicious rogue pod
-```bash
-kubectl apply -f demo/attacker-rogue/rogue.yaml
 
-#confirm the rogue from service graph
-```
-2. deploy the quarantine networkpolicy to protect your cluster
-
-```bash
-kubectl apply -f demo/10-security-controls/security-team.quarantine.yaml
-
-#confirm the quarantine policy from policy dashboard
-```
-
-3. quarantine the rogue pod
-
-```bash
-./demo/attacker-rogue/QuarantineRogue.sh
-
-#confirm the rogue been quarantined from policy dashboard
-```
-
-4. delete the rogue pod
-
-```bash
-kubectl delete -f demo/attacker-rogue/rogue.yaml
-
-```
-
-## Steps 4: Anomaly Detection
+## Steps 4: Anomaly Detection [WIP]
 
 [Next -> Module 8-3](../modules/encryption.md)
 
