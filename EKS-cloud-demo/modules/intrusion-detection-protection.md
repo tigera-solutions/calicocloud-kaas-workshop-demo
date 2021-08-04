@@ -138,7 +138,23 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     honeypod.port.scan        2021-07-21T18:34:50Z
     honeypod.vuln.svc         2021-07-21T18:36:34Z
     ```
-5. Test honeypod use cases
+
+5. Deploy honeypod controll and confirm the controller is running
+    ```bash
+    kubectl get globalalerts | grep -i honeypod
+
+    kubectl get pods -n tigera-intrusion-detection
+    ```
+    >Output should resemble:
+    
+    ```bash
+    NAME                                              READY   STATUS    RESTARTS   AGE
+    honeypod-controller-bd5td                         1/1     Running   0          6s
+    honeypod-controller-gkw42                         1/1     Running   0          6s
+    intrusion-detection-controller-5997b8646f-ftdkm   1/1     Running   0          22h
+    ```
+
+6. Test honeypod use cases
 
     - Ping exposed Honeypod IP
 
@@ -161,7 +177,7 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     5 packets transmitted, 5 received, 0% packet loss, time 4094ms
     rtt min/avg/max/mdev = 0.050/0.070/0.103/0.018 ms
     ```
-    <br>
+    
     
     - curl HoneyPod nginx service
     ```bash
@@ -171,18 +187,9 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     ```
     >Output should resemble: 
     ```bash
-    kubectl -n dev exec netshoot -- curl -m3 -skI $SVC_URL.tigera-internal:$SVC_PORT
     HTTP/1.1 200 OK
-    Server: nginx/1.16.1
-    Date: Fri, 23 Jul 2021 21:32:31 GMT
-    Content-Type: text/html
-    Content-Length: 112
-    Last-Modified: Mon, 30 Dec 2019 17:35:18 GMT
-    Connection: keep-alive
-    ETag: "5e0a3556-70"
-    Accept-Ranges: bytes
     ```
-    <br>
+    
     
     - Query HoneyPod MySQL service
     ```bash
@@ -191,8 +198,8 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     kubectl -n dev exec netshoot -- nc -zv $SVC_URL.tigera-internal $SVC_PORT
     ```
     >Output should resemble
+
     ```bash
-    kubectl -n dev exec netshoot -- nc -zv $SVC_URL.tigera-internal $SVC_PORT
     Connection to tigera-internal-backend.tigera-internal 3306 port [tcp/mysql] succeeded!
     ```
 
