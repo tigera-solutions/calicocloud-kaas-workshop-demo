@@ -41,7 +41,7 @@
 - [Module 9-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
 - [Module 9-2: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
 - [Module 9-3: Observability-Kibana dashboard](modules/kibana-dashboard.md)
-- [WIP][Module 9-4: CompObservability-L7 visibility](modules/enable-l7-visibilty.md) 
+- [WIP][Module 9-4: Observability-L7 visibility](modules/enable-l7-visibilty.md) 
 
 
 
