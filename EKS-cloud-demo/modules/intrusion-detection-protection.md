@@ -25,8 +25,11 @@
    #create nginx pod in storefront
    kubectl run nginx -n storefront --port=80 --image=nginx
 
-   #curl google couple times to trigger the dns aler
+   #curl example.com couple times to trigger the dns aler
    kubectl exec -it nginx -n storefront -- sh -c 'curl -m3 -sI2 http://www.example.com 2>/dev/null | grep -i http'
+
+   #curl nginx in dev ns to trigger the flows alerts
+   kubectl exec -it nginx -n storefront -- sh -c 'curl -m3 -sI2 http://nginx-svc.dev 2>/dev/null | grep -i http'
    ```
 
 4. Trigger the embedded alerts for threatfeeds.
@@ -34,9 +37,9 @@
     Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods, including embedded alerts for threatfeeds.
 
     ```bash
-    # try to ping any of the IPs in from the feodo tracker list
+    # try to ping any of the IPs in from the feodo tracker list, use 1.234.20.244 as example IP if your jq doesn't work
     IP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq .spec.nets[0] | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
-    kubectl -n dev exec -t centos -- sh -c "ping -c1 $IP"
+    kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $IP"
     ```
 
 5. Confirm the embedded alerts for threatfeeds have been trigger.
