@@ -26,7 +26,7 @@
    kubectl run nginx -n storefront --port=80 --image=nginx
 
    #curl google couple times to trigger the dns aler
-   kubectl exec -it nginx -n storefront -- sh -c 'curl -m3 -sI2 http://www.google.com 2>/dev/null | grep -i http'
+   kubectl exec -it nginx -n storefront -- sh -c 'curl -m3 -sI2 http://www.example.com 2>/dev/null | grep -i http'
    ```
 
 4. Trigger the embedded alerts for threatfeeds.
