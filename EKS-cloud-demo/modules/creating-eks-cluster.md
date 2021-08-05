@@ -109,10 +109,9 @@
     kubectl get nodes
     ```
 
-7. Adding more nodes in your cluster
-    ```bash
-    eksctl create nodegroup --cluster jessie-workshop --node-type t3.xlarge --node-ami auto --max-pods-per-node 100     
-
+>Optional: only when you cannot retrieve your config
+    
+    ```bash 
     #delete your k8s config file if you hit EKS bug
     rm /home/ec2-user/.kube/config
 
