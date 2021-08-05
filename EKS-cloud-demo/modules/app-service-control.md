@@ -51,7 +51,7 @@
     >Staged `default-deny` policy is a good way of catching any traffic that is not explicitly allowed by a policy without explicitly blocking it.
 
     ```bash
-    kubectl apply -f demo/10-security-controls/staged.hipstershop-dev-deny.yaml
+    kubectl apply -f demo/101-security-controls/staged.hipstershop-dev-deny.yaml
     ```
 
     You should be able to view the potential affect of the staged `default-deny` policy if you navigate to the `Dashboard` view in the Enterprise Manager UI and look at the `Packets by Policy` histogram.
