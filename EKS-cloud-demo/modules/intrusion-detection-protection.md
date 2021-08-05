@@ -252,37 +252,23 @@ Use official documentation for the most recent [configuration instructions](http
 
    ```
 
-   Or you can edit the file using VI:
-   ```bash
-   vi ad-jobs-deployment-managed.yaml
-   ```
+   
 
-   You can configure jobs using the environmental variables:
-   ```
-   env:
-    - name: AD_max_docs
-      value: "2000000"
-    - name: AD_train_interval_minutes
-      value: "20"
-    - name: AD_port_scan_threshold
-      value: "500"
-    - name: AD_DnsLatency_IsolationForest_n_estimators
-      value: "100"
-   ```
-
-```
-kubectl apply -f ad-jobs-deployment-managed.yaml
-```
-   ```
+   
 
 2. We need to substitute the Cluster Name in the YAML file with the variable `CALICOCLUSTERNAME` we configured in Module 1. This enables the Machine Learning jobs to target the correct indices in Elastic Search
 	```bash
 	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
-	```
+	
+
+    ##Or you can edit the file using VI:
+   
+    vi ad-jobs-deployment-managed.yaml
+   ```
 
 3. Now apply the Anomaly Detection deployment YAML
 	```bash
-	kubectl apply -f ./demo/90-anomaly-detection/ad-jobs-deployment-managed.yaml
+	kubectl apply -f demo/anomaly-detection/ad-jobs-deployment-managed.yaml
 	```
 
 4. Simulate anomaly by using an NMAP port scan above the threshold set in our Deployment env vars listed in Step 1.
