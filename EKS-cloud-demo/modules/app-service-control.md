@@ -146,7 +146,7 @@
     The access should be allowed once the egress policy is in place.
 
 
-> Now as we have proper policies in place, we can play around with `staged.hipstershop-dev-deny` policy as a beta version to test your E-W control, and once you are happy with the results, you can using the `Policies Board` view in the Enterirpse Manager UI to enforce it as `hipstershop-dev-deny` policy manifest.
+> Now as we have proper policies in place, we can play around with `staged.hipstershop-dev-deny` policy as a beta version to test your E-W control, for examle adding `default` namespace and curl the google, you should be able to see the deny flow under `staged.hipstershop-dev-deny` policy, once you are happy with the results, you can using the `Policies Board` view in the Enterirpse Manager UI to enforce it as `hipstershop-dev-deny` policy manifest.
 
    
 
