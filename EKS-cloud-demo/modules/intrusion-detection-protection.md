@@ -245,12 +245,7 @@ Use official documentation for the most recent [configuration instructions](http
 
 
    
-   ##You'll need to swap out CLUSTER_NAME with the name of your kubernetes cluster:
-
-   ```bash
-	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
-
-   ```
+   
 
    
 
