@@ -205,7 +205,76 @@ Head to `Alerts` view in the Enterprise Manager UI to view the related alerts. N
     
 
 
-## Steps 4: Anomaly Detection [WIP]
+## Steps 4: Anomaly Detection 
+
+Calico offers [Anomaly Detection](https://docs.tigera.io/threat/anomaly-detection/) (AD) as a part of its [threat defense](https://docs.tigera.io/threat/) capabilities. Calico's Machine Learning software is able to baseline "normal" traffic patterns and subsequently detect abnormal or suspicious behaviour. This may resemble an Indicator of Compromise and will generate an Alert in the UI.
+Use official documentation for the most recent [configuration instructions](https://docs.tigera.io/threat/anomaly-detection/customizing).
+
+1. Review and apply the Anomaly Detection jobs for the managed cluster.
+
+   Instructions below for a Managed cluster only. Follow [configuration documentation](https://docs.tigera.io/threat/anomaly-detection/customizing) to configure AD jobs for management and standalone clusters.
+
+   ```bash
+
+   curl https://docs.tigera.io/manifests/threatdef/ad-jobs-deployment-managed.yaml -O
+   ```
+   ```bash
+   ##You'll need to swap out CLUSTER_NAME with the name of your kubernetes cluster:
+
+   sed -i 's/CLUSTER_NAME/qq9psbdn-management-managed-10-0-1-193/g' ad-jobs-deployment-managed.yaml
+   ```
+
+   Or you can edit the file using VI:
+   ```bash
+   vi ad-jobs-deployment-managed.yaml
+   ```
+
+   You can configure jobs using the environmental variables:
+   ```
+   env:
+    - name: AD_max_docs
+      value: "2000000"
+    - name: AD_train_interval_minutes
+      value: "20"
+    - name: AD_port_scan_threshold
+      value: "500"
+    - name: AD_DnsLatency_IsolationForest_n_estimators
+      value: "100"
+   ```
+
+```
+kubectl apply -f ad-jobs-deployment-managed.yaml
+```
+   ```
+
+2. We need to substitute the Cluster Name in the YAML file with the variable `CALICOCLUSTERNAME` we configured in Module 1. This enables the Machine Learning jobs to target the correct indices in Elastic Search
+	```bash
+	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+	```
+
+3. Now apply the Anomaly Detection deployment YAML
+	```bash
+	kubectl apply -f ./demo/90-anomaly-detection/ad-jobs-deployment-managed.yaml
+	```
+
+4. Simulate anomaly by using an NMAP port scan above the threshold set in our Deployment env vars listed in Step 1.
+
+	```bash
+	# mock port scan
+	POD_IP=$(kubectl -n dev get po --selector app=centos -o jsonpath='{.items[0].status.podIP}')
+	kubectl -n dev exec netshoot -- nmap -Pn -r -p 1-250 $POD_IP
+	```
+	```
+	# expected output
+	Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
+	Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-23 20:20 UTC
+	Nmap scan report for 10.240.0.89
+	Host is up.
+	All 250 scanned ports on 10.240.0.89 are filtered
+
+	Nmap done: 1 IP address (1 host up) scanned in 201.37 seconds
+	```
+5. After a few minutes we can see the Alert generated in the Web UI
 
 [Next -> Module 8-3](../modules/encryption.md)
 
