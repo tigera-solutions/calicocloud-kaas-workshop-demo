@@ -47,7 +47,7 @@
 
 6. Change one of the globalnetworksets from UI and confirm it will trigger alert by pre-defined globalalert policy
 
-## Steps 2: Introducing a malicious rogue pod to the cluster of storefront, and quarantine it later.
+[WIP]## Steps 2: Introducing a malicious rogue pod to the cluster of storefront, and quarantine it later.
 
 1. Introducing a malicious rogue pod
 ```bash
@@ -139,18 +139,13 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     honeypod.vuln.svc         2021-07-21T18:36:34Z
     ```
 
-5. Deploy honeypod controll and confirm the controller is running
+5. Confirm the controller is running
     ```bash
-    kubectl get globalalerts | grep -i honeypod
-
     kubectl get pods -n tigera-intrusion-detection
     ```
     >Output should resemble:
     
     ```bash
-    NAME                                              READY   STATUS    RESTARTS   AGE
-    honeypod-controller-bd5td                         1/1     Running   0          6s
-    honeypod-controller-gkw42                         1/1     Running   0          6s
     intrusion-detection-controller-5997b8646f-ftdkm   1/1     Running   0          22h
     ```
 
