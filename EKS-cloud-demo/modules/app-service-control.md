@@ -46,15 +46,15 @@
 
     All of these tests should succeed if there are no policies in place to govern the traffic for `dev` and `default` namespaces.
 
-2. Apply staged `default-deny` policy.
+2. Apply staged `hipstershop-dev-deny` policy.
 
-    >Staged `default-deny` policy is a good way of catching any traffic that is not explicitly allowed by a policy without explicitly blocking it.
+    >Staged `hipstershop-dev-deny` policy is a good way of catching any traffic that is not explicitly allowed by a policy without explicitly blocking it.
 
     ```bash
     kubectl apply -f demo/101-security-controls/staged.hipstershop-dev-deny.yaml
     ```
 
-    You should be able to view the potential affect of the staged `default-deny` policy if you navigate to the `Dashboard` view in the Enterprise Manager UI and look at the `Packets by Policy` histogram.
+    You should be able to view the potential affect of the staged `hipstershop-dev-deny` policy if you navigate to the `Dashboard` view in the Enterprise Manager UI and look at the `Packets by Policy` histogram.
 
     ```bash
     # make a request across namespaces and view Packets by Policy histogram
@@ -67,13 +67,13 @@
 
     ```bash
     # deploy dev policies
-    kubectl apply -f demo/dev-stack/policies.yaml
+    kubectl apply -f demo/101-security-controls/dev-stack-policies.yaml
 
     # deploy boutiqueshop policies
-    kubectl apply -f demo/boutiqueshop/policies.yaml
+    kubectl apply -f demo/101-security-controls/boutiqueshop/policies.yaml
     ```
 
-    Now as we have proper policies in place, we can enforce `hipstershop-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `hipstershop-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `hipstershop-deny` policy manifest.
+    Now as we have proper policies in place, we can enforce `hipstershop-dev-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `hipstershop-dev-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `hipstershop-dev-deny` policy manifest.
 
     ```bash
     # apply enforcing default-deny policy manifest

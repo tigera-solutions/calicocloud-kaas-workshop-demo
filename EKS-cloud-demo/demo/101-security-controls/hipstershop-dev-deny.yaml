@@ -1,7 +1,7 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: default-dev-deny
+  name: hipstershop-dev-deny
 spec:
   order: 2000
   selector: "projectcalico.org/namespace in {'dev','hipstershop'}"
