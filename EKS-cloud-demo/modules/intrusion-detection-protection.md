@@ -200,7 +200,6 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
 
 Head to `Alerts` view in the Enterprise Manager UI to view the related alerts. Note the alerts can take a few minutes to generate. 
 
-<img src="../img/honeypod-threat-alert.png" alt="honeypod-threat-alert" width="100%"/>
 
     
 
@@ -216,12 +215,41 @@ Use official documentation for the most recent [configuration instructions](http
 
    ```bash
 
-   curl https://docs.tigera.io/manifests/threatdef/ad-jobs-deployment-managed.yaml -O
+   less ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+   # The following AD jobs and thresholds have been configured as env vars in the ad-jobs-deployment.yaml. 
+   # In production these values may trigger more alerts than required
+	# - name: AD_max_docs
+	#   value: "100000"
+	# - name: AD_train_interval_minutes
+	#   value: "20"
+	# - name: AD_search_interval_minutes
+	#   value: "5"
+	# - name: AD_DnsLatency_IsolationForest_score_threshold
+	#   value: "-0.886"
+	# - name: AD_ProcessRestarts_threshold
+	#   value: "5"
+	# - name: AD_port_scan_threshold
+	#   value: "200"
+	# - name: AD_ip_sweep_threshold
+	#   value: "32"
+	# - name: AD_BytesInModel_min_size_for_train
+	#   value: "1000"
+	# - name: AD_SeasonalAD_c
+	#   value: "500"
+	# - name: AD_BytesOutModel_min_size_for_train
+	#   value: "1000"
+	# - name: AD_debug
+	#   value: "True"
+
    ```
-   ```bash
+
+
+   
    ##You'll need to swap out CLUSTER_NAME with the name of your kubernetes cluster:
 
-   sed -i 's/CLUSTER_NAME/qq9psbdn-management-managed-10-0-1-193/g' ad-jobs-deployment-managed.yaml
+   ```bash
+	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+
    ```
 
    Or you can edit the file using VI:
