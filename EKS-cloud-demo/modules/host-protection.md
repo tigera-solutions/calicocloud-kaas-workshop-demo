@@ -26,7 +26,7 @@ Calico network policies not only can secure pod to pod communications but also c
     # test connection to frontend 30080 port
     nc -zv $PUB_IP 30080
 
-    # open SSH port in the security group for public access
+    # open 30080 port in the security group for public access
     aws ec2 authorize-security-group-ingress --region $AWS_REGION --group-id $SG_ID --protocol tcp --port 30080 --cidr 0.0.0.0/0
 
     # test connection to frontend 30080 port again
