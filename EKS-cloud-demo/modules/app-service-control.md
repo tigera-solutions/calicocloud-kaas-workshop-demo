@@ -73,13 +73,13 @@
     kubectl apply -f demo/boutiqueshop/policies.yaml
     ```
 
-    Now as we have proper policies in place, we can enforce `default-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `default-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `default-deny` policy manifest.
+    Now as we have proper policies in place, we can enforce `hipstershop-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `hipstershop-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `hipstershop-deny` policy manifest.
 
     ```bash
     # apply enforcing default-deny policy manifest
-    kubectl apply -f demo/10-security-controls/default-dev-deny.yaml
+    kubectl apply -f demo/101-security-controls/hipstershop-dev-deny.yaml
     # you can delete staged default-deny policy
-    kubectl delete -f demo/10-security-controls/staged.default-dev-deny.yaml
+    kubectl delete -f demo/101-security-controls/staged.hipstershop-dev-deny.yaml
     ```
 
 4. Test connectivity with policies in place.
@@ -90,10 +90,11 @@
     # test connectivity within dev namespace
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://nginx-svc 2>/dev/null | grep -i http'
 
-    # test connectivity within hipstershop namespace
+    # test connectivity within hipstershop namespace in 3550 port
     
     kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv productcatalogservice 3550'
 
+    # test connectivity within hipstershop namespace in 8080 port
     kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv recommendationservice 8080'
     ```
 
