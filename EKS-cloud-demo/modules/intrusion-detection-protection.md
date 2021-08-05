@@ -47,7 +47,9 @@
 
 6. Change one of the globalnetworksets from UI and confirm it will trigger alert by pre-defined globalalert policy
 
-[WIP]## Steps 2: Introducing a malicious rogue pod to the cluster of storefront, and quarantine it later.
+
+
+[WIP]## Steps 2: Introducing a malicious rogue pod to the application of storefront, and quarantine it later.
 
 1. Introducing a malicious rogue pod
 ```bash
@@ -244,21 +246,19 @@ Use official documentation for the most recent [configuration instructions](http
    ```
 
 
-   
-   
-
-   
-
-   
-
 2. We need to substitute the Cluster Name in the YAML file with the variable `CALICOCLUSTERNAME` we configured in Module 1. This enables the Machine Learning jobs to target the correct indices in Elastic Search
 	```bash
-	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+
+    ###Confirm the Cluster name is align with the "mananed cluster" name in UI
+    echo $CALICOCLUSTERNAME
+
+    ##Replacy the vailable in yaml file
+    sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
 	
 
-    ##Or you can edit the file using VI:
+    ##Confirm the vailable been changed 
    
-    vi ad-jobs-deployment-managed.yaml
+    vi demo/anomaly-detection/ad-jobs-deployment-managed.yaml
    ```
 
 3. Now apply the Anomaly Detection deployment YAML
@@ -273,7 +273,9 @@ Use official documentation for the most recent [configuration instructions](http
 	POD_IP=$(kubectl -n dev get po --selector app=centos -o jsonpath='{.items[0].status.podIP}')
 	kubectl -n dev exec netshoot -- nmap -Pn -r -p 1-250 $POD_IP
 	```
-	```
+
+
+	```bash
 	# expected output
 	Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
 	Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-23 20:20 UTC
@@ -282,7 +284,9 @@ Use official documentation for the most recent [configuration instructions](http
 	All 250 scanned ports on 10.240.0.89 are filtered
 
 	Nmap done: 1 IP address (1 host up) scanned in 201.37 seconds
-	```
+
+    ```
+	
 5. After a few minutes we can see the Alert generated in the Web UI
 
 [Next -> Module 8-3](../modules/encryption.md)
