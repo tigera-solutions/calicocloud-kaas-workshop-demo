@@ -8,11 +8,11 @@ Calico network policies not only can secure pod to pod communications but also c
 
 1. Open a port of NodePort service for public access on EKS node.
 
-    For the demo purpose we are going to expose the `default/frontend` service via the `NodePort` service type to open it for the public access.
+    For the demo purpose we are going to expose the `hipstershop/frontend` service via the `NodePort` service type to open it for the public access.
 
     ```bash
     # expose the frontend service via the NodePort service type
-    kubectl expose deployment frontend --type=NodePort --name=frontend-nodeport --overrides='{"apiVersion":"v1","spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":8080}]}}'
+    kubectl -n hipstershop expose deployment frontend --type=NodePort --name=frontend-nodeport --overrides='{"apiVersion":"v1","spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":8080}]}}'
 
     # open access to the port in AWS security group
     EKS_CLUSTER='jessie-workshop' # adjust the name if you used a different name for your EKS cluster
