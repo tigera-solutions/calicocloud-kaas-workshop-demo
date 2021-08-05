@@ -16,6 +16,12 @@
     kubectl apply -f demo/storefront-stack
     ```
 
+    
+    ```bash
+    ###apply the zone-based policy
+    kubectl apply -f demo/101-security-controls/storefront-FirewallZonesPolicies.yaml
+    ```
+
    
 2. Confirm the connection from microservice2 to backend are been allowed from flow visualization.
 

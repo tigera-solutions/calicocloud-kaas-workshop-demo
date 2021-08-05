@@ -1,7 +1,7 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: storefront-inventory
+  name: acme-inventory
   labels:
     deployment: production
 spec:
@@ -9,13 +9,13 @@ spec:
   endpoints:
     namespaces: 
       names:
-        ["storefront","acme"]
+        ["acme"]
   schedule: 0 * * * *
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: storefront-network-access
+  name: acme-network-access
   labels:
     deployment: production
 spec:
@@ -23,13 +23,13 @@ spec:
   endpoints:
     namespaces:
       names:
-        ["storefront","acme"]
+        ["acme"]
   schedule: 0 * * * *
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: storefront-policy-audit
+  name: acme-policy-audit
   labels:
     deployment: production
 spec:
@@ -37,5 +37,5 @@ spec:
   endpoints:
     namespaces: 
       names:
-        ["storefront","acme"]
+        ["acme"]
   schedule: 0 * * * *

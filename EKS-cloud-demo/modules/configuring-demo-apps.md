@@ -34,9 +34,6 @@
     # deploy boutiqueshop app stack
     kubectl apply -f demo/boutiqueshop/manifest.yaml
 
-    # deploy storefront app stack
-    kubectl apply -f demo/storefront-stack
-
     ```
 
 4. Deploy compliance reports.
