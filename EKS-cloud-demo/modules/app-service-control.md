@@ -64,7 +64,7 @@
 
     >The staged policy does not affect the traffic directly but allows you to view the policy impact if it were to be enforced.
 
-3. Apply network policies to control East-West traffic.
+3. Apply network policies to your application with explicity allow and deny control.
 
     ```bash
     # deploy dev policies
