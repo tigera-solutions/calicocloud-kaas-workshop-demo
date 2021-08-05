@@ -71,13 +71,13 @@
     kubectl apply -f demo/101-security-controls/dev-stack-policies.yaml
 
     # deploy boutiqueshop policies
-    kubectl apply -f demo/101-security-controls/boutiqueshop-policies.yaml
+    kubectl apply -f demo/101-security-controls/hipstershop-policies.yaml
     ```
 
     Now as we have proper policies in place, we can enforce `hipstershop-dev-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `hipstershop-dev-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `hipstershop-dev-deny` policy manifest.
 
     ```bash
-    # apply enforcing default-deny policy manifest
+    # apply enforcing hipstershop-dev-deny policy manifest
     kubectl apply -f demo/101-security-controls/hipstershop-dev-deny.yaml
     # you can delete staged default-deny policy
     kubectl delete -f demo/101-security-controls/staged.hipstershop-dev-deny.yaml
