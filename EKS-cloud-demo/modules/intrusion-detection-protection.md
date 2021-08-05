@@ -58,7 +58,7 @@ kubectl apply -f demo/attacker-rogue/rogue.yaml
 2. deploy the quarantine networkpolicy to protect your cluster
 
 ```bash
-kubectl apply -f demo/10-security-controls/security-team.quarantine.yaml
+kubectl apply -f demo/101-security-controls/security-team.quarantine.yaml
 
 #confirm the quarantine policy from policy dashboard
 ```
