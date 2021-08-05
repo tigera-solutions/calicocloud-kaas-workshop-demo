@@ -17,10 +17,11 @@
 
     #kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'apt-get install curl -y'
     
-    # test connectivity within hipstershop namespace
+    # test connectivity within hipstershop namespace in 3550 port
     
     kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv productcatalogservice 3550'
 
+    # test connectivity within hipstershop namespace in 8080 port
     kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv recommendationservice 8080'
     ```
 
@@ -70,7 +71,7 @@
     kubectl apply -f demo/101-security-controls/dev-stack-policies.yaml
 
     # deploy boutiqueshop policies
-    kubectl apply -f demo/101-security-controls/boutiqueshop/policies.yaml
+    kubectl apply -f demo/101-security-controls/boutiqueshop-policies.yaml
     ```
 
     Now as we have proper policies in place, we can enforce `hipstershop-dev-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `hipstershop-dev-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `hipstershop-dev-deny` policy manifest.
