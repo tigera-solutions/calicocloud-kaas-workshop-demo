@@ -74,14 +74,6 @@
     kubectl apply -f demo/101-security-controls/hipstershop-policies.yaml
     ```
 
-    Now as we have proper policies in place, we can enforce `hipstershop-dev-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `hipstershop-dev-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `hipstershop-dev-deny` policy manifest.
-
-    ```bash
-    # apply enforcing hipstershop-dev-deny policy manifest
-    kubectl apply -f demo/101-security-controls/hipstershop-dev-deny.yaml
-    # you can delete staged default-deny policy
-    kubectl delete -f demo/101-security-controls/staged.hipstershop-dev-deny.yaml
-    ```
 
 4. Test connectivity with policies in place.
 
@@ -99,7 +91,7 @@
     kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') -c server -- sh -c 'nc -zv recommendationservice 8080'
     ```
 
-    b. The connections across `dev/centos` pod and `hipstershop/frontend` pod should be blocked by the global `default-deny` policy.
+    b. The connections across `dev/centos` pod and `hipstershop/frontend` pod should be blocked by the application policy.
 
     ```bash
     # test connectivity from dev namespace to hipstershop namespace
@@ -127,7 +119,7 @@
     ```
 
 
-5. Implement egress policy to allow egress access from a workload in one namespace, e.g. `dev/centos`, to a service in another namespace, e.g. `hipstershop/frontend`.
+5. Implement explicitic policy to allow egress access from a workload in one namespace/pod, e.g. `dev/centos`, to a service in another namespace, e.g. `hipstershop/frontend`.
 
     a. Test connectivity between `dev/centos` pod and `hipstershop/frontend` service, should be blocked now.
     ```bash
@@ -139,7 +131,7 @@
     b. Deploy egress policy.
 
     ```bash
-    kubectl apply -f demo/dev-stack/centos-to-frontend.yaml
+    kubectl apply -f demo/101-security-controls/centos-to-frontend.yaml
     ```
 
     c. Test connectivity between `dev/centos` pod and `hipstershop/frontend` service again, should be allowed now.
@@ -150,6 +142,18 @@
     ```
 
     The access should be allowed once the egress policy is in place.
+
+
+
+    Now as we have proper policies in place, we can enforce `hipstershop-dev-deny` policy moving closer to zero-trust security approach. You can either enforced the already deployed staged `hipstershop-dev-deny` policy using the `Policies Board` view in the Enterirpse Manager UI, or you can apply an enforcing `hipstershop-dev-deny` policy manifest.
+
+    ```bash
+    # apply enforcing hipstershop-dev-deny policy manifest
+    kubectl apply -f demo/101-security-controls/hipstershop-dev-deny.yaml
+    # you can delete staged default-deny policy
+    kubectl delete -f demo/101-security-controls/staged.hipstershop-dev-deny.yaml
+
+
 
 [Next -> Module 5-2](../modules/microsegmentation.md)
 
