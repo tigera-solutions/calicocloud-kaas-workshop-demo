@@ -85,7 +85,21 @@ Calico network policies not only can secure pod to pod communications but also c
 
     ```
 
-    Once the policy is implemented, you should not be able to access the node port `30080` from your local shell, but you should be able to access it from the Cloud9 shell.
+4. Adding label in your node if you still can access from local shell 
+   ```bash
+   #Confirm if you have label in place which associate with "frontend-nodeport-access" policy
+   kubectl get nodes -o wide --show-labels | grep 'eks.amazonaws.com/nodegroup'
+
+   #get the node name with PUB_IP
+   NODE_ID=$(kubectl get nodes -o wide | grep $PUB_IP | awk '{print $1}')
+
+   #label the node with eks.amazonaws.com/nodegroup
+   kubectl label nodes $NODE_ID  eks.amazonaws.com/nodegroup=jessie
+
+   ```
+
+5. Once the policy is implemented, you should not be able to access the node port `30080` from your local shell, but you should be able to access it from the Cloud9 shell.
+   
 
     >Note that in order to control access to the NodePort service, you need to enable `preDNAT` and `applyOnForward` policy settings.
 
