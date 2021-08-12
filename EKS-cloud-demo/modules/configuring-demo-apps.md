@@ -26,13 +26,18 @@
 
     ```bash
     # deploy dev app stack
-    kubectl apply -f demo/dev-stack/app.manifests.yaml
+    kubectl apply -f demo/dev-stack/
     
     # deploy acme app stack
-    kubectl apply -f demo/acme-stack/acme.yaml
+    kubectl apply -f demo/acme-stack/
 
     # deploy boutiqueshop app stack
-    kubectl apply -f demo/boutiqueshop/manifest.yaml
+    kubectl apply -f demo/boutiqueshop/
+
+    # deploy storefront app stack
+    kubectl apply -f demo/storefront-stack/
+
+
 
     ```
 

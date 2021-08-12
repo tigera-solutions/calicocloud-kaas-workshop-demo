@@ -11,11 +11,6 @@
     ```bash
     # test connectivity within dev namespace
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://nginx-svc 2>/dev/null | grep -i http'
-
-    # install curl in your container
-    #kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'apt-get update'
-
-    #kubectl exec -it $(kubectl get po -l app=loadgenerator -ojsonpath='{.items[0].metadata.name}') -- sh -c 'apt-get install curl -y'
     
     # test connectivity within hipstershop namespace in 3550 port
     
