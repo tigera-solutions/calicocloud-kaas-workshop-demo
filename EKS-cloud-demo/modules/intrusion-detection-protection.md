@@ -19,20 +19,23 @@
 
     You can also review the alerts configuration and templates by navigating to alerts configuration in the top right corner.
 
-3. Trigger an alert by curl google from namespace storefront.
+3. Trigger dns alerts from curl demo.
    
    ```bash
-   #create nginx pod in storefront
-   kubectl run nginx -n storefront --port=80 --image=nginx
-
+   
    #curl example.com couple times to trigger the dns aler
-   kubectl exec -it nginx -n storefront -- sh -c 'curl -m3 -sI2 http://www.example.com 2>/dev/null | grep -i http'
+   
+   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.example.com 2>/dev/null | grep -i http'
 
+   ```
+4. Trigger later movement alert to nginx/dev
+
+   ```bash
    #curl nginx in dev ns to trigger the flows alerts
-   kubectl exec -it nginx -n storefront -- sh -c 'curl -m3 -sI2 http://nginx-svc.dev 2>/dev/null | grep -i http'
+   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI2 http://nginx-svc.dev 2>/dev/null | grep -i http'
    ```
 
-4. Trigger the embedded alerts for threatfeeds.
+5. Trigger the embedded alerts for threatfeeds.
 
     Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods, including embedded alerts for threatfeeds.
 
@@ -42,14 +45,12 @@
     kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $IP"
     ```
 
-5. Confirm the embedded alerts for threatfeeds have been trigger.
-
 
 6. Change one of the globalnetworksets from UI and confirm it will trigger alert by pre-defined globalalert policy
 
 
 
-[WIP]## Steps 2: Introducing a malicious rogue pod to the application of storefront, and quarantine it later.
+## Steps 2: Introducing a malicious rogue pod to the application of storefront, and quarantine it later.
 
 1. Introducing a malicious rogue pod
 ```bash

@@ -6,7 +6,7 @@ Refer to the documentation to [enable and configure Egress Gateways (EG)](https:
 
 ## Steps
 
-[WIP][Next -> Module 7-1](../(modules/firewall-integration.md))
+[WIP][Next -> Module 7-1](../(modules/firewall-integration.md)
 
 [Previous -> Module 6-1](../modules/egress-access-controls.md)
 
