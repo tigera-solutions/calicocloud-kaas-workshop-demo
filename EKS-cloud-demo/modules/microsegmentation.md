@@ -23,12 +23,6 @@
     kubectl apply -f demo/101-security-controls/storefront-FirewallZonesPolicies.yaml
     ```
 
-    c. Create deny policy for storefront application 
-
-    ```bash
-    ###apply the deny policy
-    kubectl apply -f demo/101-security-controls/devops-team.deny-egress-storefront.yaml
-    ```
    
 2. Confirm the connection from microservice2 to backend are been allowed from flow visualization.
 
