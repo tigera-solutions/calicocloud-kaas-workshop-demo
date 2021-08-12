@@ -1,14 +1,14 @@
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: devops-team.default-deny-egress-storefront
+  name: devops-team.deny-egress-storefront
   namespace: storefront
 spec:
   tier: devops-team
   order: 1350
   selector: all()
   egress:
-    - action: Pass
+    - action: Deny
       source: {}
       destination: {}
   types:

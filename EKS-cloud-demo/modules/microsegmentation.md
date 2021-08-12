@@ -12,17 +12,23 @@
 
     a. Create logging policy for storefront application in platform tier 
     ```bash
-    ###apply the zone-based policy
+    ###apply the logging policy
     kubectl apply -f demo/101-security-controls/platform-team.allow-logging.yaml
     ```
 
     
-    b. 
+    b. Create zone-based policy for storefront application in dev-ops tier
     ```bash
     ###apply the zone-based policy
     kubectl apply -f demo/101-security-controls/storefront-FirewallZonesPolicies.yaml
     ```
 
+    c. Create deny policy for storefront application 
+
+    ```bash
+    ###apply the deny policy
+    kubectl apply -f demo/101-security-controls/devops-team.deny-egress-storefront.yaml
+    ```
    
 2. Confirm the connection from microservice2 to backend are been allowed from flow visualization.
 
