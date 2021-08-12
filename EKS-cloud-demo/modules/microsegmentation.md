@@ -6,25 +6,23 @@
 
 
 
-1. Implement tiered policy for devops team. 
+1. Implement policy for storefront app. 
 
    
 
-    a. Create storefront application in devops tier, including implement Zone-Based policy for devops team 
-
+    a. Create logging policy for storefront application in platform tier 
     ```bash
-    kubectl apply -f demo/storefront-stack
+    ###apply the zone-based policy
+    kubectl apply -f demo/101-security-controls/platform-team.allow-logging.yaml
     ```
 
     
+    b. 
     ```bash
     ###apply the zone-based policy
     kubectl apply -f demo/101-security-controls/storefront-FirewallZonesPolicies.yaml
     ```
-    ```bash
-    ###apply the default-deny policy
-    kubectl apply -f demo/101-security-controls/default-deny-egress-storefront.yaml
-    ```
+
    
 2. Confirm the connection from microservice2 to backend are been allowed from flow visualization.
 
