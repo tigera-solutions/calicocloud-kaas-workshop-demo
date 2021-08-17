@@ -1,10 +1,10 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security-team.allow-domain-access
+  name: security.allow-domain-access
 spec:
   # requires security tier
-  tier: security-team
+  tier: security
   selector: (app == "centos" && projectcalico.org/namespace == "dev")
   order: 200
   types:

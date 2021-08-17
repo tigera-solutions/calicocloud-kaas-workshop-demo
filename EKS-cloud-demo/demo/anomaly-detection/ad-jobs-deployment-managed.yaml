@@ -84,7 +84,7 @@ spec:
           allowPrivilegeEscalation: true
         env:
           - name: CLUSTER_NAME
-            value: "$CALICOCLUSTERNAME"
+            value: "qq9psbdn-management-managed-aksjesie1-aks-rg-jesie102-03cfb8-0717af96-hcp-eastus-azmk8s-io"
           - name: ELASTIC_PORT
             value: "9200"
           - name: ES_CA_CERT

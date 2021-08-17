@@ -24,3 +24,10 @@ In this workshop we are going to focus on these main use cases:
 - **Integration: Firewall Integration & SIEM Integration**
 - **Compliance and Security: Compliance & Intrusion Detection and Prevention & Encryption**
 - **Observability: Dynamic Service Graph & Dynamic Packet Capture & Kibana dashboard**
+
+## KaaS (Kubernetes as service) 
+
+- [EKS: using cloud9 IDE as workstation](./EKS-cloud-demo/README.md)
+- [AKS: using Azure SDK and local VS as workstation](./AKS-cloud-demo/README.md)
+- [GKE: using gcloud SDK and local terminal as workstation](./GKE-cloud-demo/README.md)
+- [RKE: ](./RKE-cloud-demo/README.md)
