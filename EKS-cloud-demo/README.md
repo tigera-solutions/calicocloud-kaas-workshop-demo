@@ -1,6 +1,6 @@
 # Calicocloud workshop on EKS
 
-<img src="img/calico-on-eks.png" alt="Calico on EKS" width="30%"/>
+<img src="img/calico.png" alt="Calico on EKS" width="30%"/>
 
 
 ## Workshop prerequisites

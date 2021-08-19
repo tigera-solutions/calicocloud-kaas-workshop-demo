@@ -1,0 +1,22 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: platform-team.allow-kube-dns
+spec:
+  # requires platform tier to exist
+  tier: platform-team
+  order: 2000
+  selector: projectcalico.org/namespace != "acme"
+  types:
+  - Egress
+  egress:
+  - action: Allow
+    protocol: UDP
+    source: {}
+    destination:
+      selector: "k8s-app == 'kube-dns'"
+      ports:
+      - '53'
+  - action: Pass
+    source: {}
+    destination: {}

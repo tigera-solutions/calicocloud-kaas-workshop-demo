@@ -1,0 +1,74 @@
+apiVersion:  apps/v1
+kind: Deployment
+metadata:
+  name: logging
+  namespace: storefront
+  labels:
+    app: logging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logging
+  template:
+    metadata:
+      labels:
+        app: logging
+    spec:
+      imagePullSecrets:
+      - name: tigera-pull-secret
+      containers:
+      - name: mock
+        image: quay.io/tigera/peira:v0.2.3
+        args:
+        - "mock"
+        - "--resourcePath"
+        - "/mocks/logging-mock.yaml"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: mockconfig
+          mountPath: /mocks
+      volumes:
+      - name: mockconfig
+        configMap:
+          name: logging
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: logging
+  namespace: storefront
+spec:
+  selector:
+    app: logging
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logging
+  namespace: storefront
+data:
+  logging-mock.yaml: |
+    apiVersion: peira.tigera.io./v1alpha1
+    kind: MockService
+    metadata:
+       namespace: storefront
+       name: logging
+    spec:
+      imagePullSecrets:
+      - name: tigera-pull-secret
+      logLevel: debug
+      enableProbe: true
+      listenPort: 80
+      actions:
+      - kind: reply
+        value: "hello world"

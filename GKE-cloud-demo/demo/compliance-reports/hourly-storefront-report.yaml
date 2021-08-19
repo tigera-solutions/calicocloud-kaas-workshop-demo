@@ -1,0 +1,41 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: storefront-inventory
+  labels:
+    deployment: production
+spec:
+  reportType: inventory
+  endpoints:
+    namespaces: 
+      names:
+        ["storefront"]
+  schedule: 0 * * * *
+---
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: storefront-network-access
+  labels:
+    deployment: production
+spec:
+  reportType: network-access
+  endpoints:
+    namespaces:
+      names:
+        ["storefront"]
+  schedule: 0 * * * *
+---
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: storefront-policy-audit
+  labels:
+    deployment: production
+spec:
+  reportType: policy-audit
+  endpoints:
+    namespaces: 
+      names:
+        ["storefront"]
+  schedule: 0 * * * *
