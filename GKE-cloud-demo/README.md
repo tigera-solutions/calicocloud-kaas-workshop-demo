@@ -1,4 +1,4 @@
-# Calicocloud workshop on EGKE
+# Calicocloud workshop on GKE
 
 <img src="img/calico-on-eks.png" alt="Calico on EKS" width="30%"/>
 
