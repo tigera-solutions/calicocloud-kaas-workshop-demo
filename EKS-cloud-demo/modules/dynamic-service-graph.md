@@ -1,4 +1,4 @@
-# Module 9-1: Observability-Dynamic Service Graph
+# Module 3-1: Observability-Dynamic Service Graph
 
 **Goal:** Explore Calico observability tools.
 
@@ -57,16 +57,10 @@
 
     ![flow viz view](../img/flow-viz.png)
 
-7. Kibana dashboards
 
-    The `Kibana` components comes with Calico commercial offerings and provides you access to raw flow, audit, and dns logs, as well as ability to visualize the collected data in various dashboards.
 
-    ![kibana flows](../img/kibana-flow-logs.png)
+[Next -> Module 3-2](../modules/kibana-dashboard.md)
 
-    Some of the default dashboards you get access to are DNS Logs, Flow Logs, Audit Logs, Kuernetes API calls, L7 HTTP metrics, and others.
-
-[Next -> Module 9-2](../modules/dynamic-packet-capture.md)
-
-[Previous -> Module 8-3](../modules/encryption.md)
+[Previous -> Module 2-2](../modules/egress-gateway.md)
 
 [Menu](../README.md)

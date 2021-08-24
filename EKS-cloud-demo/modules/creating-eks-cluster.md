@@ -1,4 +1,4 @@
-# Module 2: Creating EKS cluster
+# Module 0-2: Creating EKS cluster
 
 **Goal:** Create EKS cluster.
 
@@ -119,8 +119,8 @@
     aws eks update-kubeconfig --name jessie-workshop --region us-east-1
     ```        
 
-[Next -> Module 3](../modules/joining-eks-to-calico-cloud.md)
+[Next -> Module 0-3](../modules/joining-eks-to-calico-cloud.md)
 
-[Previous -> Module 1](../modules/setting-up-work-environment.md)
+[Previous -> Module 0-1](../modules/setting-up-work-environment.md)
 
 [Menu](../README.md)

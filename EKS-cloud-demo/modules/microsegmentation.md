@@ -1,4 +1,4 @@
-# Module 5-2: East-West controls-Microsegmentation
+# Module 1-2: East-West controls-Microsegmentation
 
 **Goal:** Configure a DevOps tier for our application which has a zone-based architecture.
 
@@ -49,8 +49,8 @@
 
 
 
-[Next -> Module 5-3](../modules/host-protection.md)
+[Next -> Module 1-3](../modules/host-protection.md)
 
-[Previous -> Module 5-1](../modules/app-service-control.md)
+[Previous -> Module 1-1](../modules/app-service-control.md)
 
 [Menu](../README.md)

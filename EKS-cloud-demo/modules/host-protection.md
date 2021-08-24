@@ -1,4 +1,4 @@
-# Module 5-3: East-West controls-Host protection
+# Module 1-3: East-West controls-Host protection
 
 **Goal:** Secure EKS hosts ports with network policies.
 
@@ -107,8 +107,8 @@ Calico network policies not only can secure pod to pod communications but also c
 
 
 
-[Next -> Module 6-1](../modules/egress-access-controls.md)
+[Next -> Module 2-1](../modules/egress-access-controls.md)
 
-[Previous -> Module 5-2](../modules/microsegmentation.md)
+[Previous -> Module 1-2](../modules/microsegmentation.md)
 
 [Menu](../README.md)

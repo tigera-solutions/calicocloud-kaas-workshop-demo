@@ -24,24 +24,21 @@
 - [Module 0-3: Joining EKS cluster to Calico Cloud](modules/joining-eks-to-calico-cloud.md)
 - [Module 0-4: Configuring demo applications](modules/configuring-demo-apps.md)
 
-- [Module 1-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
-- [Module 1-2: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
-- [Module 1-3: Observability-Kibana dashboard](modules/kibana-dashboard.md)
-- [WIP][Module 1-4: Observability-L7 visibility](modules/enable-l7-visibilty.md) 
+- [Module 1-1: East-West controls-App service control](modules/app-service-control.md)
+- [Module 1-2: East-West controls-Microsegmentation](modules/microsegmentation.md)
+- [Module 1-3: East-West controls-Host protection](modules/host-protection.md)
 
-- [Module 2-1: East-West controls-App service control](modules/app-service-control.md)
-- [Module 2-2: East-West controls-Microsegmentation](modules/microsegmentation.md)
-- [Module 2-3: East-West controls-Host protection](modules/host-protection.md)
+- [Module 2-1: North-South Controls-Egress access controls, DNS policy and Global threadfeed ](modules/egress-access-controls.md)
+- [WIP][Module 2-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) 
 
-- [Module 3-1: North-South Controls-Egress access controls, DNS policy and Global threadfeed ](modules/egress-access-controls.md)
-- [WIP][Module 3-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) 
+- [Module 3-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
+- [Module 3-2: Observability-Kibana dashboard](modules/kibana-dashboard.md)
+- [Module 3-3: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
+- [WIP][Module 3-4: Observability-L7 visibility](modules/enable-l7-visibilty.md) 
 
 - [Module 4-1: Compliance and Security-Compliance](modules/compliance-reports.md) 
 - [Module 4-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) 
 - [WIP][Module 4-3: Compliance and Security-Encryption](modules/encryption.md) 
-
-- [WIP][Module 5-1: Integration-Firewall Integration](modules/firewall-integration.md) 
-- [WIP][Module 5-2: Integration-SIEM Integration](modules/siem-integration.md) 
 
 
 

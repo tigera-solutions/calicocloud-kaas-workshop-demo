@@ -1,4 +1,4 @@
-# Module 6-1: North-South Controls-Egress access controls
+# Module 2-1: North-South Controls-Egress access controls
 
 **Goal:** Configure egress access control for specific workloads so they are allow to external DNS domain, and configure block-threadfeed policy so workloads within cluster are not allow to external networkset
 
@@ -68,8 +68,8 @@
 
 
 
-[WIP][Next -> Module 6-2](../modules/egress-gateway.md)
+[WIP][Next -> Module 2-2](../modules/egress-gateway.md)
 
-[Previous -> Module 5-3](../modules/host-protection.md)
+[Previous -> Module 1-3](../modules/host-protection.md)
 
 [Menu](../README.md)

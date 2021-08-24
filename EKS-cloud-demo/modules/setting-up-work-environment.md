@@ -1,4 +1,4 @@
-# Module 1: Setting up work environment
+# Module 0-1: Setting up work environment
 
 **Goal:** Set up and configure your environment to work with AWS resources.
 
@@ -107,7 +107,7 @@ The simplest ways to configure your working environment is to either use your lo
     unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
     ```
 
-[Next -> Module 2](../modules/creating-eks-cluster.md)
+[Next -> Module 0-2](../modules/creating-eks-cluster.md)
 
 [Previous -> Read Me](../README.md)
 

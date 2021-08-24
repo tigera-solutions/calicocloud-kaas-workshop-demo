@@ -1,4 +1,4 @@
-# Module 3: Joining EKS cluster to Calico Cloud
+# Module 0-3: Joining EKS cluster to Calico Cloud
 
 **Goal:** Join EKS cluster to Calico Cloud management plane.
 
@@ -64,8 +64,8 @@
 
 
 
-[Next -> Module 4](../modules/configuring-demo-apps.md)
+[Next -> Module 0-4](../modules/configuring-demo-apps.md)
 
-[Previous -> Module 2](../modules/creating-eks-cluster.md)
+[Previous -> Module 0-2](../modules/creating-eks-cluster.md)
 
 [Menu](../README.md)

@@ -1,4 +1,4 @@
-# Module 9-2: Observability-Dynamic packet capture
+# Module 3-3: Observability-Dynamic packet capture
 
 **Goal:** Configure packet capture for specific pods and review captured payload.
 
@@ -52,8 +52,8 @@
     ```
 
 
-[WIP][Next -> Module 9-3](../modules/kibana-dashboard.md)
+[WIP][Next -> Module 3-4](../modules/enable-l7-visibilty.md)
 
-[Previous -> Module 9-1](../modules/dynamic-service-graph.md)
+[Previous -> Module 3-2](../modules/kibana-dashboard.md)
 
 [Menu](../README.md)
