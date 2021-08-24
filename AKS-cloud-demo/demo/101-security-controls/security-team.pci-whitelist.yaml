@@ -1,0 +1,33 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: security-team.pci-whitelist
+spec:
+  tier: security-team
+  order: 300
+  selector: projectcalico.org/namespace != "acme"
+  ingress:
+  - action: Deny
+    source:
+      serviceAccounts:
+        selector: PCI != "true"
+    destination:
+      serviceAccounts:
+        selector: PCI == "true"
+  - action: Pass
+    source:
+    destination:
+  egress:
+  - action: Deny
+    source:
+      serviceAccounts:
+        selector: PCI == "true"
+    destination:
+      serviceAccounts:
+        selector: PCI != "true"
+  - action: Pass
+    source:
+    destination:
+  types:
+  - Ingress
+  - Egress

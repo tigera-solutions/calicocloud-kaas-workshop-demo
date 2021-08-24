@@ -1,0 +1,10 @@
+# Network set for Embargo countries. 
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkSet
+metadata:
+  name: twilio-api
+  labels:
+    type: public
+spec:
+  nets:
+  - 18.0.0.0/8

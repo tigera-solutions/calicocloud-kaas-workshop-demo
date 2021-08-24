@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: egress-gateway
+  namespace: bt-web-egress
+  labels:
+    egress-code: red
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      egress-code: red
+  template:
+    metadata:
+      annotations:
+        # cni.projectcalico.org/ipv4pools: "[\"10.198.178.188/31\"]"
+        cni.projectcalico.org/ipv4pools: "[\"egress-ippool-1\"]"
+      labels:
+        egress-code: red
+    spec:
+      imagePullSecrets:
+      - name: tigera-pull-secret
+      nodeSelector:
+        kubernetes.io/os: linux
+        kubernetes.io/hostname: ip-10-0-180-177
+        # kubernetes.io/hostname: ip-10-0-131-170
+        # kubernetes.io/hostname: ip-10-0-206-19
+      containers:
+      - name: egress-gateway
+        image: quay.io/tigera/egress-gateway:v3.8.1
+        env:
+        - name: EGRESS_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        securityContext:
+          privileged: true
+      terminationGracePeriodSeconds: 0

@@ -1,0 +1,16 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: allow-tigera.kube-dns-egress
+  namespace: kube-system
+spec:
+  tier: allow-tigera
+  order: 1
+  selector: k8s-app == "kube-dns"
+  serviceAccountSelector: ''
+  egress:
+    - action: Allow
+      source: {}
+      destination: {}
+  types:
+    - Egress

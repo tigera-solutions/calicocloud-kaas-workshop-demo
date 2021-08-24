@@ -1,0 +1,23 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: platform-team.allow-logging
+spec:
+  tier: platform-team
+  order: 20
+  selector: app == "logging"
+  namespaceSelector: ''
+  serviceAccountSelector: ''
+  ingress:
+    - action: Allow
+      protocol: TCP
+      source:
+        selector: has(fw-zone)
+      destination:
+        ports:
+          - '8080'
+  doNotTrack: false
+  applyOnForward: false
+  preDNAT: false
+  types:
+    - Ingress

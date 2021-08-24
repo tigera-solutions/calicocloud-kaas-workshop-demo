@@ -1,0 +1,41 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: acme-inventory
+  labels:
+    deployment: production
+spec:
+  reportType: inventory
+  endpoints:
+    namespaces: 
+      names:
+        ["acme"]
+  schedule: 0 * * * *
+---
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: acme-network-access
+  labels:
+    deployment: production
+spec:
+  reportType: network-access
+  endpoints:
+    namespaces:
+      names:
+        ["acme"]
+  schedule: 0 * * * *
+---
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: acme-policy-audit
+  labels:
+    deployment: production
+spec:
+  reportType: policy-audit
+  endpoints:
+    namespaces: 
+      names:
+        ["acme"]
+  schedule: 0 * * * *
