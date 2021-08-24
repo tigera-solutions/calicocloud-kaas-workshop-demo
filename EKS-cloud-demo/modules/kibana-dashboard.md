@@ -41,7 +41,7 @@
 
 5. Audit logs
 
-    The `audit logs` dashboard is useful as you can filter them by `username` and `verb`, example below is filter by user `cc-demo@tigera.io` which means the action is from UI manager user. 
+    The audit logs dashboard is useful as you can filter them by `username` and `verb`, example below is filter by user `cc-demo@tigera.io` which means the action is from UI manager user. 
 
      ![kibana audit logs](../img/kibana-audit-log.png)
 
