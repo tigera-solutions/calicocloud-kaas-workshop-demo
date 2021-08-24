@@ -25,7 +25,9 @@
    
    #curl example.com couple times to trigger the dns aler
    
-   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.example.com 2>/dev/null | grep -i http'
+   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI example.com 2>/dev/null | grep -i http'
+
+   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.google.com 2>/dev/null | grep -i http'
 
    ```
 4. Trigger later movement alert to nginx/dev
@@ -255,7 +257,10 @@ Use official documentation for the most recent [configuration instructions](http
 
     ##Replacy the vailable in yaml file
     sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
-	
+
+    ##For other variations/shells the following syntax may be required
+	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+
 
     ##Confirm the vailable been changed 
    
