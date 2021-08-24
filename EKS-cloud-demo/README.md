@@ -19,30 +19,29 @@
 
 ## Modules
 
-- [Module 1: Setting up workspace environment](./modules/setting-up-work-environment.md)
-- [Module 2: Creating EKS cluster](modules/creating-eks-cluster.md)
-- [Module 3: Joining EKS cluster to Calico Cloud](modules/joining-eks-to-calico-cloud.md)
-- [Module 4: Configuring demo applications](modules/configuring-demo-apps.md)
+- [Module 0-1: Setting up workspace environment](./modules/setting-up-work-environment.md)
+- [Module 0-2: Creating EKS cluster](modules/creating-eks-cluster.md)
+- [Module 0-3: Joining EKS cluster to Calico Cloud](modules/joining-eks-to-calico-cloud.md)
+- [Module 0-4: Configuring demo applications](modules/configuring-demo-apps.md)
 
-- [Module 5-1: East-West controls-App service control](modules/app-service-control.md)
-- [Module 5-2: East-West controls-Microsegmentation](modules/microsegmentation.md)
-- [Module 5-3: East-West controls-Host protection](modules/host-protection.md)
+- [Module 1-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
+- [Module 1-2: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
+- [Module 1-3: Observability-Kibana dashboard](modules/kibana-dashboard.md)
+- [WIP][Module 1-4: Observability-L7 visibility](modules/enable-l7-visibilty.md) 
 
-- [Module 6-1: North-South Controls-Egress access controls, DNS policy and Global threadfeed ](modules/egress-access-controls.md)
-- [WIP][Module 6-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) 
+- [Module 2-1: East-West controls-App service control](modules/app-service-control.md)
+- [Module 2-2: East-West controls-Microsegmentation](modules/microsegmentation.md)
+- [Module 2-3: East-West controls-Host protection](modules/host-protection.md)
 
-- [WIP][Module 7-1: Integration-Firewall Integration](modules/firewall-integration.md) 
-- [WIP][Module 7-2: Integration-SIEM Integration](modules/siem-integration.md) 
+- [Module 3-1: North-South Controls-Egress access controls, DNS policy and Global threadfeed ](modules/egress-access-controls.md)
+- [WIP][Module 3-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) 
 
-- [Module 8-1: Compliance and Security-Compliance](modules/compliance-reports.md) 
-- [Module 8-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) 
-- [WIP][Module 8-3: Compliance and Security-Encryption](modules/encryption.md) 
+- [Module 4-1: Compliance and Security-Compliance](modules/compliance-reports.md) 
+- [Module 4-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) 
+- [WIP][Module 4-3: Compliance and Security-Encryption](modules/encryption.md) 
 
-- [Module 9-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
-- [Module 9-2: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
-- [Module 9-3: Observability-Kibana dashboard](modules/kibana-dashboard.md)
-- [WIP][Module 9-4: Observability-L7 visibility](modules/enable-l7-visibilty.md) 
-
+- [WIP][Module 5-1: Integration-Firewall Integration](modules/firewall-integration.md) 
+- [WIP][Module 5-2: Integration-SIEM Integration](modules/siem-integration.md) 
 
 
 
@@ -51,31 +50,37 @@
 1. Delete application stack to clean up any `loadbalancer` services.
 
     ```bash
-    kubectl delete -f demo/dev-stack/app.manifests.yaml
-    kubectl delete -f demo/acme-stack/acme.yaml
+    kubectl delete -f demo/dev-stack/
+    kubectl delete -f demo/acme-stack/
     kubectl delete -f demo/storefront-stack
-    kubectl delete -f https://raw.githubusercontent.com/GoogleCloudPlatform/microservices-demo/master/release/kubernetes-manifests.yaml
+    kubectl delete -f demo/boutiqueshop/
     ```
+3. Remove calicocloud components from your cluster.
+    ```bash
+   curl https://installer.calicocloud.io/manifests/v2.0.1/downgrade.sh | bash  
 
-2. Delete EKS cluster.
+   kubectl delete pods --all -A
+   ```
+
+3. Delete EKS cluster.
 
     ```bash
     eksctl get cluster 
     eksctl delete cluster --name <your cluster name>
     ```
 
-3. Delete EC2 Key Pair.
+4. Delete EC2 Key Pair.
 
     ```bash
     export KEYPAIR_NAME='your-key'
     aws ec2 delete-key-pair --key-name $KEYPAIR_NAME
     ```
 
-4. Delete Cloud9 instance.
+5. Delete Cloud9 instance.
 
     Navigate to `AWS Console` > `Services` > `Cloud9` and remove your workspace environment.
 
-5. Delete IAM role created for this workshop.
+6. Delete IAM role created for this workshop.
 
     ```bash
     # use your local shell to set AWS credentials
