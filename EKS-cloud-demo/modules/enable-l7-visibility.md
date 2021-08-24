@@ -45,7 +45,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.7/visibi
    kubectl label svc frontend-external app=frontend -n hipstershop 
    TEST_IP=$(kubectl -n hipstershop get svc  -l app=frontend  -ojsonpath='{.items[0].status.loadBalancer.ingress[0].ip}')
    curl $TEST_IP | grep http
-   ``'
+   ```
   
    Now view the L7 logs in Kibana by selecting the tigera_secure_ee_l7 index pattern. You should see the relevant L7 data from your request recorded.    
 
