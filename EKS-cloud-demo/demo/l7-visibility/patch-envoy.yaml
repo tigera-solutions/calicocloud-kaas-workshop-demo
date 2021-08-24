@@ -27,6 +27,10 @@ spec:
           value: "Panic"
         - name: FELIX_DIAL_TARGET
           value: "/var/run/felix/nodeagent/socket"
+        - name: ENVOY_LOG_INTERVAL_SECONDS  
+          value: '5'
+        - name: ENVOY_LOG_PATH
+          value: "/tmp/envoy.log"
         volumeMounts:
         - name: envoy-logs
           mountPath: /tmp/

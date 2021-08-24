@@ -4,7 +4,6 @@
 
 ## Calico observability tools
 
->If you are interested in enabling collection of application layer metrics for your workloads, refer to [Configure L7 logs](https://docs.tigera.io/visibility/elastic/l7/configure) documentation to enable application layer metrics collection.
 
 1. Dashboard
 
