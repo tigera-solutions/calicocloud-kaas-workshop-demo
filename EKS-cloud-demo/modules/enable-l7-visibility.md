@@ -7,7 +7,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.6/visibi
 
 ## Steps
 
-1. .
+1. 
 
     
 

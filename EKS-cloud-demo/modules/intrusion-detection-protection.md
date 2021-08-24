@@ -1,4 +1,4 @@
-# Module 8-2: Compliance and Security-Intrusion Detection and Prevention
+# Module 4-2: Compliance and Security-Intrusion Detection and Prevention
 
 **Goal:** Use global alerts to notify security and operations teams about unsanctioned or suspicious activity.
 
@@ -290,8 +290,8 @@ Use official documentation for the most recent [configuration instructions](http
 	
 5. After a few minutes we can see the Alert generated in the Web UI
 
-[Next -> Module 8-3](../modules/encryption.md)
+[Next -> Module 4-3](../modules/encryption.md)
 
-[Previous -> Module 8-1](../modules/compliance-reports.md)
+[Previous -> Module 4-1](../modules/compliance-reports.md)
 
 [Menu](../README.md)

@@ -16,6 +16,29 @@
 
 2. DNS dashboards   
 
+    The `DNS` dashboard will give you a general idea about how DNS behave in your cluster, including internal & external queries, also DNS latency as it shows below.
+
+     ![kibana dns dashboard](../img/kibana-dns-dashboard.png)
+
+3. L7 logs    
+
+    The `L7` dashboard will give you all details related to http protocol including method, response code and url etc. We will enable L7 logs in later module.
+
+     ![kibana l7 logs](../img/kibana-l7-log.png)
+
+4. Flow logs
+
+    The `L7` dashboard will give you all details related to http protocol including method, response code and url etc. We will enable L7 logs in later module.
+
+     ![kibana flow logs](../img/kibana-flow-logs.png)
+
+
+5. Audit logs
+
+    The `L7` dashboard will give you all details related to http protocol including method, response code and url etc. We will enable L7 logs in later module.
+
+     ![kibana audit logs](../img/kibana-audit-log.png)
+
 
 
 [Next -> Module 3-3](../modules/dynamic-packet-capture.md)
