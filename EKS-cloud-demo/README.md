@@ -34,7 +34,7 @@
 - [Module 3-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
 - [Module 3-2: Observability-Kibana dashboard](modules/kibana-dashboard.md)
 - [Module 3-3: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
-- [WIP][Module 3-4: Observability-L7 visibility](modules/enable-l7-visibilty.md) 
+- [Module 3-4: Observability-L7 visibility](modules/enable-l7-visibility.md) 
 
 - [Module 4-1: Compliance and Security-Compliance](modules/compliance-reports.md) 
 - [Module 4-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) 
