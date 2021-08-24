@@ -52,7 +52,7 @@
     ```
 
 
-[WIP][Next -> Module 3-4](../modules/enable-l7-visibilty.md)
+[WIP][Next -> Module 3-4](../modules/enable-l7-visibility.md)
 
 [Previous -> Module 3-2](../modules/kibana-dashboard.md)
 
