@@ -1,4 +1,4 @@
-# Module 8-3: Compliance and Security-Encryption
+# Module 4-3: Compliance and Security-Encryption
 
 **Goal:** Enable wireguard as node to node encryption for data in transit 
 
@@ -16,8 +16,8 @@
    sudo yum install wireguard-dkms wireguard-tools -y
    ```
 
-[Next -> Module 9-1](../modules/dynamic-service-graph.md)
+[Next -> Module 5-1](../modules/firewall-integration.md)
 
-[Previous -> Module 8-2](../modules/intrusion-detection-protection.md)
+[Previous -> Module 4-2](../modules/intrusion-detection-protection.md)
 
 [Menu](../README.md)

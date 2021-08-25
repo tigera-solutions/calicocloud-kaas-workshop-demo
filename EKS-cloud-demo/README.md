@@ -40,6 +40,9 @@
 - [Module 4-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) 
 - [WIP][Module 4-3: Compliance and Security-Encryption](modules/encryption.md) 
 
+- [WIP][Module 5-1: Integration-Firewall Integration](modules/firewall-integration.md) 
+- [WIP][Module 5-2: Integration-SIEM Integration](modules/siem-integration.md) 
+
 
 
 ## Cleanup
