@@ -1,10 +1,10 @@
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: platform.centos-to-frontend
+  name: platform-team.centos-to-frontend
   namespace: dev
 spec:
-  tier: platform
+  tier: platform-team
   order: 100
   selector: app == "centos"
   serviceAccountSelector: ''
