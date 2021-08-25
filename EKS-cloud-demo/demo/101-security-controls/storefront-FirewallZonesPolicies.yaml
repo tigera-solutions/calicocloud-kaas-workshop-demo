@@ -1,10 +1,10 @@
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: devops-team.restricted
+  name: default.restricted
   namespace: storefront
 spec:
-  tier: devops-team
+  tier: default
   order: 20
   selector: fw-zone == "restricted"
   ingress:
@@ -30,10 +30,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: StagedNetworkPolicy
 metadata:
-  name: devops-team.restricted
+  name: default.restricted
   namespace: storefront
 spec:
-  tier: devops-team
+  tier: default
   order: 20
   selector: fw-zone == "restricted"
   ingress:
@@ -59,10 +59,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: devops-team.dmz
+  name: default.dmz
   namespace: storefront
 spec:
-  tier: devops-team
+  tier: default
   order: 0
   selector: fw-zone == "dmz"
   ingress:
@@ -89,10 +89,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: StagedNetworkPolicy
 metadata:
-  name: devops-team.dmz
+  name: default.dmz
   namespace: storefront
 spec:
-  tier: devops-team
+  tier: default
   order: 0
   selector: fw-zone == "dmz"
   ingress:
@@ -119,10 +119,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: devops-team.trusted
+  name: default.trusted
   namespace: storefront
 spec:
-  tier: devops-team
+  tier: default
   order: 10
   selector: fw-zone == "trusted"
   ingress:
@@ -156,10 +156,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: StagedNetworkPolicy
 metadata:
-  name: devops-team.trusted
+  name: default.trusted
   namespace: storefront
 spec:
-  tier: devops-team
+  tier: default
   order: 10
   selector: fw-zone == "trusted"
   ingress:
