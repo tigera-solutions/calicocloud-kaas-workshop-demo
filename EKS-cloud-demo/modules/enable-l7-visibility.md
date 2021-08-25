@@ -7,21 +7,28 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.7/visibi
 
 ## Steps
 
-1. Create the Envoy config with `envoy-config.yaml` in l7-visibility folder
+1. In the namespace of the pod that you want to monitor, create a Kubernetes pull secret for accessing Calico Enterprise images. 
+    ```bash
+   kubectl get secret tigera-pull-secret --namespace=calico-system -o yaml | \
+   grep -v '^[[:space:]]*namespace:[[:space:]]*calico-system' | \
+   kubectl apply --namespace=hipstershop -f -
+   ```
+
+2. Create the Envoy config with `envoy-config.yaml` in l7-visibility folder
 
     ```bash
     # create configmap
     kubectl create configmap envoy-config -n hipstershop --from-file=demo/l7-visibility/envoy-config.yaml
     ```
     
-2. Configure Felix for log data collection, we should patch it before.
+3. Configure Felix for log data collection, we should patch it before.
     
     ```bash
     kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"policySyncPathPrefix":"/var/run/nodeagent"}}'
     ```
 
 
-3. Install the envoy log collector.
+4. Install the envoy log collector.
    ```bash
    kubectl patch deployment adservice -n hipstershop --patch "$(cat demo/l7-visibility/patch-envoy.yaml)" 
    kubectl patch deployment cartservice -n hipstershop --patch "$(cat demo/l7-visibility/patch-envoy.yaml)"
@@ -43,7 +50,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.7/visibi
 4. Test your installation
    ```bash
    kubectl label svc frontend-external app=frontend -n hipstershop 
-   TEST_IP=$(kubectl -n hipstershop get svc  -l app=frontend  -ojsonpath='{.items[0].status.loadBalancer.ingress[0].ip}')
+   TEST_IP=$(kubectl -n hipstershop get svc  -l app=frontend  -ojsonpath='{.items[0].status.loadBalancer.ingress[0].hostname}')
    curl $TEST_IP | grep http
    ```
   
