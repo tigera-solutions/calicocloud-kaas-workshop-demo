@@ -1,4 +1,4 @@
-# Module 4: Configuring demo applications
+# Module 0-4: Configuring demo applications
 
 **Goal:** Deploy and configure demo applications.
 
@@ -59,9 +59,9 @@
    
     ```
 
-[Next -> Module 5-1](../modules/app-service-control.md)
+[Next -> Module 1-1](../modules/app-service-control.md)
 
-[Previous -> Module 3](../modules/joining-eks-to-calico-cloud.md)
+[Previous -> Module 0-3](../modules/joining-eks-to-calico-cloud.md)
 
 [Menu](../README.md)
 

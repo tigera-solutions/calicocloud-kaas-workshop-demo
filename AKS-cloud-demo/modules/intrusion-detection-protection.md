@@ -1,4 +1,4 @@
-# Module 8-2: Compliance and Security-Intrusion Detection and Prevention
+# Module 4-2: Compliance and Security-Intrusion Detection and Prevention
 
 **Goal:** Use global alerts to notify security and operations teams about unsanctioned or suspicious activity.
 
@@ -25,7 +25,9 @@
    
    #curl example.com couple times to trigger the dns aler
    
-   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.example.com 2>/dev/null | grep -i http'
+   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI example.com 2>/dev/null | grep -i http'
+
+   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.google.com 2>/dev/null | grep -i http'
 
    ```
 4. Trigger later movement alert to nginx/dev
@@ -255,7 +257,10 @@ Use official documentation for the most recent [configuration instructions](http
 
     ##Replacy the vailable in yaml file
     sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
-	
+
+    ##For other variations/shells the following syntax may be required
+	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+
 
     ##Confirm the vailable been changed 
    
@@ -290,8 +295,8 @@ Use official documentation for the most recent [configuration instructions](http
 	
 5. After a few minutes we can see the Alert generated in the Web UI
 
-[Next -> Module 8-3](../modules/encryption.md)
+[Next -> Module 4-3](../modules/encryption.md)
 
-[Previous -> Module 8-1](../modules/compliance-reports.md)
+[Previous -> Module 4-1](../modules/compliance-reports.md)
 
 [Menu](../README.md)
