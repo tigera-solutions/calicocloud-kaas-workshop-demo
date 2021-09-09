@@ -18,8 +18,8 @@
 
 ## Modules
 
-- [Module 0-1: Creating an AKS compatible cluster for Calico Cloud](modules/creating-gke-cluster.md)
-- [Module 0-2: Joining AKS cluster to Calico Cloud](modules/joining-gke-to-calico-cloud.md)
+- [Module 0-1: Creating an GKE compatible cluster for Calico Cloud](modules/creating-gke-cluster.md)
+- [Module 0-2: Joining GKE cluster to Calico Cloud](modules/joining-gke-to-calico-cloud.md)
 - [Module 0-3: Configuring demo applications](modules/configuring-demo-apps.md)
 
 - [Module 1-1: East-West controls-App service control](modules/app-service-control.md)
