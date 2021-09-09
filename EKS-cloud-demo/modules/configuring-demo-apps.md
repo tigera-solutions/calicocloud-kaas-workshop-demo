@@ -55,7 +55,7 @@
     >The alerts will be explored in a later lab.
 
     ```bash
-    kubectl apply -f demo/alerts/
+    kubectl create -f demo/alerts/
    
     ```
 
