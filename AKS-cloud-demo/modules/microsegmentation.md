@@ -49,7 +49,7 @@
 
 
 
-[Next -> Module 1-3](../modules/host-protection.md)
+[WIP][Next -> Module 1-3](../modules/host-protection.md)
 
 [Previous -> Module 1-1](../modules/app-service-control.md)
 
