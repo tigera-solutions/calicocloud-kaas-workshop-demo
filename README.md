@@ -7,9 +7,9 @@ This is the master folder for Calicocloud demo for managed K8S clusters in diffe
 
 ## Join the Calicocloud  
 
-- [Calico Cloud trial account](https://www.tigera.io/tigera-products/calico-cloud/)
+- [Calico Cloud trial account](https://www.calicocloud.io/home/)
   - for instructor-led workshop use instructions in the email you receive to request a Calico Trial account
-  - for self-paced workshop follow the [link to register](https://www.tigera.io/tigera-products/calico-cloud/) for a Calico Trial account
+  - for self-paced workshop follow the [link to register](https://www.calicocloud.io/home) for a Calico Trial account
 
 ## Workshop objectives
 
