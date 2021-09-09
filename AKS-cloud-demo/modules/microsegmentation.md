@@ -17,7 +17,7 @@
     ```
 
     
-    b. Create zone-based policy for storefront application in dev-ops tier
+    b. Create zone-based policy for storefront application in default tier
     ```bash
     ###apply the zone-based policy
     kubectl apply -f demo/101-security-controls/storefront-FirewallZonesPolicies.yaml

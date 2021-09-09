@@ -84,7 +84,7 @@ spec:
           allowPrivilegeEscalation: true
         env:
           - name: CLUSTER_NAME
-            value: "r3gk80ic-management-managed-aksjesie1-aks-rg-jesie102-03cfb8-92ebec28-hcp-eastus-azmk8s-io"
+            value: "$CALICOCLUSTERNAME"
           - name: ELASTIC_HOST
             value: "tigera-secure-es-gateway-http.tigera-elasticsearch.svc"  
           - name: ELASTIC_PORT
