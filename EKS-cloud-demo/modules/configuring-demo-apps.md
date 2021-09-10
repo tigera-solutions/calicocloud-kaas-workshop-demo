@@ -31,8 +31,8 @@
     # deploy acme app stack
     kubectl apply -f demo/acme-stack/
 
-    # deploy boutiqueshop app stack
-    kubectl apply -f demo/boutiqueshop/
+    # deploy hipstershop app stack
+    kubectl apply -f demo/hipstershop/
 
     # deploy storefront app stack
     kubectl apply -f demo/storefront-stack/

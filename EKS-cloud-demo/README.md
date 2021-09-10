@@ -5,14 +5,12 @@
 
 ## Workshop prerequisites
 
->It is recommended to use your personal AWS account which would have full access to AWS resources. If using a corporate AWS account for the workshop, make sure to check with account administrator to provide you with sufficient permissions to create and manage EKS clusters and Load Balancer resources.
+>It is recommended to follow the EKS creation step outlined in [Module 0](modules/creating-eks-cluster.md) and to keep the resources isolated from any existing deployments. If you are using a corporate AWS account for the workshop, make sure to check with account administrator to provide you with sufficient permissions to create and manage EKS clusters and Load Balancer resources.
 
-- [Calico Cloud trial account](https://www.tigera.io/tigera-products/calico-cloud/)
-  - for instructor-led workshop use instructions in the email you receive to request a Calico Trial account
-  - for self-paced workshop follow the [link to register](https://www.tigera.io/tigera-products/calico-cloud/) for a Calico Trial account
+- [Calico Cloud trial account](https://www.calicocloud.io/home)
 - AWS account and credentials to manage AWS resources
 - Terminal or Command Line console to work with AWS resources and EKS cluster
-  - most common environments are Cloud9, Mac OS, Linux, Windows WSL2
+- most common environments are Cloud9, Mac OS, Linux, Windows WSL2
 - `Git`
 - `netcat`
 
@@ -50,16 +48,15 @@
 1. Delete application stack to clean up any `loadbalancer` services.
 
     ```bash
-    kubectl delete -f demo/dev-stack/
-    kubectl delete -f demo/acme-stack/
-    kubectl delete -f demo/storefront-stack
-    kubectl delete -f demo/boutiqueshop/
+    kubectl delete ns dev
+    kubectl delete ns acme
+    kubectl delete ns storefront
+    kubectl delete ns hipstershop
     ```
 3. Remove calicocloud components from your cluster.
     ```bash
    curl https://installer.calicocloud.io/manifests/v2.0.1/downgrade.sh | bash  
 
-   kubectl delete pods --all -A
    ```
 
 3. Delete EKS cluster.

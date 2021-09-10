@@ -1,20 +1,19 @@
 # Calico cloud workshop on AKS
 
-<img src="img/calico-on-aks.png" alt="Calicocloud on AKS" width="30%"/>
+<img src="img/calico.png" alt="Calico on AKS" width="30%"/>
 
 
 ## Workshop prerequisites
 
 >It is recommended to follow the AKS creation step outlined in [Module 0](modules/creating-aks-cluster.md) and to keep the resources isolated from any existing deployments. If you are using a corporate Azure account for the workshop, make sure to check with account administrator to provide you with sufficient permissions to create and manage AkS clusters and Load Balancer resources.
 
-- [Azure Kubernetes Service](https://github.com/Azure/kubernetes-hackfest/blob/master/labs/networking/network-policy/)
 - [Calico Cloud trial account](https://www.calicocloud.io/home)
-- Terminal or Command Line console to work with Azure resources and AKS cluster
- 
+- Azure account and credentials to manage AKS resources
+- Terminal or Command Line console to work with Azure resources and AKS cluster [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 - `Git`
 - `netcat`
 
-## Modules
+## Module
 
 - [Module 0-1: Creating an AKS compatible cluster for Calico Cloud](modules/creating-aks-cluster.md)
 - [Module 0-2: Joining AKS cluster to Calico Cloud](modules/joining-aks-to-calico-cloud.md)
@@ -52,7 +51,7 @@
 2. Delete AKS cluster.
 
     ```bash
-    az aks delete --name $CLUSTERNAME
+    az aks delete --name $CLUSTERNAME --resource-group $RGNAME
     ```
 
 3. Delete the azure resource group. 
