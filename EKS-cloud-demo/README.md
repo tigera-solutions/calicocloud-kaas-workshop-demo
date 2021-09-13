@@ -48,12 +48,13 @@
 1. Delete application stack to clean up any `loadbalancer` services.
 
     ```bash
-    kubectl delete ns dev
-    kubectl delete ns acme
-    kubectl delete ns storefront
-    kubectl delete ns hipstershop
+    kubectl delete -f demo/dev-stack/
+    kubectl delete -f demo/acme-stack/
+    kubectl delete -f demo/storefront-stack
+    kubectl delete -f demo/hipstershop/
     ```
-3. Remove calicocloud components from your cluster.
+
+2. Remove calicocloud components from your cluster.
     ```bash
    curl https://installer.calicocloud.io/manifests/v2.0.1/downgrade.sh | bash  
 

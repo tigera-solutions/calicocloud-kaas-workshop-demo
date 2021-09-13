@@ -1,64 +1,238 @@
-# Calico cloud workshop on GKE
+# Module 0-1: Creating GKE cluster
 
-<img src="img/calico.png" alt="Calico on GKE" width="30%"/>
+**Goal:** Create GKE cluster.
 
-
-## Workshop prerequisites
-
->It is recommended to follow the GKE creation step outlined in [Module 0](modules/creating-gke-cluster.md) and to keep the resources isolated from any existing deployments. If you are using a corporate GCP account for the workshop, make sure to check with account administrator to provide you with sufficient permissions to create and manage AkS clusters and Load Balancer resources.
-
-- [Calico Cloud trial account](https://www.calicocloud.io/home)
-- GCP account and credentials to manage GKE resources
-- Terminal or Command Line console to work with GCP resources and GKE cluster [Azure CLI](https://cloud.google.com/sdk/docs/install)
-- `Git`
-- `netcat`
-
-## Modules
-
-- [Module 0-1: Creating an AKS compatible cluster for Calico Cloud](modules/creating-aks-cluster.md)
-- [Module 0-2: Joining AKS cluster to Calico Cloud](modules/joining-aks-to-calico-cloud.md)
-- [Module 0-3: Configuring demo applications](modules/configuring-demo-apps.md)
-
-- [Module 1-1: East-West controls-App service control](modules/app-service-control.md)
-- [Module 1-2: East-West controls-Microsegmentation](modules/microsegmentation.md)
-- [WIP][Module 1-3: East-West controls-Host protection](modules/host-protection.md)
-
-- [Module 2-1: North-South Controls-Egress access controls, DNS policy and Global threadfeed ](modules/egress-access-controls.md)
-- [WIP][Module 2-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) 
+> This workshop uses GKE cluster with most of the default configuration settings. To create an GKE cluster with a regional cluster with a multi-zone node pool, please refer to [GKE doc](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-regional-cluster#create-regional-multi-zone-nodepool) 
 
 
-- [Module 3-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
-- [Module 3-2: Observability-Kibana dashboard](modules/kibana-dashboard.md)
-- [Module 3-3: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
-- [WIP][Module 3-4: Observability-L7 visibility](modules/enable-l7-visibility.md) 
+## Prerequisite Tasks
 
-- [Module 4-1: Compliance and Security-Compliance](modules/compliance-reports.md) 
-- [Module 4-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) 
-- [WIP][Module 4-3: Compliance and Security-Encryption](modules/encryption.md) 
+Follow the prequisite steps if you need to create or verify your GCP IAM Azure subscription and Service Principal otherwise proceed to step 1.
 
+- Ensure you are using the correct Azure subscription you want to deploy AKS to.
+    
+	```
+	# View subscriptions
+	az account list   
+ 
+  # Verify selected subscription
+  az account show
+  ```
+    
+    ```
+  # Set correct subscription (if needed)
+  az account set --subscription <subscription_id>
+  
+  # Verify correct subscription is now set
+  az account show
+  ```
+    
+- Create Azure Service Principal to use through the labs
 
-## Cleanup
+	```bash
+	az ad sp create-for-rbac --skip-assignment
+	```
 
-1. Delete application stack to clean up any `loadbalancer` services.
+- This will return the following. !!!IMPORTANT!!! - Please copy this information down as you'll need it for labs going forward.
 
+	```bash
+	"appId": "7248f250-0000-0000-0000-dbdeb8400d85",
+	"displayName": "azure-cli-2017-10-15-02-20-15",
+	"name": "http://azure-cli-2017-10-15-02-20-15",
+	"password": "77851d2c-0000-0000-0000-cb3ebc97975a",
+	"tenant": "72f988bf-0000-0000-0000-2d7cd011db47"
+	```
+
+- Set the values from above as variables **(replace <appid><password>with your values)</password></appid>**.
+
+> **Warning:** Several of the following steps have you echo values to your .bashrc file. This is done so that you can get those values back if your session reconnects. You will want to remember to clean these up at the end of the training, in particular if you're running on your own, or your company's, subscription.
+
+DON'T MESS THIS STEP UP. REPLACE THE VALUES IN BRACKETS!!!
+
+```bash
+# Persist for Later Sessions in Case of Timeout
+APPID=<appId>
+echo export APPID=$APPID >> ~/.bashrc
+CLIENTSECRET=<password>
+echo export CLIENTSECRET=$CLIENTSECRET >> ~/.bashrc
+```
+
+## Steps
+
+1.  Create a unique identifier suffix for resources to be created in this lab.
+    
+	```bash
+    UNIQUE_SUFFIX=$USER$RANDOM
+    # Remove Underscores and Dashes (Not Allowed in AKS and ACR Names)
+    UNIQUE_SUFFIX="${UNIQUE_SUFFIX//_}"
+    UNIQUE_SUFFIX="${UNIQUE_SUFFIX//-}"
+    # Check Unique Suffix Value (Should be No Underscores or Dashes)
+    echo $UNIQUE_SUFFIX
+    # Persist for Later Sessions in Case of Timeout
+    echo export UNIQUE_SUFFIX=$UNIQUE_SUFFIX >> ~/.bashrc
+	```
+    
+    **_ Note this value as it will be used in the next couple labs. _**
+	
+2. Create an Azure Resource Group in your chosen region. We will use East US in this example.
+
+   ```bash
+   # Set Resource Group Name using the unique suffix
+   RGNAME=aks-rg-$UNIQUE_SUFFIX
+   # Persist for Later Sessions in Case of Timeout
+   echo export RGNAME=$RGNAME >> ~/.bashrc
+   # Set Region (Location)
+   LOCATION=eastus
+   # Persist for Later Sessions in Case of Timeout
+   echo export LOCATION=eastus >> ~/.bashrc
+   # Create Resource Group
+   az group create -n $RGNAME -l $LOCATION
+   ```
+    
+3.  Create your AKS cluster in the resource group created in step 2 with 3 nodes. We will check for a recent version of kubnernetes before proceeding. You will use the Service Principal information from the prerequisite tasks.
+    
+    Use Unique CLUSTERNAME
+    
     ```bash
-    kubectl delete -f demo/dev-stack/
-    kubectl delete -f demo/acme-stack/
-    kubectl delete -f demo/storefront-stack
-    kubectl delete -f demo/boutiqueshop/
+    # Set AKS Cluster Name
+    CLUSTERNAME=aks${UNIQUE_SUFFIX}
+    # Look at AKS Cluster Name for Future Reference
+    echo $CLUSTERNAME
+    # Persist for Later Sessions in Case of Timeout
+    echo export CLUSTERNAME=aks${UNIQUE_SUFFIX} >> ~/.bashrc
+    ```
+    
+    Get available kubernetes versions for the region. You will likely see more recent versions in your lab.
+    
+    ```bash
+    az aks get-versions -l $LOCATION --output table
+    ```
+    ```
+    KubernetesVersion    Upgrades
+    -------------------  ------------------------
+    1.21.1(preview)      None available
+    1.20.7               1.21.1(preview)
+    1.20.5               1.20.7, 1.21.1(preview)
+    1.19.11              1.20.5, 1.20.7
+    1.19.9               1.19.11, 1.20.5, 1.20.7
+    1.18.19              1.19.9, 1.19.11
+    1.18.17              1.18.19, 1.19.9, 1.19.11
+    ```
+    
+    For this lab we'll use 1.20.7
+    
+    ```bash
+    K8SVERSION=1.20.7
+    ```
+    
+    > The below command can take 10-20 minutes to run as it is creating the AKS cluster. Please be PATIENT and grab a coffee/tea/kombucha...
+    
+    ```bash
+    # Create AKS Cluster - it is important to set the network-plugin as azure in order to connec to Calico Cloud
+    az aks create -n $CLUSTERNAME -g $RGNAME \
+    --kubernetes-version $K8SVERSION \
+    --service-principal $APPID \
+    --client-secret $CLIENTSECRET \
+    --generate-ssh-keys -l $LOCATION \
+    --node-count 3 \
+    --network-plugin azure \
+    --no-wait
+    
+    ```
+    
+4.  Verify your cluster status. The `ProvisioningState` should be `Succeeded`
+    
+    ```bash
+    az aks list -o table
+    ```
+    
+    ```bash
+    Name           Location    ResourceGroup      KubernetesVersion    ProvisioningState    Fqdn
+    -------------  ----------  -----------------  -------------------  -------------------  -----------------------------------------------------------------
+    aksjessie2081  eastus      aks-rg-jessie2081  1.20.7               Succeeded             aksjessie2-aks-rg-jessie208-03cfb8-9713ae4f.hcp.eastus.azmk8s.io
+    
+    ```
+    
+5.  Get the Kubernetes config files for your new AKS cluster
+    
+    ```bash
+    az aks get-credentials -n $CLUSTERNAME -g $RGNAME
+    ```
+    
+6.  Verify you have API access to your new AKS cluster
+    
+    > Note: It can take 5 minutes for your nodes to appear and be in READY state. You can run `watch kubectl get nodes` to monitor status. Otherwise, the cluster is ready when the output is similar to the following:
+    
+	```bash
+	kubectl get nodes
+	```
+	```
+	NAME                                STATUS   ROLES   AGE    VERSION
+	aks-nodepool1-29374799-vmss000000   Ready    agent   118s   v1.20.7
+	aks-nodepool1-29374799-vmss000001   Ready    agent   2m3s   v1.20.7
+	aks-nodepool1-29374799-vmss000002   Ready    agent   2m     v1.20.7
+	```
+
+	To see more details about your cluster:
+	```bash
+	kubectl cluster-info
+	```
+	
+7.  Install `calicoctl` CLI for use in later labs
+
+    The easiest way to retrieve captured `*.pcap` files is to use [calicoctl](https://docs.tigera.io/maintenance/clis/calicoctl/) CLI. The following binary installations are available:
+
+    a) CloudShell
+    ```bash    
+    # download and configure calicoctl
+    curl -o calicoctl -O -L https://docs.tigera.io/download/binaries/v3.8.1/calicoctl
+    chmod +x calicoctl
+    
+    # verify calicoctl is running 
+    ./calicoctl version
     ```
 
-2. Delete AKS cluster.
+    
+    b) Linux
 
-    ```bash
-    az aks delete --name $CLUSTERNAME
+    >Tip: Consider navigating to a location that’s in your PATH. For example, /usr/local/bin/
+    ```bash    
+    # download and configure calicoctl
+    curl -o calicoctl -O -L https://docs.tigera.io/download/binaries/v3.8.1/calicoctl
+    chmod +x calicoctl
+    
+    # verify calicoctl is running 
+    calicoctl version
     ```
+    c) MacOS
+    
 
-3. Delete the azure resource group. 
-
-    ```bash
-    az group delete --resource-group $RGNAME
+    >Tip: Consider navigating to a location that’s in your PATH. For example, /usr/local/bin/
+    ```bash    
+    # download and configure calicoctl
+    curl -o calicoctl -O -L  https://docs.tigera.io/download/binaries/v3.8.1/calicoctl-darwin-amd64
+    chmod +x calicoctl
+    
+    # verify calicoctl is running 
+    calicoctl version
     ```
+    Note: If you are faced with `cannot be opened because the developer cannot be verified` error when using `calicoctl` for the first time. go to `Applicaitons` \> `System Prefences` \> `Security & Privacy` in the `General` tab at the bottom of the window click `Allow anyway`.  
+Note: If the location of calicoctl is not already in your PATH, move the file to one that is or add its location to your PATH. This will allow you to invoke it without having to prepend its location.
+
+    c) Windows - using powershell command to download the calicoctl binary  
+    >Tip: Consider runing powershell as administraor and navigating to a location that’s in your PATH. For example, C:\Windows.
+    
+    ```pwsh
+    Invoke-WebRequest -Uri "https://docs.tigera.io/download/binaries/v3.8.1/calicoctl-windows-amd64.exe" -OutFile "calicocttl.exe"
+    ```
+    
+   
+
+
+
+--- 
+
+
 
 
 
@@ -79,35 +253,7 @@ gcloud container clusters create calico --num-nodes 1 --machine-type n1-standard
 
         #################################
 
-gcloud compute instances create master \
-    --async \
-    --boot-disk-size 200GB \
-    --can-ip-forward \
-    --image-family ubuntu-2004-lts \
-    --image-project ubuntu-os-cloud \
-    --machine-type e2-standard-2 \
-    --private-network-ip 10.142.0.11 \
-    --scopes compute-rw,storage-ro,service-management,service-control,logging-write,monitoring \
-    --subnet default \
-    --zone us-east1-b \
-    --tags kubernetes,controller
 
-
-
-#################################
-
-gcloud compute instances create worker  \
-    --async \
-    --boot-disk-size 200GB \
-    --can-ip-forward \
-    --image-family ubuntu-2004-lts \
-    --image-project ubuntu-os-cloud \
-    --machine-type e2-standard-2 \
-    --private-network-ip 10.142.0.12
-    --scopes compute-rw,storage-ro,service-management,service-control,logging-write,monitoring \
-    --subnet default \
-    --zone us-east1-b \
-    --tags kubernetes,worker
 
 
 ########
@@ -133,7 +279,13 @@ sudo kubeadm init --pod-network-cidr 192.168.0.0/16
 
 
 
+## Next steps
 
+You should now have a Kubernetes cluster running with 3 nodes. You do not see the master servers for the cluster because these are managed by GCP. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
+<br>    
+
+    
+[Next -> Module 1](../modules/joining-gke-to-calico-cloud.md)
 
 
 

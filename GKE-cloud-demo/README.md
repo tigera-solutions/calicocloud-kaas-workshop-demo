@@ -1,17 +1,15 @@
 # Calicocloud workshop on GKE
 
-<img src="img/calico.png" alt="Calico on EKS" width="30%"/>
+<img src="img/calico.png" alt="Calico on GKE" width="30%"/>
 
 
 ## Workshop prerequisites
 
->It is recommended to use your personal AWS account which would have full access to AWS resources. If using a corporate AWS account for the workshop, make sure to check with account administrator to provide you with sufficient permissions to create and manage EKS clusters and Load Balancer resources.
+>It is recommended to use your personal AWS account which would have full access to GCP resources. If using a corporate AWS account for the workshop, make sure to check with account administrator to provide you with sufficient permissions to create and manage GKE clusters and Load Balancer resources.
 
-- [Calico Cloud trial account](https://www.tigera.io/tigera-products/calico-cloud/)
-  - for instructor-led workshop use instructions in the email you receive to request a Calico Trial account
-  - for self-paced workshop follow the [link to register](https://www.tigera.io/tigera-products/calico-cloud/) for a Calico Trial account
+- [Calico Cloud trial account](https://www.calicocloud.io/home)
+- GCP account and credentials to manage GKE resources
 - Terminal or Command Line console to work with [gcloud SDK ](https://cloud.google.com/sdk/docs/install)
-  
 - `Git`
 - `netcat`
 
@@ -48,16 +46,21 @@
     kubectl delete -f demo/dev-stack/
     kubectl delete -f demo/acme-stack/
     kubectl delete -f demo/storefront-stack
-    kubectl delete -f demo/boutiqueshop/
+    kubectl delete -f demo/hipstershop/
     ```
+2. Remove calicocloud components from your cluster.
+    ```bash
+   curl https://installer.calicocloud.io/manifests/v2.0.1/downgrade.sh | bash  
 
-2. Delete GKE cluster.
+   ```
+
+3. Delete GKE cluster.
 
     ```bash
     
     ```
 
-3. Delete the GKE resource. 
+4. Delete the GKE resource. 
 
     ```bash
     

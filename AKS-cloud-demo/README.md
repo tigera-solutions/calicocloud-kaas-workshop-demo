@@ -26,7 +26,6 @@
 - [Module 2-1: North-South Controls-Egress access controls, DNS policy and Global threadfeed ](modules/egress-access-controls.md)
 - [WIP][Module 2-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) 
 
-
 - [Module 3-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
 - [Module 3-2: Observability-Kibana dashboard](modules/kibana-dashboard.md)
 - [Module 3-3: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
@@ -45,20 +44,24 @@
     kubectl delete -f demo/dev-stack/
     kubectl delete -f demo/acme-stack/
     kubectl delete -f demo/storefront-stack
-    kubectl delete -f demo/boutiqueshop/
+    kubectl delete -f demo/hipstershop/
     ```
 
-2. Delete AKS cluster.
+2. Remove calicocloud components from your cluster.
+    ```bash
+   curl https://installer.calicocloud.io/manifests/v2.0.1/downgrade.sh | bash  
+   ```    
+
+3. Delete AKS cluster.
 
     ```bash
-    az aks delete --name $CLUSTERNAME --resource-group $RGNAME
+    az aks delete -n $CLUSTERNAME -g $RGNAME
     ```
 
-3. Delete the azure resource group. 
+4. Delete the azure resource group. 
 
     ```bash
-    az group delete --resource-group $RGNAME
+    az group delete -g $RGNAME
     ```
-
 
 
