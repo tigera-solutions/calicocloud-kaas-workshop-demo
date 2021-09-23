@@ -15,6 +15,17 @@ This is the master folder for Calicocloud demo for managed K8S clusters in diffe
 
 The intent of this workshop is to educate any person working with K8S cluster in one way or another about Calico features and how to use them. While there are many capabilities that Calico provides, this workshop focuses on a subset of those that are used most often by different types of technical users.
 
+## Repo download
+
+```bash
+git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
+
+cd calicocloud-kaas-workshop-demo
+
+#choose the platform you want
+
+cd EKS-cloud-demo
+```
 
 ## Use cases
 
