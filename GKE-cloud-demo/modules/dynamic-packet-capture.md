@@ -22,7 +22,7 @@
 
     ```bash
     # download and configure calicoctl
-    curl -o calicoctl -O -L https://docs.tigera.io/download/binaries/v3.7.0/calicoctl
+    curl -o calicoctl -O -L https://docs.tigera.io/download/binaries/v3.9.0/calicoctl
     chmod +x calicoctl
     sudo mv calicoctl /usr/local/bin/
     calicoctl version
