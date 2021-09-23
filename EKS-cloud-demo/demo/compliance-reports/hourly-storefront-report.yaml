@@ -10,7 +10,7 @@ spec:
     namespaces: 
       names:
         ["storefront"]
-  schedule: 0 * * * *
+  schedule: '*/15 * * * *'
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
@@ -24,7 +24,7 @@ spec:
     namespaces:
       names:
         ["storefront"]
-  schedule: 0 * * * *
+  schedule: '*/15 * * * *'
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
@@ -38,4 +38,4 @@ spec:
     namespaces: 
       names:
         ["storefront"]
-  schedule: 0 * * * *
+  schedule: '*/15 * * * *'
