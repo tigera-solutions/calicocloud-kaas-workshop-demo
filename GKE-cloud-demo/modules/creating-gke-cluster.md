@@ -50,6 +50,10 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    --addons HorizontalPodAutoscaling,HttpLoadBalancing \
    --num-nodes 2 \
    --enable-intra-node-visibility 
+   --enable-autoscaling \
+   --num-nodes 3 \
+   --min-nodes 1 \
+   --max-nodes 6 
    ``` 
 
 2. Getting credentials for your new cluster.
@@ -61,7 +65,7 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    ```bash
    kubectl get nodes
    ``` 
-   
+
 ## Next steps
 
 You should now have a Kubernetes cluster running with 2 nodes. You do not see the master servers for the cluster because these are managed by GCP. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.

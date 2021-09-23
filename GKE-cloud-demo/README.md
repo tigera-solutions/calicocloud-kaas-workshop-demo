@@ -49,9 +49,25 @@
     kubectl delete -f demo/hipstershop/
     ```
 2. Remove calicocloud components from your cluster.
-    ```bash
-   curl https://installer.calicocloud.io/manifests/v2.0.1/downgrade.sh | bash  
+   - Download the script 
+   ```bash
+   curl -O https://installer.calicocloud.io/manifests/v3.9.0-3/downgrade.sh
+   ```
 
+   - Make the script executable 
+   ```bash
+   chmod +x downgrade.sh
+   ```
+
+   - Run the script and read the help to determine if you need to specify any flags 
+   ```bash
+   ./downgrade.sh --help.
+   ```
+
+   - Run the script with any needed flags, for example: 
+   ```bash
+   ./downgrade.sh --remove-prometheus.
+   
    ```
 
 3. Delete GKE cluster.
