@@ -66,20 +66,14 @@
 
    - Run the script with any needed flags, for example: 
    ```bash
-   ./downgrade.sh --remove-prometheus.
-   
+   ./downgrade.sh --remove-prometheus   
    ```
 
 3. Delete GKE cluster.
 
     ```bash
-    
+    gcloud container clusters delete $CLUSTERNAME  --region $REGION --quiet
     ```
 
-4. Delete the GKE resource. 
-
-    ```bash
-    
-    ```
 
 

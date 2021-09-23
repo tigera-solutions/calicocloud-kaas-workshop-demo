@@ -48,12 +48,10 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    --region $REGION \
    --node-locations $LOCATION \
    --addons HorizontalPodAutoscaling,HttpLoadBalancing \
-   --num-nodes 2 \
-   --enable-intra-node-visibility 
-   --enable-autoscaling \
    --num-nodes 3 \
-   --min-nodes 1 \
-   --max-nodes 6 
+   --enable-intra-node-visibility 
+   --machine-type e2-standard-4 
+   
    ``` 
 
 2. Getting credentials for your new cluster.
