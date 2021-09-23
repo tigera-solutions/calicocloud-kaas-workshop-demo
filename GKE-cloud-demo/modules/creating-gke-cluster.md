@@ -38,6 +38,8 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    CLUSTERNAME=gke-jessie-workshop
    # Persist for Later Sessions in Case of Timeout
    echo export CLUSTERNAME=gke-jessie-workshop >> ~/.bashrc
+
+   VERSION=1.20.9-gke.1001 
    ```
 
 ## Steps 
@@ -46,17 +48,19 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    ```bash
    gcloud container clusters create $CLUSTERNAME \
    --region $REGION \
+   --zone $LOCATION \
    --node-locations $LOCATION \
-   --addons HorizontalPodAutoscaling,HttpLoadBalancing \
+   --cluster-version $VERSION \
+   --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver \
    --num-nodes 3 \
-   --enable-intra-node-visibility 
-   --machine-type e2-standard-4 
+   --enable-intra-node-visibility \
+   --machine-type e2-standard-8 
    
    ``` 
 
 2. Getting credentials for your new cluster.
    ```bash
-   gcloud container clusters get-credentials $CLUSTERNAME --zone $REGION 
+   gcloud container clusters get-credentials $CLUSTERNAME --zone $LOCATION  
 
 
 3. Confirm nodes are ready status in your cluster.
