@@ -41,13 +41,12 @@
 
     ```
 
-4. Deploy compliance reports.
+4. Deploy compliance reports which schedule as cronjob in every 15 mins.
 
     >The compliance reports will be needed for one of a later lab, is cronjob in your cluster, you can change the schedule by edit it.
 
     ```bash
     kubectl apply -f demo/compliance-reports
-
     ```
 
 5. Deploy global alerts.
@@ -55,7 +54,7 @@
     >The alerts will be explored in a later lab.
 
     ```bash
-    kubectl create -f demo/alerts/
+    kubectl apply -f demo/alerts/
    
     ```
 

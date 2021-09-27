@@ -1,7 +1,7 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: hourly-cis-results
+  name: cis-results
   labels:
     deployment: production
 spec:

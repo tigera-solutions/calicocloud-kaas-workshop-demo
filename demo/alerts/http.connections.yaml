@@ -1,0 +1,15 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalAlertTemplate
+metadata:
+  name: http.connections
+spec:
+  description: "HTTP connections to a target namespace"
+  summary: "HTTP connections from ${source_namespace}/${source_name_aggr} to <desired_namespace>/${dest_name_aggr}"
+  severity: 50
+  dataSet: flows 
+  query: dest_namespace="<desired namespace>" AND dest_port=80
+  aggregateBy: [source_namespace, dest_name_aggr, source_name_aggr]
+  field: count
+  metric: sum
+  condition: gte
+  threshold: 1
