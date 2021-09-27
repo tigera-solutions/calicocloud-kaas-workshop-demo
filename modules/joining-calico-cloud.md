@@ -118,3 +118,5 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     ```
 
 [Next -> Module 2](../modules/configuring-demo-apps.md)
+
+[Menu](../README.md)
