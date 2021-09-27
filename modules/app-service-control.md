@@ -16,6 +16,8 @@
     kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') \
     -c server -- sh -c 'nc -zv productcatalogservice 3550'
 
+    sleep 10
+    
     # test connectivity within hipstershop namespace in 8080 port
     kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') \
     -c server -- sh -c 'nc -zv recommendationservice 8080'
