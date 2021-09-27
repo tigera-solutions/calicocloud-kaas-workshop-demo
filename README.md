@@ -33,7 +33,6 @@ The intent of this workshop is to educate any person working with K8S cluster in
   git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
 
   cd calicocloud-kaas-workshop-demo
-
   ```
 
 ## STEP 5 - Configure demo applications
