@@ -1,9 +1,0 @@
-kind: GlobalNetworkSet
-apiVersion: projectcalico.org/v3
-metadata:
-  name: 2-tigera-restricted-resource
-  labels: 
-    color: red
-spec:
-  allowedEgressDomains:
-  - api.twilio.com

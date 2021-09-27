@@ -1,0 +1,26 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: security-team.allow-tigera-restricted-resources
+spec:
+  tier: security-team
+  order: 199
+  selector: confidentialAccessPermitted == "true"
+  namespaceSelector: ''
+  serviceAccountSelector: ''
+  egress:
+    - action: Allow
+      protocol: UDP
+      source: {}
+      destination:
+        ports:
+          - '53'
+    - action: Allow
+      source: {}
+      destination:
+        selector: color == "red"
+  doNotTrack: false
+  applyOnForward: false
+  preDNAT: false
+  types:
+    - Egress
