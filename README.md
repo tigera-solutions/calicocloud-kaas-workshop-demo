@@ -1,79 +1,80 @@
-# Calicocloud workshop on GKE
+# workshop-demo-master-folder
+This is the master folder for Calicocloud demo for managed K8S clusters in different cloud platform. Every platform will have a separate folder with similar content, yet different installation steps for initizing the cluster. 
 
-<img src="img/calico.png" alt="Calico on GKE" width="30%"/>
+## Join the Slack Channel
 
+[Calico User Group Slack](https://slack.projectcalico.org/) is a great resource to ask any questions about Calico. If you are not a part of this Slack group yet, we highly recommend [joining it](https://slack.projectcalico.org/) to participate in discussions or ask questions. For example, you can ask questions specific to EKS and other managed Kubernetes services in the `#eks-aks-gke-iks` channel.
 
-## Workshop prerequisites
+## Workshop objectives
 
->It is recommended to use your personal AWS account which would have full access to GCP resources. If using a corporate AWS account for the workshop, make sure to check with account administrator to provide you with sufficient permissions to create and manage GKE clusters and Load Balancer resources.
-
-- [Calico Cloud trial account](https://www.calicocloud.io/home)
-- GCP account and credentials to manage GKE resources
-- Terminal or Command Line console to work with [gcloud SDK ](https://cloud.google.com/sdk/docs/install)
-- `Git`
-- `netcat`
+The intent of this workshop is to educate any person working with K8S cluster in one way or another about Calico features and how to use them. While there are many capabilities that Calico provides, this workshop focuses on a subset of those that are used most often by different types of technical users.
 
 
-## Modules
+## STEP 1 - Create a compatible k8s cluster 
 
-- [Module 0-1: Creating an GKE compatible cluster for Calico Cloud](modules/creating-gke-cluster.md)
-- [Module 0-2: Joining GKE cluster to Calico Cloud](modules/joining-gke-to-calico-cloud.md)
-- [Module 0-3: Configuring demo applications](modules/configuring-demo-apps.md)
+  - [Calico Cloud system requirement](https://docs.calicocloud.io/install/system-requirements)
+  - [EKS: using cloud9 IDE as workstation to create an compatible EKS cluster](modules/creating-eks-cluster.md)
+  - [AKS: using Azure SDK to create an compatible AKS cluster](modules/creating-aks-cluster.md)
+  - [GKE: using gcloud SDK to create an compatible GKE cluster](modules/creating-gke-cluster.md)
 
-- [Module 1-1: East-West controls-App service control](modules/app-service-control.md)
-- [Module 1-2: East-West controls-Microsegmentation](modules/microsegmentation.md)
-- [WIP][Module 1-3: East-West controls-Host protection](modules/host-protection.md)
+## STEP 2 - Sign up in Calicocloud  
 
-- [Module 2-1: North-South Controls-Egress access controls, DNS policy and Global threadfeed ](modules/egress-access-controls.md)
-- [WIP][Module 2-2: North-South Controls-Egress Gateway](modules/egress-gateway.md) 
+  - [Calico Cloud trial account](https://www.calicocloud.io/home/)
+  - for instructor-led workshop use instructions in the email you receive to request a Calico Trial account
+  - for self-paced workshop follow the [link to register](https://www.calicocloud.io/home) for a Calico Trial account
 
+## STEP 3 - Joining your cluster to Calico Cloud
 
-- [Module 3-1: Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
-- [Module 3-2: Observability-Kibana dashboard](modules/kibana-dashboard.md)
-- [Module 3-3: Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
-- [Module 3-4: Observability-L7 visibility](modules/enable-l7-visibility.md) 
+  - [Joining cluster to Calico Cloud](modules/joining-calico-cloud.md)
 
-- [Module 4-1: Compliance and Security-Compliance](modules/compliance-reports.md) 
-- [Module 4-2: Compliance and Security-Intrusion Detection and Prevention](modules/intrusion-detection-protection.md) 
-- [WIP][Module 4-3: Compliance and Security-Encryption](modules/encryption.md) 
+## STEP 4 - Download this repo 
 
+  ```bash
+  git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
 
-## Cleanup
+  cd calicocloud-kaas-workshop-demo
 
-1. Delete application stack to clean up any `loadbalancer` services.
+  ```
 
-    ```bash
-    kubectl delete -f demo/dev-stack/
-    kubectl delete -f demo/acme-stack/
-    kubectl delete -f demo/storefront-stack
-    kubectl delete -f demo/hipstershop/
-    ```
-2. Remove calicocloud components from your cluster.
-   - Download the script 
-   ```bash
-   curl -O https://installer.calicocloud.io/manifests/v3.9.0-3/downgrade.sh
-   ```
+## STEP 5 - Configure demo applications
 
-   - Make the script executable 
-   ```bash
-   chmod +x downgrade.sh
-   ```
+  - [Configuring demo applications](modules/configuring-demo-apps.md)
 
-   - Run the script and read the help to determine if you need to specify any flags 
-   ```bash
-   ./downgrade.sh --help.
-   ```
+## STEP 6 - Try out some use cases
 
-   - Run the script with any needed flags, for example: 
-   ```bash
-   ./downgrade.sh --remove-prometheus   
-   ```
+In this workshop we are going to focus on these main use cases:
 
-3. Delete GKE cluster.
+- **North-South Controls: Egress access controls and DNS policies & Egress Gateway**
+- **East-West Controls: App service control & Microsegmentation & Host protection**
 
-    ```bash
-    gcloud container clusters delete $CLUSTERNAME  --region $REGION --quiet
-    ```
+- **Observability: Dynamic Service Graph & Dynamic Packet Capture & Kibana dashboard**
+- **Compliance and Security: Compliance & Intrusion Detection and Prevention & Encryption**
+- **Integration: Firewall Integration & SIEM Integration**
+
+## Charpter One - Beginner
+
+- [North-South Controls-DNS policy](modules/egress-access-controls.md)
+- [North-South Controls-Global threadfeed](modules/egress-access-controls.md)
+- [East-West controls-App service control](modules/app-service-control.md)
+- [East-West controls-Microsegmentation](modules/microsegmentation.md)
+
+- [Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
+- [Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
+- [Observability-L7 visibility](modules/enable-l7-visibility.md) 
+- [Observability-Kibana dashboard](modules/kibana-dashboard.md)
 
 
+## Charpter Two - Intermediate
 
+- [IDS/IPS](modules/intrusion-detection-protection.md)
+- [Host protection](modules/host-protection.md)
+- [Compliance](modules/compliance-reports.md) 
+- [Encryption](modules/encryption.md) 
+
+
+## Charpter Two - Advanced
+
+- [WIP][Egress Gateway](modules/egress-gateway.md) 
+- [WIP][Firewall Integration](modules/firewall-integration.md) 
+- [WIP][SIEM Integration](modules/siem-integration.md) 
+- [WIP][Performance Hotspots](modules/performance-hotspots.md) 
