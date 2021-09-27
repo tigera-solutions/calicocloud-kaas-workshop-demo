@@ -1,0 +1,35 @@
+---
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: hipstershop-inventory
+spec:
+  reportType: inventory
+  endpoints:
+    namespaces:
+      names: ["hipstershop"]
+  schedule: '*/15 * * * *'
+---
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: hipstershop-network-access
+spec:
+  reportType: network-access
+  endpoints:
+    namespaces:
+      names: ["hipstershop"]
+  schedule: '*/15 * * * *'
+
+# uncomment policy-audit report if you configured audit logs for EKS cluster https://docs.tigera.io/compliance/compliance-reports/compliance-managed-cloud#enable-audit-logs-in-eks
+---
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: hipstershop-policy-audit
+spec:
+  reportType: policy-audit
+  endpoints:
+    namespaces:
+      names: ["hipstershop"]
+  schedule: '*/15 * * * *'

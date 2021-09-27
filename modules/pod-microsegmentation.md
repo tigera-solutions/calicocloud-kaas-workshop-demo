@@ -55,8 +55,6 @@
 
 
 
-[Next -> Module 1-3](../modules/host-protection.md)
-
-[Previous -> Module 1-1](../modules/app-service-control.md)
+[Next -> DNS egress control](../modules/egress-dns-controls.md)
 
 [Menu](../README.md)
