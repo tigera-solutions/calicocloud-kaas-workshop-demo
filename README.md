@@ -75,6 +75,6 @@ In this workshop we are going to focus on these main use cases:
 ## Charpter Two - Advanced
 
 - [WIP][Egress Gateway](modules/egress-gateway.md) 
-- [WIP][Firewall Integration](modules/firewall-integration.md) 
 - [WIP][SIEM Integration](modules/siem-integration.md) 
+- [WIP][Firewall Integration](modules/firewall-integration.md) 
 - [WIP][Performance Hotspots](modules/performance-hotspots.md) 
