@@ -58,9 +58,9 @@
    
     ```
 
-[Next -> Module 1-1](../modules/app-service-control.md)
+[Next -> App service control](../modules/app-service-control.md)
 
-[Previous -> Module 0-3](../modules/joining-gke-to-calico-cloud.md)
+[Previous -> join calicocloud](../modules/joining-calico-cloud.md)
 
 [Menu](../README.md)
 
