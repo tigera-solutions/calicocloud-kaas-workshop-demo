@@ -1,14 +1,11 @@
-# Module 1-2: East-West controls-Microsegmentation
+# East-West controls: Pod Microsegmentation
 
-**Goal:** Configure a DevOps tier for our application which has a zone-based architecture.
+**Goal:** Configure a zone-based architecture for our storefront application, and understand how to troubleshoot with flow visualization.
 
 ## Steps
 
 
-
 1. Implement policy for storefront app. 
-
-   
 
     a. Create logging policy for storefront application in platform tier 
     ```bash
@@ -17,14 +14,21 @@
     ```
 
     
-    b. Create zone-based policy for storefront application in dev-ops tier
+    b. Create zone-based policy for storefront application.
     ```bash
+    ###Check each mircoservice have proper zone-based label
+    kubectl get pods -n storefront --show-labels 
+
     ###apply the zone-based policy
     kubectl apply -f demo/101-security-controls/storefront-FirewallZonesPolicies.yaml
+
     ```
 
    
 2. Confirm the connection from microservice2 to backend are been allowed from flow visualization.
+
+   ![microservice2 allow](../img/microservice2-allow.png)
+    
 
 
 3. Change the lable of pod mircoservice2 and see the deny traffic in flow visualization. 
@@ -39,6 +43,8 @@
     ```
 
 4. Confirm the connection from microservice2 to backend are been denied.
+
+   ![microservice2 deny](../img/microservice2-deny.png)
 
 
 5. Reverse the lable of pod mircoservice2 with overwrite. 
