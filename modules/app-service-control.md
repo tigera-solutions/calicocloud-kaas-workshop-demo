@@ -4,29 +4,28 @@
 
 ## Steps
 
-1. Test connectivity between application components and across application stacks.
+1. Test connectivity between application components and across application stacks. All of these tests should succeed as there are no policies in place.
 
     a. Test connectivity between workloads within each namespace, use `dev` and `hipstershop` namespaces as example
 
     ```bash
     # test connectivity within dev namespace
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://nginx-svc 2>/dev/null | grep -i http'
-    
-    # test connectivity within hipstershop namespace in 3550 port
-    kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') \
-    -c server -- sh -c 'nc -zv productcatalogservice 3550'
-
     ```
 
     ```bash
+    # test connectivity within hipstershop namespace in 3550 port
+    kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') \
+    -c server -- sh -c 'nc -zv productcatalogservice 3550'
+    ```
 
+    ```bash
     # test connectivity within hipstershop namespace in 8080 port
     kubectl -n hipstershop exec -it $(kubectl -n hipstershop get po -l app=frontend -ojsonpath='{.items[0].metadata.name}') \
     -c server -- sh -c 'nc -zv recommendationservice 8080'
     ```
 
     b. Test connectivity across namespaces `dev` and `hipstershop`.
-
     ```bash
     # test connectivity from dev namespace to hipstershop namespace
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.hipstershop 2>/dev/null | grep -i http'
@@ -37,12 +36,10 @@
     ```bash
     # test connectivity from dev namespace to the Internet
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://www.google.com 2>/dev/null | grep -i http'
+
     kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://www.google.com 2>/dev/null | grep -i http'
+    
     ```
-
-   
-
-    All of these tests should succeed if there are no policies in place to govern the traffic for `dev` and `default` namespaces.
 
 2. Apply staged `hipstershop-dev-deny` policy.
 
