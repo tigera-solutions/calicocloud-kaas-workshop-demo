@@ -74,7 +74,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     echo export CALICOCLUSTERNAME=$CALICOCLUSTERNAME | tee -a ~/.zshrc 
     ```
     
-    In calico cloud management UI, you can see your own aks cluster added in "managed cluster", you can also confirm by
+    In calico cloud management UI, you can see your own cluster added in "managed cluster", you can also confirm by
     ```bash
     kubectl get tigerastatus
     ```
@@ -96,15 +96,17 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     
     ![cluster-selection](../img/cluster-selection.png)
 
-5. Configure log aggregation and flush intervals in aks cluster, we will use 60s instead of default value 300s for lab testing only.   
+5. Configure log aggregation and flush intervals, we will use 15s instead of default value 300s for lab testing only.   
 
     ```bash
-    kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFlushInterval":"10s"}}'
-    kubectl patch felixconfiguration.p default -p '{"spec":{"dnsLogsFlushInterval":"10s"}}'
+    kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFlushInterval":"15s"}}'
+    kubectl patch felixconfiguration.p default -p '{"spec":{"dnsLogsFlushInterval":"15s"}}'
     kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFileAggregationKindForAllowed":1}}'
     ```
 
-6. Configure Felix for log data collection in aks cluster
+6. Configure Felix for log data collection
+   
+    >[Felix](https://docs.tigera.io/reference/architecture/overview#felix) is one of Calico components that is responsible for configuring routes, ACLs, and anything else required on the host to provide desired connectivity for the endpoints on that host.
 
     ```bash
     kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"policySyncPathPrefix":"/var/run/nodeagent","l7LogsFileEnabled":true}}'
@@ -112,6 +114,8 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     ```
 
 7. Configure Felix to collect TCP stats - this uses eBPF TC program and requires miniumum Kernel version of v5.3.0. Further [documentation](https://docs.tigera.io/visibility/elastic/flow/tcpstats)
+
+   >Calico Cloud/Enterprise can collect additional TCP socket statistics. While this feature is available in both iptables and eBPF dataplane modes, it uses eBPF to collect the statistics. Therefore it requires a recent Linux kernel (at least v5.3.0/v4.18.0-193 for RHEL).
 
     ```bash
     kubectl patch felixconfiguration default -p '{"spec":{"flowLogsCollectTcpStats":true}}'

@@ -72,6 +72,6 @@ In this workshop we are going to focus on these main use cases:
 - [WIP][Performance Hotspots](modules/performance-hotspots.md) 
 
 
-## Clean up 
+## STEP 6 - Clean up your test environment
 
 - [clean up](modules/clean-up.md)
