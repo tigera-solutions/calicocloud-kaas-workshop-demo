@@ -30,9 +30,6 @@
     ```bash
     # test connectivity from dev namespace to hipstershop namespace
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.hipstershop 2>/dev/null | grep -i http'
-
-    # test connectivity from default namespace to dev namespace, this command will generate an alert as "[lateral movement"
-    kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
     ```
 
     c. Test connectivity from each namespace `dev` and `default` to the Internet.
@@ -40,10 +37,10 @@
     ```bash
     # test connectivity from dev namespace to the Internet
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://www.google.com 2>/dev/null | grep -i http'
-
-    # test connectivity from default namespace to the Internet, this command will generate an alert as "dns"
-    kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.example.com 2>/dev/null | grep -i http'
+    kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://www.google.com 2>/dev/null | grep -i http'
     ```
+
+   
 
     All of these tests should succeed if there are no policies in place to govern the traffic for `dev` and `default` namespaces.
 

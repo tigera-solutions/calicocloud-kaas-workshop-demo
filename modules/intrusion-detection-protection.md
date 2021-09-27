@@ -9,8 +9,12 @@
     Navigate to `demo/alerts` and review YAML manifests that represent alerts definitions. Each file containes an alert template and alert definition. Alerts templates can be used to quickly create an alert definition in the UI.
 
 
-2. View triggered alerts.
+2. Deploy global alerts.
 
+    ```bash
+    kubectl apply -f demo/alerts/
+   
+    ```
     >We implemented alerts in one of the first labs in order to see how our activity can trigger them.
 
     Open `Alerts` view to see all triggered alerts in the cluster. Review the generated alerts.
@@ -26,15 +30,14 @@
    #curl example.com couple times to trigger the dns aler
    
    kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI example.com 2>/dev/null | grep -i http'
-
-   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI www.google.com 2>/dev/null | grep -i http'
-
    ```
+
+   
 4. Trigger later movement alert to nginx/dev
 
    ```bash
    #curl nginx in dev ns to trigger the flows alerts
-   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI2 http://nginx-svc.dev 2>/dev/null | grep -i http'
+   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
    ```
 
 5. Trigger the embedded alerts for threatfeeds.
