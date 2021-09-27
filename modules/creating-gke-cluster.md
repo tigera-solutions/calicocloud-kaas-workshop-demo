@@ -67,6 +67,13 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    ```bash
    kubectl get nodes
    ``` 
+4. Download this repo into your environment:
+
+   ```bash
+   git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
+
+   cd calicocloud-kaas-workshop-demo
+   ```
 
 ## Next steps
 

@@ -231,7 +231,13 @@ Note: If the location of calicoctl is not already in your PATH, move the file to
     ```
     
    
+3. Download this repo into your environment:
 
+    ```bash
+    git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
+
+    cd calicocloud-kaas-workshop-demo
+    ```
 
 
 --- 
