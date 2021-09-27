@@ -60,7 +60,7 @@
 
 [Next -> App service control](../modules/app-service-control.md)
 
-[Previous -> join calicocloud](../modules/joining-calico-cloud.md)
+[Previous -> Join calicocloud](../modules/joining-calico-cloud.md)
 
 [Menu](../README.md)
 
