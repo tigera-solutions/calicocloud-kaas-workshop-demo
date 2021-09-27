@@ -27,19 +27,12 @@ The intent of this workshop is to educate any person working with K8S cluster in
 
   - [Joining cluster to Calico Cloud](modules/joining-calico-cloud.md)
 
-## STEP 4 - Download this repo 
 
-  ```bash
-  git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
-
-  cd calicocloud-kaas-workshop-demo
-  ```
-
-## STEP 5 - Configure demo applications
+## STEP 4 - Configure demo applications
 
   - [Configuring demo applications](modules/configuring-demo-apps.md)
 
-## STEP 6 - Try out some use cases
+## STEP 5 - Try out some use cases
 
 In this workshop we are going to focus on these main use cases:
 
@@ -49,7 +42,7 @@ In this workshop we are going to focus on these main use cases:
 - **Compliance and Security: Compliance & Intrusion Detection and Prevention & Encryption**
 - **Integration: Firewall Integration & SIEM Integration**
 
-## Charpter One - Beginner
+## Charpter A - Beginner
 
 - [North-South Controls-DNS policy](modules/egress-access-controls.md)
 - [North-South Controls-Global threadfeed](modules/egress-access-controls.md)
@@ -62,7 +55,7 @@ In this workshop we are going to focus on these main use cases:
 - [Observability-Kibana dashboard](modules/kibana-dashboard.md)
 
 
-## Charpter Two - Intermediate
+## Charpter B - Intermediate
 
 - [IDS/IPS](modules/intrusion-detection-protection.md)
 - [Host protection](modules/host-protection.md)
@@ -71,9 +64,14 @@ In this workshop we are going to focus on these main use cases:
 - [WIP][DPI](modules/dpi.md) 
 
 
-## Charpter Two - Advanced
+## Charpter C - Advanced
 
 - [WIP][Egress Gateway](modules/egress-gateway.md) 
 - [WIP][SIEM Integration](modules/siem-integration.md) 
 - [WIP][Firewall Integration](modules/firewall-integration.md) 
 - [WIP][Performance Hotspots](modules/performance-hotspots.md) 
+
+
+## Clean up 
+
+- [clean up](modules/clean-up.md)
