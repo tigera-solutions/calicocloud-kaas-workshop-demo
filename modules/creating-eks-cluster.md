@@ -238,6 +238,6 @@
     aws eks update-kubeconfig --name $EKS_CLUSTER --region $AWS_REGION
     ```        
 
-[Next ->Joining cluster to Calico Cloud](modules/joining-calico-cloud.md)
+[Next ->Joining cluster to Calico Cloud](../modules/joining-calico-cloud.md)
 
 [Menu](../README.md)
