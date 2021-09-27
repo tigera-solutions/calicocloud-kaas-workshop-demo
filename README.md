@@ -46,7 +46,7 @@ In this workshop we are going to focus on these main use cases:
 ## Charpter A - Beginner
 
 - [East-West controls-App service control](modules/app-service-control.md)
-- [East-West controls-Microsegmentation](modules/microsegmentation.md)
+- [East-West controls-Pod Microsegmentation](modules/pod-microsegmentation.md)
 - [North-South Controls-DNS policy](modules/egress-access-controls.md)
 - [North-South Controls-Global threadfeed](modules/egress-access-controls.md)
 

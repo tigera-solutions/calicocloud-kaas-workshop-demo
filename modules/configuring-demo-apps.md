@@ -1,4 +1,4 @@
-# Module 0-4: Configuring demo applications
+# Configuring demo applications
 
 **Goal:** Deploy and configure demo applications.
 
@@ -59,8 +59,6 @@
     ```
 
 [Next -> App service control](../modules/app-service-control.md)
-
-[Previous -> Join calicocloud](../modules/joining-calico-cloud.md)
 
 [Menu](../README.md)
 

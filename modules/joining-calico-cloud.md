@@ -121,6 +121,6 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     kubectl patch felixconfiguration default -p '{"spec":{"flowLogsCollectTcpStats":true}}'
     ```
 
-[Next -> config demo app](../modules/configuring-demo-apps.md)
+[Next -> Configuring demo applications](../modules/configuring-demo-apps.md)
 
 [Menu](../README.md)
