@@ -45,7 +45,6 @@ In this workshop we are going to focus on these main use cases:
 
 - **North-South Controls: Egress access controls and DNS policies & Egress Gateway**
 - **East-West Controls: App service control & Microsegmentation & Host protection**
-
 - **Observability: Dynamic Service Graph & Dynamic Packet Capture & Kibana dashboard**
 - **Compliance and Security: Compliance & Intrusion Detection and Prevention & Encryption**
 - **Integration: Firewall Integration & SIEM Integration**
@@ -69,6 +68,7 @@ In this workshop we are going to focus on these main use cases:
 - [Host protection](modules/host-protection.md)
 - [Compliance](modules/compliance-reports.md) 
 - [Encryption](modules/encryption.md) 
+- [WIP][DPI](modules/dpi.md) 
 
 
 ## Charpter Two - Advanced
