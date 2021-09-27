@@ -1,14 +1,14 @@
-# Module 0-1: Setting up work environment
+# Module: Setting up work environment
 
 **Goal:** Set up and configure your environment to work with AWS resources.
 
 ## Choose between local environment and Cloud9 instance
 
-The simplest ways to configure your working environment is to either use your local environment, i.e. laptop, desktop computer, etc., or create an [AWS Cloud9 environment](https://docs.aws.amazon.com/cloud9/latest/user-guide/tutorial.html) from which you can run all necessary commands in this workshop. If you're familiar with tools like `SSH client`, `git`, `jq`, `netcat` and feel comfortable using your local shell, then go to `setp 2` in the next section.
+
 
 ## Steps
 
-1. Create Cloud9 workspace environment.
+1. Install https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html Cloud9 workspace environment.
 
     To configure a Cloud9 instance, open AWS Console and navigate to `Services` > `Cloud9`. Create environment in the desired region. You can use all the default settings when creating the environment, but consider using `t3.small` instance as the `t2.micro` instance could be a bit slow. You can name it as `jessie-workspace` to quickly find it in case you have many `Cloud9` instances. It usually takes only a few minutes to get the Cloud9 instance running.
 

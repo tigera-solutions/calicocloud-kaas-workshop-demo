@@ -6,16 +6,75 @@
 
 ## Steps
 
-1. Configure variables.
+1. Ensure your environment has these tools:
+
+    - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+    - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+    - [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)
+    - [EKS kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html)
+    - `jq` and `netcat` utilities
+
+    Check whether these tools already present in your environment. If not, install the missing ones.
 
     ```bash
-    export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-    export AZS=($(aws ec2 describe-availability-zones --query 'AvailabilityZones[].ZoneName' --output text --region $AWS_REGION))
-    EKS_CLUSTER='jessie-workshop'
-    EKS_VERSION="1.20"
-    IAM_ROLE='jessie-demo-admin'
+    # run these commands to check whether the tools are installed in your environment
+    aws --version
+    git --version
+    eksctl version
+    kubectl version --short --client
+    ```
+
+    ```bash
+    #Install jq and netcat in Linux/Mac
+    sudo yum install jq nc -y
+    
+    # install jq and netcat in Mac
+    brew install jq
+    brew install netcat
+    ```
+
+    ```bash
+    #Confirm the version is updated.
+    jq --version
+    netcat --version
+    ```
+
+    >For convenience consider configuring [autocompletion for kubectl](https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/#enable-kubectl-autocompletion).
 
     
+
+2. Create IAM role.
+
+    ```bash
+    #Replace your AWS key with the name of an existing key pair. 
+    export AWS_ACCESS_KEY_ID="<your_accesskey_id>"
+    export AWS_SECRET_ACCESS_KEY="<your_secretkey>"
+    ```
+
+    ```bash
+    IAM_ROLE='EKS-cloud-demo'
+    # assign AdministratorAccess default policy. You can use a custom policy if required.
+    ADMIN_POLICY_ARN=$(aws iam list-policies --query 'Policies[?PolicyName==`AdministratorAccess`].Arn' --output text)
+    # create IAM role
+    aws iam create-role --role-name $IAM_ROLE --assume-role-policy-document file://configs/trust-policy.json
+    aws iam attach-role-policy --role-name $IAM_ROLE --policy-arn $ADMIN_POLICY_ARN
+    # tag role
+    aws iam tag-role --role-name $IAM_ROLE --tags '{"Key": "purpose", "Value": "tigera-eks-workshop"}'
+    # create instance profile
+    aws iam create-instance-profile --instance-profile-name $IAM_ROLE
+    # add IAM role to instance profile
+    aws iam add-role-to-instance-profile --role-name $IAM_ROLE --instance-profile-name $IAM_ROLE
+    ```
+
+
+3. Configure variables.
+
+    ```bash
+    export AWS_REGION=
+    export AZS=
+    EKS_CLUSTER='eks-cloud-workshop'
+    EKS_VERSION="1.20"
+ 
     # check if AWS_REGION is configured
     test -n "$AWS_REGION" && echo AWS_REGION is "$AWS_REGION" || echo AWS_REGION is not set
 
@@ -120,7 +179,5 @@
     ```        
 
 [Next -> Module 0-3](../modules/joining-eks-to-calico-cloud.md)
-
-[Previous -> Module 0-1](../modules/setting-up-work-environment.md)
 
 [Menu](../README.md)
