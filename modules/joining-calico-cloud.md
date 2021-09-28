@@ -37,31 +37,8 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
 
     You should see the output similar to this:
 
-    ```text
-    [INFO] Checking for installed CNI Plugin
-    [INFO] Deploying CRDs and Tigera Operator
-    [INFO] Creating Tigera Pull Secret
-    [INFO] Tigera Operator is Available
-    [INFO] Adding Installation CR for Enterprise install
-    [WAIT] Tigera calico is Progressing
-    [INFO] Tigera Calico is Available
-    [INFO] Deploying Tigera Prometheus Operator
-    podmonitors.monitoring.coreos.com
-    [INFO] Deploying CRs for Managed Cluster
-    [INFO] Tigera Apiserver is Available
-    [INFO] Generate New Cluster Registration Manifest
-    [INFO] Creating connection
-    [INFO] All Tigera Components are Available
-    [INFO] Securing Install
-    .....
-    ```
+     ![installation script](../img/install-script.png)
 
-    ```bash
-    # output once your cluster join the calico cloud
-    Install Successful
-
-    Your Connected Cluster Name is ######-management-managed-34-75-84-30  
-    ```
     Set the Calico Cluster Name as a variable to use later in this workshop. The Cluster Name can also be obtained from the Calico Cloud Web UI at a later date. For the example above `CALICOCLUSTERNAME` should be set to __######-management-managed-34-75-84-30__
     
     ```bash
