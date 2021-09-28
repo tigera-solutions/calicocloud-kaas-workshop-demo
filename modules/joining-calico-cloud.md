@@ -39,7 +39,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
 
      ![installation script](../img/install-script.png)
 
-    Set the Calico Cluster Name as a variable to use later in this workshop. The Cluster Name can also be obtained from the Calico Cloud Web UI at a later date. For the example above `CALICOCLUSTERNAME` should be set to __######-management-managed-34-75-84-30__
+    Set the Calico Cluster Name as a variable to use later in this workshop. The Cluster Name can also be obtained from the Calico Cloud Web UI at a later date. For the example above `CALICOCLUSTERNAME` should be set to __######-management-managed-#####__
     
     ```bash
     export CALICOCLUSTERNAME=<Cluster Name>
@@ -122,7 +122,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     chmod +x calicoctl
     
     # verify calicoctl is running 
-    calicoctl version
+    ./calicoctl version
     ```
 
     c) MacOS
@@ -148,7 +148,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     ```
     
        
-    Output for `calicoctl versiob` is similar as:
+    Output for `calicoctl version` is similar as:
     ```bash
     Client Version:    v3.9.0
     Release:           Calico Enterprise

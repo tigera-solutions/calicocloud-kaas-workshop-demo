@@ -124,10 +124,9 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     ```
     
     ```bash
-    Name           Location    ResourceGroup      KubernetesVersion    ProvisioningState    Fqdn
-    -------------  ----------  -----------------  -------------------  -------------------  -----------------------------------------------------------------
-    aksjessie2081  eastus      aks-rg-jessie2081  1.20.7               Succeeded             aksjessie2-aks-rg-jessie208-03cfb8-9713ae4f.hcp.eastus.azmk8s.io
-    
+    Name             Location    ResourceGroup      KubernetesVersion    ProvisioningState    Fqdn
+    ---------------  ----------  -----------------  -------------------  -------------------  ----------------------------------------------------------------
+    aks-jessie-1023  eastus      aks-rg-jessie1023  1.21.1               Succeeded            aks-jessie-aks-rg-jessie102-03cfb8-42907c98.hcp.eastus.azmk8s.io
     ```
     
 5.  Get the Kubernetes config files for your new AKS cluster
@@ -143,11 +142,12 @@ Follow the prequisite steps if you need to verify your Azure subscription.
 	```bash
 	kubectl get nodes
 	```
-	```
-	NAME                                STATUS   ROLES   AGE    VERSION
-	aks-nodepool1-29374799-vmss000000   Ready    agent   118s   v1.20.7
-	aks-nodepool1-29374799-vmss000001   Ready    agent   2m3s   v1.20.7
-	aks-nodepool1-29374799-vmss000002   Ready    agent   2m     v1.20.7
+    
+	```text
+	NAME                                STATUS   ROLES   AGE     VERSION
+    aks-nodepool1-45823991-vmss000000   Ready    agent   2m22s   v1.21.1
+    aks-nodepool1-45823991-vmss000001   Ready    agent   2m24s   v1.21.1
+    aks-nodepool1-45823991-vmss000002   Ready    agent   2m26s   v1.21.1
 	```
 
 	To see more details about your cluster:
