@@ -1,7 +1,7 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: storefront-inventory
+  name: workload-inventory
   labels:
     deployment: production
 spec:
@@ -9,13 +9,13 @@ spec:
   endpoints:
     namespaces: 
       names:
-        ["storefront","acme","hipstershop"]
+        ["storefront", "acme", "hipstershop"]
   schedule: '*/15 * * * *'
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: storefront-network-access
+  name: workload-network-access
   labels:
     deployment: production
 spec:
@@ -23,13 +23,13 @@ spec:
   endpoints:
     namespaces:
       names:
-        ["storefront","acme","hipstershop"]
+        ["storefront", "acme", "hipstershop"]
   schedule: '*/15 * * * *'
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
 metadata:
-  name: storefront-policy-audit
+  name: workload-policy-audit
   labels:
     deployment: production
 spec:
@@ -37,5 +37,5 @@ spec:
   endpoints:
     namespaces: 
       names:
-        ["storefront","acme","hipstershop"]
+        ["storefront", "acme", "hipstershop"]
   schedule: '*/15 * * * *'

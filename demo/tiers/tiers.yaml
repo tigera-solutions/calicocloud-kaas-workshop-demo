@@ -2,7 +2,7 @@
 apiVersion: projectcalico.org/v3
 kind: Tier
 metadata:
-  name: security-team
+  name: security
 spec:
   order: 400
 
@@ -10,14 +10,7 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: Tier
 metadata:
-  name: platform-team
+  name: platform
 spec:
   order: 500
   
----
-apiVersion: projectcalico.org/v3
-kind: Tier
-metadata:
-  name: devops-team
-spec:
-  order: 600

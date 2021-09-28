@@ -1,6 +1,6 @@
-# Module 3-1: Observability-Dynamic Service Graph
+# Observability: Manager UI
 
-**Goal:** Explore Calico observability tools.
+**Goal:** Explore Calico observability tools in manager UI.
 
 ## Calico observability tools
 
@@ -58,8 +58,6 @@
 
 
 
-[Next -> Module 3-2](../modules/kibana-dashboard.md)
-
-[Previous -> Module 2-2](../modules/egress-gateway.md)
+[Next -> Kibana dashboard](../modules/kibana-dashboard.md)
 
 [Menu](../README.md)

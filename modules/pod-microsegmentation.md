@@ -10,7 +10,7 @@
     a. Create logging policy for storefront application in platform tier 
     ```bash
     ###apply the logging policy
-    kubectl apply -f demo/101-security-controls/platform-team.allow-logging.yaml
+    kubectl apply -f demo/101-security-controls/platform.allow-logging.yaml
     ```
 
     
@@ -55,6 +55,6 @@
 
 
 
-[Next -> DNS egress control](../modules/egress-dns-controls.md)
+[Next -> DNS egress control](../modules/dns-egress-controls.md)
 
 [Menu](../README.md)

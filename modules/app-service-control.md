@@ -56,7 +56,7 @@
     for i in {1..5}; do kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://frontend.hipstershop 2>/dev/null | grep -i http'; sleep 2; done
     ```
 
-    >The staged policy does not affect the traffic directly but allows you to view the policy impact if it were to be enforced.
+    >The staged policy does not affect the traffic directly but allows you to view the policy impact if it were to be enforced. You can see the deny traffic in staged policy. 
 
 3. Apply network policies to your application with explicity allow and deny control.
 
@@ -122,10 +122,10 @@
     #output is command terminated with exit code 1
     ```
     
-    b. Deploy egress policy.
+    b. Deploy egress policy between two namespaces `dev` and `hipstershop`.
 
     ```bash
-    kubectl apply -f demo/101-security-controls/platform-team.centos-to-frontend.yaml
+    kubectl apply -f demo/101-security-controls/platform.centos-to-frontend.yaml
     ```
 
     c. Test connectivity between `dev/centos` pod and `hipstershop/frontend` service again, should be allowed now.

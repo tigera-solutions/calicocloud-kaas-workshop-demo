@@ -1,0 +1,11 @@
+apiVersion: projectcalico.org/v3
+kind: PacketCapture
+metadata:
+  name: hipstershop-capture-frontend
+  namespace: hipstershop
+spec:
+  selector: app == "frontend"
+  filters:
+    - protocol: TCP
+      ports:
+        - 8080

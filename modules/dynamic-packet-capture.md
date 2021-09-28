@@ -1,34 +1,27 @@
-# Module 3-3: Observability-Dynamic packet capture
+# Observability: Dynamic packet capture
 
-**Goal:** Configure packet capture for specific pods and review captured payload.
+**Goal:** Configure packet capture for specific pods and review captured payload. 
+
+Calico enterprise/cloud provide enhanced packet capture feature for DevOps troubleshooting.
+For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibility/packetcapture) documentaiton.
 
 ## Steps
 
-1. Configure packet capture.
+1. Capture all packet for nginx pods.
+  a. Configure packet capture.
 
     Navigate to `demo/packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
 
     Deploy packet capture definition to capture packets for `dev/nginx` pods.
 
     ```bash
-    kubectl apply -f demo/packet-capture/nginx-pcap.yaml
+    kubectl apply -f demo/packet-capture/dev-nginx-pcap.yaml
     ```
 
     >Once the `PacketCapture` resource is deployed, Calico starts capturing packets for all endpoints configured in the `selector` field.
 
-2. Install `calicoctl` CLI
 
-    The easiest way to retrieve captured `*.pcap` files is to use [calicoctl](https://docs.tigera.io/maintenance/clis/calicoctl/) CLI.
-
-    ```bash
-    # download and configure calicoctl
-    curl -o calicoctl -O -L https://docs.tigera.io/download/binaries/v3.9.0/calicoctl
-    chmod +x calicoctl
-    sudo mv calicoctl /usr/local/bin/
-    calicoctl version
-    ```
-
-3. Fetch and review captured payload.
+  b. Fetch and review captured payload.
 
     >The captured `*.pcap` files are stored on the hosts where pods are running at the time the `PacketCapture` resource is active.
 
@@ -43,17 +36,55 @@
     tcpdump -Xr dev-nginx-XXXXXX.pcap
     ```
 
-4. Stop packet capture
+  c. Stop packet capture
 
     Stop packet capture by removing the `PacketCapture` resource.
 
     ```bash
-    kubectl delete -f demo/packet-capture/nginx-pcap.yaml
+    kubectl delete -f demo/packet-capture/dev-nginx-pcap.yaml
+    ```
+
+2. Capture packet per protocol for example `TCP` and port `3550`.
+
+    a. Deploy packet capture definition to capture packets for `hipstershop/frontend` pod and `dev/netshoot` pod.
+
+    ```bash
+    kubectl apply -f demo/packet-capture/hipstershop-productcatalogservice-pcap.yaml
+    ```
+
+    b. Generate packet by running command:
+    ```bash
+    for i in {1..20}; do kubectl -n dev exec netshoot -- nc -zv productcatalogservice.hipstershop 3550; sleep 2; done
+    ```
+
+    c. Fetch and review captured payload.
+    Retrieve captured `*.pcap` files and review the content.
+
+    ```bash
+    # get pcap files
+    calicoctl captured-packets copy hipstershop-capture-productcatalogservice --namespace hipstershop
+
+    ls productcatalog*.pcap
+    # view *.pcap content
+    tcpdump -Xr productcatalogservice-XXXXXX.pcap
+    ```
+    
+
+  d. Stop packet capture
+
+    Stop packet capture by removing the `PacketCapture` resource.
+
+    ```bash
+    kubectl delete -f demo/packet-capture/hipstershop-productcatalogservice-pcap.yaml
     ```
 
 
-[WIP][Next -> Module 3-4](../modules/enable-l7-visibility.md)
+3. Define different RBAC role for capture and fetch the payload.
 
-[Previous -> Module 3-2](../modules/kibana-dashboard.md)
+
+
+
+
+[Next -> Module 3-4](../modules/enable-l7-visibility.md)
 
 [Menu](../README.md)

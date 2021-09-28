@@ -1,16 +1,15 @@
----
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security.block-threadfeed
+  name: security.embargo-countries
 spec:
   tier: security
-  order: 210
+  order: 230
   selector: all()
   types:
   - Egress
   egress:
   - action: Deny
     destination:
-      selector: threatfeed == "feodo"||threatfeed == "snort"
+      selector: embargo == "true" 
   - action: Pass

@@ -1,6 +1,6 @@
-# Module 2-1: North-South Controls-Egress access controls
+# North-South Controls: DNS Egress Controls
 
-**Goal:** Configure egress access control for specific workloads so they are allow to external DNS domain, and configure block-threadfeed policy so workloads within cluster are not allow to external networkset
+**Goal:** Configure egress access control for specific workloads so they are allow to external DNS domain.
 
 ## Steps
 
@@ -47,29 +47,14 @@
     
     b. Modify the `NetworkSet` to include `www.google.com` in dns domain and test egress access to www.google.com again.
 
+     ![Add DNS](../img/add-google-dns.png)
+
     ```bash
     # test egress access to www.google.com again and it should be allowed.
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://www.google.com 2>/dev/null | grep -i http'
     ```
+    
 
-3. Protect workloads with GlobalThreatfeed from known bad actors.
-
-    Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods.
-
-    ```bash
-    # deploy feodo and other tracker threatfeed
-    kubectl apply -f demo/threatfeeds/
-
-
-    # Confirm and check the tracker threatfeed
-    kubectl get globalthreatfeeds 
-
-    ```
-
-
-
-[WIP][Next -> Module 2-2](../modules/egress-gateway.md)
-
-[Previous -> Module 1-3](../modules/host-protection.md)
+[Next -> Global threadfeed](modules/global-threadfeed.md)
 
 [Menu](../README.md)

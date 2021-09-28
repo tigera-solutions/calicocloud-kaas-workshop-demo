@@ -12,14 +12,14 @@
     kubectl apply -f demo/tiers
     ```
 
-    This will add tiers `devops-team``security-team` and `platform-team` to the Calico cluster.
+    This will add tiers `security` and `platform` to the Calico cluster.
 
 2. Deploy base policy.
 
     In order to explicitly allow workloads to connect to the Kubernetes DNS component, we are going to implement a policy that controls such traffic.
 
     ```bash
-    kubectl apply -f demo/101-security-controls/platform-team.allow-kube-dns.yaml
+    kubectl apply -f demo/101-security-controls/platform.allow-kube-dns.yaml
     ```
 
 3. Deploy demo applications.

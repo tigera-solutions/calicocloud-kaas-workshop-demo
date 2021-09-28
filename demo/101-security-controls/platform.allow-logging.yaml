@@ -1,9 +1,9 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: platform-team.allow-logging
+  name: platform.allow-logging
 spec:
-  tier: platform-team
+  tier: platform
   order: 20
   selector: app == "logging"
   namespaceSelector: ''

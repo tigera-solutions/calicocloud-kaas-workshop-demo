@@ -40,7 +40,7 @@ In this workshop we are going to focus on these main use cases:
 
 
 - **East-West Controls: App service control & Microsegmentation & Host protection**
-- **North-South Controls: Egress access controls and DNS policies & Egress Gateway**
+- **North-South Controls: DNS Egress Controls & Egress Gateway**
 - **Observability: Dynamic Service Graph & Dynamic Packet Capture & Kibana dashboard**
 - **Compliance and Security: Compliance & Intrusion Detection and Prevention & Encryption**
 - **Integration: Firewall Integration & SIEM Integration**
@@ -48,18 +48,17 @@ In this workshop we are going to focus on these main use cases:
 ## Charpter A - Beginner
 
 - [East-West controls-App service control](modules/app-service-control.md)
-- [East-West controls-Pod Microsegmentation](modules/pod-microsegmentation.md)
-- [North-South Controls-DNS egress control](modules/egress-dns-controls.md)
-- [North-South Controls-Global threadfeed](modules/egress-access-controls.md)
+- [East-West controls-Pod microsegmentation](modules/pod-microsegmentation.md)
+- [North-South Controls-DNS egress control](modules/dns-egress-controls.md)
+- [North-South Controls-Global threadfeed](modules/global-threadfeed.md)
 
-- [Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
-- [Observability-Dynamic Service Graph](modules/dynamic-service-graph.md)
-- [Observability-L7 visibility](modules/enable-l7-visibility.md) 
+- [Observability-Manager UI](modules/manager-ui.md)
 - [Observability-Kibana dashboard](modules/kibana-dashboard.md)
-
+- [Observability-L7 visibility](modules/enable-l7-visibility.md) 
 
 ## Charpter B - Intermediate
 
+- [Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
 - [IDS/IPS](modules/intrusion-detection-protection.md)
 - [Host protection](modules/host-protection.md)
 - [Compliance](modules/compliance-reports.md) 

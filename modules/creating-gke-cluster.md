@@ -1,4 +1,4 @@
-# Module 0-1: Creating GKE cluster
+# Creating GKE cluster
 
 **Goal:** Create GKE cluster.
 
@@ -48,19 +48,18 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    ```bash
    gcloud container clusters create $CLUSTERNAME \
    --region $REGION \
-   --zone $LOCATION \
    --node-locations $LOCATION \
    --cluster-version $VERSION \
    --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver \
    --num-nodes 3 \
    --enable-intra-node-visibility \
-   --machine-type e2-standard-8 
+   --machine-type e2-standard-4 
    
    ``` 
 
 2. Getting credentials for your new cluster.
    ```bash
-   gcloud container clusters get-credentials $CLUSTERNAME --zone $LOCATION  
+   gcloud container clusters get-credentials $CLUSTERNAME --region $REGION    
 
 
 3. Confirm nodes are ready status in your cluster.
@@ -81,7 +80,8 @@ You should now have a Kubernetes cluster running with 2 nodes. You do not see th
 <br>    
 
     
-[Next -> Module 1](../modules/joining-gke-to-calico-cloud.md)
+[Next ->Joining cluster to Calico Cloud](../modules/joining-calico-cloud.md)
 
+[Menu](../README.md)
 
 

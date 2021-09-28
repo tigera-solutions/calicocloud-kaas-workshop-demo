@@ -1,6 +1,6 @@
-# Module 3-2: Observability-Kibana Dashboard
+# Observability: Kibana Dashboard
 
-**Goal:** Explore Calico observability tools.
+**Goal:** Explore Calico observability tools in Kibana UI.
 
 ## Calico observability tools
 
@@ -47,8 +47,6 @@
 
 
 
-[Next -> Module 3-3](../modules/dynamic-packet-capture.md)
-
-[Previous -> Module 3-1](../modules/dynamic-service-graph.md)
+[Next -> L7 visibility](../modules/enable-l7-visibility.md) 
 
 [Menu](../README.md)

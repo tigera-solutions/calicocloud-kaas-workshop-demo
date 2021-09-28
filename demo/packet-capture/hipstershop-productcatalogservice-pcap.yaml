@@ -1,0 +1,11 @@
+apiVersion: projectcalico.org/v3
+kind: PacketCapture
+metadata:
+  name: hipstershop-capture-productcatalogservice
+  namespace: hipstershop
+spec:
+  selector: app == "productcatalogservice"
+  filters:
+    - protocol: TCP
+      ports:
+        - 3550
