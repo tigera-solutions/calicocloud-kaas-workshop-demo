@@ -62,15 +62,12 @@ In this workshop we are going to focus on these main use cases:
 - [Host protection](modules/host-protection.md)
 - [Compliance](modules/compliance-reports.md) 
 - [Encryption](modules/encryption.md) 
-- [WIP][DPI](modules/dpi.md) 
+
 
 
 ## Charpter C - Advanced
 
-- [WIP][Egress Gateway](modules/egress-gateway.md) 
-- [WIP][SIEM Integration](modules/siem-integration.md) 
-- [WIP][Firewall Integration](modules/firewall-integration.md) 
-- [WIP][Performance Hotspots](modules/performance-hotspots.md) 
+
 
 
 ## STEP 6 - Clean up your test environment

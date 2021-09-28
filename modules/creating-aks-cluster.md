@@ -1,4 +1,4 @@
-# Module 0-1: Creating AKS cluster
+# Creating AKS cluster
 
 The following guide is based upon the repos from [lastcoolnameleft](https://github.com/lastcoolnameleft/kubernetes-workshop/blob/master/create-aks-cluster.md) and [Azure Kubernetes Hackfest](https://github.com/Azure/kubernetes-hackfest/tree/master/labs/create-aks-cluster#readme).
 
@@ -11,55 +11,27 @@ The following guide is based upon the repos from [lastcoolnameleft](https://gith
 
 ## Prerequisite Tasks
 
-Follow the prequisite steps if you need to verify your Azure subscription and Service Principal otherwise proceed to step 1.
+Follow the prequisite steps if you need to verify your Azure subscription.
 
 - Ensure you are using the correct Azure subscription you want to deploy AKS to.
     
-	```
+	```bash
 	# View subscriptions
 	az account list   
  
-  # Verify selected subscription
-  az account show
-  ```
-    
+    # Verify selected subscription
+    az account show
     ```
-  # Set correct subscription (if needed)
-  az account set --subscription <subscription_id>
-  
-  # Verify correct subscription is now set
-  az account show
-  ```
     
-- Create Azure Service Principal to use through the labs
+    ```bash
+    # Set correct subscription (if needed)
+    az account set --subscription <subscription_id>
+  
+    # Verify correct subscription is now set
+    az account show
+    ```
+    
 
-	```bash
-	az ad sp create-for-rbac --skip-assignment
-	```
-
-- This will return the following. !!!IMPORTANT!!! - Please copy this information down as you'll need it for labs going forward.
-
-	```bash
-	"appId": "7248f250-0000-0000-0000-dbdeb8400d85",
-	"displayName": "azure-cli-2017-10-15-02-20-15",
-	"name": "http://azure-cli-2017-10-15-02-20-15",
-	"password": "77851d2c-0000-0000-0000-cb3ebc97975a",
-	"tenant": "72f988bf-0000-0000-0000-2d7cd011db47"
-	```
-
-- Set the values from above as variables **(replace <appid><password>with your values)</password></appid>**.
-
-> **Warning:** Several of the following steps have you echo values to your .bashrc file. This is done so that you can get those values back if your session reconnects. You will want to remember to clean these up at the end of the training, in particular if you're running on your own, or your company's, subscription.
-
-DON'T MESS THIS STEP UP. REPLACE THE VALUES IN BRACKETS!!!
-
-```bash
-# Persist for Later Sessions in Case of Timeout
-APPID=<appId>
-echo export APPID=$APPID >> ~/.bashrc
-CLIENTSECRET=<password>
-echo export CLIENTSECRET=$CLIENTSECRET >> ~/.bashrc
-```
 
 ## Steps
 
@@ -74,6 +46,9 @@ echo export CLIENTSECRET=$CLIENTSECRET >> ~/.bashrc
     echo $UNIQUE_SUFFIX
     # Persist for Later Sessions in Case of Timeout
     echo export UNIQUE_SUFFIX=$UNIQUE_SUFFIX >> ~/.bashrc
+
+    # For mac user, please replace the profile name if you use zsh.
+    echo export UNIQUE_SUFFIX=$UNIQUE_SUFFIX >> ~/.zshrc
 	```
     
     **_ Note this value as it will be used in the next couple labs. _**
@@ -113,20 +88,20 @@ echo export CLIENTSECRET=$CLIENTSECRET >> ~/.bashrc
     ```
     ```
     KubernetesVersion    Upgrades
-    -------------------  ------------------------
-    1.21.1(preview)      None available
-    1.20.7               1.21.1(preview)
-    1.20.5               1.20.7, 1.21.1(preview)
-    1.19.11              1.20.5, 1.20.7
-    1.19.9               1.19.11, 1.20.5, 1.20.7
-    1.18.19              1.19.9, 1.19.11
-    1.18.17              1.18.19, 1.19.9, 1.19.11
+    -------------------  -----------------------
+    1.21.2               None available
+    1.21.1               1.21.2
+    1.20.9               1.21.1, 1.21.2
+    1.20.7               1.20.9, 1.21.1, 1.21.2
+    1.19.13              1.20.7, 1.20.9
+    1.19.11              1.19.13, 1.20.7, 1.20.9
     ```
     
-    For this lab we'll use 1.20.7
+    For this lab we'll use 1.21.1
     
     ```bash
-    K8SVERSION=1.20.7
+    K8SVERSION=1.21.1
+    echo export K8SVERSION=1.21.1 >> ~/.bashrc
     ```
     
     > The below command can take 10-20 minutes to run as it is creating the AKS cluster. Please be PATIENT and grab a coffee/tea/kombucha...
@@ -135,9 +110,7 @@ echo export CLIENTSECRET=$CLIENTSECRET >> ~/.bashrc
     # Create AKS Cluster - it is important to set the network-plugin as azure in order to connec to Calico Cloud
     az aks create -n $CLUSTERNAME -g $RGNAME \
     --kubernetes-version $K8SVERSION \
-    --service-principal $APPID \
-    --client-secret $CLIENTSECRET \
-    --generate-ssh-keys -l $LOCATION \
+    --enable-managed-identity \
     --node-count 3 \
     --network-plugin azure \
     --no-wait
@@ -182,56 +155,7 @@ echo export CLIENTSECRET=$CLIENTSECRET >> ~/.bashrc
 	kubectl cluster-info
 	```
 	
-7.  Install `calicoctl` CLI for use in later labs
-
-    The easiest way to retrieve captured `*.pcap` files is to use [calicoctl](https://docs.tigera.io/maintenance/clis/calicoctl/) CLI. The following binary installations are available:
-
-    a) CloudShell
-    ```bash    
-    # download and configure calicoctl
-    curl -o calicoctl -O -L https://docs.tigera.io/download/binaries/v3.8.1/calicoctl
-    chmod +x calicoctl
-    
-    # verify calicoctl is running 
-    ./calicoctl version
-    ```
-
-    
-    b) Linux
-
-    >Tip: Consider navigating to a location that’s in your PATH. For example, /usr/local/bin/
-    ```bash    
-    # download and configure calicoctl
-    curl -o calicoctl -O -L https://docs.tigera.io/download/binaries/v3.8.1/calicoctl
-    chmod +x calicoctl
-    
-    # verify calicoctl is running 
-    calicoctl version
-    ```
-    c) MacOS
-    
-
-    >Tip: Consider navigating to a location that’s in your PATH. For example, /usr/local/bin/
-    ```bash    
-    # download and configure calicoctl
-    curl -o calicoctl -O -L  https://docs.tigera.io/download/binaries/v3.8.1/calicoctl-darwin-amd64
-    chmod +x calicoctl
-    
-    # verify calicoctl is running 
-    calicoctl version
-    ```
-    Note: If you are faced with `cannot be opened because the developer cannot be verified` error when using `calicoctl` for the first time. go to `Applicaitons` \> `System Prefences` \> `Security & Privacy` in the `General` tab at the bottom of the window click `Allow anyway`.  
-Note: If the location of calicoctl is not already in your PATH, move the file to one that is or add its location to your PATH. This will allow you to invoke it without having to prepend its location.
-
-    c) Windows - using powershell command to download the calicoctl binary  
-    >Tip: Consider runing powershell as administraor and navigating to a location that’s in your PATH. For example, C:\Windows.
-    
-    ```pwsh
-    Invoke-WebRequest -Uri "https://docs.tigera.io/download/binaries/v3.8.1/calicoctl-windows-amd64.exe" -OutFile "calicocttl.exe"
-    ```
-    
-   
-3. Download this repo into your environment:
+7. Download this repo into your environment:
 
     ```bash
     git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
@@ -246,5 +170,7 @@ Note: If the location of calicoctl is not already in your PATH, move the file to
 You should now have a Kubernetes cluster running with 3 nodes. You do not see the master servers for the cluster because these are managed by Microsoft. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
 <br>    
 
-    
-[Next -> Module 1](../modules/joining-aks-to-calico-cloud.md)
+
+[Next ->Joining cluster to Calico Cloud](../modules/joining-calico-cloud.md)
+
+[Menu](../README.md)
