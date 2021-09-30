@@ -27,7 +27,7 @@
 
    - Run the script with any needed flags, for example: 
    ```bash
-   ./downgrade.sh --remove-prometheus.
+   ./downgrade.sh --remove-prometheus
    
    ```   
 

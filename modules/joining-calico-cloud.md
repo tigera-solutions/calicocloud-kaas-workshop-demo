@@ -139,7 +139,9 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     Note: If you are faced with `cannot be opened because the developer cannot be verified` error when using `calicoctl` for the first time. go to `Applicaitons` \> `System Prefences` \> `Security & Privacy` in the `General` tab at the bottom of the window click `Allow anyway`.  
     Note: If the location of calicoctl is not already in your PATH, move the file to one that is or add its location to your PATH. This will allow you to invoke it without having to prepend its location.
 
+
     d) Windows - using powershell command to download the calicoctl binary  
+    
     >Tip: Consider runing powershell as administraor and navigating to a location that’s in your PATH. For example, C:\Windows.
     
     ```pwsh

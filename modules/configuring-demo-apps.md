@@ -57,6 +57,34 @@
    
     ```
 
+6. Confirm the global compliance report and global alert are running.
+    
+    ```bash
+    kubectl get globalreport
+
+    kubectl get globalalert
+   
+    ``` 
+
+
+    The output looks like as below:
+
+    ```text
+    NAME                      CREATED AT 
+    cis-results               2021-09-30T15:42:33Z
+    cluster-inventory         2021-09-30T15:42:33Z
+    cluster-network-access    2021-09-30T15:42:33Z
+    cluster-policy-audit      2021-09-30T15:42:33Z
+    workload-inventory        2021-09-30T15:42:33Z
+    workload-network-access   2021-09-30T15:42:34Z
+    workload-policy-audit     2021-09-30T15:42:34Z
+
+    NAME                      CREATED AT
+    dns.unsanctioned.access   2021-09-30T15:42:40Z
+    network.lateral.access    2021-09-30T15:42:40Z
+    policy.globalnetworkset   2021-09-30T15:42:39Z
+    ```
+
 [Next -> App service control](../modules/app-service-control.md)
 
 [Menu](../README.md)

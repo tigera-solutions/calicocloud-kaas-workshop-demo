@@ -11,7 +11,9 @@
     ```bash
     # deploy dns policy
     kubectl apply -f demo/egress-access-controls/dns-policy.yaml
+    ```
 
+    ```bash
     # test egress access to api.twilio.com
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://api.twilio.com 2>/dev/null | grep -i http'
     # test egress access to www.google.com
@@ -37,8 +39,9 @@
     kubectl apply -f demo/egress-access-controls/netset.external-apis.yaml
     # deploy DNS policy using the network set
     kubectl apply -f demo/egress-access-controls/dns-policy.netset.yaml
+    ```
 
-
+    ```bash
     # test egress access to api.twilio.com
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://api.twilio.com 2>/dev/null | grep -i http'
     # test egress access to www.google.com
@@ -55,6 +58,6 @@
     ```
     
 
-[Next -> Global threadfeed](modules/global-threadfeed.md)
+[Next -> Global threadfeed](.../modules/global-threadfeed.md)
 
 [Menu](../README.md)

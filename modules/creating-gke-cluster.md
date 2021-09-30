@@ -49,6 +49,7 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    ```bash
    gcloud container clusters create $CLUSTERNAME \
    --region $REGION \
+   --node-locations $LOCATION \
    --cluster-version $VERSION \
    --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver \
    --num-nodes 3 \
