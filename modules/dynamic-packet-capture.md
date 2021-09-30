@@ -6,9 +6,10 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
 For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibility/packetcapture) documentaiton.
 
 ## Steps
-1. Capture all packet for nginx pods.
 
-  >a. Configure packet capture. Navigate to `demo/packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
+# step 1. Capture all packet for nginx pods.
+
+  a. Configure packet capture. Navigate to `demo/packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
 
   Deploy packet capture definition to capture packets for `dev/nginx` pods.
 
@@ -19,7 +20,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
   >Once the `PacketCapture` resource is deployed, Calico starts capturing packets for all endpoints configured in the `selector` field.
 
 
-  >b. Fetch and review captured payload.
+  b. Fetch and review captured payload.
 
   >The captured `*.pcap` files are stored on the hosts where pods are running at the time the `PacketCapture` resource is active.
 
@@ -34,7 +35,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
    tcpdump -Xr dev-nginx-XXXXXX.pcap
    ```
 
-  >c. Stop packet capture
+  c. Stop packet capture
 
   Stop packet capture by removing the `PacketCapture` resource.
 
@@ -42,7 +43,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
    kubectl delete -f demo/packet-capture/dev-nginx-pcap.yaml
    ```
 
-2. Capture packet per protocol for example `TCP` and port `3550`.
+# step 2. Capture packet per protocol for example `TCP` and port `3550`.
 
   a. Deploy packet capture definition to capture packets between `hipstershop/frontend` pod and `dev/netshoot` pod.
 
@@ -78,7 +79,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
    ```
 
 
-3. Define different RBAC role for capture and fetch the payload.
+# step 3. Define different RBAC role for capture and fetch the payload.
 
 
 
