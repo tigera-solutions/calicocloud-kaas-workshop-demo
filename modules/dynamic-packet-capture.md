@@ -5,9 +5,9 @@
 Calico enterprise/cloud provide enhanced packet capture feature for DevOps troubleshooting.
 For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibility/packetcapture) documentaiton.
 
-## Steps
+# Steps
 
-# step 1. Capture all packet for nginx pods.
+## step 1. Capture all packet for nginx pods.
 
   a. Configure packet capture. Navigate to `demo/packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
 
@@ -43,7 +43,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
    kubectl delete -f demo/packet-capture/dev-nginx-pcap.yaml
    ```
 
-# step 2. Capture packet per protocol for example `TCP` and port `3550`.
+## step 2. Capture packet per protocol for example `TCP` and port `3550`.
 
   a. Deploy packet capture definition to capture packets between `hipstershop/frontend` pod and `dev/netshoot` pod.
 
@@ -79,7 +79,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
    ```
 
 
-# step 3. Define different RBAC role for capture and fetch the payload.
+## step 3. Define different RBAC role for capture and fetch the payload.
 
 
 
