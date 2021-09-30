@@ -8,7 +8,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
 ## Steps
 1. Capture all packet for nginx pods.
 
-  a. Configure packet capture. Navigate to `demo/packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
+  >a. Configure packet capture. Navigate to `demo/packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
 
   Deploy packet capture definition to capture packets for `dev/nginx` pods.
 
@@ -19,7 +19,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
   >Once the `PacketCapture` resource is deployed, Calico starts capturing packets for all endpoints configured in the `selector` field.
 
 
-  b. Fetch and review captured payload.
+  >b. Fetch and review captured payload.
 
   >The captured `*.pcap` files are stored on the hosts where pods are running at the time the `PacketCapture` resource is active.
 
@@ -34,7 +34,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
    tcpdump -Xr dev-nginx-XXXXXX.pcap
    ```
 
-  c. Stop packet capture
+  >c. Stop packet capture
 
   Stop packet capture by removing the `PacketCapture` resource.
 
@@ -79,6 +79,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
 
 
 3. Define different RBAC role for capture and fetch the payload.
+
 
 
 
