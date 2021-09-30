@@ -8,6 +8,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
 ## Steps
 
 1. Capture all packet for nginx pods.
+
   a. Configure packet capture.
 
     Navigate to `demo/packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
@@ -18,14 +19,14 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
     kubectl apply -f demo/packet-capture/dev-nginx-pcap.yaml
     ```
 
-    >Once the `PacketCapture` resource is deployed, Calico starts capturing packets for all endpoints configured in the `selector` field.
+  >Once the `PacketCapture` resource is deployed, Calico starts capturing packets for all endpoints configured in the `selector` field.
 
 
   b. Fetch and review captured payload.
 
-    >The captured `*.pcap` files are stored on the hosts where pods are running at the time the `PacketCapture` resource is active.
+  >The captured `*.pcap` files are stored on the hosts where pods are running at the time the `PacketCapture` resource is active.
 
-    Retrieve captured `*.pcap` files and review the content.
+     Retrieve captured `*.pcap` files and review the content.
 
     ```bash
     # get pcap files
