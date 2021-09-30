@@ -46,7 +46,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
 
 2. Capture packet per protocol for example `TCP` and port `3550`.
 
-    a. Deploy packet capture definition to capture packets for `hipstershop/frontend` pod and `dev/netshoot` pod.
+    a. Deploy packet capture definition to capture packets between `hipstershop/frontend` pod and `dev/netshoot` pod.
 
     ```bash
     kubectl apply -f demo/packet-capture/hipstershop-productcatalogservice-pcap.yaml
@@ -69,8 +69,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
     tcpdump -Xr productcatalogservice-XXXXXX.pcap
     ```
     
-
-  d. Stop packet capture
+    d. Stop packet capture
 
     Stop packet capture by removing the `PacketCapture` resource.
 
@@ -83,8 +82,6 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
 
 
 
-
-
-[Next -> Module 3-4](../modules/enable-l7-visibility.md)
+[Next -> IDS/IPS](../modules/intrusion-detection-protection.md)
 
 [Menu](../README.md)

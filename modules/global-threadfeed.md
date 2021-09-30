@@ -52,8 +52,8 @@
 
     ```bash
     # try to ping any of the IPs in from the feodo tracker list.
-    IP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq -r '.spec.nets[0]' | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
-    kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $IP"
+    FIP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq -r '.spec.nets[0]' | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
+    kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $FIP"
     ```
 
 3. Add more threatfeeds labels into networkset and prevent your cluster from them.
@@ -71,12 +71,12 @@
 
     ```
 
-4. Confirm pod cannot access the IP list from `embargo-countries` networkset. 
+4. Generate alerts by accessing the IP from `tor-bulk-exit` list. 
 
     ```bash
-    # try to ping any of the IPs in from the embargo-countries list.
-    EIP=$(kubectl get globalnetworkset embargo-countries -ojson | jq -r '.spec.nets[0]' | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
-    kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $EIP"
+    # try to ping any of the IPs in from the tor-bulk-exit list.
+    TIP=$(kubectl get globalnetworkset threatfeed.tor-bulk-exit-list -ojson | jq -r '.spec.nets[0]' | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
+    kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $TIP"
     ```
 
 [Next -> Manager UI](../modules/manager-ui.md)

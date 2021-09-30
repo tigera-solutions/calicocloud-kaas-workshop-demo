@@ -1,8 +1,8 @@
-# Module 1-3: East-West controls-Host protection
+# Security: Host protection
 
-**Goal:** Secure EKS hosts ports with network policies.
+**Goal:** Secure hosts ports with network policies.
 
-Calico network policies not only can secure pod to pod communications but also can be applied to EKS hosts to protect host based services and ports. For more details refer to [Protect Kubernetes nodes](https://docs.tigera.io/security/kubernetes-nodes) documentaiton.
+Calico network policies not only can secure pod to pod communications but also can be applied to Kubernetes hosts to protect host based services and ports. For more details refer to [Protect Kubernetes nodes](https://docs.tigera.io/security/kubernetes-nodes) documentaiton.
 
 ## Steps
 
@@ -107,8 +107,6 @@ Calico network policies not only can secure pod to pod communications but also c
 
 
 
-[Next -> Module 2-1](../modules/egress-access-controls.md)
-
-[Previous -> Module 1-2](../modules/microsegmentation.md)
+[Next -> Wireguard Encryption](.../modules/encryption.md) 
 
 [Menu](../README.md)

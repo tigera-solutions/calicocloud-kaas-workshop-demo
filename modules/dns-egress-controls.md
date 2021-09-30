@@ -20,7 +20,7 @@
 
     Access to the `api.twilio.com` endpoint should be allowed by the DNS policy and any other external endpoints like `www.google.com` should be denied. 
 
-    b. Modify the policy to include `www.google.com` in dns policy and test egress access to www.google.com again.
+    b. Modify the policy to include `*.google.com` in dns policy and test egress access to www.google.com again.
 
     ```bash
     # test egress access to www.google.com again and it should be allowed.

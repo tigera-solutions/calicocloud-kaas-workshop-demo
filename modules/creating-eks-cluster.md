@@ -1,6 +1,4 @@
 
-
-
 # Step 1: Setting up cloud9 work environment
 
 **Goal:** Set up and configure your cloud9 instance to work with AWS resources.
@@ -236,8 +234,14 @@
 
     #generate new config file to your home directory
     aws eks update-kubeconfig --name $EKS_CLUSTER --region $AWS_REGION
-    ```        
+    ```       
 
+8. *[Optional]* scale your node group as desired count.    
+
+    ```bash
+    eksctl scale nodegroup --cluster=$EKS_CLUSTER --nodes=3 --name=nix-t3-large
+    ``` 
+    
 [Next ->Joining cluster to Calico Cloud](../modules/joining-calico-cloud.md)
 
 [Menu](../README.md)

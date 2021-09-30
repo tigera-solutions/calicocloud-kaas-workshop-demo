@@ -1,0 +1,10 @@
+apiVersion: projectcalico.org/v3
+kind: PacketCapture
+metadata:
+  name: dev-capture-netshoot
+  namespace: default
+spec:
+  selector: app == "netshoot"
+    filters: 
+      - protocol: TCP
+        ports: [80]

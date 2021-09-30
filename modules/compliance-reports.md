@@ -1,4 +1,4 @@
-# Module 4-1: Compliance and Security-Compliance
+# Security: Compliance reports
 
 **Goal:** Use global reports to satisfy compliance requirements.
 
@@ -24,9 +24,14 @@
     ![compliance report](../img/compliance-report.png)
 
 
+2. Deploy hipstershop policies and observe the report score which wil be different in the next report. 
 
-[Next -> Module 4-2](../modules/intrusion-detection-protection.md)
+   ```bash
+   kubectl apply -f demo/101-security-controls/hipstershop-policies.yaml
+   ```
 
-[Previous -> Module 3-4](../modules/enable-l7-visibilty.md)
+
+
+[Next -> Host protection](.../modules/host-protection.md)
 
 [Menu](../README.md)

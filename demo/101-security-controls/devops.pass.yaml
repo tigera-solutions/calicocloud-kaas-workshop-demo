@@ -1,10 +1,10 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security-team.pass
+  name: devops.pass
 spec:
-  tier: security-team
-  order: 300
+  tier: devops
+  order: 1000
   selector: ''
   namespaceSelector: ''
   serviceAccountSelector: ''

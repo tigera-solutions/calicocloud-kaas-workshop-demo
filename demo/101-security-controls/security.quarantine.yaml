@@ -1,9 +1,9 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security-team.quarantine
+  name: security.quarantine
 spec:
-  tier: security-team
+  tier: security
   order: 100
   selector: quarantine == "true"
   ingress:

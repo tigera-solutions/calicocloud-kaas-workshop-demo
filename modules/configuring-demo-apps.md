@@ -12,7 +12,7 @@
     kubectl apply -f demo/tiers
     ```
 
-    This will add tiers `security` and `platform` to the Calico cluster.
+    This will add tiers `security`, `platform` and `devops` to the Calico cluster.
 
 2. Deploy base policy.
 
@@ -25,21 +25,20 @@
 3. Deploy demo applications.
 
     ```bash
-    # deploy dev app stack
+    #deploy dev app stack
     kubectl apply -f demo/dev-stack/
     
-    # deploy acme app stack
+    #deploy acme app stack
     kubectl apply -f demo/acme-stack/
 
-    # deploy hipstershop app stack
-    kubectl apply -f demo/hipstershop/
-
-    # deploy storefront app stack
+    #deploy storefront app stack
     kubectl apply -f demo/storefront-stack/
 
-
-
+    #deploy hipstershop app stack
+    kubectl apply -f demo/hipstershop/
     ```
+
+   
 
 4. Deploy compliance reports which schedule as cronjob in every 15 mins.
 

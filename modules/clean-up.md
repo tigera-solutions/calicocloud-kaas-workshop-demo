@@ -61,8 +61,8 @@
     ```
 
     ```bash
-    # Delete IAM role created for this workshop.
-    IAM_ROLE='your-demo-admin'
+    # Delete IAM role created for this workshop. IAM_ROLE was set in previous step as calicocloud-workshop-admin.
+    IAM_ROLE='calicocloud-workshop-admin'
     ADMIN_POLICY_ARN=$(aws iam list-policies --query 'Policies[?PolicyName==`AdministratorAccess`].Arn' --output text)
     aws iam detach-role-policy --role-name $IAM_ROLE --policy-arn $ADMIN_POLICY_ARN
     # if this command fails, you can remove the role via AWS Console once you delete the Cloud9 instance

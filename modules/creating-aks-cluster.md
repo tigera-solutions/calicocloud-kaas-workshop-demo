@@ -2,7 +2,6 @@
 
 The following guide is based upon the repos from [lastcoolnameleft](https://github.com/lastcoolnameleft/kubernetes-workshop/blob/master/create-aks-cluster.md) and [Azure Kubernetes Hackfest](https://github.com/Azure/kubernetes-hackfest/tree/master/labs/create-aks-cluster#readme).
 
-* * *
 
 **Goal:** Create AKS cluster.
 
@@ -55,18 +54,18 @@ Follow the prequisite steps if you need to verify your Azure subscription.
 	
 2. Create an Azure Resource Group in your chosen region. We will use East US in this example.
 
-   ```bash
-   # Set Resource Group Name using the unique suffix
-   RGNAME=aks-rg-$UNIQUE_SUFFIX
-   # Persist for Later Sessions in Case of Timeout
-   echo export RGNAME=$RGNAME >> ~/.bashrc
-   # Set Region (Location)
-   LOCATION=eastus
-   # Persist for Later Sessions in Case of Timeout
-   echo export LOCATION=eastus >> ~/.bashrc
-   # Create Resource Group
-   az group create -n $RGNAME -l $LOCATION
-   ```
+    ```bash
+    # Set Resource Group Name using the unique suffix
+    RGNAME=aks-rg-$UNIQUE_SUFFIX
+    # Persist for Later Sessions in Case of Timeout
+    echo export RGNAME=$RGNAME >> ~/.bashrc
+    # Set Region (Location)
+    LOCATION=eastus
+    # Persist for Later Sessions in Case of Timeout
+    echo export LOCATION=eastus >> ~/.bashrc
+    # Create Resource Group
+    az group create -n $RGNAME -l $LOCATION
+    ```
     
 3.  Create your AKS cluster in the resource group created in step 2 with 3 nodes. We will check for a recent version of kubnernetes before proceeding. You will use the Service Principal information from the prerequisite tasks.
     
@@ -162,7 +161,6 @@ Follow the prequisite steps if you need to verify your Azure subscription.
 
     cd calicocloud-kaas-workshop-demo
     ```
-
 
 --- 
 ## Next steps

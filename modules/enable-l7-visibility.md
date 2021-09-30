@@ -1,4 +1,4 @@
-# # Observability: Enabling L7 Visibility 
+# # Observability: L7 Visibility 
 
 **Goal:** Enable L7/HTTP flow logs in hipstershop with Calico cloud.
 
@@ -7,7 +7,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 
 ## Steps
 
-1. *[Optional]* Only when your cluster is `AKS`.
+## *[Optional]* Only when your cluster is `AKS`.
 
    ```bash
    kubectl patch installation default --type=merge -p '{"spec": {"kubernetesProvider": "AKS"}}'
@@ -15,15 +15,14 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
    kubectl patch installation default --type=merge -p '{"spec": {"flexVolumePath": "/etc/kubernetes/volumeplugins/"}}'
    ```
 
-
-2. In the namespace of the pod that you want to monitor, create a Kubernetes pull secret for accessing Calico Enterprise images. 
+1. In the namespace of the pod that you want to monitor, create a Kubernetes pull secret for accessing Calico Enterprise images. 
     ```bash
    kubectl get secret tigera-pull-secret --namespace=calico-system -o yaml | \
    grep -v '^[[:space:]]*namespace:[[:space:]]*calico-system' | \
    kubectl apply --namespace=hipstershop -f -
    ```
 
-3. Create the Envoy configmap with `envoy-config.yaml` in l7-visibility folder
+2. Create the Envoy configmap with `envoy-config.yaml` in l7-visibility folder
 
     ```bash
     
@@ -32,35 +31,27 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 
     ```
     
-4. Configure Felix for log data collection, we should patch it before.
+3. Configure Felix for log data collection, we should already patch it before.
     
     ```bash
     kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"policySyncPathPrefix":"/var/run/nodeagent"}}'
     ```
 
 
-5. Apply l7-collector-daemonset.yaml and ensure that l7-collector and envoy-proxy containers are in Running state. You can also edit the `LOG_LEVEL` with different options: Trace, Debug, Info, Warning, Error, Fatal and Panic.
+4. Apply l7-collector-daemonset.yaml and ensure that l7-collector and envoy-proxy containers are in Running state. You can also edit the `LOG_LEVEL` with different options: Trace, Debug, Info, Warning, Error, Fatal and Panic.
 
    ```bash
    kubectl apply -f demo/l7-visibility/l7-collector-daemonset.yaml
    ```
 
-6. Select traffic for L7 log collection
+5. Select traffic for L7 log collection
 
    ```bash
    #Annotate the services you wish to collect L7 logs as shown. Use hipstershop as example
    kubectl annotate svc --all -n hipstershop projectcalico.org/l7-logging=true
    ```
-
-
-7. Test your installation
-   ```bash
-   kubectl label svc frontend-external app=frontend -n hipstershop 
-   TEST_IP=$(kubectl -n hipstershop get svc  -l app=frontend  -ojsonpath='{.items[0].status.loadBalancer.ingress[0].hostname}')
-   curl $TEST_IP | grep http
-   ```
-  
-   Now view the L7 logs in Kibana by selecting the tigera_secure_ee_l7 index pattern. You should see the relevant L7 data from your request recorded.    
+   
+  Now view the L7 logs in Kibana by selecting the tigera_secure_ee_l7 index pattern. You should also see the relevant HTTP log from service graph.    
 
 [Next -> Dynamic packet capture](modules/dynamic-packet-capture.md) 
 

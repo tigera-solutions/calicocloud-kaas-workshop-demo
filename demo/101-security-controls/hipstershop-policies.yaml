@@ -2,10 +2,10 @@
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.adservice
+  name: devops.adservice
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 100
   selector: app == "adservice"
   ingress:
@@ -31,10 +31,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.cartservice
+  name: devops.cartservice
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 110
   selector: app == "cartservice"
   ingress:
@@ -74,10 +74,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.checkoutservice
+  name: devops.checkoutservice
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 120
   selector: app == "checkoutservice"
   ingress:
@@ -145,10 +145,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.currencyservice
+  name: devops.currencyservice
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 130
   selector: app == "currencyservice"
   ingress:
@@ -173,10 +173,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.emailservice
+  name: devops.emailservice
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 140
   selector: app == "emailservice"
   ingress:
@@ -194,10 +194,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.frontend
+  name: devops.frontend
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 150
   selector: app == "frontend"
   ingress:
@@ -291,10 +291,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.loadgenerator
+  name: devops.loadgenerator
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 160
   selector: app == "loadgenerator"
   egress:
@@ -302,7 +302,7 @@ spec:
       protocol: TCP
       source: {}
       destination:
-        selector: projectcalico.org/namespace == "default"
+        selector: projectcalico.org/namespace == "hipstershop"
         ports:
           - '80'
     - action: Allow
@@ -319,10 +319,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.paymentservice
+  name: devops.paymentservice
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 170
   selector: app == "paymentservice"
   ingress:
@@ -340,10 +340,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.productcatalogservice
+  name: devops.productcatalogservice
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 180
   selector: app == "productcatalogservice"
   ingress:
@@ -392,10 +392,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.recommendationservice
+  name: devops.recommendationservice
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 190
   selector: app == "recommendationservice"
   ingress:
@@ -428,10 +428,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.redis-cart
+  name: devops.redis-cart
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 200
   selector: app == "redis-cart"
   ingress:
@@ -449,10 +449,10 @@ spec:
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
-  name: default.shippingservice
+  name: devops.shippingservice
   namespace: hipstershop
 spec:
-  tier: default
+  tier: devops
   order: 210
   selector: app == "shippingservice"
   ingress:

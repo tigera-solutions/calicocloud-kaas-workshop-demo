@@ -17,6 +17,7 @@ The intent of this workshop is to educate any person working with K8S cluster in
   - [AKS: using Azure SDK to create an compatible AKS cluster](modules/creating-aks-cluster.md)
   - [GKE: using gcloud SDK to create an compatible GKE cluster](modules/creating-gke-cluster.md)
   - [WIP][RKE: using Rancher SDK to create an compatible RKE cluster](modules/creating-rke-cluster.md)
+  - [WIP][RKE: using Rancher SDK to create an compatible RKE cluster](modules/creating-rke-cluster.md)
   - [WIP][Kubeadm: using Kubeadm to create an compatible self-managed cluster](modules/creating-kubeadm-cluster.md)
 
 ## STEP 2 - Sign up in Calicocloud  
@@ -47,33 +48,32 @@ In this workshop we are going to focus on these main use cases:
 
 ## Charpter A - Beginner
 
-- [East-West controls-App service control](modules/app-service-control.md)
-- [East-West controls-Pod microsegmentation](modules/pod-microsegmentation.md)
-- [North-South Controls-DNS egress control](modules/dns-egress-controls.md)
-- [North-South Controls-Global threadfeed](modules/global-threadfeed.md)
+- [East-West: controls-App service control](modules/app-service-control.md)
+- [East-West: controls-Pod microsegmentation](modules/pod-microsegmentation.md)
+- [North-South: Controls-DNS egress control](modules/dns-egress-controls.md)
+- [North-South: Controls-Global threadfeed](modules/global-threadfeed.md)
 
-- [Observability-Manager UI](modules/manager-ui.md)
-- [Observability-Kibana dashboard](modules/kibana-dashboard.md)
-- [Observability-L7 visibility](modules/enable-l7-visibility.md) 
+- [Observability: Calico Manager UI](modules/manager-ui.md)
+- [Observability: Kibana dashboard](modules/kibana-dashboard.md)
+- [Observability: L7 visibility](modules/enable-l7-visibility.md) 
 
 ## Charpter B - Intermediate
 
-- [Observability-Dynamic packet capture](modules/dynamic-packet-capture.md) 
-- [IDS/IPS](modules/intrusion-detection-protection.md)
-- [Host protection](modules/host-protection.md)
-- [Compliance](modules/compliance-reports.md) 
-- [Encryption](modules/encryption.md) 
-- [WIP][eBPF](modules/ebpf.md)
+- [Observability: Dynamic packet capture](modules/dynamic-packet-capture.md) 
+- [Security: IDS/IPS](modules/intrusion-detection-protection.md)
+- [Security: Compliance reports](modules/compliance-reports.md) 
+- [WIP][Security: Host protection](modules/host-protection.md)
+- [WIP][Security: Wireguard Encryption](modules/encryption.md) 
+- [WIP][Change to eBPF dataplane](modules/ebpf-dataplane.md)
 
 
 ## Charpter C - Advanced
-
+Coming soon...
 - [WIP][Performance Hotspots](modules/performance-hotspots.md) 
 - [WIP][VM Microsegmentation](modules/pmicrosegmentation.md)
 - [WIP][Egress Gateway](modules/egress-gateway.md) 
 - [WIP][WAF](modules/waf.md)
 - [WIP][DPI](modules/dpi.md) 
-
 
 
 ## STEP 6 - Clean up your test environment

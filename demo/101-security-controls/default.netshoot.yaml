@@ -1,0 +1,12 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: default.netshoot
+  namespace: dev
+spec:
+  tier: default
+  order: 1000
+  selector: app == "netshoot"
+  serviceAccountSelector: ''
+  types:
+    - Egress
