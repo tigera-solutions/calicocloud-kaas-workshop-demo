@@ -58,6 +58,6 @@
     ```
     
 
-[Next -> Global threadfeed](.../modules/global-threadfeed.md)
+[Next -> Global threadfeed](../modules/global-threadfeed.md)
 
 [Menu](../README.md)
