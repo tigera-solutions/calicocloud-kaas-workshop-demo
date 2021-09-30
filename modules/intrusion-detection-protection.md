@@ -39,6 +39,7 @@
     ```bash
     # try to ping any of the IPs in from the feodo tracker list, use 1.234.20.244 as example IP if your jq doesn't work
     FIP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq -r '.spec.nets[0]' | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
+    
     kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $FIP"
     ```
 
@@ -292,7 +293,7 @@ Use official documentation for the most recent [configuration instructions](http
 5. After a few minutes we can see the Alert generated in the Web UI
 
    ![anomaly detection alerts](../img/anomaly-detection-alerts.png)
-   
+
 
 [Next -> Compliance reports](.../modules/compliance-reports.md) 
 
