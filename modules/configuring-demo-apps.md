@@ -69,7 +69,7 @@
 
     The output looks like as below:
 
-    ```text
+    ```bash
     NAME                      CREATED AT 
     cis-results               2021-09-30T15:42:33Z
     cluster-inventory         2021-09-30T15:42:33Z

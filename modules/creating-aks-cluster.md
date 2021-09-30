@@ -142,7 +142,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
 	kubectl get nodes
 	```
     
-	```text
+	```bash
 	NAME                                STATUS   ROLES   AGE     VERSION
     aks-nodepool1-45823991-vmss000000   Ready    agent   2m22s   v1.21.1
     aks-nodepool1-45823991-vmss000001   Ready    agent   2m24s   v1.21.1

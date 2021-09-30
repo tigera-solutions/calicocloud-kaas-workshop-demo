@@ -10,6 +10,9 @@
 
     ```bash
     kubectl get globalthreatfeeds
+    ```
+
+    ```bash
     NAME                           CREATED AT
     alienvault.domainthreatfeeds   2021-09-28T15:01:33Z
     alienvault.ipthreatfeeds       2021-09-28T15:01:33Z
@@ -21,8 +24,9 @@
     kubectl get globalthreatfeeds alienvault.domainthreatfeeds -ojson | jq -r '.spec.pull.http.url'
 
     kubectl get globalthreatfeeds alienvault.ipthreatfeeds -ojson | jq -r '.spec.pull.http.url'
+    ```
 
-    ```text
+    ```bash
     https://installer.calicocloud.io/feeds/v1/domains
 
     https://installer.calicocloud.io/feeds/v1/ips
@@ -40,7 +44,7 @@
 
     ```
 
-    ```text
+    ```bash
     NAME                           CREATED AT
     alienvault.domainthreatfeeds   2021-09-28T15:01:33Z
     alienvault.ipthreatfeeds       2021-09-28T15:01:33Z
