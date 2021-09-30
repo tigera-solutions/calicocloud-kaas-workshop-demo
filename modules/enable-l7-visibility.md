@@ -27,14 +27,18 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 3. Configure Felix for log data collection, we should already patch it before.
     
     ```bash
+    
     kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"policySyncPathPrefix":"/var/run/nodeagent"}}'
     ```
 
 
-4. Apply l7-collector-daemonset.yaml and ensure that l7-collector and envoy-proxy containers are in Running state. You can also edit the `LOG_LEVEL` with different options: Trace, Debug, Info, Warning, Error, Fatal and Panic.
+4. Apply l7-collector-daemonset.yaml and ensure that l7-collector and envoy-proxy containers are in Running state. You can also edit the `LOG_LEVEL` with different options: Trace, Debug, Info, Warning, Error, Fatal and Panic. Enable L7 log collection daemonset mode in Felix by setting Felix configuration variable tproxyMode to Enabled or by setting felix environment variable FELIX_TPROXYMODE to Enabled.
 
    ```bash
    kubectl apply -f demo/l7-visibility/l7-collector-daemonset.yaml
+
+   kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"tproxyMode":"Enabled"}}'
+
    ```
 
 5. Select traffic for L7 log collection
