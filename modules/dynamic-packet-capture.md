@@ -6,7 +6,6 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
 For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibility/packetcapture) documentaiton.
 
 ## Steps
-
 1. Capture all packet for nginx pods.
 
   a. Configure packet capture. Navigate to `demo/packet-capture` and review YAML manifests that represent packet capture definition. Each packet capture is configured by deploing a `PacketCapture` resource that targets endpoints using `selector` and `labels`.
