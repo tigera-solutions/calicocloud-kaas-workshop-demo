@@ -255,7 +255,7 @@ Use official documentation for the most recent [configuration instructions](http
 
    Validate the change by cat the variable
     ```bash
-    cat ./demo/90-anomaly-detection/ad-jobs-deployment-managed.yaml |grep -B 2 -A 0 $CALICOCLUSTERNAME
+    cat ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml |grep -B 2 -A 0 $CALICOCLUSTERNAME
     ```
 
    Output will be like:
