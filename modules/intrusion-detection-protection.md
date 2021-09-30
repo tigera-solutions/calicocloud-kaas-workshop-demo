@@ -37,9 +37,9 @@
     Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods, including embedded alerts for threatfeeds.
 
     ```bash
-    # try to ping any of the IPs in from the feodo tracker list, use 1.234.20.244 as example IP if your jq doesn't work
+    # try to ping any of the IPs in from the feodo tracker list, use 1.234.20.244 as example IP
     FIP=$(kubectl get globalnetworkset threatfeed.feodo-tracker -ojson | jq -r '.spec.nets[0]' | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
-    
+
     kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $FIP"
     ```
 
