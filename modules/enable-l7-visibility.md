@@ -7,13 +7,6 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 
 ## Steps
 
-## *[Optional]* Only when your cluster is `AKS`.
-
-   ```bash
-   kubectl patch installation default --type=merge -p '{"spec": {"kubernetesProvider": "AKS"}}'
-
-   kubectl patch installation default --type=merge -p '{"spec": {"flexVolumePath": "/etc/kubernetes/volumeplugins/"}}'
-   ```
 
 1. In the namespace of the pod that you want to monitor, create a Kubernetes pull secret for accessing Calico Enterprise images. 
     ```bash
