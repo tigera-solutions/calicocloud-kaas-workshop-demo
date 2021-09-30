@@ -191,7 +191,7 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     Connection to tigera-internal-backend.tigera-internal 3306 port [tcp/mysql] succeeded!
     ```
 
-  Head to `Alerts` view in the Enterprise Manager UI to view the related alerts. Note the alerts can take a few minutes to generate. 
+    Head to `Alerts` view in the Enterprise Manager UI to view the related alerts. Note the alerts can take a few minutes to generate. 
     
     ![Honey Pod alerts](../img/honey-pod-alerts.png)
 
