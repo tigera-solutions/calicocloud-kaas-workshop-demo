@@ -58,7 +58,7 @@
 2. deploy the quarantine networkpolicy to protect your cluster
 
    ```bash
-   kubectl apply -f demo/101-security-controls/security.quarantine.yaml
+   kubectl apply -f demo/attacker-rogue/security.quarantine.yaml
    #confirm the quarantine policy from policy dashboard
    ```
 
@@ -295,6 +295,6 @@ Use official documentation for the most recent [configuration instructions](http
    ![anomaly detection alerts](../img/anomaly-detection-alerts.png)
 
 
-[Next -> Compliance reports](.../modules/compliance-reports.md) 
+[Next -> Compliance reports](../modules/compliance-reports.md) 
 
 [Menu](../README.md)
