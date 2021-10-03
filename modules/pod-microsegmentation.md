@@ -20,7 +20,7 @@
     kubectl get pods -n storefront --show-labels 
 
     ###apply the zone-based policy, which should deploy before.
-    kubectl apply -f demo/setup/storefront/FirewallZonesPolicies.yaml
+    kubectl apply -f demo/app-control/FirewallZonesPolicies.yaml
 
     ```
 
