@@ -40,8 +40,6 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 
    kubectl apply -f demo/l7-visibility/l7-collector-daemonset.yaml
 
-   
-
    ```
 
 5. Select traffic for L7 log collection
@@ -51,7 +49,16 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
    kubectl annotate svc --all -n hipstershop projectcalico.org/l7-logging=true
    ```
    
+6. *[Optional]* restart the pods in `hipstershop` if you don't see l7 logs right away.    
+
+    ```bash
+    kubectl delete pods --all -n hipstershop
+    ``` 
+
   Now view the L7 logs in Kibana by selecting the tigera_secure_ee_l7 index pattern. You should also see the relevant HTTP log from service graph.    
+
+   ![service graph HTTP log](../img/service-graph-l7.png)
+   
 
 [Next -> Dynamic packet capture](../modules/dynamic-packet-capture.md) 
 

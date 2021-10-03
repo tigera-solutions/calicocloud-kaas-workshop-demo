@@ -75,9 +75,15 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    cd calicocloud-kaas-workshop-demo
    ```
 
+5. *[Optional]* scale your node group as desired count.    
+
+    ```bash
+    gcloud container clusters resize $CLUSTERNAME --zone=$LOCATION --num-nodes=3
+    ``` 
+
 ## Next steps
 
-You should now have a Kubernetes cluster running with 2 nodes. You do not see the master servers for the cluster because these are managed by GCP. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
+You should now have a Kubernetes cluster running with 3 nodes. You do not see the master servers for the cluster because these are managed by GCP. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
 <br>    
 
     

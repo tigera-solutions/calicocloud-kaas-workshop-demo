@@ -49,7 +49,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_LEVEL
-          value: "Panic"
+          value: "Trace"
         - name: FELIX_DIAL_TARGET
           value: "/var/run/felix/nodeagent/socket"
         volumeMounts:

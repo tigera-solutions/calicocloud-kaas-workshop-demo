@@ -162,6 +162,12 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     cd calicocloud-kaas-workshop-demo
     ```
 
+8. *[Optional]* scale your node group as desired count.    
+
+    ```bash
+    az aks nodepool scale --name <your-node-pool> --cluster-name $CLUSTERNAME -g $RGNAME --node-count 3
+    ``` 
+
 --- 
 ## Next steps
 

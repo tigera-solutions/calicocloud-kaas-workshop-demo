@@ -28,7 +28,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
 
    ```bash
    # get pcap files
-   calicoctl captured-packets copy dev-capture-nginx --namespace dev
+   ./calicoctl captured-packets copy dev-capture-nginx --namespace dev
 
    ls dev-nginx*
    # view *.pcap content
@@ -63,7 +63,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
 
    ```bash
    # get pcap files
-   calicoctl captured-packets copy hipstershop-capture-productcatalogservice --namespace hipstershop
+   ./calicoctl captured-packets copy hipstershop-capture-productcatalogservice --namespace hipstershop
 
    ls productcatalog*.pcap
    # view *.pcap content
