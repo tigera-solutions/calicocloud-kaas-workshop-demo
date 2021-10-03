@@ -38,7 +38,6 @@
     ```bash
     # deploy feodo and snort threatfeeds
     kubectl apply -f demo/threatfeeds/feodo-tracker.yaml
-    kubectl apply -f demo/threatfeeds/snort-ip-block-list.yaml
     kubectl apply -f demo/threatfeeds/feodo-block-policy.yaml
 
     # Confirm and check the tracker threatfeed
@@ -51,7 +50,6 @@
     alienvault.domainthreatfeeds   2021-09-28T15:01:33Z
     alienvault.ipthreatfeeds       2021-09-28T15:01:33Z
     feodo-tracker                  2021-09-28T17:32:13Z
-    snort-ip-block-list            2021-09-28T17:35:23Z
     ```
     
 2. Generate alerts by accessing the IP from `feodo-tracker` list. 
@@ -76,7 +74,7 @@
     kubectl get globalthreatfeeds 
 
     ```
-    
+
 
 4. Generate alerts by accessing the IP from `tor-bulk-exit` list. 
 
@@ -85,6 +83,11 @@
     TIP=$(kubectl get globalnetworkset threatfeed.tor-bulk-exit-list -ojson | jq -r '.spec.nets[0]' | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
     kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $TIP"
     ```
+
+5. Remove tor list for avoiding too many alerts from `acme`.
+   ```bash
+   kubectl delete -f demo/threatfeeds/tor-bulk-exit-list.yaml
+   ```
 
 [Next -> Manager UI](../modules/manager-ui.md)
 
