@@ -31,7 +31,8 @@
     ```bash
     # test connectivity from dev namespace to the Internet, the expected result is "HTTP/1.1 200 OK"
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -sI http://www.google.com 2>/dev/null | grep -i http'
-
+    
+    # test connectivity from default namespace to the Internet, the expected result is "HTTP/1.1 200 OK"
     kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://www.google.com 2>/dev/null | grep -i http'
     
     ```
