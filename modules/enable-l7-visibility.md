@@ -24,7 +24,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 
     ```
     
-3. Configure Felix for log data collection, we should already patch it before.
+3. Configure Felix for log data collection.
     
     ```bash
     
@@ -37,7 +37,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
    ```bash
 
    kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"tproxyMode":"Enabled"}}'
-   
+
    kubectl apply -f demo/l7-visibility/l7-collector-daemonset.yaml
 
    
