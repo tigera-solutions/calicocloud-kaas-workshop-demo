@@ -1,9 +1,9 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security-team.pci-whitelist
+  name: security.pci-whitelist
 spec:
-  tier: security-team
+  tier: security
   order: 300
   selector: projectcalico.org/namespace != "acme"
   ingress:

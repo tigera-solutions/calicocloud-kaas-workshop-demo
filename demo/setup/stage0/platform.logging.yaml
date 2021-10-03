@@ -1,13 +1,11 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: platform.allow-logging
+  name: platform.logging
 spec:
   tier: platform
-  order: 20
+  order: 0
   selector: app == "logging"
-  namespaceSelector: ''
-  serviceAccountSelector: ''
   ingress:
     - action: Allow
       protocol: TCP

@@ -4,7 +4,7 @@ metadata:
   name: security.pass
 spec:
   tier: security
-  order: 300
+  order: 400
   selector: ''
   namespaceSelector: ''
   serviceAccountSelector: ''

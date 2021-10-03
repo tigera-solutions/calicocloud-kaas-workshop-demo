@@ -9,8 +9,8 @@ spec:
   endpoints:
     namespaces: 
       names:
-        ["storefront", "acme"]
-  schedule: '*/15 * * * *'
+        ["storefront","acme","hipstershop"]
+  schedule: 0 0 * * *
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
@@ -23,8 +23,8 @@ spec:
   endpoints:
     namespaces:
       names:
-        ["storefront", "acme"]
-  schedule: '*/15 * * * *'
+        ["storefront","acme","hipstershop"]
+  schedule: 0 0 * * *
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
@@ -37,5 +37,5 @@ spec:
   endpoints:
     namespaces: 
       names:
-        ["storefront", "acme"]
-  schedule: '*/15 * * * *'
+        ["storefront","acme","hipstershop"]
+  schedule: 0 0 * * *

@@ -9,8 +9,8 @@
 
     a. Create logging policy for storefront application in platform tier 
     ```bash
-    ###apply the logging policy
-    kubectl apply -f demo/101-security-controls/platform.allow-logging.yaml
+    ###apply the logging policy, which should deploy before.
+    kubectl apply -f demo/setup/stage0/platform.logging.yaml
     ```
 
     
@@ -19,8 +19,8 @@
     ###Check each mircoservice have proper zone-based label
     kubectl get pods -n storefront --show-labels 
 
-    ###apply the zone-based policy
-    kubectl apply -f demo/101-security-controls/storefront-FirewallZonesPolicies.yaml
+    ###apply the zone-based policy, which should deploy before.
+    kubectl apply -f demo/setup/storefront/FirewallZonesPolicies.yaml
 
     ```
 

@@ -3,10 +3,10 @@
 1. Delete application stack to clean up any `loadbalancer` services.
 
     ```bash
-    kubectl delete -f demo/dev-stack/
-    kubectl delete -f demo/acme-stack/
-    kubectl delete -f demo/storefront-stack
-    kubectl delete -f demo/hipstershop/
+    kubectl delete -f demo/setup/dev
+    kubectl delete -f demo/setup/acme
+    kubectl delete -f demo/setup/storefront
+    kubectl delete -f demo/setup/hipstershop/
     ```
 
 2. Remove calicocloud components from your cluster.
@@ -22,12 +22,12 @@
 
    - Run the script and read the help to determine if you need to specify any flags 
    ```bash
-   ./downgrade.sh --help.
+   ./downgrade.sh --help
    ```
 
    - Run the script with any needed flags, for example: 
    ```bash
-   ./downgrade.sh --remove-prometheus
+   ./downgrade.sh --remove-prometheus --remove-all-calico-policy
    
    ```   
 
@@ -51,6 +51,7 @@
     ```bash
     #Delete EKS cluster.
     eksctl get cluster 
+    
     eksctl delete cluster --name <your cluster name>
     ```
 
@@ -72,4 +73,12 @@
 
    c. For GKE cluster, please follow the steps below.  
 
+   ```bash
+    #Get GKE cluster name.
+    gcloud container clusters list --region $REGION    
+
+    gcloud container clusters delete <your cluster name> --region $REGION 
+    ```
+
+   [Menu](../README.md)
    

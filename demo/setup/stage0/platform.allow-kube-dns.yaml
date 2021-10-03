@@ -1,18 +1,16 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: devops.pass
+  name: platform.allow-kube-dns
 spec:
-  tier: devops
-  order: 1000
-  selector: ''
-  namespaceSelector: ''
-  serviceAccountSelector: ''
-  ingress:
-    - action: Pass
-      source: {}
-      destination: {}
+  tier: platform
+  order: 200
+  selector: projectcalico.org/namespace != "acme"
   egress:
+    - action: Allow
+      source: {}
+      destination:
+        selector: k8s-app == "kube-dns"
     - action: Pass
       source: {}
       destination: {}
@@ -20,5 +18,4 @@ spec:
   applyOnForward: false
   preDNAT: false
   types:
-    - Ingress
     - Egress

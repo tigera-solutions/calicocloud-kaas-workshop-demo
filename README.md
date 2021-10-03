@@ -17,7 +17,7 @@ The intent of this workshop is to educate any person working with K8S cluster in
   - [AKS: using Azure SDK to create an compatible AKS cluster](modules/creating-aks-cluster.md)
   - [GKE: using gcloud SDK to create an compatible GKE cluster](modules/creating-gke-cluster.md)
   - [WIP][RKE: using Rancher SDK to create an compatible RKE cluster](modules/creating-rke-cluster.md)
-  - [WIP][RKE: using Rancher SDK to create an compatible RKE cluster](modules/creating-rke-cluster.md)
+  - [WIP][OCP: using Openshift to create an compatible OCP cluster](modules/creating-rke-cluster.md)
   - [WIP][Kubeadm: using Kubeadm to create an compatible self-managed cluster](modules/creating-kubeadm-cluster.md)
 
 ## STEP 2 - Sign up in Calicocloud  

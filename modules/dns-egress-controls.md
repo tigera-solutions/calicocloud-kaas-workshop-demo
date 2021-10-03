@@ -10,7 +10,7 @@
 
     ```bash
     # deploy dns policy
-    kubectl apply -f demo/egress-access-controls/dns-policy.yaml
+    kubectl apply -f demo/dns-egress-control/dns-policy.yaml
     ```
 
     ```bash
@@ -36,9 +36,9 @@
 
     ```bash
     # deploy network set
-    kubectl apply -f demo/egress-access-controls/netset.external-apis.yaml
+    kubectl apply -f demo/dns-egress-control/netset.external-apis.yaml
     # deploy DNS policy using the network set
-    kubectl apply -f demo/egress-access-controls/dns-policy.netset.yaml
+    kubectl apply -f demo/dns-egress-control/dns-policy.netset.yaml
     ```
 
     ```bash

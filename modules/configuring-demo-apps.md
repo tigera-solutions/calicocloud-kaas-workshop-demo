@@ -9,38 +9,38 @@
     We are going to deploy some policies into policy tier to take advantage of hierarcical policy management.
 
     ```bash
-    kubectl apply -f demo/tiers
+    kubectl apply -f demo/setup/tiers/
     ```
-
-    This will add tiers `security`, `platform` and `devops` to the Calico cluster.
+    This will add tiers `security`, and `platform` to the Calico cluster.
+    
 
 2. Deploy base policy.
 
-    In order to explicitly allow workloads to connect to the Kubernetes DNS component, we are going to implement a policy that controls such traffic.
+    In order to explicitly allow workloads to connect to the Kubernetes DNS component, we are going to implement a policy that controls such traffic. We also deploy allow policy for logging and contraint for PCI compliance.
 
     ```bash
-    kubectl apply -f demo/101-security-controls/platform.allow-kube-dns.yaml
+    kubectl apply -f demo/setup/stage0/
     ```
 
 3. Deploy demo applications.
 
     ```bash
     #deploy dev app stack
-    kubectl apply -f demo/dev-stack/
+    kubectl apply -f demo/setup/dev
     
     #deploy acme app stack
-    kubectl apply -f demo/acme-stack/
+    kubectl apply -f demo/setup/acme
 
     #deploy storefront app stack
-    kubectl apply -f demo/storefront-stack/
+    kubectl apply -f demo/setup/storefront
 
     #deploy hipstershop app stack
-    kubectl apply -f demo/hipstershop/
+    kubectl apply -f demo/setup/hipstershop
     ```
 
    
 
-4. Deploy compliance reports which schedule as cronjob in every 15 mins.
+4. Deploy compliance reports which schedule as cronjob in every hour of 15th mins.
 
     >The compliance reports will be needed for one of a later lab, is cronjob in your cluster, you can change the schedule by edit it.
 

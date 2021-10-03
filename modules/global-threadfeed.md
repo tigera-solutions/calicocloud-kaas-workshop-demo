@@ -76,6 +76,7 @@
     kubectl get globalthreatfeeds 
 
     ```
+    
 
 4. Generate alerts by accessing the IP from `tor-bulk-exit` list. 
 

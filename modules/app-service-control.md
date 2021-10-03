@@ -41,7 +41,7 @@
     >Staged `default-deny` policy is a good way of catching any traffic that is not explicitly allowed by a policy without explicitly blocking it.
 
     ```bash
-    kubectl apply -f demo/101-security-controls/staged.default-deny.yaml
+    kubectl apply -f demo/app-control/staged.default-deny.yaml
     ```
 
     You should be able to view the potential affect of the staged `default-deny` policy if you navigate to the `Dashboard` view in the Enterprise Manager UI and look at the `Packets by Policy` histogram.
@@ -56,9 +56,8 @@
 3. Apply network policies to your application with explicity allow and deny control.
 
     ```bash
-    # deploy devops policies
-    kubectl apply -f demo/101-security-controls/devops.centos.yaml
-    kubectl apply -f demo/101-security-controls/devops.pass.yaml
+    # deploy policy to control centos ingress and egress
+    kubectl apply -f demo/app-control/default.centos.yaml
 
     ```
 
@@ -106,7 +105,7 @@
     a. Deploy egress policy between two namespaces `dev` and `hipstershop`.
 
     ```bash
-    kubectl apply -f demo/101-security-controls/platform.centos-to-frontend.yaml
+    kubectl apply -f demo/app-control/platform.centos-to-frontend.yaml
     ```
 
     b. Test connectivity between `dev/centos` pod and `hipstershop/frontend` service again, should be allowed now.
