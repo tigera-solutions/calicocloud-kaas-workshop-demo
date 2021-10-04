@@ -10,7 +10,7 @@ spec:
     namespaces: 
       names:
         ["storefront","acme","hipstershop"]
-  schedule: 0 0 * * *
+  schedule: '0 */6 * * *'
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
@@ -24,7 +24,7 @@ spec:
     namespaces:
       names:
         ["storefront","acme","hipstershop"]
-  schedule: 0 0 * * *
+  schedule: '0 */6 * * *'
 ---
 apiVersion: projectcalico.org/v3
 kind: GlobalReport
@@ -38,4 +38,4 @@ spec:
     namespaces: 
       names:
         ["storefront","acme","hipstershop"]
-  schedule: 0 0 * * *
+  schedule: '0 */6 * * *'
