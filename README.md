@@ -72,8 +72,8 @@ Coming soon...
 - [WIP][Performance Hotspots](modules/performance-hotspots.md) 
 - [WIP][VM Microsegmentation](modules/pmicrosegmentation.md)
 - [WIP][Egress Gateway](modules/egress-gateway.md) 
-- [WIP][WAF](modules/waf.md)
 - [WIP][DPI](modules/dpi.md) 
+- [WIP][WAF](modules/waf.md)
 
 
 ## STEP 6 - Clean up your test environment
