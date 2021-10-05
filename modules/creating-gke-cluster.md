@@ -16,7 +16,7 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
 - Ensure you have installed the [Cloud SDK](https://cloud.google.com/sdk/docs/install)
 
 - Ensure you set up default gcloud settings using one of the following methods:
-
+   
    Using gcloud init, if you want to be walked through setting defaults.
    Using gcloud config, to individually set your project ID, zone, and region.
 
@@ -24,6 +24,25 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    gcloud init                                                                    
    Welcome! This command will take you through the configuration of gcloud.
    ```
+
+   Then be sure to authorize gcloud to access the Cloud Platform with your Google user credentials:
+
+   ```bash
+   gcloud auth login
+   ```
+
+   Next set a default compute region and compute zone:
+
+   ```bash
+   gcloud config set compute/region us-east1
+   ```
+
+   Set a default compute zone:
+
+   ```bash
+   gcloud config set compute/zone us-east1-b
+   ```
+
 
 - Export your gcloud settings for next steps: 
    ```bash

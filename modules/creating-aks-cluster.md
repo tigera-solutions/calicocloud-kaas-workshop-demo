@@ -111,6 +111,9 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     --kubernetes-version $K8SVERSION \
     --enable-managed-identity \
     --node-count 3 \
+    --enable-cluster-autoscaler \
+    --min-count 0 \
+    --max-count 3 \
     --network-plugin azure \
     --no-wait
     
