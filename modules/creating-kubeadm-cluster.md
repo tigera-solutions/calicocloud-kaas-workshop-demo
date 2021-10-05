@@ -128,7 +128,7 @@ The following guide is based upon the doc from Calico OSS [self-managed GCE k8s 
 
 ### Provisioning compute instances
 
-The compute instances in this lab will be provisioned using [Ubuntu Server](https://www.ubuntu.com/server) 18.04. We will have 1 master node + 2 worker node.
+The compute instances in this lab will be provisioned using [Ubuntu Server](https://www.ubuntu.com/server) 20.04. We will have 1 master node + 2 worker node.
 
 1. Create one controller node
 
@@ -137,7 +137,7 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
     --async \
     --boot-disk-size 200GB \
     --can-ip-forward \
-    --image-family ubuntu-1804-lts \
+    --image-family ubuntu-2004-lts \
     --image-project ubuntu-os-cloud \
     --machine-type e2-standard-4 \
     --private-network-ip 10.240.0.11 \
@@ -156,7 +156,7 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
     --async \
     --boot-disk-size 200GB \
     --can-ip-forward \
-    --image-family ubuntu-1804-lts \
+    --image-family ubuntu-2004-lts \
     --image-project ubuntu-os-cloud \
     --machine-type e2-standard-4 \
     --private-network-ip 10.240.0.2${i} \
