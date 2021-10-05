@@ -78,7 +78,7 @@ The following guide is based upon the doc from Calico OSS [self-managed GCE k8s 
    gcloud compute firewall-rules create calicocloud-vpc-allow-internal \
    --allow tcp,udp,icmp \
    --network calicocloud-vpc \
-   --source-ranges 10.240.0.0/24
+   --source-ranges 10.240.0.0/24,192.168.0.0/16
    ```
    > Calico overlay also require the 'ipip' protocol, which is out of scope for this workshop.
 
