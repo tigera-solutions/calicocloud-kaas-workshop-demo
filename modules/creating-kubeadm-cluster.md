@@ -102,9 +102,9 @@ The following guide is based upon the doc from Calico OSS [self-managed GCE k8s 
    > output
 
    ```bash
-   NAME                            NETWORK          DIRECTION  PRIORITY  ALLOW                 DENY  DISABLED
-   calicocloud-vpc-allow-external  calicocloud-vpc  INGRESS    1000      tcp:22,tcp:6443,icmp        False
-   calicocloud-vpc-allow-internal  calicocloud-vpc  INGRESS    1000      tcp,udp,icmp                False
+   NAME                            NETWORK          DIRECTION  PRIORITY  ALLOW                                       DENY  DISABLED
+   calicocloud-vpc-allow-external  calicocloud-vpc  INGRESS    1000      tcp:22,tcp:6443,tcp:8080,tcp:5443,udp,icmp        False
+   calicocloud-vpc-allow-internal  calicocloud-vpc  INGRESS    1000      tcp,udp,icmp                                      False
    ```
 
 4. Create a static IP address that will be attached to the external load balancer fronting the Kubernetes API Servers:
@@ -151,7 +151,7 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
 2. Create three compute instances which will host the Kubernetes worker nodes:   
 
    ```bash
-   for i in 0 1 1; do
+   for i in 0 1; do
    gcloud compute instances create worker-node${i} \
     --async \
     --boot-disk-size 200GB \
