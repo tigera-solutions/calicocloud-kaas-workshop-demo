@@ -76,7 +76,7 @@ The following guide is based upon the doc from Calico OSS [self-managed GCE k8s 
 
    ```bash
    gcloud compute firewall-rules create calicocloud-vpc-allow-internal \
-   --allow tcp,udp,icmp \
+   --allow tcp,udp,icmp,ipip \
    --network calicocloud-vpc \
    --source-ranges 10.240.0.0/24,192.168.0.0/16
    ```
@@ -86,7 +86,7 @@ The following guide is based upon the doc from Calico OSS [self-managed GCE k8s 
 
    ```bash
    gcloud compute firewall-rules create calicocloud-vpc-allow-external \
-   --allow tcp:22,tcp:6443,tcp:8080,tcp:5443,icmp \
+   --allow tcp,udp,icmp \
    --network calicocloud-vpc \
    --source-ranges 0.0.0.0/0
    ```
@@ -102,29 +102,10 @@ The following guide is based upon the doc from Calico OSS [self-managed GCE k8s 
    > output
 
    ```bash
-   NAME                            NETWORK          DIRECTION  PRIORITY  ALLOW                                       DENY  DISABLED
-   calicocloud-vpc-allow-external  calicocloud-vpc  INGRESS    1000      tcp:22,tcp:6443,tcp:8080,tcp:5443,udp,icmp        False
-   calicocloud-vpc-allow-internal  calicocloud-vpc  INGRESS    1000      tcp,udp,icmp                                      False
+   NAME                            NETWORK          DIRECTION  PRIORITY  ALLOW              DENY  DISABLED
+   calicocloud-vpc-allow-external  calicocloud-vpc  INGRESS    1000      tcp,udp,icmp             False
+   calicocloud-vpc-allow-internal  calicocloud-vpc  INGRESS    1000      tcp,udp,icmp,ipip        False
    ```
-
-4. Create a static IP address that will be attached to the external load balancer fronting the Kubernetes API Servers:
-
-   ```bash
-   gcloud compute addresses create calicocloud-vpc \
-   --region $(gcloud config get-value compute/region)
-
-   sleep 5
-
-   #Verify the calicocloud-vpc static IP address was created in your default compute region
-   gcloud compute addresses list --filter="name=('calicocloud-vpc')"
-   ```
-
-   > output
-   ```bash
-   NAME             ADDRESS/RANGE  TYPE      PURPOSE  NETWORK  REGION    SUBNET  STATUS
-   calicocloud-vpc  XX.XX.XX.XX    EXTERNAL                    us-east1          RESERVED
-   ```
-
 
 ### Provisioning compute instances
 
@@ -291,9 +272,19 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
 
    ```bash
    kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+   
+   
+   #Confirm the nodes are ready
+   kubectl get nodes
    ```
 
-
+   >Output is  
+   ```bash
+   NAME           STATUS   ROLES                  AGE   VERSION
+   master-node    Ready    control-plane,master   9h    v1.21.1
+   worker-node0   Ready    <none>                 9h    v1.21.1
+   worker-node1   Ready    <none>                 9h    v1.21.1
+   ```
 --- 
 ## Next steps
 

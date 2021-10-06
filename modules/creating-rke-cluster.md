@@ -5,36 +5,176 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
 
 **Goal:** Create RKE cluster.
 
-> This workshop uses RKE cluster with Linux containers. 
+> This workshop uses RKE cluster with Linux containers in GCP. 
 
 ## Prerequisite Tasks
 
+- Have docker enabled in Linux server
+
+- Start the Docker Runtime
+
+  ```bash
+  sudo systemctl start docker
+  sudo /usr/sbin/usermod -aG docker $USER
+  sudo chown $USER:docker /var/run/docker.sock
+  ```
+
+- Install Rancher Server 
+
+  ```bash
+  sudo docker run --privileged -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
+  ```
+
+- Find the container ID
+
+  ```bash
+  docker ps
+  ```
+- Find the bootstrap password required for login:
+
+  ```bash
+  docker logs <container ID> 2>&1 | grep "Bootstrap Password:"
+  ```
+- Login your Rancher server with IP and password, for example: 
+
+   https://<Rancher_Server_IP>/auth/login
 
 
 ## Steps
 
-1.  
-    
-	
-	
-2. 
-    
-3.  
-    
-4.  
+1. Install Docker on each VM instances
 
-5.  
-    
-6.  
-	
-7. 
+   ```bash
+   gcloud compute instances list --filter="tags.items=rancher"
+   ```
+   > Output as example with GCE instances.
+   ```bash
+   NAME             ZONE        MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP   EXTERNAL_IP    STATUS
+   rancher-master   us-east1-b  e2-standard-4               10.240.0.222  <EXTERNAL_A>   RUNNING
+   rancher-server   us-east1-b  e2-standard-4               10.240.0.111  <EXTERNAL_X>  RUNNING
+   rancher-worker0  us-east1-b  e2-standard-4               10.240.0.220  <EXTERNAL_B>   RUNNING
+   rancher-worker1  us-east1-b  e2-standard-4               10.240.0.221  <EXTERNAL_C>   RUNNING
+   ```
 
-8. 
+   ```bash
+   sudo su
+   apt-get update
+   apt-get install \
+   apt-transport-https \
+   ca-certificates \
+   curl \
+   gnupg \
+   lsb-release -y
+   ```
+
+> HERE
+
+2. Add Docker’s official GPG key and install Docker Engine on each instances:
+   
+   ```bash
+   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+   ```
+
+   ```bash
+   echo \
+   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   ```
+
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install docker-ce docker-ce-cli containerd.io
+   ```
+
+
+3. Rancher UI will generate a slightly different install script for control plane and workers:
+
+   a. For Master
+
+   ```bash
+   docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes 
+   -v /var/run:/var/run  rancher/rancher-agent:v2.6.0 --server https://RANCHER-SERVER.eu-west-1.compute.amazonaws.com 
+   --token VALUE --ca-checksum MD5HASH --etcd --controlplane --worker
+   ```
+
+   b. Worker
+   ```bash
+   docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes 
+   -v /var/run:/var/run  rancher/rancher-agent:v2.6.0 --server https://RANCHER-SERVER.eu-west-1.compute.amazonaws.com 
+   --token VALUE --ca-checksum MD5HASH --worker
+   ```
+
+4. Install kubectl binary with curl on Linux Rancher server:
+Might be worth installing the 'kubectl' utility, but this alone won't get the node/pod outputs: <br/>
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/ <br/>
+<br/>
+
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux <br/>
+<br/>
+Download the latest release with the command:
+```
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+```
+
+Validate the binary (optional)
+```
+curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+```
+
+Validate the kubectl binary against the checksum file:
+```
+echo "$(<kubectl.sha256) kubectl" | sha256sum --check
+```
+
+Install kubectl
+```
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+
+If you do not have root access on the target system, you can still install kubectl to the ~/.local/bin directory:
+```
+chmod +x kubectl
+mkdir -p ~/.local/bin/kubectl
+mv ./kubectl ~/.local/bin/kubectl
+# and then add ~/.local/bin/kubectl to $PATH
+```
+
+Test to ensure the version you installed is up-to-date:
+```
+kubectl version --client
+```
+
+5. Download the Kubeconfig file from Rancher UI
+
+Create a file and paste the contents of the downloaded Kubeconfig.yaml manifest:
+```
+vi kubeconfig.yaml
+```
+
+```
+KUBECONFIG=kubeconfig.yaml
+```
+
+```
+export KUBECONFIG=kubeconfig.yaml kubectl get nodes
+```
+
+You should now be able to see your 3 nodes (if the docker install command was used on each EC2 instance):
+```
+kubectl get nodes
+```
+
+Confirm all environmental variables are configured correctly:
+```
+env
+```
 
 --- 
 ## Next steps
 
-You should now have a Kubernetes cluster running with 3 nodes. You do not see the master servers for the cluster because these are managed by Microsoft. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
+You should now have a Kubernetes cluster RKE running with 3 nodes. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
 <br>    
 
 

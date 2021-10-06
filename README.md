@@ -21,6 +21,7 @@ The intent of this workshop is to educate any person working with K8S cluster in
   - [WIP][OCP: using Openshift to create an compatible OCP cluster](modules/creating-rke-cluster.md)
 
 
+
 ## STEP 2 - Sign up in Calicocloud  
 
   - [Calico Cloud trial account](https://www.calicocloud.io/home/)
