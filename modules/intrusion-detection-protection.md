@@ -16,23 +16,8 @@
 
     You can also review the alerts configuration and templates by navigating to alerts configuration in the top right corner.
 
-2. Trigger dns alerts from curl demo.
-   
-   ```bash
-   
-   #curl example.com couple times to trigger the dns aler
-   
-   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI example.com 2>/dev/null | grep -i http'
-   ```
-   
-3. Trigger later movement alert to nginx/dev
 
-   ```bash
-   #curl nginx in dev ns to trigger the flows alerts
-   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
-   ```
-
-4. Trigger the embedded alerts for threatfeeds. If you already run step 2 in "Global threadfeed", you can skip this step. 
+1. Trigger the embedded alerts for threatfeeds. If you already run step 2 in "Global threadfeed", you can skip this step. 
 
     Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods, including embedded alerts for threatfeeds.
 
@@ -43,7 +28,25 @@
     kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $FIP"
     ```
 
-5. Change one of the globalnetworksets from UI and confirm it will trigger alert by pre-defined globalalert policy
+2. Change one of the globalnetworksets from UI and confirm it will trigger alert by pre-defined globalalert policy
+
+
+3. Trigger dns alerts from curl demo.
+   
+   ```bash
+   
+   #curl example.com couple times to trigger the dns aler
+   
+   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI example.com 2>/dev/null | grep -i http'
+   ```
+   
+4. Trigger later movement alert to nginx/dev
+
+   ```bash
+   #curl nginx in dev ns to trigger the flows alerts
+   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
+   ```
+
 
 
 ## Steps 2: Introducing a malicious rogue pod to the application of storefront, and quarantine it later.
