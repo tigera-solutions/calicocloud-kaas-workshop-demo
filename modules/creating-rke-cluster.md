@@ -40,9 +40,44 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
    https://<Rancher_Server_IP>/auth/login
 
 
+
+
 ## Steps
 
-1. Install Docker on each VM instances
+1. Provisioning compute instances. Refer to "creating kubeadm cluster" for provisioning VPC & subnet & firewalls
+   ```bash
+   gcloud compute instances create rancher-master \
+    --async \
+    --boot-disk-size 200GB \
+    --can-ip-forward \
+    --image-family ubuntu-2004-lts \
+    --image-project ubuntu-os-cloud \
+    --machine-type e2-standard-4 \
+    --private-network-ip 10.240.0.222 \
+    --scopes compute-rw,storage-ro,service-management,service-control,logging-write,monitoring \
+    --subnet k8s-nodes \
+    --zone us-east1-b \
+    --tags calicocloud,rancher,master
+    ```
+
+   ```bash
+   for i in 0 1; do
+   gcloud compute instances create rancher-worker${i} \
+    --async \
+    --boot-disk-size 200GB \
+    --can-ip-forward \
+    --image-family ubuntu-2004-lts \
+    --image-project ubuntu-os-cloud \
+    --machine-type e2-standard-4 \
+    --private-network-ip 10.240.0.22${i} \
+    --scopes compute-rw,storage-ro,service-management,service-control,logging-write,monitoring \
+    --subnet k8s-nodes \
+    --zone us-east1-b \
+    --tags calicocloud,rancher,worker
+   done
+   ```
+
+2. Install Docker on each VM instances
 
    ```bash
    gcloud compute instances list --filter="tags.items=rancher"
@@ -67,9 +102,7 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
    lsb-release -y
    ```
 
-> HERE
-
-2. Add Docker’s official GPG key and install Docker Engine on each instances:
+3. Add Docker’s official GPG key and install Docker Engine on each instances:
    
    ```bash
    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -87,25 +120,29 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
    sudo apt-get install docker-ce docker-ce-cli containerd.io
    ```
 
+4. Go to Rancher UI, create a `custom` cluster. 
 
-3. Rancher UI will generate a slightly different install script for control plane and workers:
+   ![create rke cluster](../img/create-rke.png)
+
+   ![choose custom cluster](../img/choose-custom-cluster.png)
+
+   ![choose calico cni](../img/choose-calico-cni.png)
+
+5. Rancher UI will generate a slightly different install script for control plane and workers, run these script in different nodes.
 
    a. For Master
 
-   ```bash
-   docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes 
-   -v /var/run:/var/run  rancher/rancher-agent:v2.6.0 --server https://RANCHER-SERVER.eu-west-1.compute.amazonaws.com 
-   --token VALUE --ca-checksum MD5HASH --etcd --controlplane --worker
-   ```
+   ![rancher master script](../img/rancher-master-script.png)
+   
 
-   b. Worker
-   ```bash
-   docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes 
-   -v /var/run:/var/run  rancher/rancher-agent:v2.6.0 --server https://RANCHER-SERVER.eu-west-1.compute.amazonaws.com 
-   --token VALUE --ca-checksum MD5HASH --worker
-   ```
 
-4. Install kubectl binary with curl on Linux Rancher server:
+   b. For Worker
+
+   ![rancher worker script](../img/rancher-worker-script.png)
+   
+
+
+6. Install kubectl binary with curl on Linux Rancher server:
 Might be worth installing the 'kubectl' utility, but this alone won't get the node/pod outputs: <br/>
 https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/ <br/>
 <br/>
@@ -146,7 +183,7 @@ Test to ensure the version you installed is up-to-date:
 kubectl version --client
 ```
 
-5. Download the Kubeconfig file from Rancher UI
+7. Download the Kubeconfig file from Rancher UI
 
 Create a file and paste the contents of the downloaded Kubeconfig.yaml manifest:
 ```
