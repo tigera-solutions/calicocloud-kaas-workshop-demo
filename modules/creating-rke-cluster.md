@@ -120,7 +120,7 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
    sudo apt-get install docker-ce docker-ce-cli containerd.io
    ```
 
-4. Go to Rancher UI, create a `custom` cluster. 
+4. Go to Rancher UI, create a `custom` cluster with `calico` cni.
 
    ![create rke cluster](../img/create-rke.png)
 
@@ -142,71 +142,61 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
    
 
 
-6. Install kubectl binary with curl on Linux Rancher server:
-Might be worth installing the 'kubectl' utility, but this alone won't get the node/pod outputs: <br/>
-https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/ <br/>
-<br/>
+6. Install kubectl binary with curl on Linux Rancher master :
 
+   Download the latest release with the command:
+   ```bash
+   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+   ```
 
-https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux <br/>
-<br/>
-Download the latest release with the command:
-```
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-```
+   Install kubectl
+   ```bash
+   sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+   ```
 
-Validate the binary (optional)
-```
-curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
-```
+   If you do not have root access on the target system, you can still install kubectl to the ~/.local/bin directory:
+   ```bash
+   chmod +x kubectl
+   mkdir -p ~/.local/bin/kubectl
+   mv ./kubectl ~/.local/bin/kubectl
+   # and then add ~/.local/bin/kubectl to $PATH
+   ```
 
-Validate the kubectl binary against the checksum file:
-```
-echo "$(<kubectl.sha256) kubectl" | sha256sum --check
-```
-
-Install kubectl
-```
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-```
-
-If you do not have root access on the target system, you can still install kubectl to the ~/.local/bin directory:
-```
-chmod +x kubectl
-mkdir -p ~/.local/bin/kubectl
-mv ./kubectl ~/.local/bin/kubectl
-# and then add ~/.local/bin/kubectl to $PATH
-```
-
-Test to ensure the version you installed is up-to-date:
-```
-kubectl version --client
-```
+   Test to ensure the version you installed is up-to-date:
+   ```bash
+   kubectl version --client
+   ```
 
 7. Download the Kubeconfig file from Rancher UI
 
-Create a file and paste the contents of the downloaded Kubeconfig.yaml manifest:
-```
-vi kubeconfig.yaml
-```
+   ![download kubeconf](../img/download-kubeconf.png)
 
-```
-KUBECONFIG=kubeconfig.yaml
-```
+   Create a file in master node and paste the contents of the downloaded Kubeconfig.yaml manifest:
 
-```
-export KUBECONFIG=kubeconfig.yaml kubectl get nodes
-```
+   ```bash
+   vi kubeconfig.yaml
+   ```
 
-You should now be able to see your 3 nodes (if the docker install command was used on each EC2 instance):
-```
-kubectl get nodes
-```
+   ```bash
 
-Confirm all environmental variables are configured correctly:
-```
-env
-```
+   echo export KUBECONFIG=kubeconfig.yaml >> ~/.bashrc
+
+   ```
+
+   You should now be able to see your 3 nodes (if the docker install command was used on each EC2 instance):
+   ```bash
+   kubectl get nodes
+   ```
+
+   >output 
+
+   ```bash
+   NAME              STATUS   ROLES                      AGE   VERSION
+   rancher-master    Ready    controlplane,etcd,worker   21m   v1.21.5
+   rancher-worker0   Ready    worker                     19m   v1.21.5
+   rancher-worker1   Ready    worker                     18m   v1.21.5
+   ```
+
 
 --- 
 ## Next steps
