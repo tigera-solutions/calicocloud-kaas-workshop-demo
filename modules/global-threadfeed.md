@@ -65,29 +65,16 @@
     ```bash
     # deploy embargo and other threatfeeds
     kubectl apply -f demo/threatfeeds/embargo.networkset.yaml
-    kubectl apply -f demo/threatfeeds/tor-bulk-exit-list.yaml
-
-    kubectl apply -f demo/threatfeeds/security.block-threadfeed.yaml
     kubectl apply -f demo/threatfeeds/security.embargo-countries.yaml
+    
+    kubectl apply -f demo/threatfeeds/security.block-threadfeed.yaml
+  
 
     # Confirm and check the tracker threatfeed
     kubectl get globalthreatfeeds 
 
     ```
 
-
-4. Generate alerts by accessing the IP from `tor-bulk-exit` list. 
-
-    ```bash
-    # try to ping any of the IPs in from the tor-bulk-exit list.
-    TIP=$(kubectl get globalnetworkset threatfeed.tor-bulk-exit-list -ojson | jq -r '.spec.nets[0]' | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
-    kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $TIP"
-    ```
-
-5. Remove tor list for avoiding too many alerts from `acme`.
-   ```bash
-   kubectl delete -f demo/threatfeeds/tor-bulk-exit-list.yaml
-   ```
 
 [Next -> Manager UI](../modules/manager-ui.md)
 

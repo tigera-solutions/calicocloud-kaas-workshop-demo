@@ -8,14 +8,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 ## Steps
 
 
-1. In the namespace of the pod that you want to monitor, create a Kubernetes pull secret for accessing Calico Enterprise images. 
-    ```bash
-   kubectl get secret tigera-pull-secret --namespace=calico-system -o yaml | \
-   grep -v '^[[:space:]]*namespace:[[:space:]]*calico-system' | \
-   kubectl apply --namespace=hipstershop -f -
-   ```
-
-2. Create the Envoy configmap with `envoy-config.yaml` in l7-visibility folder
+1. Create the Envoy configmap with `envoy-config.yaml` in l7-visibility folder
 
     ```bash
     
@@ -24,7 +17,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 
     ```
     
-3. Configure Felix for log data collection.
+2. Configure Felix for log data collection.
     
     ```bash
     
@@ -32,7 +25,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
     ```
 
 
-4. Apply l7-collector-daemonset.yaml and ensure that l7-collector and envoy-proxy containers are in Running state. You can also edit the `LOG_LEVEL` with different options: Trace, Debug, Info, Warning, Error, Fatal and Panic. Enable L7 log collection daemonset mode in Felix by setting Felix configuration variable tproxyMode to Enabled or by setting felix environment variable FELIX_TPROXYMODE to Enabled.
+3. Apply l7-collector-daemonset.yaml and ensure that l7-collector and envoy-proxy containers are in Running state. You can also edit the `LOG_LEVEL` with different options: Trace, Debug, Info, Warning, Error, Fatal and Panic. Enable L7 log collection daemonset mode in Felix by setting Felix configuration variable tproxyMode to Enabled or by setting felix environment variable FELIX_TPROXYMODE to Enabled.
 
    ```bash
 
@@ -42,14 +35,14 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 
    ```
 
-5. Select traffic for L7 log collection
+4. Select traffic for L7 log collection
 
    ```bash
    #Annotate the services you wish to collect L7 logs as shown. Use hipstershop as example
    kubectl annotate svc --all -n hipstershop projectcalico.org/l7-logging=true
    ```
    
-6. *[Optional]* restart the pods in `hipstershop` if you don't see l7 logs right away.    
+5. *[Optional]* restart the pods in `hipstershop` if you don't see l7 logs right away.    
 
     ```bash
     kubectl delete pods --all -n hipstershop
