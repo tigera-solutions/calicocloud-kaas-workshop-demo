@@ -1,11 +1,11 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security-team.frontend-nodeport-access
+  name: security.frontend-nodeport-access
 spec:
-  tier: security-team
+  tier: security
   order: 100
-  selector: has(eks.amazonaws.com/nodegroup)
+  selector: host-end-point == "test"
   # Allow all traffic to localhost.
   ingress:
   - action: Allow
@@ -17,7 +17,7 @@ spec:
     protocol: TCP
     source:
       notNets:
-      - ${CLOUD9_IP}
+      - ${VM_IP}
     destination:
       ports:
       - 30080
