@@ -112,7 +112,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     --enable-managed-identity \
     --node-count 3 \
     --enable-cluster-autoscaler \
-    --min-count 0 \
+    --min-count 1 \
     --max-count 3 \
     --network-plugin azure \
     --no-wait

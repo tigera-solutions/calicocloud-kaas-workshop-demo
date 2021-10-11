@@ -6,6 +6,8 @@ Calico network policies not only can secure pod to pod communications but also c
 
 ## Steps
 
+### EKS cluster 
+
 1. Open a port of NodePort service for public access on EKS node.
 
     For the demo purpose we are going to expose the `hipstershop/frontend` service via the `NodePort` service type to open it for the public access.
@@ -104,7 +106,7 @@ Calico network policies not only can secure pod to pod communications but also c
     >Note that in order to control access to the NodePort service, you need to enable `preDNAT` and `applyOnForward` policy settings.
 
 
-
+### AKS cluster 
 
 
 [Next -> Wireguard Encryption](.../modules/encryption.md) 
