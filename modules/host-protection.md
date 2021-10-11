@@ -112,6 +112,6 @@ Calico network policies not only can secure pod to pod communications but also c
 ### AKS cluster 
 
 
-[Next -> Wireguard Encryption](.../modules/encryption.md) 
+[Next -> Wireguard Encryption](../modules/encryption.md) 
 
 [Menu](../README.md)
