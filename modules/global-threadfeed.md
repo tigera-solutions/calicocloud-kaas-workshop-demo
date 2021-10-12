@@ -79,7 +79,7 @@
 
   a. Create a push threatfeed in your cluster. 
 
-   ```bash
+    ```bash
     kubectl apply -f - <<EOF
     apiVersion: projectcalico.org/v3
     kind: GlobalThreatFeed
