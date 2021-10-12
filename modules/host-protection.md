@@ -35,7 +35,7 @@ Calico network policies not only can secure pod to pod communications but also c
    kubectl patch felixconfiguration default -p '{"spec":{"flowLogsEnableHostEndpoint":true}}'
    ```  
 
-3.  Expose the frontend service via the NodePort service type
+3.  Expose the frontend service via the NodePort service type, we use `30080` port as example.
    ```bash
     kubectl -n hipstershop expose deployment frontend --type=NodePort --name=frontend-nodeport --overrides='{"apiVersion":"v1","spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":8080}]}}'
    ```
@@ -43,9 +43,6 @@ Calico network policies not only can secure pod to pod communications but also c
 4. Get public IP of node and test the exposed port of `30080` from your shell.
    ```bash
    PUB_IP=$(kubectl get nodes --selector=kubernetes.io/role!=master -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address} | awk '{ print $1 }')
-
-   # test connection to frontend 30080 port from your local shell, the expected result is 30080 open
-   nc -zv $PUB_IP 30080
    ```
 
 5. Label the node for HEP testing.
@@ -54,6 +51,8 @@ Calico network policies not only can secure pod to pod communications but also c
 
    kubectl label nodes $NODE_NAME  host-end-point=test
    ```
+
+> The rest steps are depends on your enviroment. 
 
 
 ### EKS cluster 
@@ -69,15 +68,17 @@ Calico network policies not only can secure pod to pod communications but also c
 
     # open 30080 port in the security group for public access
     aws ec2 authorize-security-group-ingress --region $AWS_REGION --group-id $SG_ID --protocol tcp --port 30080 --cidr 0.0.0.0/0
-
     ```
 
     >It can take a moment for the node port to become accessible.
 
     If the frontend service port was configured correctly, the `nc` command should show you that the port is open.
+    ```bash
+    #test connection to frontend 30080 port from your local shell, the expected result is 30080 open. 
+    nc -zv $PUB_IP 30080
+    ```
 
-
-2. Implement a Calico policy to control access to the service of NodePort type.
+2. Implement a Calico policy to control access to the service of NodePort type, which only allow `VM_IP` with port `30080` to frontend service.
 
     get public IP of Cloud9 instance in the Cloud9 shell
     ```bash
@@ -102,15 +103,21 @@ Calico network policies not only can secure pod to pod communications but also c
 
 4. *[Optional]* Test another node in your node group. 
 
-   > Once you label another node with `host-end-point=test`, you should not be able to access the node port `30080` of public IP from your local shell, but you should be able to access it from the Cloud9 shell.
-   
-
+   > Once you label another node with `host-end-point=test`, you should not be able to access the frontend service i.e the node port `30080` from your local shell, but you should be able to access it from the Cloud9 shell i.e the `VM_IP`
+   ```bash
+   nc -zv <public ip of second node> 30080 
+   ```
    > Note that in order to control access to the NodePort service, you need to enable `preDNAT` and `applyOnForward` policy settings.
+
 
 
 ### AKS cluster 
 
+### GEK cluster
 
+### Kubeadm cluster
+
+### RKE cluster 
 
 
 [Next -> Wireguard Encryption](../modules/encryption.md) 
