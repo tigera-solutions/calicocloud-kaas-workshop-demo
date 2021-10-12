@@ -75,6 +75,40 @@
 
     ```
 
+4. *[Bonus]* push a threatfeed to your managed cluster and generate an alert with these ip list.    
+
+  a. Create a push threatfeed in your cluster. 
+
+   ```bash
+    kubectl apply -f - <<EOF
+    apiVersion: projectcalico.org/v3
+    kind: GlobalThreatFeed
+    metadata:
+      name: push-tracker
+    spec:
+      content: IPSet
+    EOF
+    ```
+
+  b. Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. 
+
+     ![Dev tool](../img/dev-tool.png)
+   > Use 99/32 and 100/24 as example below.
+   ```bash
+    PUT .tigera.ipset.<cluster_name>/_doc/push-tracker
+    {
+    “ips” : [“99.99.99.99/32", “100.100.100.0/24”]
+    }
+   ```
+
+  c. Generate an alert by ping the ip
+   ```bash
+   kubectl -n dev exec -t netshoot -- sh -c “ping -c1 99.99.99.99"
+   ```
+
+  d. Confirm you are able to see the aler in alert list. 
+     ![push alert](../img/push-alert.png)
+        
 
 [Next -> Manager UI](../modules/manager-ui.md)
 

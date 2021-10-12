@@ -40,7 +40,7 @@ Calico network policies not only can secure pod to pod communications but also c
     kubectl -n hipstershop expose deployment frontend --type=NodePort --name=frontend-nodeport --overrides='{"apiVersion":"v1","spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":8080}]}}'
    ```
 
-4. Get public IP of node and test the exposed port of `30080` your shell.
+4. Get public IP of node and test the exposed port of `30080` from your shell.
    ```bash
    PUB_IP=$(kubectl get nodes --selector=kubernetes.io/role!=master -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address} | awk '{ print $1 }')
 
@@ -108,8 +108,9 @@ Calico network policies not only can secure pod to pod communications but also c
    > Note that in order to control access to the NodePort service, you need to enable `preDNAT` and `applyOnForward` policy settings.
 
 
-
 ### AKS cluster 
+
+
 
 
 [Next -> Wireguard Encryption](../modules/encryption.md) 

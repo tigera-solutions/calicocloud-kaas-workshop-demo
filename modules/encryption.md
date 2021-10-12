@@ -7,10 +7,14 @@
 
 ## Steps
 
+### For EKS
+
 1. Enable WireGuard encryption across all the nodes using the following command.
     
    ```bash
-   #Install WireGuard on the default AMI for each node, you can skip this step if you are using AKS cluster.
+   #For EKS, we will use the AWS key pair to SSH each node from cloud9.
+
+   ssh -i <path to the private key>/KEYPAIR_NAME.pem ec2-user@<Node_IP>
    sudo yum install kernel-devel-`uname -r` -y
    sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
    sudo curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
@@ -40,7 +44,7 @@
    Output will be like:
    ```bash
     annotations:
-      projectcalico.org/WireguardPublicKey: jlkV-####-####-ez5eWh44
+      projectcalico.org/WireguardPublicKey: jlkV-XXXXX-YYYYY-ZZZZZ
    ```
 
 3. You can also verify it in one of the nodes, Calico will generate a wireguard interface as `wireguard.cali` 
