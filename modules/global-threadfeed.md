@@ -74,10 +74,10 @@
     kubectl get globalthreatfeeds 
 
     ```
-
+    
 4. *[Bonus]* push a threatfeed to your managed cluster and generate an alert with these ip list.    
 
-  a. Create a push threatfeed in your cluster. 
+Create a push threatfeed in your cluster. 
 
     ```bash
     kubectl apply -f - <<EOF
@@ -90,10 +90,11 @@
     EOF
     ```
 
-  b. Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. 
-
-     ![Dev tool](../img/dev-tool.png)
+b. Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. 
    > Use 99/32 and 100/24 as example below.
+
+![Dev tool](../img/dev-tool.png)
+
    ```bash
     PUT .tigera.ipset.<cluster_name>/_doc/push-tracker
     {
@@ -101,12 +102,12 @@
     }
    ```
 
-  c. Generate an alert by ping the ip
+c. Generate an alert by ping the ip
    ```bash
    kubectl -n dev exec -t netshoot -- sh -c “ping -c1 99.99.99.99"
    ```
 
-  d. Confirm you are able to see the aler in alert list. 
+d. Confirm you are able to see the aler in alert list. 
      ![push alert](../img/push-alert.png)
         
 
