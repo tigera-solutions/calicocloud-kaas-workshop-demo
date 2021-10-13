@@ -126,8 +126,25 @@
 3. You can also verify it in one of the nodes, Calico will generate a wireguard interface as `wireguard.cali` 
    ```bash
    ##This command starts a privileged container on your node and connects to it over SSH.
-   kubectl debug node/$NODE_NAME -it --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
+   kubectl run -it aks-ssh --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
+ 
+   #You need run this command in cloudshell to get the key.
+   kubectl cp ~/.ssh/<your ssh key>  aks-ssh:/id_rsa  
+   kubectl exec -it aks-ssh -- bash
+   mkdir -p $HOME/.ssh
+   cat << EOF > $HOME/.ssh/config
+   Host *
+    ServerAliveInterval 240
+   EOF
+   chmod 400 id_rsa
    ```
+
+   ssh -i id_rsa azureuser@10.240.0.35
+   sudo apt update
+   sudo apt install -y wireguard-tools
+   sudo wg show
+
+
    Output will be like:
    ```bash
    Creating debugging pod node-debugger-aks-nodepool1-41939440-vmss000001-c9bjq with container debugger on node aks-nodepool1-41939440-vmss000001.
@@ -144,26 +161,6 @@
    wireguard.cali: flags=209<UP,POINTOPOINT,RUNNING,NOARP>  mtu 1440
    root@aks-nodepool1-41939440-vmss000001:/#
    ```
-
-
-       $ kubectl run -it aks-ssh --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
-$ kubectl cp ~/bzprofiles/mikestephen-aks-wg-test/.local/aks/master_ssh_key aks-ssh:/id_rsa
-$ kubectl exec -it aks-ssh -- bash
-  $ mkdir -p $HOME/.ssh
-  $ cat << EOF > $HOME/.ssh/config
-Host *
-    ServerAliveInterval 240
-EOF
-  $ chmod 400 id_rsa
-  $ ssh -i id_rsa azureuser@10.240.0.35
-    $ sudo apt update
-    $ sudo apt install -y wireguard-tools
-    $ sudo wg show
-
-
-    ls ~/.ssh/ and you should see id_rsa that’s your key
-4:55
-but remember to obtain it from where you created the cluster - so could be Cloud Shell
 
 
 
