@@ -110,7 +110,7 @@
    ```bash
    NODE_NAME=$(kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="Hostname")].address}'| awk '{print $1;}')
    
-   kubectl get node $NODE_NAME -o yaml | grep -B 2 -A 2 annotations
+   kubectl get node $NODE_NAME -o yaml | grep -B 2 -A 3 annotations
 
    ```
 
@@ -119,32 +119,17 @@
    kind: Node
    metadata:
      annotations:
+       csi.volume.kubernetes.io/nodeid: '{"disk.csi.azure.com":"aks-nodepool1-45823991-vmss000000","file.csi.azure.com":"aks-nodepool1-45823991-vmss000000"}'
        node.alpha.kubernetes.io/ttl: "0"
        projectcalico.org/WireguardPublicKey: XXXXXX-YYYYYY-ZZZZZZZ
    ```
 
 3. You can also verify it in one of the nodes, Calico will generate a wireguard interface as `wireguard.cali` 
+
    ```bash
    ##This command starts a privileged container on your node and connects to it over SSH.
-   kubectl run -it aks-ssh --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
- 
-   #You need run this command in cloudshell to get the key.
-   kubectl cp ~/.ssh/<your ssh key>  aks-ssh:/id_rsa  
-   kubectl exec -it aks-ssh -- bash
-   mkdir -p $HOME/.ssh
-   cat << EOF > $HOME/.ssh/config
-   Host *
-    ServerAliveInterval 240
-   EOF
-   chmod 400 id_rsa
+   kubectl debug node/$NODE_NAME -it --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
    ```
-
-   ssh -i id_rsa azureuser@10.240.0.35
-   sudo apt update
-   sudo apt install -y wireguard-tools
-   sudo wg show
-
-
    Output will be like:
    ```bash
    Creating debugging pod node-debugger-aks-nodepool1-41939440-vmss000001-c9bjq with container debugger on node aks-nodepool1-41939440-vmss000001.
@@ -162,7 +147,69 @@
    root@aks-nodepool1-41939440-vmss000001:/#
    ```
 
+4. *[Optional]* If you want install wg tool as root user in the node, then follow the instructions below in your cloudshell to generate the priviate key for your pod.
+   ```bash 
+   #add your RSA public key to nodes in VMSS, we need to use az vmss extension set and az vmss update-instances command.
+   CLUSTER_RESOURCE_GROUP=$(az aks show --resource-group $RGNAME --name $CLUSTERNAME --query nodeResourceGroup -o tsv)
+   SCALE_SET_NAME=$(az vmss list --resource-group $CLUSTER_RESOURCE_GROUP --query '[0].name' -o tsv)
+   az vmss extension set \
+   --resource-group $CLUSTER_RESOURCE_GROUP \
+   --vmss-name $SCALE_SET_NAME \
+   --name VMAccessForLinux \
+   --publisher Microsoft.OSTCExtensions \
+   --version 1.4 \
+   --protected-settings "{\"username\":\"azureuser\", \"ssh_key\":\"$(cat ~/.ssh/id_rsa.pub)\"}"
+   ```
 
+   ```bash
+   az vmss update-instances --instance-ids '*' \
+   --resource-group $CLUSTER_RESOURCE_GROUP \
+   --name $SCALE_SET_NAME
+   ```
+
+   ```bash
+   ##This command create a privileged pod on your node and connects to it over SSH.
+   kubectl run -it aks-ssh --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
+   ```
+
+   ```bash
+   ##exit the ssh and confirm the pod `aks-ssh` is running in default ns.
+   root@aks-ssh:/# exit
+   exit
+   ```
+
+   ```text
+   kubectl get pods
+   NAME      READY   STATUS    RESTARTS   AG
+   aks-ssh   1/1     Running   1          35s
+   ```
+
+   ```bash
+   #run below command in cloudshell to get the private ssh key and copy to your pod. 
+   kubectl cp ~/.ssh/id_rsa  aks-ssh:/id_rsa
+   kubectl exec -it aks-ssh -- bash
+   ```
+   
+   ```bash
+   #Confirm the key is in your pod now.
+   ls id_rsa
+   chmod 400 id_rsa
+   mkdir -p $HOME/.ssh
+   cat << EOF > $HOME/.ssh/config
+   Host *
+   ServerAliveInterval 240
+   EOF
+   ```
+
+   ```bash
+   #use the private key to ssh to the node with node ip, and install wg tools.
+   ssh -i id_rsa azureuser@<Node_IP>
+   sudo apt update
+   sudo apt install -y wireguard-tools
+   sudo wg show
+   ```
+
+   
 
 
 ### For GEK cluster
