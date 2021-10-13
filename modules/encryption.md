@@ -7,14 +7,16 @@
 
 ## Steps
 
-### For EKS
+### For EKS cluster
 
 1. Enable WireGuard encryption across all the nodes using the following command.
     
    ```bash
    #For EKS, we will use the AWS key pair to SSH each node from cloud9.
-
    ssh -i <path to the private key>/KEYPAIR_NAME.pem ec2-user@<Node_IP>
+   ```
+
+   ```bash
    sudo yum install kernel-devel-`uname -r` -y
    sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm -y
    sudo curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo https://copr.fedorainfracloud.org/coprs/jdoss/wireguard/repo/epel-7/jdoss-wireguard-epel-7.repo
@@ -41,7 +43,7 @@
 
    ```
 
-   Output will be like:
+   > Output will be like:
    ```bash
     annotations:
       projectcalico.org/WireguardPublicKey: jlkV-XXXXX-YYYYY-ZZZZZ
@@ -49,54 +51,49 @@
 
 3. You can also verify it in one of the nodes, Calico will generate a wireguard interface as `wireguard.cali` 
 
-   a. For `AKS` 
-
    ```bash
-   ##This command starts a privileged container on your node and connects to it over SSH.
-   kubectl debug node/$NODE_NAME -it --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
-   ```
-   Output will be like:
-   ```bash
-   Creating debugging pod node-debugger-aks-nodepool1-41939440-vmss000001-c9bjq with container debugger on node aks-nodepool1-41939440-vmss000001.
-   If you don't see a command prompt, try pressing enter.
+   ssh -i <path to the private key>/KEYPAIR_NAME.pem ec2-user@<Node_IP>
    ```
 
    ```bash
    ifconfig | grep wireguard
    ```
    
-   Output will be like:
+   > Output will be like:
    ```bash
-   root@aks-nodepool1-41939440-vmss000001:/# ifconfig | grep wireguard
    wireguard.cali: flags=209<UP,POINTOPOINT,RUNNING,NOARP>  mtu 1440
-   root@aks-nodepool1-41939440-vmss000001:/#
    ```
 
-   b. For `EKS`
-
-   ```bash   
-   #install net-tools
-   sudo apt install net-tools
-
-   # View Wireguard tunnel interfaces:
-   ifconfig
-
+   ```bash
    # wg command will show more detail
    sudo wg show
-
-
-4. Enable WireGuard statistics
-
-   > To access wireguard statistics, prometheus stats should be turned on. 
-
+   ```
+   > Output will be like:
    ```bash
-   kubectl patch installation.operator.tigera.io default --type merge -p '{"spec":{"nodeMetricsPort":9091}}'
-
-   kubectl apply -f demo/encryption/wireguard-statistics.yaml
+   N/A
    ```
 
 
 
+### For AKS cluster 
+
+### For GEK cluster
+
+### For Kubeadm cluster
+
+### For RKE cluster 
+
+
+
+## <Option> - Enable WireGuard statistics
+
+> To access wireguard statistics, prometheus stats should be turned on, and you will be able to see wireguard statistics in manager UI.
+
+```bash
+kubectl patch installation.operator.tigera.io default --type merge -p '{"spec":{"nodeMetricsPort":9091}}'
+
+kubectl apply -f demo/encryption/wireguard-statistics.yaml
+```
 
 
 [Next -> eBPF dataplane](../modules/ebpf-dataplane.md)

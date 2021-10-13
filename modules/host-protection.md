@@ -55,7 +55,7 @@ Calico network policies not only can secure pod to pod communications but also c
 > The rest steps are depends on your enviroment. 
 
 
-### EKS cluster 
+### For EKS cluster 
 
 1. Open a port of NodePort service for public access on EKS node.
 
@@ -111,13 +111,13 @@ Calico network policies not only can secure pod to pod communications but also c
 
 
 
-### AKS cluster 
+### For AKS cluster 
 
-### GEK cluster
+### For GEK cluster
 
-### Kubeadm cluster
+### For Kubeadm cluster
 
-### RKE cluster 
+### For RKE cluster 
 
 
 [Next -> Wireguard Encryption](../modules/encryption.md) 
