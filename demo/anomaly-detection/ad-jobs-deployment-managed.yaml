@@ -86,7 +86,7 @@ spec:
           - name: ELASTIC_HOST
             value: "tigera-secure-es-gateway-http.tigera-elasticsearch.svc"
           - name: CLUSTER_NAME
-            value: "pwzq9jil-management-managed-aks-jesie-aks-rg-jesie102-03cfb8-43f79af-hcp-eastus-azmk8s-io"
+            value: "$CALICOCLUSTERNAME"
           - name: ELASTIC_PORT
             value: "9200"
           - name: ES_CA_CERT
