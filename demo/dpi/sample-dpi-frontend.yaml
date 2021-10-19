@@ -1,0 +1,7 @@
+apiVersion: projectcalico.org/v3
+kind: DeepPacketInspection
+metadata:
+  name: sample-dpi-frontend
+  namespace: hipstershop
+spec:
+  selector: app == "frontend"

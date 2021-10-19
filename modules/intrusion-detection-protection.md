@@ -247,13 +247,13 @@ Use official documentation for the most recent [configuration instructions](http
     echo $CALICOCLUSTERNAME
     ```
 
-   Replacy the vailable in yaml file
+   Replace the vailable in yaml file
 
     ```bash
     sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
 
     ##For other variations/shells the following syntax may be required
-	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+	 sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
     ```
 
    Validate the change by cat the variable

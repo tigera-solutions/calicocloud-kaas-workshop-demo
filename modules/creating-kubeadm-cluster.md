@@ -129,7 +129,7 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
 
    ```
 
-2. Create three compute instances which will host the Kubernetes worker nodes:   
+2. Create two compute instances which will host the Kubernetes worker nodes:   
 
    ```bash
    for i in 0 1; do
