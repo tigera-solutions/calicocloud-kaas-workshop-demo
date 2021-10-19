@@ -74,7 +74,7 @@ Coming soon...
 - [WIP][Performance Hotspots](modules/performance-hotspots.md) 
 - [WIP][VM Microsegmentation](modules/pmicrosegmentation.md)
 - [WIP][Egress Gateway](modules/egress-gateway.md) 
-- [WIP][DPI](modules/dpi.md) 
+- [DPI](modules/dpi.md) # New feature in 3.10
 - [WIP][WAF](modules/waf.md)
 
 
