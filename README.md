@@ -64,17 +64,17 @@ In this workshop we are going to focus on these main use cases:
 - [Observability: Dynamic packet capture](modules/dynamic-packet-capture.md) 
 - [Security: IDS and IPS](modules/intrusion-detection-protection.md)
 - [Security: Compliance reports](modules/compliance-reports.md) 
-- [WIP][Security: Host protection](modules/host-protection.md)
+- [Security: Deep packet inspection](modules/deep-packet-inspection.md) # New feature in 3.10
 - [WIP][Security: Wireguard Encryption](modules/encryption.md) 
+- [WIP][Security: Host protection](modules/host-protection.md)
 - [WIP][Change to eBPF dataplane](modules/ebpf-dataplane.md)
 
 
 ## Charpter C - Advanced
 Coming soon...
+- [WIP][Non K8S node segmentation](modules/non-k8s-node-segmentation.md)
 - [WIP][Performance Hotspots](modules/performance-hotspots.md) 
-- [WIP][VM Microsegmentation](modules/pmicrosegmentation.md)
 - [WIP][Egress Gateway](modules/egress-gateway.md) 
-- [DPI](modules/dpi.md) # New feature in 3.10
 - [WIP][WAF](modules/waf.md)
 
 

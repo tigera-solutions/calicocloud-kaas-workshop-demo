@@ -237,6 +237,6 @@ kubectl apply -f demo/encryption/wireguard-statistics.yaml
   ![wireguard statistics](../img/wireguard-statistics.png)
 
 
-[Next -> eBPF dataplane](../modules/ebpf-dataplane.md)
+[Next -> Host protection](../modules/host-protection.md)
 
 [Menu](../README.md)

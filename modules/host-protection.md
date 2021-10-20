@@ -120,6 +120,6 @@ Calico network policies not only can secure pod to pod communications but also c
 ### For RKE cluster 
 
 
-[Next -> Wireguard Encryption](../modules/encryption.md) 
+[Next -> eBPF dataplane](../modules/ebpf-dataplane.md)
 
 [Menu](../README.md)

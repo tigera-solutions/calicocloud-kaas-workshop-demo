@@ -1,4 +1,4 @@
-# Deep packet inspection (only available for calicocloud 3.10 version)
+# Security: Deep packet inspection (only available for calicocloud 3.10 version)
 
 **Goal:** Use DPI on select workloads to efficiently make use of cluster resources and minimize the impact of false positives. 
 
@@ -58,6 +58,6 @@
 
 
 
-[Next -> WAF](../modules/waf.md)
+[Next -> Wireguard Encryption](../modules/encryption.md) 
 
 [Menu](../README.md)

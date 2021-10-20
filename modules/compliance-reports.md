@@ -33,6 +33,6 @@
 
 
 
-[Next -> Host protection](../modules/host-protection.md)
+[Next -> Deep packet inspection](../modules/deep-packet-inspection.md)
 
 [Menu](../README.md)
