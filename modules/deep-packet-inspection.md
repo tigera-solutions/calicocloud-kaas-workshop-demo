@@ -16,11 +16,11 @@
 
 2. Configure resource requirements in IntrusionDetection.
 
-  > For a data transfer rate of 1GB/sec on workload endpoints being monitored, we recommend a minimum of 1 CPU and 1GB RAM.
+    > For a data transfer rate of 1GB/sec on workload endpoints being monitored, we recommend a minimum of 1 CPU and 1GB RAM.
    
-   ```bash
-   kubectl apply -f demo/dpi/resource-dpi.yaml
-   ```
+    ```bash
+     kubectl apply -f demo/dpi/resource-dpi.yaml
+    ```
 
 3. Verify deep packet inspection is running and the daemonset of `tigera-dpi` is also running. 
 

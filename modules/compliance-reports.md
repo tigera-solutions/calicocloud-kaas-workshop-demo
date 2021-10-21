@@ -24,7 +24,7 @@
     ![compliance report](../img/compliance-report.png)
 
 
-2. Deploy hipstershop policies and observe the score in the next report which wil be different comparing with the previous ones, you may need change the cronjob schedule for those reports.
+2. Deploy hipstershop policies and observe the score in the next report which wil be different comparing with the previous ones, you may need change the cronjob schedule for those reports if you want to see the results quicker.
 
    ```bash
    kubectl apply -f demo/app-control/tiers-devops.yaml
