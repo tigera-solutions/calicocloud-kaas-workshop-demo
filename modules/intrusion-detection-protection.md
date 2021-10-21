@@ -211,6 +211,11 @@ Use official documentation for the most recent [configuration instructions](http
    ```bash
 
    less ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+   #press `q` key to quit
+   ```
+
+   ```text
+
    # The following AD jobs and thresholds have been configured as env vars in the ad-jobs-deployment.yaml. 
    # In production these values may trigger more alerts than required
 	# - name: AD_max_docs
