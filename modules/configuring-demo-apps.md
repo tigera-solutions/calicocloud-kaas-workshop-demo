@@ -40,7 +40,7 @@
 
    
 
-4. Deploy compliance reports which schedule as cronjob in every hour of 15th mins.
+4. Deploy compliance reports which schedule as cronjob in every hour for cluster report and a daily cis benchmark report.
 
     >The compliance reports will be needed for one of a later lab, is cronjob in your cluster, you can change the schedule by edit it.
 

@@ -102,7 +102,7 @@
 
    - Generate an alert by ping the ip
    ```bash
-   kubectl -n dev exec -t netshoot -- sh -c “ping -c1 99.99.99.99"
+   kubectl -n dev exec -t netshoot -- sh -c "ping -c1 99.99.99.99"
    ```
 
    - Confirm you are able to see the aler in alert list. 
