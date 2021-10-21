@@ -79,7 +79,7 @@ For more details refer to [Packet Capture](https://docs.tigera.io/v3.10/visibili
    ```
 
 
-## step 3. Define different RBAC role for capture and fetch the payload from UI (uodate within next release)
+## step 3. Define different RBAC role for capture and fetch the payload from UI (will update it within next release)
 
 >Packet Capture permissions are enforced using the standard Kubernetes RBAC based on Role and RoleBindings within a namespace. For demo purpose, we will create sa tester with create/delete/get/list/update/watch packet captures for '`dev` namespace:
 

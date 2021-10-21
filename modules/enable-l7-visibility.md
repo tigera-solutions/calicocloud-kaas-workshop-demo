@@ -42,7 +42,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
    kubectl annotate svc --all -n hipstershop projectcalico.org/l7-logging=true
    ```
    
-5. *[Optional]* restart the pods in `hipstershop` if you don't see l7 logs right away.    
+5. *[Optional]* restart the pods in `hipstershop` if you want to see l7 logs right away.    
 
     ```bash
     kubectl delete pods --all -n hipstershop
