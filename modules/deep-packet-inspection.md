@@ -41,7 +41,9 @@
    ```bash
    SVC_IP=$(kubectl -n hipstershop get svc frontend-external -ojsonpath='{.status.loadBalancer.ingress[0].ip}')
 
-   # use below command if you are using EKS cluster. 
+   # use below command if you are using `EKS` cluster, as EKS is using hostname instead of ip for loadbalancer
+   SVC_IP=$(kubectl -n hipstershop get svc frontend-external -ojsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
    ```
    
    ```bash
