@@ -93,7 +93,7 @@
 
 1. Enable WireGuard encryption across all the nodes using the following command.
 
-  > AKS cluster nodes run Ubuntu with a kernel that has WireGuard installed already, so there is no manual installation required.
+   > AKS cluster nodes run Ubuntu with a kernel that has WireGuard installed already, so there is no manual installation required.
 
    ```bash
    #Enable wireguard in your cluster
