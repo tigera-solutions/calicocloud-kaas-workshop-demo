@@ -15,7 +15,7 @@ managedNodeGroups:
         allow: true
 
     # enable all of the control plane logs:
-    cloudWatch:
-      clusterLogging:
-        enableTypes: ["*"]
+    #cloudWatch:
+      #clusterLogging:
+        #enableTypes: ["*"]
                         
