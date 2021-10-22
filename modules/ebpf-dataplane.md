@@ -57,7 +57,7 @@
    ```
 
    b. Deploy NLB for Frontend Customer Pod.
-
+   ```bash
    kubectl apply -f - <<EOF
    apiVersion: v1
    kind: Service
@@ -74,8 +74,9 @@
          targetPort: 80
      type: LoadBalancer
    EOF 
+   ```
 
-    c. Check the source IP when curl customer svc 
+   c. Check the source IP when curl customer svc 
 
 
 
