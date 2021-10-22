@@ -85,7 +85,8 @@ Calico network policies not only can secure pod to pod communications but also c
     VM_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
     
     # deploy HEP policy
-    sed -i "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-access.yaml | kubectl apply -f -     
+    sed -i "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-access.yaml
+    kubectl apply -f demo/host-end-point/frontend-nodeport-access.yaml
     
     # test access from Cloud9 shell, the expected result is 30080 open
     nc -zv $PUB_IP 30080 
@@ -97,8 +98,6 @@ Calico network policies not only can secure pod to pod communications but also c
 3. Confirm you are able to see the `VM_IP` as source IP and the host name in your flow log.
 
    ![source ip](../img/source-ip.png)
-
-   ![host name](../img/host-name.png)
 
 
 4. *[Optional]* Test another node in your node group. 

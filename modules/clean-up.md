@@ -32,21 +32,8 @@
    ```   
 
 3. Delete your managed cluster.
-   
-    a. For AKS cluster, please follow the steps below.  
 
-    ```bash
-    #Delete AKS cluster.
-    az aks delete -n $CLUSTERNAME -g $RGNAME
-    ```
-
-    ```bash
-    #Delete the azure resource group. 
-    az group delete -g $RGNAME
-    ```
-
-
-   b. For EKS cluster, please follow the steps below.  
+   a. For EKS cluster, please follow the steps below.  
 
     ```bash
     #Delete EKS cluster.
@@ -70,6 +57,21 @@
     aws iam delete-instance-profile --instance-profile-name $IAM_ROLE
     aws iam delete-role --role-name $IAM_ROLE
     ```
+   
+    b. For AKS cluster, please follow the steps below.  
+
+    ```bash
+    #Delete AKS cluster.
+    az aks delete -n $CLUSTERNAME -g $RGNAME
+    ```
+
+    ```bash
+    #Delete the azure resource group. 
+    az group delete -g $RGNAME
+    ```
+
+
+
 
    c. For GKE cluster, please follow the steps below.  
 

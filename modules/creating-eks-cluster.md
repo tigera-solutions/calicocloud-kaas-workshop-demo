@@ -191,8 +191,8 @@
       instanceType: "t3.large"
       ssh:
         # uncomment lines below to allow SSH access to the nodes using existing EC2 key pair
-        #publicKeyName: ${KEYPAIR_NAME}
-        #allow: true
+        publicKeyName: ${KEYPAIR_NAME}
+        allow: true
 
     # enable all of the control plane logs:
     cloudWatch:
