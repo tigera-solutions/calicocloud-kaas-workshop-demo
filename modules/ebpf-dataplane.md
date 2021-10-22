@@ -29,15 +29,10 @@
          # uncomment lines below to allow SSH access to the nodes using existing EC2 key pair
          publicKeyName: ${KEYPAIR_NAME}
          allow: true
-
-         # enable all of the control plane logs:
-       cloudWatch:
-         clusterLogging:
-           enableTypes: ["*"]
-
    EOF
+   ```
 
-
+   ```bash
    eksctl create nodegroup --config-file=configs/nodegroup.yaml
    ```  
    > Confirm 3 nodes are ready before moving to next step.
@@ -53,13 +48,39 @@
    kubectl patch installation.operator.tigera.io default --type merge -p '{"spec":{"flexVolumePath":"/var/lib/kubelet/plugins"}}'
    ```
 
-1. Deploy the demo app `yaobank`, and run a quick test to trace the source IP address before changing to eBPF dataplane.
+
+4. Deploy the demo app `yaobank`, and run a quick test to trace the source IP address before changing to eBPF dataplane.
+
+   a. Deloy demo application `yaobank`
    ```bash
    kubectl apply -f https://raw.githubusercontent.com/tigera/ccol2aws/main/yaobank.yaml
    ```
 
+   b. Deploy NLB for Frontend Customer Pod.
 
-2. Configure Calico to connect directly to the API server. 
+   kubectl apply -f - <<EOF
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: yaobank-customer
+     namespace: yaobank
+     annotations:
+       service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+   spec:
+     selector:
+       app: customer
+     ports:
+       - port: 80
+         targetPort: 80
+     type: LoadBalancer
+   EOF 
+
+    c. Check the source IP when curl customer svc 
+
+
+
+
+5. Configure Calico to connect directly to the API server. 
 
    ```bash
    ##Extract API server address
