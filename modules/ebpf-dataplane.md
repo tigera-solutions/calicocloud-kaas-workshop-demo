@@ -23,8 +23,11 @@
    managedNodeGroups:
      - name: ebpf-pool # Customizable. The name of the node pool.
        amiFamily: Bottlerocket
+       minSize: 0
+       maxSize: 3
        instanceType: t3.xlarge # Customizable. The instance type for the node pool.
        desiredCapacity: 3 # Customizable. The initial amount of nodes to have live.
+
        ssh:
          # uncomment lines below to allow SSH access to the nodes using existing EC2 key pair
          publicKeyName: ${KEYPAIR_NAME}
@@ -78,8 +81,24 @@
 
    c. Check the source IP when curl customer svc 
 
-
-
+    ```bash
+    SVC_HOST=$(kubectl -n yaobank get svc yaobank-customer -ojsonpath='{.status.loadBalancer.ingress[0].hostname}')
+    #Curl the svc host from your cloud9 or local shell
+    curl $SVC_HOST
+    ```
+    
+    ```bash
+    #check the source IP fromm pod log
+    export CUSTOMER_POD=$(kubectl get pods -n yaobank -l app=customer -o name)
+    kubectl logs -n yaobank $CUSTOMER_POD
+    ```
+ 
+    > Output should be similar as below, the node private IP will show up as source IP.
+    ```text
+    192.168.15.251 - - [22/Oct/2021 17:16:34] "GET / HTTP/1.1" 200 -
+    192.168.46.34 - - [22/Oct/2021 17:17:08] "GET / HTTP/1.1" 200 -
+    192.168.90.180 - - [22/Oct/2021 17:17:11] "GET / HTTP/1.1" 200 -
+    ```
 
 5. Configure Calico to connect directly to the API server. 
 
@@ -91,7 +110,7 @@
    > Output is similar:
 
    ```bash
-   # "66dxxxxxxyyyyyyyzzzzzz.yl4.us-east-2.eks.amazonaws.com" is your api server host
+   # "66dxxxxxxyyyyyyyzzzzzz.yl4.us-east-2.eks.amazonaws.com" is your api server host for configmap
    server: https://66dxxxxxxyyyyyyyzzzzzz.yl4.us-east-2.eks.amazonaws.com
    ```
 
@@ -110,7 +129,7 @@
    EOF
    ```
 
-3. The operator will pick up the change to the config map automatically and do a rolling update to pass on the change. Confirm that pods restart and then reach the Running state with the following command:
+6. The operator will pick up the change to the config map automatically and do a rolling update to pass on the change. Confirm that pods restart and then reach the Running state with the following command:
    ```bash
    kubectl get pods -n calico-system -w
    ```
@@ -121,25 +140,56 @@
    kubectl get pods -n calico-system 
    ```
 
-4. Replace kube-proxy
-   > Now that Calico can communicate directly with the eBPF endpoint, we can enable eBPF mode to replace kube-proxy. To do this, we can patch kube-proxy to use a non-calico node selector. By doing so, we’re telling kube-proxy not to run on any nodes (because they’re all running Calico):
+7. Replace kube-proxy
+   > In eBPF mode, Calico replaces kube-proxy so it wastes resources to run both. To disable kube-proxy reversibly, we recommend adding a node selector to kube-proxy’s DaemonSet that matches no nodes. By doing so, we’re telling kube-proxy not to run on any nodes (because they’re all running Calico):
 
-kubectl patch ds -n kube-system kube-proxy -p '{"spec":{"template":{"spec":{"nodeSelector":{"non-calico": "true"}}}}}'
-Verify kube-proxy is no longer running
+   ```bash
+   kubectl patch ds -n kube-system kube-proxy -p '{"spec":{"template":{"spec":{"nodeSelector":{"non-calico": "true"}}}}}'
+   ```
+   
+   ```bash
+   #Confirm kube-proxy is no longer running
+   kubectl get pods -n kube-system
+   ```
 
-kubectl get pods -n kube-system
+8. Enable eBPF mode
+   > To enable eBPF mode, change the spec.calicoNetwork.linuxDataplane parameter in the operator’s Installation resource to "BPF"; you must also clear the hostPorts setting because host ports are not supported in BPF mode.
 
+   ```bash
+   kubectl patch installation.operator.tigera.io default --type merge -p '{"spec":{"calicoNetwork":{"linuxDataplane":"BPF", "hostPorts":null}}}'
+   ```
 
+9. Restart kube-dns and yaobank pod.
 
+   > When the dataplane changes, it disrupts any existing connections, and as a result it’s a good idea to replace the pods that are running. In our specific case, deleting the kube-dns pods will ensure that connectivity for these pods is running fully on the eBPF dataplane, as these pods are integral to Kubernetes functionality.
 
+   ```bash
+   kubectl delete pod -n kube-system -l k8s-app=kube-dns
+   kubectl delete pods -n yaobank --all
+   ```
 
+10. Curl the `yaobank-customer` service again and confirm the public IP address of `cloud9` or your local shell show up as source IP in pod logs.
 
+   ```bash
+   SVC_HOST=$(kubectl -n yaobank get svc yaobank-customer -ojsonpath='{.status.loadBalancer.ingress[0].hostname}')
+   #Curl the svc host from your cloud9 or local shell
+   curl $SVC_HOST
+   ```
+    
+   ```bash
+   #check the source IP fromm pod log
+   export CUSTOMER_POD=$(kubectl get pods -n yaobank -l app=customer -o name)
+   kubectl logs -n yaobank $CUSTOMER_POD
+   ```
+ 
+   > Output should be similar as below, the public IP will show up as source IP.
+   ```text
+   173.178.61.xxx - - [22/Oct/2021 17:38:11] "GET / HTTP/1.1" 200 -
+   18.223.133.xxx - - [22/Oct/2021 17:38:22] "GET / HTTP/1.1" 200 -
+   18.223.133.xxx - - [22/Oct/2021 17:38:58] "GET / HTTP/1.1" 200 -
+   ```
 
 ### For AKS cluster
-
-1. Verify that your cluster is ready for eBPF mode
-
-
 
 ### For GEK cluster
 >Not supported. This is because of an incompatibility with the GKE CNI plugin. A fix for the issue has already been accepted upstream but at the time of writing it is not publicly available.
@@ -151,6 +201,52 @@ kubectl get pods -n kube-system
 
 
 ## <Option> - Reverse to standard Linux dataplane from eBPF dataplane 
+
+1. Reverse the changes to the operator’s Installation
+
+   ```bash
+   kubectl patch installation.operator.tigera.io default --type merge -p '{"spec":{"calicoNetwork":{"linuxDataplane":"Iptables"}}}'
+   ```
+2. Re-enable kube-proxy by removing the node selector added above
+
+   ```bash
+   kubectl patch ds -n kube-system kube-proxy --type merge -p '{"spec":{"template":{"spec":{"nodeSelector":{"non-calico": null}}}}}'
+   ```
+
+3. Restart kube-dns and yaobank pod.
+
+   ```bash
+   kubectl delete pod -n kube-system -l k8s-app=kube-dns
+   kubectl delete pods -n yaobank --all
+   ```
+
+4. Delete the configmap which created for calico-node as we don't need connect to api server directly anymore.
+
+   ```bash
+   kubectl delete cm -n tigera-operator kubernetes-services-endpoint 
+   ```
+
+   ```bash
+   #confirm calico-node restart again
+   kubectl get pods -n calico-system
+   ```
+
+5. Confirm the source IP in yaobank-customer pod been reversed to node private IP.   
+
+   ```bash
+   #check the source IP fromm pod log
+   export CUSTOMER_POD=$(kubectl get pods -n yaobank -l app=customer -o name)
+   curl $SVC_HOST
+   kubectl logs -n yaobank $CUSTOMER_POD
+   ```
+ 
+6. For EKS cluster, you can scale up your orginal nodegroup and delete the ebpf nodegroup after reverse the dataplane. 
+
+   ```bash
+   eksctl scale nodegroup --cluster=$EKS_CLUSTER --nodes=3 --name=nix-t3-large
+   eksctl scale nodegroup --cluster=$EKS_CLUSTER --nodes=0 --name=ebpf-pool
+   eksctl delete nodegroup --cluster=$EKS_CLUSTER --name=ebpf-pool
+   ```
 
 
 [Next -> Non K8S node segmentation](../modules/non-k8s-node-segmentation.md)

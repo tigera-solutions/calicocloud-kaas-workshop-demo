@@ -7,6 +7,7 @@
     kubectl delete -f demo/setup/acme
     kubectl delete -f demo/setup/storefront
     kubectl delete -f demo/setup/hipstershop/
+    kubectl delete ns yaobank
     ```
 
 2. Remove calicocloud components from your cluster.
