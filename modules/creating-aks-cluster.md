@@ -181,9 +181,10 @@ Follow the prequisite steps if you need to verify your Azure subscription.
 
   - Pull out the subnet ID
    ```bash
-   Subnet1_ID=$(az network vnet subnet list -g $RGNAME --vnet-name $vnet -o json | jq -c '.[] | select( .type == "Microsoft.Network/virtualNetworks/subnets")' | jq .id | awk 'NR==1{print $1 }')
-   Subnet2_ID=$(az network vnet subnet list -g $RGNAME --vnet-name $vnet -o json | jq -c '.[] | select( .type == "Microsoft.Network/virtualNetworks/subnets")' | jq .id | awk 'NR==2{print $1 }')
-   
+   Subnet1=$(az network vnet subnet list -g $RGNAME --vnet-name $vnet -o json | jq -c '.[] | select( .type == "Microsoft.Network/virtualNetworks/subnets")' | jq .id | awk 'NR==1{print $1 }')
+   Subnet2=$(az network vnet subnet list -g $RGNAME --vnet-name $vnet -o json | jq -c '.[] | select( .type == "Microsoft.Network/virtualNetworks/subnets")' | jq .id | awk 'NR==2{print $1 }')
+   Subnet1_ID=$(sed -e 's/^"//' -e 's/"$//' <<<"$Subnet1")
+   Subnet2_ID=$(sed -e 's/^"//' -e 's/"$//' <<<"$Subnet2")
    ```
 
   - Create Azure Service Principal to use for further steps.
@@ -219,7 +220,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
    --generate-ssh-keys -l $LOCATION --node-count 3 --network-plugin azure --vnet-subnet-id $Subnet1_ID --no-wait
    ``` 
   
-  - Add subnet2 as nodepool2 into AKS cluster 
+  - Add `subnet2` as `nodepool2` into AKS cluster 
    ```bash
    az aks nodepool add -g $RGNAME --cluster-name $CLUSTERNAME --name nodepool2 --node-count 3 \
    --vnet-subnet-id $Subnet2_ID --no-wait
