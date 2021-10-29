@@ -170,7 +170,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
 
 9. *[Optional]* Create AKS cluster with mutiple nodepool/subnet.
 
-  a. Create a vnet with two subnet network
+ - Create a vnet with two subnet network
    ```bash
    vnet="myVirtualNetwork"
    az network vnet create -g $RGNAME --location $LOCATION --name $vnet --address-prefixes 10.0.0.0/8 -o none 
@@ -179,7 +179,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
    
    ```
 
-  b. Pull out the subnet ID
+  - Pull out the subnet ID
    ```bash
    Subnet1_ID=$(az network vnet subnet list -g $RGNAME --vnet-name $vnet -o json | jq -c '.[] | select( .type == "Microsoft.Network/virtualNetworks/subnets")' | jq .id | awk 'NR==1{print $1 }')
    Subnet2_ID=$(az network vnet subnet list -g $RGNAME --vnet-name $vnet -o json | jq -c '.[] | select( .type == "Microsoft.Network/virtualNetworks/subnets")' | jq .id | awk 'NR==2{print $1 }')
