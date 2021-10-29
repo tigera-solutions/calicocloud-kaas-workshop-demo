@@ -186,7 +186,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
    
    ```
 
-  c. Create Azure Service Principal to use for further steps.
+  - Create Azure Service Principal to use for further steps.
    ```bash
    CLUSTERNAME=aks-mutipool-${UNIQUE_SUFFIX}
    az ad sp create-for-rbac --skip-assignment
@@ -202,7 +202,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
 	"tenant": "72f988bf-0000-0000-0000-2d7cd011db47"
 	```
 
-  d. Set the values from above as variables **(replace <appid><password>with your values)</password></appid>**.
+  - Set the values from above as variables **(replace <appid><password>with your values)</password></appid>**.
 
    ```bash
    # Persist for Later Sessions in Case of Timeout
@@ -212,14 +212,14 @@ Follow the prequisite steps if you need to verify your Azure subscription.
    echo export CLIENTSECRET=$CLIENTSECRET >> ~/.bashrc
    ```
 
-  e. Create AKS
+  - Create AKS
 
    ```bash
    az aks create -n $CLUSTERNAME -g $RGNAME --kubernetes-version $K8SVERSION --service-principal $APPID --client-secret $CLIENTSECRET \
    --generate-ssh-keys -l $LOCATION --node-count 3 --network-plugin azure --vnet-subnet-id $Subnet1_ID --no-wait
    ``` 
   
-  f. Add subnet2 as nodepool2 into AKS cluster 
+  - Add subnet2 as nodepool2 into AKS cluster 
    ```bash
    az aks nodepool add -g $RGNAME --cluster-name $CLUSTERNAME --name nodepool2 --node-count 3 \
    --vnet-subnet-id $Subnet2_ID --no-wait
