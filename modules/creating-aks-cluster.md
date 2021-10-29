@@ -226,9 +226,6 @@ Follow the prequisite steps if you need to verify your Azure subscription.
    --vnet-subnet-id $Subnet2_ID --no-wait
    ```
 
-
-
-
 --- 
 ## Next steps
 
