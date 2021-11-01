@@ -1,7 +1,7 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security.frontend-nodeport-access
+  name: security.frontend-nodeport-allow
 spec:
   tier: security
   order: 100
