@@ -269,7 +269,7 @@
 
    ```bash
    #edit the cm yaml file by replacing the API server host address before apply it 
-   kubectl appy -f cm.yaml
+   kubectl apply -f cm.yaml
    ```
 
 
