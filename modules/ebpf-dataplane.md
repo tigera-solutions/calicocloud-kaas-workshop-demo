@@ -214,7 +214,7 @@
        - port: 80
          targetPort: 80
      type: LoadBalancer
-   EOF 
+     EOF 
    ```
 
    c. Check the source IP when curl customer svc 
