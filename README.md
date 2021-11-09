@@ -64,7 +64,8 @@ In this workshop we are going to focus on these main use cases:
 - [Observability: Dynamic packet capture](modules/dynamic-packet-capture.md) 
 - [Security: IDS and IPS](modules/intrusion-detection-protection.md)
 - [Security: Compliance reports](modules/compliance-reports.md) 
-- [Security: Deep packet inspection](modules/deep-packet-inspection.md) # New feature in 3.10
+- [Security: Deep packet inspection](modules/deep-packet-inspection.md) 
+
 - [WIP][Security: Wireguard Encryption](modules/encryption.md) 
 - [WIP][Security: Host protection](modules/host-protection.md)
 - [WIP][Change to eBPF dataplane](modules/ebpf-dataplane.md)

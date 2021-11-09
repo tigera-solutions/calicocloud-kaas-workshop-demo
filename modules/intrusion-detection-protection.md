@@ -2,13 +2,14 @@
 
 **Goal:** Use global alerts to notify security and operations teams about unsanctioned or suspicious activity.
 
+
 ## Steps 1: Review and trigger embedded global alerts
 
-1. Review alerts manifests.
+ 1. Review alerts manifests.
 
     Navigate to `demo/alerts` and review YAML manifests that represent alerts definitions. Each file containes an alert template and alert definition. Alerts templates can be used to quickly create an alert definition in the UI.
 
-    >We implemented alerts in one of the first labs in order to see how our activity can trigger them.
+    > We implemented alerts in one of the first labs in order to see how our activity can trigger them.
 
     Open `Alerts` view to see all triggered alerts in the cluster. Review the generated alerts.
 
@@ -17,7 +18,7 @@
     You can also review the alerts configuration and templates by navigating to alerts configuration in the top right corner.
 
 
-1. Trigger the embedded alerts for threatfeeds. If you already run step 2 in "Global threadfeed", you can skip this step. 
+ 2. Trigger the embedded alerts for threatfeeds. If you already run step 2 in "Global threadfeed", you can skip this step. 
 
     Calico offers `GlobalThreatfeed` resource to prevent known bad actors from accessing Kubernetes pods, including embedded alerts for threatfeeds.
 
@@ -28,10 +29,12 @@
     kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $FIP"
     ```
 
-2. Change one of the globalnetworksets from UI and confirm it will trigger alert by pre-defined globalalert policy
+ 3. Change one of the globalnetworksets from UI and confirm it will trigger alert by pre-defined globalalert policy.
+
+   ![globalnetworksets alerts](../img/globalnetworksets-alerts.png)
 
 
-3. Trigger dns alerts from curl demo.
+ 4. Trigger dns alerts from curl demo.
    
    ```bash
    
@@ -40,7 +43,7 @@
    kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI example.com 2>/dev/null | grep -i http'
    ```
    
-4. Trigger later movement alert to nginx/dev
+ 5. Trigger later movement alert to nginx/dev
 
    ```bash
    #curl nginx in dev ns to trigger the flows alerts
@@ -48,31 +51,30 @@
    ```
 
 
-
 ## Steps 2: Introducing a malicious rogue pod to the application of storefront, and quarantine it later.
 
-1. Introducing a malicious rogue pod
+ 1. Introducing a malicious rogue pod
 
    ```bash
    kubectl apply -f demo/attacker-rogue/rogue.yaml
    #confirm the rogue from service graph
    ```
 
-2. deploy the quarantine networkpolicy to protect your cluster
+ 2. deploy the quarantine networkpolicy to protect your cluster
 
    ```bash
    kubectl apply -f demo/attacker-rogue/security.quarantine.yaml
    #confirm the quarantine policy from policy dashboard
    ```
 
-3. quarantine the rogue pod
+ 3. quarantine the rogue pod
 
    ```bash
    ./demo/attacker-rogue/QuarantineRogue.sh
    #confirm the rogue been quarantined from policy dashboard
    ```
 
-4. delete the rogue pod
+ 4. delete the rogue pod
 
    ```bash
    kubectl delete -f demo/attacker-rogue/rogue.yaml
@@ -82,7 +84,7 @@
 
 Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability which is based upon the same principles as traditional honeypots. Calico is able to detect traffic which probes the Honeypod resources which can be an indicator of compromise. Refer to the [official honeypod configuration documentation](https://docs.tigera.io/threat/honeypod/honeypods) for more details.
 
-1. Configure honeypod namespace and Alerts for SSH detection
+ 1. Configure honeypod namespace and Alerts for SSH detection
 
    ```bash
    # create dedicated namespace and RBAC for honeypods
@@ -94,7 +96,7 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
    kubectl apply --namespace=tigera-internal -f -
    ```
 
-2. Deploy sample honeypods
+ 2. Deploy sample honeypods
 
     ```bash
     # expose pod IP to test IP enumeration use case
@@ -106,7 +108,8 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     # expose MySQL service
     kubectl apply -f https://docs.tigera.io/manifests/threatdef/honeypod/vuln-svc.yaml 
     ```
-3. Verify newly deployed pods are running
+
+ 3. Verify newly deployed pods are running
 
     ```bash
     kubectl get pods -n tigera-internal
@@ -122,7 +125,7 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     tigera-internal-db-58547d8655-znhkj          1/1     Running   0          19h
     ```
 
-4. Verify honeypod alerts are deployed
+ 4. Verify honeypod alerts are deployed
 
     ```bash
     kubectl get globalalerts | grep -i honeypod
@@ -137,7 +140,7 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     honeypod.vuln.svc         2021-07-21T18:36:34Z
     ```
 
-5. Confirm the controller is running
+ 5. Confirm the controller is running
 
     ```bash
     kubectl get pods -n tigera-intrusion-detection
@@ -148,9 +151,10 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     intrusion-detection-controller-5997b8646f-ftdkm   1/1     Running   0          22h
     ```
 
-6. Test honeypod use cases
+ 6. Test honeypod use cases
 
     a. Ping exposed Honeypod IP
+
     ```bash
     POD_IP=$(kubectl -n tigera-internal get po --selector app=tigera-internal-app -o jsonpath='{.items[0].status.podIP}')
     kubectl -n dev exec netshoot -- ping -c5 $POD_IP
@@ -204,7 +208,7 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
 Calico offers [Anomaly Detection](https://docs.tigera.io/threat/anomaly-detection/) (AD) as a part of its [threat defense](https://docs.tigera.io/threat/) capabilities. Calico's Machine Learning software is able to baseline "normal" traffic patterns and subsequently detect abnormal or suspicious behaviour. This may resemble an Indicator of Compromise and will generate an Alert in the UI.
 Use official documentation for the most recent [configuration instructions](https://docs.tigera.io/threat/anomaly-detection/customizing).
 
-1. Review and apply the Anomaly Detection jobs for the managed cluster.
+ 1. Review and apply the Anomaly Detection jobs for the managed cluster.
 
    Instructions below for a Managed cluster only. Follow [configuration documentation](https://docs.tigera.io/threat/anomaly-detection/customizing) to configure AD jobs for management and standalone clusters.
 
@@ -244,18 +248,18 @@ Use official documentation for the most recent [configuration instructions](http
    ```
 
 
-2. We need to substitute the Cluster Name in the YAML file with the variable `CALICOCLUSTERNAME` we configured in Module 1. This enables the Machine Learning jobs to target the correct indices in Elastic Search
+ 2. We need to substitute the Cluster Name in the YAML file with the variable `CALICOCLUSTERNAME` we configured in Module 1. This enables the Machine Learning jobs to target the correct indices in Elastic Search
 	
    Confirm the Cluster name is align with the "mananed cluster" name in UI  
     
-    ```bash
-    echo $CALICOCLUSTERNAME
-    ```
+   ```bash
+   echo $CALICOCLUSTERNAME
+   ```
 
    Replace the vailable in yaml file
 
-    ```bash
-    sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+   ```bash
+   sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
 
     ##For other variations/shells the following syntax may be required
 	 sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
@@ -273,12 +277,12 @@ Use official documentation for the most recent [configuration instructions](http
         value: "qq9psbdn-management-managed-aksjesie1-aks-rg-jesie102-03cfb8-375304e4-hcp-eastus-azmk8s-io" ```
     ```    
 
-3. Now apply the Anomaly Detection deployment YAML
+ 3. Now apply the Anomaly Detection deployment YAML
 	```bash
 	kubectl apply -f demo/anomaly-detection/ad-jobs-deployment-managed.yaml
 	```
 
-4. Simulate anomaly by using an NMAP port scan above the threshold set in our Deployment env vars listed in Step 1.
+ 4. Simulate anomaly by using an NMAP port scan above the threshold set in our Deployment env vars listed in Step 1.
 
 	```bash
 	# mock port scan
@@ -298,7 +302,7 @@ Use official documentation for the most recent [configuration instructions](http
 
     ```
 	
-5. After a few minutes we can see the Alert generated in the Web UI
+ 5. After a few minutes we can see the Alert generated in the Web UI
 
    ![anomaly detection alerts](../img/anomaly-detection-alerts.png)
 
