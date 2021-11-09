@@ -39,7 +39,7 @@
 
 2. Apply staged `default-deny` policy.
 
-    >Staged `default-deny` policy is a good way of catching any traffic that is not explicitly allowed by a policy without explicitly blocking it.
+    >Staged `default-deny` policy is a good way of catching any traffic that is not explicitly allowed by a policy without explicitly blocking it. We only include `dev` and `hipstershop` namespace here as example, and you can add more namespace in `default-deny` policy when you moving to "zero-trust" day by day.
 
     ```bash
     kubectl apply -f demo/app-control/staged.default-deny.yaml

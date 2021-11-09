@@ -60,19 +60,13 @@
     kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $FIP"
     ```
 
-3. Add more threatfeeds labels into networkset and prevent your cluster from them.
+3. Add more threatfeeds into networkset and prevent your cluster from them.
 
     ```bash
     # deploy embargo and other threatfeeds
     kubectl apply -f demo/threatfeeds/embargo.networkset.yaml
     kubectl apply -f demo/threatfeeds/security.embargo-countries.yaml
     
-    kubectl apply -f demo/threatfeeds/security.block-threadfeed.yaml
-  
-
-    # Confirm and check the tracker threatfeed
-    kubectl get globalthreatfeeds 
-
     ```
     
 4. *[Bonus]* push a threatfeed to your managed cluster and generate an alert with these ip list.    
