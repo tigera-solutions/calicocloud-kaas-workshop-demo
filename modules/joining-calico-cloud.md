@@ -92,7 +92,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
 
 ### *[Optional]* Install `calicoctl` CLI for use in later labs
 
- > The easiest way to retrieve captured `*.pcap` files is to use [calicoctl](https://docs.tigera.io/maintenance/clis/calicoctl/) CLI. The following binary installations are available:
+ The easiest way to retrieve captured `*.pcap` files is to use [calicoctl](https://docs.tigera.io/maintenance/clis/calicoctl/) CLI. The following binary installations are available:
 
  - CloudShell
 
@@ -158,7 +158,8 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     
 ### *[Optional]* Only when your cluster is `AKS`.
 
- > The later version of installation script will automatic detect the provider. 
+ The later version of installation script will automatic detect the provider. 
+
     ```bash
     kubectl patch installation default --type=merge -p '{"spec": {"kubernetesProvider": "AKS"}}'
     kubectl patch installation default --type=merge -p '{"spec": {"flexVolumePath": "/etc/kubernetes/volumeplugins/"}}'
