@@ -90,7 +90,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     kubectl patch felixconfiguration default -p '{"spec":{"flowLogsCollectTcpStats":true}}'
     ```
 
-7.  Install `calicoctl` CLI for use in later labs
+  ## *[Optional]* Install `calicoctl` CLI for use in later labs
 
     The easiest way to retrieve captured `*.pcap` files is to use [calicoctl](https://docs.tigera.io/maintenance/clis/calicoctl/) CLI. The following binary installations are available:
 
@@ -98,7 +98,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
 
     ```bash    
     # download and configure calicoctl
-    curl -o calicoctl -O -L https://downloads.tigera.io/ee/binaries/v3.9.0/calicoctl
+    curl -o calicoctl -O -L https://downloads.tigera.io/ee/binaries/v3.10.0/calicoctl
     chmod +x calicoctl
     
     # verify calicoctl is running 
@@ -110,7 +110,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     >Tip: Consider navigating to a location that’s in your PATH. For example, /usr/local/bin/
     ```bash    
     # download and configure calicoctl
-    curl -o calicoctl -O -L https://downloads.tigera.io/ee/binaries/v3.9.0/calicoctl
+    curl -o calicoctl -O -L https://downloads.tigera.io/ee/binaries/v3.10.0/calicoctl
     chmod +x calicoctl
     
     # verify calicoctl is running 
@@ -122,7 +122,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     >Tip: Consider navigating to a location that’s in your PATH. For example, /usr/local/bin/
     ```bash    
     # download and configure calicoctl
-    curl -o calicoctl -O -L  https://downloads.tigera.io/ee/binaries/v3.9.0/calicoctl-darwin-amd64
+    curl -o calicoctl -O -L  https://downloads.tigera.io/ee/binaries/v3.10.0/calicoctl-darwin-amd64
     chmod +x calicoctl
     
     # verify calicoctl is running 
@@ -137,19 +137,18 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     >Tip: Consider runing powershell as administraor and navigating to a location that’s in your PATH. For example, C:\Windows.
     
     ```pwsh
-    Invoke-WebRequest -Uri "https://downloads.tigera.io/ee/binaries/v3.9.0/calicoctl-windows-amd64.exe" -OutFile "calicocttl.exe"
+    Invoke-WebRequest -Uri "https://downloads.tigera.io/ee/binaries/v3.10.0/calicoctl-windows-amd64.exe" -OutFile "calicocttl.exe"
 
     ```
     
        
     Output for `calicoctl version` is similar as:
     ```bash
-    Client Version:    v3.9.0
+    Client Version:    v3.10.0
     Release:           Calico Enterprise
-    Git commit:        114364e9
+    Git commit:        65b6d0f2
     Cluster Calico Version:               v3.20.0
-    Cluster Calico Enterprise Version:    v3.9.0
-    Cluster Type:                         typha,kdd,k8s,operator
+    Cluster Calico Enterprise Version:    v3.10.0
     ```
      
     ```bash 
@@ -159,11 +158,11 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     
     ## *[Optional]* Only when your cluster is `AKS`.
 
-   ```bash
-   kubectl patch installation default --type=merge -p '{"spec": {"kubernetesProvider": "AKS"}}'
+    ```bash
+    kubectl patch installation default --type=merge -p '{"spec": {"kubernetesProvider": "AKS"}}'
 
-   kubectl patch installation default --type=merge -p '{"spec": {"flexVolumePath": "/etc/kubernetes/volumeplugins/"}}'
-   ```
+    kubectl patch installation default --type=merge -p '{"spec": {"flexVolumePath": "/etc/kubernetes/volumeplugins/"}}'
+    ```
 
 
 [Next -> Configuring demo applications](../modules/configuring-demo-apps.md)
