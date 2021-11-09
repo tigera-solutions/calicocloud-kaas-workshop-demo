@@ -265,17 +265,17 @@ Use official documentation for the most recent [configuration instructions](http
 	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
    ```
 
-  Validate the change by cat the variable
-    ```bash
-    cat ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml |grep -B 2 -A 0 $CALICOCLUSTERNAME
-    ```
+ - Validate the change by cat the variable
+   ```bash
+   cat ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml |grep -B 2 -A 0 $CALICOCLUSTERNAME
+   ```
 
-  Output will be like:
-    ```text
+   Output will be like:
+   ```text
         env:
       - name: CLUSTER_NAME
         value: "qq9psbdn-management-managed-aksjesie1-aks-rg-jesie102-03cfb8-375304e4-hcp-eastus-azmk8s-io" ```
-    ```    
+   ```    
 
  3. Now apply the Anomaly Detection deployment YAML
 	```bash
