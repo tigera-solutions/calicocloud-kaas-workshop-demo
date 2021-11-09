@@ -7,42 +7,47 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 
 ## Steps
 
-
-1. Create the Envoy configmap with `envoy-config.yaml` in l7-visibility folder
+1. Configure Felix for log data collection 
 
     ```bash
-    
-    #Create the Envoy config in calico-system namespace.
-    kubectl create configmap envoy-config -n calico-system --from-file=demo/l7-visibility/envoy-config.yaml
-
-    ```
-    
-2. Configure Felix for log data collection.
-    
-    ```bash
-    
     kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"policySyncPathPrefix":"/var/run/nodeagent"}}'
     ```
 
+2.  Prepare scripts for deploying L7 Log Collector DaemonSet
 
-3. Apply l7-collector-daemonset.yaml and ensure that l7-collector and envoy-proxy containers are in Running state. You can also edit the `LOG_LEVEL` with different options: Trace, Debug, Info, Warning, Error, Fatal and Panic. Enable L7 log collection daemonset mode in Felix by setting Felix configuration variable tproxyMode to Enabled or by setting felix environment variable FELIX_TPROXYMODE to Enabled.
+    ```bash
+    DOCS_LOCATION=${DOCS_LOCATION:="https://docs.tigera.io"}
+
+    #Download manifest file for L7 log collector daemonset
+    curl ${DOCS_LOCATION}/manifests/l7/daemonset/l7-collector-daemonset.yaml -O
+
+    #Download and install Envoy Config
+    curl ${DOCS_LOCATION}/manifests/l7/daemonset/envoy-config.yaml -O
+    ```
+3.  Create the Envoy config in `calico-system` namespace
+    ```bash
+    kubectl create configmap envoy-config -n calico-system --from-file=envoy-config.yaml
+    ```
+
+4.  Enable L7 log collection daemonset mode in Felix by setting Felix configuration variable tproxyMode to Enabled or by setting felix environment variable FELIX_TPROXYMODE to Enabled.
+    ```bash
+    kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"tproxyMode":"Enabled"}}'
+    ```
+
+5. Apply l7-collector-daemonset.yaml and ensure that l7-collector and envoy-proxy containers are in Running state. You can also edit the `LOG_LEVEL` with different options: Trace, Debug, Info, Warning, Error, Fatal and Panic. 
 
    ```bash
-
-   kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"tproxyMode":"Enabled"}}'
-
-   kubectl apply -f demo/l7-visibility/l7-collector-daemonset.yaml
-
+   kubectl apply -f l7-collector-daemonset.yaml
    ```
 
-4. Select traffic for L7 log collection
+6. Select traffic for L7 log collection
 
    ```bash
    #Annotate the services you wish to collect L7 logs as shown. Use hipstershop as example
    kubectl annotate svc --all -n hipstershop projectcalico.org/l7-logging=true
    ```
    
-5. *[Optional]* restart the pods in `hipstershop` if you want to see l7 logs right away.    
+7. *[Optional]* restart the pods in `hipstershop` if you want to see l7 logs right away.    
 
     ```bash
     kubectl delete pods --all -n hipstershop
