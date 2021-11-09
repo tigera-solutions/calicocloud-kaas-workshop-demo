@@ -252,14 +252,14 @@ Use official documentation for the most recent [configuration instructions](http
 	
    Confirm the Cluster name is align with the "mananed cluster" name in UI  
     
-   ```bash
-   echo $CALICOCLUSTERNAME
-   ```
+    ```bash
+    echo $CALICOCLUSTERNAME
+    ```
 
    Replace the vailable in yaml file
 
-   ```bash
-   sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+    ```bash
+    sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
 
     ##For other variations/shells the following syntax may be required
 	 sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
