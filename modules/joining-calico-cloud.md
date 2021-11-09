@@ -90,11 +90,11 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     kubectl patch felixconfiguration default -p '{"spec":{"flowLogsCollectTcpStats":true}}'
     ```
 
-  ## *[Optional]* Install `calicoctl` CLI for use in later labs
+### *[Optional]* Install `calicoctl` CLI for use in later labs
 
-    The easiest way to retrieve captured `*.pcap` files is to use [calicoctl](https://docs.tigera.io/maintenance/clis/calicoctl/) CLI. The following binary installations are available:
+ The easiest way to retrieve captured `*.pcap` files is to use [calicoctl](https://docs.tigera.io/maintenance/clis/calicoctl/) CLI. The following binary installations are available:
 
-    a) CloudShell
+ - CloudShell
 
     ```bash    
     # download and configure calicoctl
@@ -105,7 +105,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     ./calicoctl version
     ```
 
-    b) Linux
+ - Linux
 
     >Tip: Consider navigating to a location that’s in your PATH. For example, /usr/local/bin/
     ```bash    
@@ -117,7 +117,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     ./calicoctl version
     ```
 
-    c) MacOS
+ - MacOS
 
     >Tip: Consider navigating to a location that’s in your PATH. For example, /usr/local/bin/
     ```bash    
@@ -132,7 +132,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     Note: If the location of calicoctl is not already in your PATH, move the file to one that is or add its location to your PATH. This will allow you to invoke it without having to prepend its location.
 
 
-    d) Windows - using powershell command to download the calicoctl binary  
+ - Windows - using powershell command to download the calicoctl binary  
     
     >Tip: Consider runing powershell as administraor and navigating to a location that’s in your PATH. For example, C:\Windows.
     
@@ -156,7 +156,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     alias calicoctl=$(pwd)/calicoctl
     ```
     
-    ## *[Optional]* Only when your cluster is `AKS`.
+### *[Optional]* Only when your cluster is `AKS`.
 
     ```bash
     kubectl patch installation default --type=merge -p '{"spec": {"kubernetesProvider": "AKS"}}'
