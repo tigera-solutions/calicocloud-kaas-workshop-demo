@@ -158,8 +158,8 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     
 ### *[Optional]* Only when your cluster is `AKS`.
 
- The later version of installation script will automatic detect the provider. 
-
+  - The later version of installation script will automatic detect the provider. 
+  
     ```bash
     kubectl patch installation default --type=merge -p '{"spec": {"kubernetesProvider": "AKS"}}'
     kubectl patch installation default --type=merge -p '{"spec": {"flexVolumePath": "/etc/kubernetes/volumeplugins/"}}'
