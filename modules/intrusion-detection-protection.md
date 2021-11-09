@@ -250,20 +250,20 @@ Use official documentation for the most recent [configuration instructions](http
 
  2. We need to substitute the Cluster Name in the YAML file with the variable `CALICOCLUSTERNAME` we configured in Module 1. This enables the Machine Learning jobs to target the correct indices in Elastic Search
 	
-  Confirm the Cluster name is align with the "mananed cluster" name in UI  
+ - Confirm the Cluster name is align with the "mananed cluster" name in UI  
     
-     ```bash
-    echo $CALICOCLUSTERNAME
-    ```
+   ```bash
+   echo $CALICOCLUSTERNAME
+   ```
 
-  Replace the vailable in yaml file
+ - Replace the vailable in yaml file
 
-    ```bash
-    sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+   ```bash
+   sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
 
-    ##For other variations/shells the following syntax may be required
-	 sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
-    ```
+   ##For other variations/shells the following syntax may be required
+	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+   ```
 
   Validate the change by cat the variable
     ```bash
