@@ -291,7 +291,7 @@ Use official documentation for the most recent [configuration instructions](http
 	```
 
     ```bash
-	 #Output should resemble 
+	 #Output will be like 
 	 Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
 	 Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-23 20:20 UTC
 	 Nmap scan report for 10.240.0.89
