@@ -117,7 +117,7 @@ Calico network policies not only can secure pod to pod communications but also c
 
    ![hep policy](../img/hep-policy-networkset-eks.png)
 
-   - You should be able to see the flow logs when you netshoot again from your cloud9. 
+   - You should be able to see the flow logs when you netshoot again from your cloud9 shell. 
 
    ![networkset hep flowlog.](../img/networkset-hep-flowlog-eks.png)
 
