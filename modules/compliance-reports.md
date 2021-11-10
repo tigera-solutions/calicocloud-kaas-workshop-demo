@@ -31,6 +31,56 @@
    kubectl apply -f demo/app-control/hipstershop-policies.yaml
    ```
 
+3. Generate a reports at any time to specify a different start/end time.
+   
+   a. Review and apply the yaml file for the managed cluster.
+
+    Instructions below for a Managed cluster only. Follow [configuration documentation](https://docs.tigera.io/compliance/overview#run-reports) to configure compliance jobs for management and standalone clusters. We will need change the START/END time accordingly.
+
+    ```bash
+    vi demo/compliance-reports/compliance-reporter-pod.yaml
+    ```
+
+   b. We need to substitute the Cluster Name in the YAML file with the variable `CALICOCLUSTERNAME` we configured before. This enables compliance jobs to target the correct index in Elastic Search
+	```bash
+	sed -i "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/compliance-reports/compliance-reporter-pod.yaml
+	```
+	For other variations/shells the following syntax may be required
+
+	```bash
+	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/compliance-reports/compliance-reporter-pod.yaml
+	```
+
+   c. Validate the change by cat the variable
+    ```bash
+    cat ./demo/compliance-reports/compliance-reporter-pod.yaml | grep -B 2 -A 0 $CALICOCLUSTERNAME
+    ```
+
+   Output will be like:
+    ```text
+          value: "warning"
+     - name: ELASTIC_INDEX_SUFFIX
+      value: "usza33l0-management-managed-a03b5f39d13f4802acfc947026eb47-gr7-us-east-2-eks-amazonaws-com"
+    ```    
+
+   d. Now apply the compliance job YAML
+	```bash
+	kubectl apply -f demo/40-compliance-reports/compliance-reporter-pod.yaml
+	```
+
+    Once the `run-reporter` job finished, you should be able to see this report in manager UI and download the csv file. 
+
+4. Reports are generated 30 minutes after the end of the report as [documented](https://docs.tigera.io/compliance/overview#change-the-default-report-generation-time). You can also deploy cronjob report to against your sensitive workload which need compliance report in place. Below yaml file is using `storefront` and `hipstershop` as example.
+
+	```bash
+	kubectl apply -f demo/compliance-reports/workload-report.yaml
+	```
+
+
+<br>
+
+<br>
+
 
 
 [Next -> Deep packet inspection](../modules/deep-packet-inspection.md)

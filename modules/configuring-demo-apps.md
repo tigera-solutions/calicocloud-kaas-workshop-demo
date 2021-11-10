@@ -45,7 +45,8 @@
     >The compliance reports will be needed for one of a later lab, is cronjob in your cluster, you can change the schedule by edit it.
 
     ```bash
-    kubectl apply -f demo/compliance-reports
+    kubectl apply -f demo/compliance-reports/cis-benchmark-report.yaml
+    kubectl apply -f demo/compliance-reports/cluster-reports.yaml
     ```
 
 5. Deploy global alerts.
