@@ -290,11 +290,11 @@ Use official documentation for the most recent [configuration instructions](http
 	kubectl -n dev exec netshoot -- nmap -Pn -r -p 1-250 $POD_IP
 	```
 
-   ```bash
-	# mock port scan
-	POD_IP=$(kubectl -n dev get po --selector app=centos -o jsonpath='{.items[0].status.podIP}')
-	kubectl -n dev exec netshoot -- nmap -Pn -r -p 1-250 $POD_IP
-	```
+    ```bash
+	 # mock port scan
+	 POD_IP=$(kubectl -n dev get po --selector app=centos -o jsonpath='{.items[0].status.podIP}')
+	 kubectl -n dev exec netshoot -- nmap -Pn -r -p 1-250 $POD_IP
+	 ```
 
 	```bash
    #Output should resemble 
