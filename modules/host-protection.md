@@ -95,17 +95,31 @@ Calico network policies not only can secure pod to pod communications but also c
 
     kubectl apply -f demo/host-end-point/frontend-nodeport-allow.yaml
     
-    # test access from Cloud9 shell, the expected result is 30080 open
+    # test access from Cloud9 shell, the result will be 30080 open.
     nc -zv $PUB_IP 30080 
 
-    # test access from local shell, the expected result is 30080 Operation timed out
-    nc -zv $PUB_IP 30080 
+    # test access from local shell, the result will be 30080 Operation timed out
+    nc -zv <PUB_IP> 30080 
     ```
 
 8. Confirm you are able to see the `VM_IP` as source IP and the host name in your flow log.
 
    ![source ip](../img/source-ip.png)
 
+
+9. Leverage networkset to control ingress traffic for your k8s node. 
+
+   - Create a networkset with your VM_IP cidr from UI. 
+
+   ![networkset hep](../img/networkset-hep-eks.png)
+   
+   - Update your host endpoints policy with networkset label as source. 
+
+   ![hep policy](../img/hep-policy-networkset-eks.png)
+
+   - You should be able to see the flow logs when you netshoot again from your VM. 
+
+   ![networkset hep flowlog.](../img/networkset-hep-flowlog-eks.png)
 
 
 ### For AKS cluster 
@@ -234,10 +248,7 @@ Calico network policies not only can secure pod to pod communications but also c
    ![flow log azure vm](../img/flow-log-azure-vm.png)
 
 
-
-
-
-### *[Bonus]* Leverage networkset to control ingress traffic for your k8s node. 
+10. Leverage networkset to control ingress traffic for your k8s node. 
 
    1. Create a networkset with your VM_IP cidr from UI. 
 
