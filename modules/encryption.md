@@ -23,6 +23,7 @@
    sudo yum install wireguard-dkms wireguard-tools -y
    ```
 
+   Exit ssh from nodes and enable wireguard with kubectl in your cluster
    ```bash
    #Enable wireguard in your cluster
    kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"wireguardEnabled":true}}'
