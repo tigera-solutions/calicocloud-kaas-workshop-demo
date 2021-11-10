@@ -50,14 +50,26 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
   ![download packet capture](../img/download-packet-capture-2.png)
    
  4. Stop packet capture
-
   
-
-## step 3. Define different RBAC role for capture and fetch the payload from UI (will update it within next release)
-
->Packet Capture permissions are enforced using the standard Kubernetes RBAC based on Role and RoleBindings within a namespace. For demo purpose, we will create sa tester with create/delete/get/list/update/watch packet captures for '`dev` namespace:
+  ![stop packet capture](../img/stop-packet-capture.png)
 
 
+## step 3. Calicocloud provide different RBAC role for packet capture resource. 
+
+ > Calicocloud provide pre-defined role in `manage team - user` which `viwer` doesn't have permissions to `get/list` Packet Capture resource. 
+
+ 1. Add one of your team member in this calicocloud management plane. 
+
+  ![create new user](../img/create-user.png)
+
+
+ 2. Confirm they accept your invite. 
+  
+  ![manage team user](../img/manage-team.png)
+
+ 3.  Confirm they accept your invite. 
+  
+  ![manage team user](../img/manage-team.png)
 
 
 [Next -> IDS/IPS](../modules/intrusion-detection-protection.md)
