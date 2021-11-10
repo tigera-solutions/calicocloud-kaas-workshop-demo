@@ -47,10 +47,8 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
 
  3. Fetch and review captured payload.
 
-  Retrieve captured `*.pcap` files and review the content.
-
+  ![download packet capture](../img/download-packet-capture-2.png)
    
-    
  4. Stop packet capture
 
   
