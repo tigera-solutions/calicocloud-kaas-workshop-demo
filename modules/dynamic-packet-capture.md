@@ -54,7 +54,7 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
   ![stop packet capture](../img/stop-packet-capture.png)
 
 
-## step 3. Calicocloud provide different RBAC role for packet capture resource. 
+## *[Bonus]* Calicocloud provide different RBAC role for packet capture resource. 
 
  > Calicocloud provide pre-defined role in `manage team - user` which `viwer` doesn't have permissions to `get/list` Packet Capture resource. 
 
@@ -67,9 +67,9 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
   
   ![manage team user](../img/manage-team.png)
 
- 3.  Confirm they accept your invite. 
+ 3. Use their email address to login calicocloud UI and confirm they cannot fetch or create any packet capture jobs.
   
-  ![manage team user](../img/manage-team.png)
+  ![fail to fetch](../img/fail-pc-file.png)
 
 
 [Next -> IDS/IPS](../modules/intrusion-detection-protection.md)
