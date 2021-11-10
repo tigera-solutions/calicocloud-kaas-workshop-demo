@@ -144,7 +144,7 @@
    Output will be like:
    ```bash
    root@aks-nodepool1-41939440-vmss000001:/# ifconfig | grep wireguard
-   wireguard.cali: flags=209<UP,POINTOPOINT,RUNNING,NOARP>  mtu 1440
+   wireguard.cali: flags=209<UP,POINTOPOINT,RUNNING,NOARP>  mtu 
    root@aks-nodepool1-41939440-vmss000001:/#
    ```
 
