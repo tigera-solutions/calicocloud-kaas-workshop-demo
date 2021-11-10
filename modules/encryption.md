@@ -220,7 +220,7 @@
 
 
 
-## <Option> - Enable WireGuard statistics
+## *[Option]* Enable WireGuard statistics
 
 > To access wireguard statistics, prometheus stats should be turned on.
 
