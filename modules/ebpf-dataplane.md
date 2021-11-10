@@ -38,13 +38,15 @@
    ```bash
    eksctl create nodegroup --config-file=configs/nodegroup.yaml
    ```  
-   > Confirm 3 nodes are ready before moving to next step.
+   > Confirm 6 nodes are ready before moving to next step.
 
 2. Scale dowm your default node group `nix-t3-large` to 0 as we don't support hybrid mode for eBPF nodes and standard dataplane nodes.
    
    ```bash
    eksctl scale nodegroup --cluster=$EKS_CLUSTER --nodes=0 --name=nix-t3-large
    ```
+
+   > Confirm only new 3 nodes are ready before moving to next step.
 
 3. Patch the flexVolumePath in Installation resource, which is required for Bottlerocket compatibility.
    ```bash

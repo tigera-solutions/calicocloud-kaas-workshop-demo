@@ -1,3 +1,12 @@
+
+1. Create EKS cluster with mutiple nodepool/subnet.
+
+
+
+
+
+
+
 9. *[Optional]* Create AKS cluster with mutiple nodepool/subnet.
 
  - Create a vnet with two subnet network
