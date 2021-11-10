@@ -58,7 +58,7 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
 
  > Calicocloud provide pre-defined role in `manage team - user` which `viwer` doesn't have permissions to `get/list` Packet Capture resource. 
 
- 1. Add one of your team member in this calicocloud management plane. 
+ 1. Add one of your team members in this calicocloud management plane. 
 
   ![create new user](../img/create-user.png)
 
@@ -70,6 +70,8 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
  3. Use their email address to login calicocloud UI and confirm they cannot fetch or create any packet capture jobs.
   
   ![fail to fetch](../img/fail-pc-file.png)
+
+
 
 
 [Next -> IDS/IPS](../modules/intrusion-detection-protection.md)
