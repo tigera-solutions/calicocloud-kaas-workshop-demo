@@ -48,6 +48,11 @@ Calico network policies not only can secure pod to pod communications but also c
    PUB_IP=$(kubectl get nodes --selector=kubernetes.io/role!=master -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address} | awk '{ print $1 }')
    ```
 
+   Test 30080 port from your shell, the expecting result will be Operation timed out.
+   ```bash
+   nc -zv <PUB_IP> 30080
+   ```
+
 5. Label the node for HEP testing.
    ```bash
    NODE_NAME=$(kubectl get nodes -o wide | grep $PUB_IP | awk '{print $1}')
