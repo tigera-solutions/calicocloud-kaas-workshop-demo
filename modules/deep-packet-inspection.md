@@ -31,6 +31,9 @@
 
    ```bash
    kubectl get pods -n tigera-dpi
+   ```
+   
+   ```text
    NAME               READY   STATUS    RESTARTS   AGE
    tigera-dpi-66858   1/1     Running   0          3h58m
    tigera-dpi-x67sj   1/1     Running   0          3h58m
