@@ -23,8 +23,5 @@ spec:
       destination:
         selector: app == "frontend"
         namespaceSelector: projectcalico.org/name == "hipstershop"
-    - action: Pass
-      source: {}
-      destination: {}
   types:
     - Egress
