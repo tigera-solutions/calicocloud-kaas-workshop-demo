@@ -11,14 +11,7 @@ spec:
   egress:
     - action: Allow
       protocol: TCP
-      source: 
-        selector: app == "centos"
       destination:
         selector: app == "nginx"
-    - action: Deny
-      protocol: TCP
-      source: 
-        selector: app == "centos"
-      destination: {}
   types:
     - Egress
