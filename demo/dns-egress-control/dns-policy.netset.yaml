@@ -1,7 +1,7 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security.allow-domain-access
+  name: security.external-domain-access
 spec:
   # requires security tier
   tier: security
@@ -18,7 +18,7 @@ spec:
       - '53'
   - action: Allow
     destination:
-      selector: type == "external-apis"
+      selector: type == "allowed-dns"
   - action: Pass
     source: {}
     destination: {}
