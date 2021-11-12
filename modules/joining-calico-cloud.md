@@ -92,7 +92,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
 
 ### *[Optional]* Install `calicoctl` CLI for use in later labs
 
- The easiest way to retrieve captured `*.pcap` files is to use [calicoctl](https://docs.tigera.io/maintenance/clis/calicoctl/) CLI. The following binary installations are available:
+ The following binary installations are available [here] (https://docs.tigera.io/maintenance/clis/calicoctl/):
 
  - CloudShell
 
