@@ -119,7 +119,7 @@
     The access should be allowed once the egress policy is in place.
 
 
-> Now as we have proper policies in place, we can play around with `staged.default-deny` policy as a beta version to test your E-W control, for examle adding `default` namespace and curl the google, you should be able to see the deny flow under `staged.default-deny` policy, once you are happy with the results, you can using the `Policies Board` view in the Enterirpse Manager UI to enforce it as `default-deny` policy manifest. Once you enforce the `staged.default-deny`, you can also remove the existing deny egress Policy Rules in `default.centos`.
+> Now as we have proper policies in place, we can play around with `staged.default-deny` policy as a beta version to test your E-W control, for examle adding `default` namespace and curl the google, you should be able to see the deny flow under `staged.default-deny` policy, once you are happy with the results, you can using the `Policies Board` view in the Enterirpse Manager UI to enforce it as `default-deny` policy manifest. 
 
 
 [Next -> Pod Microsegmentation](../modules/pod-microsegmentation.md)
