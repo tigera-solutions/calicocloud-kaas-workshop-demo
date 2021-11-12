@@ -88,30 +88,30 @@
    
     > Use 99/32, 100/24, and 8/32 as example below.
 
-    ```text
-    PUT .tigera.ipset.<cluster_name>/_doc/push-tracker
-    {
-    "ips" : ["99.99.99.99/32", "100.100.100.0/24", "8.8.8.8/32"]
-    }
-    ```
+     ```text
+     PUT .tigera.ipset.<cluster_name>/_doc/push-tracker
+     {
+     "ips" : ["99.99.99.99/32", "100.100.100.0/24", "8.8.8.8/32"]
+     }
+     ```
 
     > Output is similar as 
-    ```text
-    "result" : "created",
-    "_shards" : {
-    "total" : 2,
-    "successful" : 2,
-    "failed" : 0
-    }
-    ```
+     ```text
+     "result" : "created",
+     "_shards" : {
+     "total" : 2,
+     "successful" : 2,
+     "failed" : 0
+     }
+     ```
 
-   - Generate an alert by ping the ip
-   ```bash
-   kubectl -n dev exec -t netshoot -- sh -c 'ping -c1 8.8.8.8'
-   kubectl -n dev exec -t centos -- sh -c 'ping -c1 8.8.8.8'
-   ```
+   3. Generate an alert by ping the ip
+     ```bash
+     kubectl -n dev exec -t netshoot -- sh -c 'ping -c1 8.8.8.8'
+     kubectl -n dev exec -t centos -- sh -c 'ping -c1 8.8.8.8'
+     ```
 
-   - Confirm you are able to see the aler in alert list. The netshoot flow show `allow` as no policy in place for `netshoot` pod, and centos flow show `denied` as we have deny policy for `centos` egress traffic.
+   4. Confirm you are able to see the aler in alert list. The netshoot flow show `allow` as no policy in place for `netshoot` pod, and centos flow show `denied` as we have deny policy for `centos` egress traffic.
    
      ![push alert](../img/push-alert.png)
         
