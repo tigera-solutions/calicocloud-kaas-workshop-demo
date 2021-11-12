@@ -86,7 +86,7 @@
 
   2. Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. It should be same as your `CALICOCLUSTERNAME`
    
-   > Use 99/32, 100/24, and 8/32 as example below.
+     > Use 99/32, 100/24, and 8/32 as example below.
 
      ```text
      PUT .tigera.ipset.<cluster_name>/_doc/push-tracker
