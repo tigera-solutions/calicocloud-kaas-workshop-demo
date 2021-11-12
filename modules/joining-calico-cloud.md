@@ -92,7 +92,7 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
 
 ### *[Optional]* Install `calicoctl` CLI for use in later labs
 
- The following binary installations are available [here] (https://docs.tigera.io/maintenance/clis/calicoctl/):
+ The following binary installations are available [here](https://docs.tigera.io/maintenance/clis/calicoctl/)
 
  - CloudShell
 
