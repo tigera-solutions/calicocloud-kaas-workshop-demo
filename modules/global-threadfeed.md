@@ -84,9 +84,9 @@
      EOF
      ```
 
-   2. Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. It should be same as your `CALICOCLUSTERNAME`
+  2. Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. It should be same as your `CALICOCLUSTERNAME`
    
-  > Use 99/32, 100/24, and 8/32 as example below.
+   > Use 99/32, 100/24, and 8/32 as example below.
 
      ```text
      PUT .tigera.ipset.<cluster_name>/_doc/push-tracker
@@ -95,7 +95,7 @@
      }
      ```
 
-  > Output is similar as 
+   > Output is similar as 
      ```text
      "result" : "created",
      "_shards" : {
@@ -105,14 +105,14 @@
      }
      ```
 
-   3. Generate an alert by ping the ip
+  3. Generate an alert by ping the ip
     
      ```bash
      kubectl -n dev exec -t netshoot -- sh -c 'ping -c1 8.8.8.8'
      kubectl -n dev exec -t centos -- sh -c 'ping -c1 8.8.8.8'
      ```
 
-   4. Confirm you are able to see the aler in alert list. The netshoot flow show `allow` as no policy in place for `netshoot` pod, and centos flow show `denied` as we have deny policy for `centos` egress traffic.
+  4. Confirm you are able to see the aler in alert list. The netshoot flow show `allow` as no policy in place for `netshoot` pod, and centos flow show `denied` as we have deny policy for `centos` egress traffic.
    
      ![push alert](../img/push-alert.png)
         
