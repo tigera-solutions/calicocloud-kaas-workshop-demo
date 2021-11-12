@@ -95,7 +95,7 @@
      }
      ```
 
-   > Output is similar as 
+     > Output is similar as 
      ```text
      "result" : "created",
      "_shards" : {
