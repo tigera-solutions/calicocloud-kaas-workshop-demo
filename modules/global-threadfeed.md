@@ -86,7 +86,7 @@
 
    2. Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. It should be same as your `CALICOCLUSTERNAME`
    
-    > Use 99/32, 100/24, and 8/32 as example below.
+  > Use 99/32, 100/24, and 8/32 as example below.
 
      ```text
      PUT .tigera.ipset.<cluster_name>/_doc/push-tracker
@@ -95,7 +95,7 @@
      }
      ```
 
-    > Output is similar as 
+  > Output is similar as 
      ```text
      "result" : "created",
      "_shards" : {
@@ -106,6 +106,7 @@
      ```
 
    3. Generate an alert by ping the ip
+    
      ```bash
      kubectl -n dev exec -t netshoot -- sh -c 'ping -c1 8.8.8.8'
      kubectl -n dev exec -t centos -- sh -c 'ping -c1 8.8.8.8'
