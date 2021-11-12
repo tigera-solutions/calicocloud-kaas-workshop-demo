@@ -69,7 +69,7 @@
     
     ```
     
-4. *[Bonus]* push a threatfeed to your managed cluster and generate an alert with these ip list.    
+### *[Bonus]* push a threatfeed to your managed cluster and generate an alert with these ip list.    
 
    - Create a push threatfeed in your cluster. 
 
