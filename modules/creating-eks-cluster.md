@@ -117,6 +117,12 @@
     unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
     ```
 
+5. Confirm role are changed to new IAM for Cloud9 workspace.
+
+    ```bash
+    aws sts get-caller-identity
+    ```
+
 
 # Step 2: Creating EKS cluster
 
