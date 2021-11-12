@@ -71,20 +71,20 @@
     
 ### *[Bonus]* push a threatfeed to your managed cluster and generate an alert with these ip list.    
 
-   - Create a push threatfeed in your cluster. 
+  1. Create a push threatfeed in your cluster. 
 
-    ```bash
-    kubectl apply -f - <<EOF
-    apiVersion: projectcalico.org/v3
-    kind: GlobalThreatFeed
-    metadata:
-      name: push-tracker
-    spec:
-      content: IPSet
-    EOF
-    ```
+     ```bash
+     kubectl apply -f - <<EOF
+     apiVersion: projectcalico.org/v3
+     kind: GlobalThreatFeed
+     metadata:
+       name: push-tracker
+     spec:
+       content: IPSet
+     EOF
+     ```
 
-   - Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. It should be same as your `CALICOCLUSTERNAME`
+   2. Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. It should be same as your `CALICOCLUSTERNAME`
    
     > Use 99/32, 100/24, and 8/32 as example below.
 
