@@ -76,9 +76,7 @@
     cluster-inventory         2021-09-30T15:42:33Z
     cluster-network-access    2021-09-30T15:42:33Z
     cluster-policy-audit      2021-09-30T15:42:33Z
-    workload-inventory        2021-09-30T15:42:33Z
-    workload-network-access   2021-09-30T15:42:34Z
-    workload-policy-audit     2021-09-30T15:42:34Z
+    
 
     NAME                      CREATED AT
     dns.unsanctioned.access   2021-09-30T15:42:40Z
