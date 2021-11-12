@@ -20,7 +20,7 @@
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://www.google.com 2>/dev/null | grep -i http'
     ```
 
-    Access to the `api.twilio.com` endpoint should be allowed by the DNS policy and any other external endpoints like `www.google.com` should be denied. 
+    Access to the `api.twilio.com` endpoint should be allowed by the DNS policy and any other external endpoints like `www.google.com` should be denied.
 
     b. Modify the policy to include `*.google.com` in dns policy and test egress access to www.google.com again.
 
@@ -29,14 +29,13 @@
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://www.google.com 2>/dev/null | grep -i http'
     ```
 
-
-2.  Edit the policy to use a `NetworkSet` with DNS domain instead of inline DNS rule.
+2. Edit the policy to use a `NetworkSet` with DNS domain instead of inline DNS rule.
 
     a. Apply a policy to allow access to `api.twilio.com` endpoint using DNS policy.
 
     ```bash
     # deploy network set
-    kubectl apply -f demo/dns-egress-control/netset.external-apis.yaml
+    kubectl apply -f demo/dns-egress-control/netset.allowed-dns.yaml
     # deploy DNS policy using the network set
     kubectl apply -f demo/dns-egress-control/dns-policy.netset.yaml
     ```
@@ -47,7 +46,7 @@
     # test egress access to www.google.com
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://www.google.com 2>/dev/null | grep -i http'
     ```
-    
+
     b. Modify the `NetworkSet` to include `www.google.com` in dns domain and test egress access to www.google.com again.
 
      ![Add DNS](../img/add-google-dns.png)
@@ -56,7 +55,6 @@
     # test egress access to www.google.com again and it should be allowed.
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://www.google.com 2>/dev/null | grep -i http'
     ```
-    
 
 [Next -> Global threadfeed](../modules/global-threadfeed.md)
 

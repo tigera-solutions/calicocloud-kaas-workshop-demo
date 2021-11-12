@@ -1,14 +1,17 @@
 apiVersion: projectcalico.org/v3
 kind: GlobalNetworkPolicy
 metadata:
-  name: security.pass
+  name: platform.pass
 spec:
-  tier: security
+  tier: platform
   order: 2000
   ingress:
     - action: Pass
   egress:
     - action: Pass
+  doNotTrack: false
+  applyOnForward: false
+  preDNAT: false
   types:
     - Ingress
     - Egress

@@ -11,11 +11,5 @@ spec:
       source: {}
       destination:
         selector: k8s-app == "kube-dns"
-    - action: Pass
-      source: {}
-      destination: {}
-  doNotTrack: false
-  applyOnForward: false
-  preDNAT: false
   types:
     - Egress
