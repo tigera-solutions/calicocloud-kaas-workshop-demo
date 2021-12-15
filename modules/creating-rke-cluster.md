@@ -117,7 +117,7 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
 
    ```bash
    sudo apt-get update
-   sudo apt-get install docker-ce docker-ce-cli containerd.io
+   sudo apt-get install docker-ce docker-ce-cli containerd.io -y
    ```
 
 4. Go to Rancher UI, create a `custom` cluster with `calico` cni.
