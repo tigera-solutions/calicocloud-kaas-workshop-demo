@@ -66,7 +66,8 @@
    frontend-external   LoadBalancer   10.43.111.144   34.xxx.xxx.88   80:31209/TCP   5h52m
    ```
 
-   
+   > A workaround for DPI alert not able to generate in UI as in policy `allow-tigera.guardian-access` block dpi alert to ES. We will update this policy with `allow tcp` in ingress before curl. 
+
    ```bash
    #curl your loadbalancer with head and smk data from outside of cluster
    curl http://$SVC_IP:80 -H 'User-Agent: Mozilla/4.0' -XPOST --data-raw 'smk=1234'
