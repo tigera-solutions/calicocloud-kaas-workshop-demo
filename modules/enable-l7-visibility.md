@@ -16,13 +16,10 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.9/visibi
 2.  Prepare scripts for deploying L7 Log Collector DaemonSet
 
     ```bash
-    DOCS_LOCATION=${DOCS_LOCATION:="https://docs.tigera.io"}
+    curl https://docs.tigera.io/v3.10/manifests/l7/daemonset/l7-collector-daemonset.yaml -O
 
-    #Download manifest file for L7 log collector daemonset
-    curl ${DOCS_LOCATION}/manifests/l7/daemonset/l7-collector-daemonset.yaml -O
+    curl https://docs.tigera.io/v3.10/manifests/l7/daemonset/envoy-config.yaml -O
 
-    #Download and install Envoy Config
-    curl ${DOCS_LOCATION}/manifests/l7/daemonset/envoy-config.yaml -O
     ```
 3.  Create the Envoy config in `calico-system` namespace
     ```bash

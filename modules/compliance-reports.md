@@ -65,7 +65,7 @@
 
    d. Now apply the compliance job YAML
 	```bash
-	kubectl apply -f demo/40-compliance-reports/compliance-reporter-pod.yaml
+	kubectl apply -f demo/compliance-reports/compliance-reporter-pod.yaml
 	```
 
     Once the `run-reporter` job finished, you should be able to see this report in manager UI and download the csv file. 
