@@ -13,7 +13,7 @@
 2. Remove calicocloud components from your cluster.
    - Download the script 
    ```bash
-   curl -O https://installer.calicocloud.io/manifests/v3.9.0-3/downgrade.sh
+   curl -O https://installer.calicocloud.io/manifests/v3.10.0-0/downgrade.sh
    ```
 
    - Make the script executable 
