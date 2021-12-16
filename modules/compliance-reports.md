@@ -63,7 +63,17 @@
       value: "usza33l0-management-managed-a03b5f39d13f4802acfc947026eb47-gr7-us-east-2-eks-amazonaws-com"
     ```    
 
-   d. Now apply the compliance job YAML
+   d. We also need modify start/end time for specify the report time range. For examole:
+
+   ```text
+    - name: TIGERA_COMPLIANCE_REPORT_START_TIME
+      value: 2021-12-31T23:00:00Z
+    - name: TIGERA_COMPLIANCE_REPORT_END_TIME
+      value: 2021-12-31T23:59:00Z
+      # Modify these values with the start and end time frame that should be reported on.
+   ```
+
+   e. Now apply the compliance job YAML
 	```bash
 	kubectl apply -f demo/compliance-reports/compliance-reporter-pod.yaml
 	```

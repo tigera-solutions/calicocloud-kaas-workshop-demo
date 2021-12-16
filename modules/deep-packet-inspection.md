@@ -26,7 +26,7 @@
  3. Verify deep packet inspection is running and the daemonset of `tigera-dpi` is also running. 
 
    ```bash
-   kubectl get deeppacketinspections.crd.projectcalico.org -n hipstershop
+   kubectl get deeppacketinspections -n hipstershop
    ```
 
    ```bash
@@ -43,15 +43,38 @@
 
    ```bash
    SVC_IP=$(kubectl -n hipstershop get svc frontend-external -ojsonpath='{.status.loadBalancer.ingress[0].ip}')
-
+  
    # use below command if you are using `EKS` cluster, as EKS is using hostname instead of ip for loadbalancer
    SVC_IP=$(kubectl -n hipstershop get svc frontend-external -ojsonpath='{.status.loadBalancer.ingress[0].hostname}')
 
+   # For RKE/kubeadm clusters, your `frontend-external` lb will be in <pending> mode, you can add external ip or use ingress controller to expose this svc. 
+   kubectl edit -n hipstershop svc frontend-external
    ```
+
+   ```text
+   spec:
+     clusterIP: 10.43.111.144
+     clusterIPs:
+     - 10.43.111.144
+     externalIPs:    ## Add this line for your service
+     - 34.xxx.xxx.88 ## Add your node public ip which have frontend pod running as endpoint for this value
+
+   ```
+   
+   ```text 
+   NAME                TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)        AGE
+   frontend-external   LoadBalancer   10.43.111.144   34.xxx.xxx.88   80:31209/TCP   5h52m
+   ```
+
    
    ```bash
    #curl your loadbalancer with head and smk data from outside of cluster
    curl http://$SVC_IP:80 -H 'User-Agent: Mozilla/4.0' -XPOST --data-raw 'smk=1234'
+   ```
+
+   ```bash
+   #curl your external ip with Nodeport and smk data from outside of cluster
+   curl http://34.xxx.xxx.88:31209 -H 'User-Agent: Mozilla/4.0' -XPOST --data-raw 'smk=1234'
    ```
 
  5. Confirm the `Signature Triggered Alert` in manager UI and also in Kibana `ee_event`
