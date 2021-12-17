@@ -6,7 +6,7 @@ The following guide includes provision instances on top of Azure, AWS and GCP, c
 
 > This workshop uses docker enginee. For create an self-managed cluster with container.d enginee, will update this module later. 
 
-# For GCP 
+## For GCP 
 
 ## Prerequisite Tasks
 
