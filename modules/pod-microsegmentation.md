@@ -4,19 +4,16 @@
 
 ## Steps
 
-1. Implement policy for storefront app.
+1. Create zone-based policy for storefront application.
 
-    a. Create logging policy for storefront application in platform tier
-
-    b. Create zone-based policy for storefront application.
-
+    a. Check each mircoservice have proper zone-based label.
     ```bash
-    ###Check each mircoservice have proper zone-based label
     kubectl get pods -n storefront --show-labels 
+    ```
 
-    ###apply the zone-based policy.
+    b. Apply the zone-based policy.
+    ```bash    
     kubectl apply -f demo/app-control/FirewallZonesPolicies.yaml
-
     ```
 
 2. Confirm the connection from microservice2 to backend are been allowed from flow visualization.
