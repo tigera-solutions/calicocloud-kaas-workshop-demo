@@ -44,7 +44,7 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
 
 ## Steps
 
-1. Provisioning compute instances. Refer to "creating kubeadm cluster" for provisioning VPC & subnet & firewalls
+1. Provisioning compute instances in GCP. Refer to "creating kubeadm cluster" for provisioning VPC & subnet & firewalls
    ```bash
    gcloud compute instances create rancher-master \
     --async \

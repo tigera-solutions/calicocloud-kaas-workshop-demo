@@ -1,11 +1,12 @@
 # Creating Kubeadm cluster
 
-The following guide is based upon the doc from Calico OSS [self-managed GCE k8s installation](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-public-cloud/gce) for provisioning compute resources.
+The following guide includes provision instances on top of Azure, AWS and GCP, choose the one you are more comfortable with. 
 
 **Goal:** Create self-managed cluster.
 
-> This workshop uses GCE and other resources in GCP as default configuration settings. To create an self-managed cluster with other cloud providers such as AAWS & Azure, please refer to [self-managed installation](hhttps://docs.projectcalico.org/getting-started/kubernetes/self-managed-public-cloud/) 
+> This workshop uses docker enginee. For create an self-managed cluster with container.d enginee, will update this module later. 
 
+# For GCP 
 
 ## Prerequisite Tasks
 
