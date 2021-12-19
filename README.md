@@ -16,11 +16,9 @@ The intent of this workshop is to educate any person working with K8S cluster in
   - [EKS: using cloud9 IDE as workstation to create an compatible EKS cluster](modules/creating-eks-cluster.md)
   - [AKS: using Azure SDK to create an compatible AKS cluster](modules/creating-aks-cluster.md)
   - [GKE: using gcloud SDK to create an compatible GKE cluster](modules/creating-gke-cluster.md)
-  - [Kubeadm: using Kubeadm to create an compatible self-managed cluster in Azure & GCP](modules/creating-kubeadm-cluster.md)
-  
 
-  - [RKE: using Rancher server to create an compatible RKE cluster in GCP](modules/creating-rke-cluster.md)
-  - [Kubeadm: using Kubeadm to create an compatible self-managed cluster](modules/creating-kubeadm-cluster.md)
+  - [Kubeadm: using Kubeadm to create an compatible self-managed cluster in GCE](modules/creating-kubeadm-cluster.md)
+  - [RKE: using Rancher server to create an compatible RKE cluster in GCE](modules/creating-rke-cluster.md)
   - [WIP][OCP: using Openshift to create an compatible OCP cluster](modules/creating-ocp-cluster.md)
 
 
