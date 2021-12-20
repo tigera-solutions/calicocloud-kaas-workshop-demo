@@ -285,6 +285,14 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
    worker-node0   Ready    <none>                 9h    v1.21.1
    worker-node1   Ready    <none>                 9h    v1.21.1
    ```
+
+7. Download this repo into your environment:
+
+   ```bash
+   git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
+
+   cd calicocloud-kaas-workshop-demo
+   ```   
 --- 
 ## Next steps
 

@@ -197,6 +197,13 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
    rancher-worker1   Ready    worker                     18m   v1.21.5
    ```
 
+8. Download this repo into your environment:
+
+   ```bash
+   git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
+
+   cd calicocloud-kaas-workshop-demo
+   ```
 
 --- 
 ## Next steps
