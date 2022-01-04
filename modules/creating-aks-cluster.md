@@ -146,9 +146,9 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     
 	```bash
 	NAME                                STATUS   ROLES   AGE     VERSION
-    aks-nodepool1-45823991-vmss000000   Ready    agent   2m22s   v1.21.1
-    aks-nodepool1-45823991-vmss000001   Ready    agent   2m24s   v1.21.1
-    aks-nodepool1-45823991-vmss000002   Ready    agent   2m26s   v1.21.1
+    aks-nodepool1-45823991-vmss000000   Ready    agent   2m22s   v1.22.4
+    aks-nodepool1-45823991-vmss000001   Ready    agent   2m24s   v1.22.4
+    aks-nodepool1-45823991-vmss000002   Ready    agent   2m26s   v1.22.4
 	```
 
 	To see more details about your cluster:
