@@ -86,21 +86,23 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     az aks get-versions -l $LOCATION --output table
     ```
     ```
-    KubernetesVersion    Upgrades
-    -------------------  -----------------------
-    1.21.2               None available
-    1.21.1               1.21.2
-    1.20.9               1.21.1, 1.21.2
-    1.20.7               1.20.9, 1.21.1, 1.21.2
-    1.19.13              1.20.7, 1.20.9
-    1.19.11              1.19.13, 1.20.7, 1.20.9
+   KubernetesVersion    Upgrades
+   -------------------  ------------------------
+   1.22.4               None available
+   1.22.2               1.22.4
+   1.21.7               1.22.2, 1.22.4
+   1.21.2               1.21.7, 1.22.2, 1.22.4
+   1.20.13              1.21.2, 1.21.7
+   1.20.9               1.20.13, 1.21.2, 1.21.7
+   1.19.13              1.20.9, 1.20.13
+   1.19.11              1.19.13, 1.20.9, 1.20.13
     ```
     
     For this lab we'll use 1.21.1
     
     ```bash
-    K8SVERSION=1.21.1
-    echo export K8SVERSION=1.21.1 >> ~/.bashrc
+    K8SVERSION=1.22.4
+    echo export K8SVERSION=1.22.4 >> ~/.bashrc
     ```
     
     > The below command can take 10-20 minutes to run as it is creating the AKS cluster. Please be PATIENT and grab a coffee/tea/kombucha...
@@ -123,9 +125,9 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     ```
     
     ```bash
-    Name             Location    ResourceGroup      KubernetesVersion    ProvisioningState    Fqdn
-    ---------------  ----------  -----------------  -------------------  -------------------  ----------------------------------------------------------------
-    aks-jessie-1023  eastus      aks-rg-jessie1023  1.21.1               Succeeded            aks-jessie-aks-rg-jessie102-03cfb8-42907c98.hcp.eastus.azmk8s.io
+   Name         Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
+   -----------  ----------  ---------------  -------------------  -------------------  -------------------------------------------------------------
+   aks-cc-test  eastus      aks-rg-jessie    1.22.4               Succeeded            aks-cc-tes-aks-rg-jessie-03cfb8-20425f88.hcp.eastus.azmk8s.io
     ```
     
 5.  Get the Kubernetes config files for your new AKS cluster
