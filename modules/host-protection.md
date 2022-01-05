@@ -156,6 +156,10 @@ Calico network policies not only can secure pod to pod communications but also c
    #Create vnet1 to vnet2 peering and vnet2 to vnet1 peering 
    az network vnet peering create -g $CLUSTER_RESOURCE_GROUP --name vnet1vnet2peer --vnet-name $VNET --remote-vnet-id $vNet2Id --allow-vnet-access
    az network vnet peering create -g $RGNAME --name vnet2vnet1peer --vnet-name myVnet --remote-vnet-id $vNet1Id --allow-vnet-access
+   ```
+
+   ```bash
+   #Confirm vnet1 to vnet2 peering and vnet2 to vnet1 peering status
    az network vnet peering show --name vnet1vnet2peer -g $CLUSTER_RESOURCE_GROUP --vnet-name $VNET --query peeringState
    az network vnet peering show --name vnet2vnet1peer -g $RGNAME --vnet-name myVnet --query peeringState
    ```
