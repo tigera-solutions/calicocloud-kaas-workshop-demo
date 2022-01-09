@@ -195,7 +195,7 @@ Calico network policies not only can secure pod to pod communications but also c
 
 5.  Expose the frontend service via the NodePort service type, we use `30080` port as example.
    ```bash
-    kubectl -n hipstershop expose deployment frontend --type=NodePort --name=frontend-nodeport --overrides='{"apiVersion":"v1","spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":8080}]}}'
+   kubectl -n hipstershop expose deployment frontend --type=NodePort --name=frontend-nodeport --overrides='{"apiVersion":"v1","spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":8080}]}}'
    ```
 
 6. Get internal IP of node and test the exposed port of `30080` from your vm.
