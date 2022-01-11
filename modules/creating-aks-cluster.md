@@ -85,7 +85,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     ```bash
     az aks get-versions -l $LOCATION --output table
     ```
-    ```
+    ```bash
    KubernetesVersion    Upgrades
    -------------------  ------------------------
    1.22.4               None available
@@ -98,7 +98,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
    1.19.11              1.19.13, 1.20.9, 1.20.13
     ```
     
-    For this lab we'll use 1.21.1
+    For this lab we'll use 1.22.4
     
     ```bash
     K8SVERSION=1.22.4
