@@ -69,6 +69,7 @@ In this workshop we are going to focus on these main use cases:
 - [WIP][Security: Wireguard Encryption](modules/encryption.md) ##Finished EKS & AKS
 - [WIP][Security: Host protection](modules/host-protection.md) ##Finished EKS & AKS
 - [WIP][Change to eBPF dataplane](modules/ebpf-dataplane.md) ##Finished EKS & AKS
+- [WIP][Adding windows workload ](modules/windows-workload.md) ##Finished AKS
 
 
 ## Charpter C - Advanced
