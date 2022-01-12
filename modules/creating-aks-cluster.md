@@ -125,9 +125,9 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     ```
     
     ```bash
-   Name         Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
-   -----------  ----------  ---------------  -------------------  -------------------  -------------------------------------------------------------
-   aks-cc-test  eastus      aks-rg-jessie    1.22.4               Succeeded            aks-cc-tes-aks-rg-jessie-03cfb8-20425f88.hcp.eastus.azmk8s.io
+    Name         Location    ResourceGroup    KubernetesVersion    ProvisioningState    Fqdn
+    -----------  ----------  ---------------  -------------------  -------------------  -------------------------------------------------------------
+    aks-cc-test  eastus      aks-rg-jessie    1.22.4               Succeeded            aks-cc-tes-aks-rg-jessie-03cfb8-20425f88.hcp.eastus.azmk8s.io
     ```
     
 5.  Get the Kubernetes config files for your new AKS cluster
