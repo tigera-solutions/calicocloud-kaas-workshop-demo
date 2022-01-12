@@ -161,6 +161,15 @@
     ![flow log](../img/win-demo-log.png)
 
 
+9. Delete the Windows node we create in your pool, and confirm the result.
+   ```bash
+   az aks nodepool delete \
+   --resource-group $RGNAME \
+   --cluster-name $CLUSTERNAME \
+   --name npwin  \
+   --no-wait
+   ```
+
 ### For EKS cluster    
 
 
