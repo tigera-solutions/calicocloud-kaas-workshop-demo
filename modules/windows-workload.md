@@ -4,7 +4,7 @@
 
 **Goal:** Create client and server pods on Linux and Windows nodes, verify connectivity between the pods, and then isolate pod traffic.
 
-**Docs:** https://docs.projectcalico.org/getting-started/windows-calico/quickstart
+**Docs:** https://docs.tigera.io/getting-started/windows-calico/quickstart
 
 ## Steps
 
@@ -151,8 +151,14 @@
    ##powershell command output 
    Invoke-WebRequest : The operation has timed out.
    ```
+
+8. Check the connectivities from service graph and click the red arrow to see the deny flow log.
+
     ![service graph view](../img/win-demo.png)
 
     ![flow log](../img/win-demo-log.png)
+    
 
-[Next -> Module 4](../calicooss/wireguard-encryption.md)
+[Next -> Non K8S node segmentation](../modules/non-k8s-node-segmentation.md)
+
+[Menu](../README.md)
