@@ -135,6 +135,8 @@
    - The traffic between `busybox` in Linux node and `porter` in Windows node is allowed. 
    - The traffic between `powershell` in Windows node and `nginx` in Linux node is denied.
   
+    ![topo windows](../img/topo-win.png)
+
    ```bash
    kubectl exec -n calico-demo busybox -- nc -vz $(kubectl get po porter -n calico-demo -o 'jsonpath={.status.podIP}') 80
    
