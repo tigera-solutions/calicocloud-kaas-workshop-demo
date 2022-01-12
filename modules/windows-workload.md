@@ -157,7 +157,10 @@
     ![service graph view](../img/win-demo.png)
 
     ![flow log](../img/win-demo-log.png)
-    
+
+
+### For EKS cluster    
+
 
 [Next -> Non K8S node segmentation](../modules/non-k8s-node-segmentation.md)
 
