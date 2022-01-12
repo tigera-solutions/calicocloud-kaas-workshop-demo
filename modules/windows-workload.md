@@ -172,7 +172,9 @@
 
 ### For EKS cluster    
 
-1. Enable Windows support for your EKS cluster. **Note:** If you use Calico CNI for EKS cluster, you can skip step 1 & 2. 
+**Note:** If you use Calico CNI for EKS cluster, you can skip step 1 to 4. 
+
+1. Enable Windows support for your EKS cluster. 
  
    ```bash
    echo $IAM_ROLE ## It should be 'calicocloud-workshop-admin' as we configed before.
