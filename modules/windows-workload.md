@@ -172,6 +172,50 @@
 
 ### For EKS cluster    
 
+1. Enable Windows support for your EKS cluster. **Note:** If you use Calico CNI for EKS cluster, you can skip step 1 & 2. 
+ 
+   ```bash
+   echo $IAM_ROLE ## It should be 'calicocloud-workshop-admin' as we configed before.
+   aws iam list-attached-role-policies --role-name $IAM_ROLE
+   ```
+   
+   The output will be like:
+   ```bash
+   {
+    "AttachedPolicies": [
+        {
+            "PolicyName": "AdministratorAccess",
+            "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+        }
+    ]
+   }
+   ```
+
+2. Attach the AmazonEKSVPCResourceController managed policy to your Amazon EKS cluster IAM role. 
+
+   ```bash
+   aws iam attach-role-policy \
+     --role-name $IAM_ROLE \
+     --policy-arn arn:aws:iam::aws:policy/AmazonEKSVPCResourceController
+   ```  
+
+3. Create a file named vpc-resource-controller-configmap.yaml.
+   ```bash
+   cat > configs/vpc-resource-controller-configmap.yaml << EOF
+   apiVersion: v1
+   kind: ConfigMap
+   metadata:
+     name: amazon-vpc-cni
+     namespace: kube-system
+   data:
+     enable-windows-ipam: "true"
+   EOF
+
+   ```
+4. Apply the ConfigMap to your cluster.
+   ```bash
+   kubectl apply -f configs/vpc-resource-controller-configmap.yaml
+   ```
 
 [Next -> Non K8S node segmentation](../modules/non-k8s-node-segmentation.md)
 
