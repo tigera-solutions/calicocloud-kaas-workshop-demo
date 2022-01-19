@@ -1,7 +1,6 @@
 # Adding windows workload in your cluster and protect them with Calico policy
 >Calico for Windows is a hybrid implementation that requires a Linux cluster for Calico components & Linux workloads, and Windows nodes for Windows workloads.
 
-
 **Goal:** Create client and server pods on Linux and Windows nodes, verify connectivity between the pods, and then isolate pod traffic.
 
 **Docs:** https://docs.tigera.io/getting-started/windows-calico/quickstart
@@ -172,7 +171,7 @@
 
 ### For EKS cluster    
 
-**Note:** If you use Calico CNI for EKS cluster, you can skip step 1 to 4. 
+**Note:** Calico for Windows only supports AWS VPC CNI right now. 
 
 1. Enable Windows support for your EKS cluster. 
  
@@ -218,6 +217,56 @@
    ```bash
    kubectl apply -f configs/vpc-resource-controller-configmap.yaml
    ```
+
+5. Attach a self managed Windows node group to the cluster.
+
+   ```bash
+   eksctl create nodegroup \
+   --region us-east-2 \
+   --cluster win-calico-cluster \
+   --name ng-windows \
+   --node-type c5.large \
+   --nodes 1 \
+   --nodes-min 1 \
+   --nodes-max 4 \
+   --node-ami-family WindowsServer2019FullContainer --ssh-access --ssh-public-key=~/.ssh/id_rsa.pub --managed=false
+   ```
+
+   ```bash
+   kubectl get nodes -o wide
+   ```
+
+   ```text
+   NAME                                           STATUS   ROLES    AGE     VERSION               INTERNAL-IP      EXTERNAL-IP     OS-IMAGE                         KERNEL-VERSION                CONTAINER-RUNTIME
+   ip-192-168-17-219.us-east-2.compute.internal   Ready    <none>   43m     v1.21.5-eks-bc4871b   192.168.17.219   18.190.24.194   Amazon Linux 2                   5.4.156-83.273.amzn2.x86_64   docker://20.10.7
+   ip-192-168-39-125.us-east-2.compute.internal   Ready    <none>   2m14s   v1.21.5-eks-bc4871b   192.168.39.125   3.137.158.224   Windows Server 2019 Datacenter   10.0.17763.2366               docker://20.10.7
+   ip-192-168-57-192.us-east-2.compute.internal   Ready    <none>   43m     v1.21.5-eks-bc4871b   192.168.57.192   3.138.111.75    Amazon Linux 2                   5.4.156-83.273.amzn2.x86_64   docker://20.10.7
+   ```
+
+6. Apply following user role binding to the cluster.
+   
+   ```bash
+   cat > configs/ClusterRoleBinding-win.yaml << EOF
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRoleBinding
+   metadata:
+     name: nodes-cluster-admin
+   roleRef:
+     apiGroup: rbac.authorization.k8s.io
+     kind: ClusterRole
+     name: cluster-admin
+   subjects:
+   - apiGroup: rbac.authorization.k8s.io
+     kind: Group
+     name: system:nodes
+   EOF
+   ```
+
+   ```bash
+   kubectl apply -f configs/ClusterRoleBinding-win.yaml
+   ```
+
+7. 
 
 [Next -> Non K8S node segmentation](../modules/non-k8s-node-segmentation.md)
 
