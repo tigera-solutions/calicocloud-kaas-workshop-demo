@@ -13,7 +13,7 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.11/visib
     kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"policySyncPathPrefix":"/var/run/nodeagent"}}'
     ```
 
-2. Apply application layer resource and ensure that l7-collector and envoy-proxy containers are in Running state. Refer to LogCollectionSpec [https://docs.tigera.io/v3.11/reference/installation/api#operator.tigera.io/v1.ApplicationLayer] with different options. 
+2. Apply application layer resource and ensure that l7-collector and envoy-proxy containers are in Running state. Refer to [LogCollectionSpec] (https://docs.tigera.io/v3.11/reference/installation/api#operator.tigera.io/v1.ApplicationLayer) with different options. 
 
    ```bash
    cat > configs/alr7.yaml << EOF
@@ -28,6 +28,11 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.11/visib
        logRequestsPerInterval: -1
    EOF
    ```
+
+   ```bash
+   kubectl create -f configs/alr7.yaml
+   ```
+
 
 6. Select traffic for L7 log collection
 
