@@ -48,7 +48,7 @@
     ```bash
     NAME                           CREATED AT
     alienvault.domainthreatfeeds   2021-09-28T15:01:33Z
-    alienvault.ipthreatfeeds       2021-09-28T15:01:33Z
+    alienvault.c       2021-09-28T15:01:33Z
     feodo-tracker                  2021-09-28T17:32:13Z
     ```
     
@@ -60,7 +60,16 @@
     kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $FIP"
     ```
 
-3. Add more threatfeeds into networkset and prevent your cluster from them.
+3. Generate alerts by accessing the IP from `alienvault.ipthreatfeeds` list. 
+
+    ```bash
+    # try to ping any of the IPs in from the ipthreatfeeds list.
+    AIP=$(kubectl get globalnetworkset threatfeed.alienvault.ipthreatfeeds -ojson | jq -r '.spec.nets[0]' | sed -e 's/^"//' -e 's/"$//' -e 's/\/32//')
+    kubectl -n dev exec -t netshoot -- sh -c "ping -c1 $AIP"
+    ```
+
+
+4. Add more threatfeeds into networkset and prevent your cluster from them.
 
     ```bash
     # deploy embargo and other threatfeeds
@@ -69,52 +78,10 @@
     
     ```
     
-### *[Bonus]* push a threatfeed to your managed cluster and generate an alert with these ip list.    
 
-  1. Create a push threatfeed in your cluster. 
-
-     ```bash
-     kubectl apply -f - <<EOF
-     apiVersion: projectcalico.org/v3
-     kind: GlobalThreatFeed
-     metadata:
-       name: push-tracker
-     spec:
-       content: IPSet
-     EOF
-     ```
-
-  2. Push the ipset from your ES dev tool with `put` verb, use the correct cluster name as index. It should be same as your `CALICOCLUSTERNAME`
+5. . Confirm you are able to see the aler in alert list. 
    
-     > Use 99/32, 100/24, and 8/32 as example below.
-
-     ```text
-     PUT .tigera.ipset.<cluster_name>/_doc/push-tracker
-     {
-     "ips" : ["99.99.99.99/32", "100.100.100.0/24", "8.8.8.8/32"]
-     }
-     ```
-
-     > Output is similar as 
-     ```text
-     "result" : "created",
-     "_shards" : {
-     "total" : 2,
-     "successful" : 2,
-     "failed" : 0
-     }
-     ```
-
-  3. Generate an alert by ping the ip
-    
-     ```bash
-     kubectl -n dev exec -t netshoot -- sh -c 'ping -c1 8.8.8.8'
-     kubectl -n dev exec -t centos -- sh -c 'ping -c1 8.8.8.8'
-     ```
-
-  4. Confirm you are able to see the aler in alert list. The netshoot flow show `allow` as no policy in place for `netshoot` pod, and centos flow show `denied` as we have deny policy for `centos` egress traffic.
-   
-     ![push alert](../img/push-alert.png)
+     ![alert list](../img/alert-list.png)
         
 
 [Next -> Manager UI](../modules/manager-ui.md)
