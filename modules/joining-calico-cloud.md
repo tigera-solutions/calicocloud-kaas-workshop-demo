@@ -51,6 +51,26 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     echo export CALICOCLUSTERNAME=$CALICOCLUSTERNAME | tee -a ~/.zshrc 
     ```
     
+    Set the Elastic Index Name as a variable to use later in this workshop. The Index Name can also be obtained from `intrusion-detection-controller` or `compliance-controller` deployment. For example below, the `ELASTIC_INDEX_SUFFIX` should be set to __pkgr91xc.#####-management-managed-#####__
+    
+    ```bash
+    kubectl describe deployment -n tigera-intrusion-detection   intrusion-detection-controller | grep ELASTIC_INDEX_SUFFIX
+    ```
+    >Output is  
+    ```text
+    ELASTIC_INDEX_SUFFIX:     pkgr91xc.#####-management-managed-eastus-####
+    ```
+
+    ```bash
+    export ELASTIC_INDEX_SUFFIX=<Index Name>  
+    
+    #For Linux terminal
+    echo export ELASTIC_INDEX_SUFFIX=$ELASTIC_INDEX_SUFFIX | tee -a ~/.bash_profile
+
+    #For Mac terminal
+    echo export ELASTIC_INDEX_SUFFIX=$ELASTIC_INDEX_SUFFIX | tee -a ~/.zshrc 
+    ```
+
     In calico cloud management UI, you can see your own cluster added in "managed cluster", you can also confirm by
     ```bash
     kubectl get tigerastatus
