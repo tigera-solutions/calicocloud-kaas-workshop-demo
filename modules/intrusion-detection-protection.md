@@ -253,21 +253,21 @@ Use official documentation for the most recent [configuration instructions](http
  - Confirm the Cluster name is align with the "mananed cluster" name in UI  
     
    ```bash
-   echo $CALICOCLUSTERNAME
+   echo $ELASTIC_INDEX_SUFFIX
    ```
 
  - Replace the vailable in yaml file
 
    ```bash
-   sed -i "s/\$CALICOCLUSTERNAME/$CALICOCLUSTERNAME/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+   sed -i "s/\$ELASTIC_INDEX_SUFFIX/$ELASTIC_INDEX_SUFFIX/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
 
    ##For other variations/shells the following syntax may be required
-	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+	sed -i "" "s/\$ELASTIC_INDEX_SUFFIX/${ELASTIC_INDEX_SUFFIX}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
    ```
 
  - Validate the change by cat the variable
    ```bash
-   cat ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml |grep -B 2 -A 0 $CALICOCLUSTERNAME
+   cat ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml |grep -B 2 -A 0 $ELASTIC_INDEX_SUFFIX
    ```
 
    Output will be like:
