@@ -58,8 +58,6 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    # Persist for Later Sessions in Case of Timeout
    echo export CLUSTERNAME=gke-calicocloud-workshop >> ~/.bashrc
 
-   #Chose 1.20.9 for this lab
-   VERSION=1.20.9-gke.1001 
    ```
 
 ## Steps 
@@ -69,7 +67,6 @@ https://cloud.google.com/kubernetes-engine/docs/quickstart
    gcloud container clusters create $CLUSTERNAME \
    --region $REGION \
    --node-locations $LOCATION \
-   --cluster-version $VERSION \
    --addons HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver \
    --num-nodes 3 \
    --enable-intra-node-visibility \
