@@ -274,7 +274,7 @@ Use official documentation for the most recent [configuration instructions](http
    ```text
         env:
       - name: CLUSTER_NAME
-        value: "qq9psbdn-management-managed-aksjesie1-aks-rg-jesie102-03cfb8-375304e4-hcp-eastus-azmk8s-io" ```
+        value: "#####.#####-management-managed-aksjesie1-aks-rg-jesie102-03cfb8-375304e4-hcp-eastus-azmk8s-io" ```
    ```    
 
  3. Now apply the Anomaly Detection deployment YAML
