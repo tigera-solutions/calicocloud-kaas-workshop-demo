@@ -1,0 +1,12 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sDPRequiredLabels
+metadata:
+  name: dp-must-have-label
+spec:
+  match:
+    kinds:
+      - apiGroups: 
+        - "projectcalico.org/v3"
+        - "crd.projectcalico.org/v1"
+        kinds: ["GlobalNetworkPolicy"]
+  
