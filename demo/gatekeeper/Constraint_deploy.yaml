@@ -1,5 +1,5 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sDPRequiredLabels
+kind: K8sRequiredLabels
 metadata:
   name: dp-must-have-label
 spec:
