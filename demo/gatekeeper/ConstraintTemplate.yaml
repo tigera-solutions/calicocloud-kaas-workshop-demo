@@ -1,7 +1,7 @@
 apiVersion: templates.gatekeeper.sh/v1beta1
 kind: ConstraintTemplate
 metadata:
-  name: K8sRequiredLabels
+  name: k8srequiredlabels
 spec:
   crd:
     spec:
