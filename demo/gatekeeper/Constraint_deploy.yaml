@@ -8,4 +8,4 @@ spec:
       - apiGroups: ["apps/v1"]
         kinds: ["Deployment"]
   parameters:
-    labels: ["apiserver"]
+    labelsList: {{ .Values.labelsList }}
