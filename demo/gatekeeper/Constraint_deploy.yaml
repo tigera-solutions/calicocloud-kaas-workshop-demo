@@ -1,11 +1,11 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sRequiredLabels
+kind: K8sDPRequiredLabels
 metadata:
-  name: dp-must-have-tigera
+  name: dp-must-have-label
 spec:
   match:
     kinds:
       - apiGroups: ["apps/v1"]
         kinds: ["Deployment"]
   parameters:
-    labelsList: {{ .Values.labelsList }}
+    labels: {{ .Values.labels }}
