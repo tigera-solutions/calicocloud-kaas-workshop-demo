@@ -9,4 +9,6 @@ spec:
         - "projectcalico.org/v3"
         - "crd.projectcalico.org/v1"
         kinds: ["GlobalNetworkPolicy"]
+  parameters:
+    policy_name: ["tigera-security.block-alienvault-ipthreatfeed"]      
   

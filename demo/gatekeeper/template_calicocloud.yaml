@@ -12,10 +12,10 @@ spec:
     - target: admission.k8s.gatekeeper.sh
       rego: |
         package k8scalicocloudpolicy
-        violation[{"msg":msg}] {
-          spec_name := input.review.object.metadata.name
-          policy_name = "tigera-security.block-alienvault-ipthreatfeed"
-          missing := spec_name - policy_name
+        violation[{"msg": msg, "details": {"missing_policy": missing}}] {
+          required := input.parameters.policy_name[_]
+          provided := input.review.object.metadata.name
+          missing := provided - required
           count(missing) > 0
           msg := sprintf("Not connect to calicocloud")
         }
