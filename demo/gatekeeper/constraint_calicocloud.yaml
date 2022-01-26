@@ -1,7 +1,7 @@
 apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sDPRequiredLabels
+kind: K8sCalicoCloudPolicy
 metadata:
-  name: dp-must-have-label
+  name: cloud-policy-exist
 spec:
   match:
     kinds:
