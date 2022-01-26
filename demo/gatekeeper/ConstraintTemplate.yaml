@@ -18,11 +18,10 @@ spec:
     - target: admission.k8s.gatekeeper.sh
       rego: |
         package k8srequiredlabels
-
+        
         violation[{"msg": msg, "details": {"missing_labels": missing}}] {
-          required := {label | label := input.parameters.labels[_]}
-          provided := {label | input.review.object.metadata.labels[label]}
-          missing := required - provided
-          count(missing) > 0
-          msg := sprintf("you must provide labels: %v", [missing])
+          required := input.parameters.labels[_]}
+          provided := review.object.metadata.labels[label]}
+          required != provided
+          msg := sprintf("Not able to find the require labels: %v", [missing])
         }
