@@ -1,12 +1,12 @@
 apiVersion: templates.gatekeeper.sh/v1beta1
 kind: ConstraintTemplate
 metadata:
-  name: K8sDPRequiredLabels
+  name: K8sRequiredLabels
 spec:
   crd:
     spec:
       names:
-        kind: K8sDPRequiredLabels
+        kind: K8sRequiredLabels
       validation:
         # Schema for the `parameters` field
         openAPIV3Schema:
@@ -17,7 +17,7 @@ spec:
   targets:
     - target: admission.k8s.gatekeeper.sh
       rego: |
-        package K8sDPRequiredLabels
+        package k8srequiredlabels
 
         violation[{"msg": msg, "details": {"missing_labels": missing}}] {
           required := {label | label := input.parameters.labels[_]}
