@@ -5,10 +5,8 @@ metadata:
 spec:
   match:
     kinds:
-      - apiGroups: 
-        - "projectcalico.org/v3"
-        - "crd.projectcalico.org/v1"
-        kinds: ["GlobalNetworkPolicy"]
+      - apiGroups: ["apps"]
+        kinds: ["Deployment"]
   parameters:
-    policy_name: ["tigera-security.block-alienvault-ipthreatfeed"]      
+    dpname: ["tigera-apiserver"]      
   

@@ -7,15 +7,22 @@ spec:
     spec:
       names:
         kind: K8sCalicoCloudPolicy
+      validation:
+        # Schema for the `parameters` field
+        openAPIV3Schema:
+          properties:
+            dpname:
+              type: string  
 
   targets:
-    - target: admission.k8s.gatekeeper.sh
+     - target: admission.k8s.gatekeeper.sh
       rego: |
         package k8scalicocloudpolicy
-        violation[{"msg": msg, "details": {"missing_policy": missing}}] {
-          required := input.parameters.policy_name[_]
+
+        violation[{"msg": msg, "details": {"missing_deployment": missing}}] {
           provided := input.review.object.metadata.name
-          missing := provided - required
+          required := input.parameters.dpname
+          missing := required - provided
           count(missing) > 0
-          msg := sprintf("Not connect to calicocloud")
+          msg := sprintf("you don't have deployment %v ", [missing])
         }
