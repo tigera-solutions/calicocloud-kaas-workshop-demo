@@ -31,27 +31,6 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
    
 
  
-## step 2. Capture packet per protocol for example `TCP` and port `3550`.
-
- 1. Deploy packet capture definition to capture packets between `hipstershop/frontend` pod and `dev/netshoot` pod.
-
-   ```bash
-   kubectl apply -f demo/packet-capture/hipstershop-productcatalogservice-pcap.yaml
-   ```
-
- 2. Generate packet by running command:
-  
-   ```bash
-   for i in {1..20}; do kubectl -n dev exec netshoot -- nc -zv productcatalogservice.hipstershop 3550; sleep 2; done
-   ```
-
- 3. Fetch and review captured payload.
-
-  ![download packet capture](../img/download-packet-capture-2.png)
-   
- 4. Stop packet capture
-  
-  ![stop packet capture](../img/stop-packet-capture.png)
 
 
 ## *[Bonus]* Calicocloud provide different RBAC role for packet capture resource. 
