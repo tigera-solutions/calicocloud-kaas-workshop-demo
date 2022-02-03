@@ -307,7 +307,7 @@ Use official documentation for the most recent [configuration instructions](http
 
    ![anomaly detection alerts](../img/anomaly-detection-alerts.png)
 
+[Next -> Deep packet inspection](../modules/deep-packet-inspection.md) 
 
-[Next -> Compliance reports](../modules/compliance-reports.md) 
 
 [Menu](../README.md)

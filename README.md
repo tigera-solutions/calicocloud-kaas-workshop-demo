@@ -63,8 +63,9 @@ In this workshop we are going to focus on these main use cases:
 
 - [Observability: Dynamic packet capture](modules/dynamic-packet-capture.md) 
 - [Security: IDS and IPS](modules/intrusion-detection-protection.md)
-- [Security: Compliance reports](modules/compliance-reports.md) 
 - [Security: Deep packet inspection](modules/deep-packet-inspection.md) 
+- [Security: Compliance reports](modules/compliance-reports.md) 
+
 
 - [WIP][Security: Wireguard Encryption](modules/encryption.md) ##Finished EKS & AKS
 - [WIP][Security: Host protection](modules/host-protection.md) ##Finished EKS & AKS

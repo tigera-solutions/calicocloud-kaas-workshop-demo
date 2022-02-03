@@ -92,7 +92,7 @@
 <br>
 
 
+[Next -> Wireguard Encryption](../modules/encryption.md) 
 
-[Next -> Deep packet inspection](../modules/deep-packet-inspection.md)
 
 [Menu](../README.md)

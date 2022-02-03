@@ -85,8 +85,6 @@
     ![ee event log](../img/ee-event-log.png)
 
 
-
-
-[Next -> Wireguard Encryption](../modules/encryption.md) 
+[Next -> Compliance reports](../modules/compliance-reports.md) 
 
 [Menu](../README.md)
