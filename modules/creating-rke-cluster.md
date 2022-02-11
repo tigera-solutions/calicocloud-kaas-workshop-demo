@@ -37,7 +37,7 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
   ```
 - Login your Rancher server with IP and password, for example: 
 
-   https://<Rancher_Server_IP>/auth/login
+   https://<Rancher_Server_IP>/dashboard/auth/login
 
 
 
@@ -128,6 +128,8 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
 
    ![choose calico cni](../img/choose-calico-cni.png)
 
+   ![disable authorized endpoint](../img/disable-auth-ep.png)
+
 5. Rancher UI will generate a slightly different install script for control plane and workers, run these script in different nodes.
 
    a. For Master
@@ -135,57 +137,20 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
    ![rancher master script](../img/rancher-master-script.png)
    
 
-
    b. For Worker
 
    ![rancher worker script](../img/rancher-worker-script.png)
    
 
 
-6. Install kubectl binary with curl on Linux Rancher master :
-
-   Download the latest release with the command:
-   ```bash
-   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-   ```
-
-   Install kubectl
-   ```bash
-   sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-   ```
-
-   If you do not have root access on the target system, you can still install kubectl to the ~/.local/bin directory:
-   ```bash
-   chmod +x kubectl
-   mkdir -p ~/.local/bin/kubectl
-   mv ./kubectl ~/.local/bin/kubectl
-   # and then add ~/.local/bin/kubectl to $PATH
-   ```
-
-   Test to ensure the version you installed is up-to-date:
-   ```bash
-   kubectl version --client
-   ```
-
-7. Download the Kubeconfig file from Rancher UI
+6. Download the Kubeconfig file from Rancher UI
 
    ![download kubeconf](../img/download-kubeconf.png)
 
-   Create a file in master node and paste the contents of the downloaded Kubeconfig.yaml manifest:
-
-   ```bash
-   vi kubeconfig.yaml
-   ```
-
-   ```bash
-
-   echo export KUBECONFIG=kubeconfig.yaml >> ~/.bashrc
-
-   ```
 
    You should now be able to see your 3 nodes (if the docker install command was used on each EC2 instance):
    ```bash
-   kubectl get nodes
+   kubectl get nodes --kubeconfig=~/Downloads/calicocloud-workshop.yaml
    ```
 
    >output 
@@ -195,9 +160,9 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
    rancher-master    Ready    controlplane,etcd,worker   21m   v1.21.5
    rancher-worker0   Ready    worker                     19m   v1.21.5
    rancher-worker1   Ready    worker                     18m   v1.21.5
-   ```
+   ``` 
 
-8. Download this repo into your environment:
+7. Download this repo into your environment:
 
    ```bash
    git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
@@ -205,6 +170,21 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
    cd calicocloud-kaas-workshop-demo
    ```
 
+8. *[Optional]* Merge this kubeconfg to your current KUBECONFIG environment.
+   ```bash
+   export KUBECONFIG_SAVED=$KUBECONFIG
+
+   CALICO=~/Downloads/calicocloud-workshop.yaml
+   
+   export KUBECONFIG=$CALICO:$HOME/.kube/config
+   
+   kubectl config use-context calicocloud-workshop
+   ```
+
+9. *[Optional]* Return your KUBECONFIG environment variable to its original value
+   ```bash
+   export KUBECONFIG=$KUBECONFIG_SAVED
+   ```
 --- 
 ## Next steps
 
