@@ -13,7 +13,7 @@ spec:
       nets:
       - 127.0.0.1/32
   # Allow node port access only from specific CIDR.
-  - action: Deny
+  - action: Allow
     protocol: TCP
     source:
       notNets:
