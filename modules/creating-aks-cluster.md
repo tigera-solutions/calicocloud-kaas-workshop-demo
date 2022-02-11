@@ -114,6 +114,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     --enable-managed-identity \
     --node-count 3 \
     --network-plugin azure \
+    --generate-ssh-keys \
     --no-wait
     
     ```
