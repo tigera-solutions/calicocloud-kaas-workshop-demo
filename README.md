@@ -12,7 +12,7 @@ The intent of this workshop is to educate any person working with K8S cluster in
 
 ## STEP 1 - Create a compatible k8s cluster 
 
-  - [Calico Cloud system requirement](https://docs.calicocloud.io/install/system-requirements)
+  - [Calico Cloud system requirement](https://docs.calicocloud.io/get-started/connect/)
   - [EKS: using cloud9 IDE as workstation to create an compatible EKS cluster](modules/creating-eks-cluster.md)
   - [AKS: using Azure SDK to create an compatible AKS cluster](modules/creating-aks-cluster.md)
   - [GKE: using gcloud SDK to create an compatible GKE cluster](modules/creating-gke-cluster.md)
