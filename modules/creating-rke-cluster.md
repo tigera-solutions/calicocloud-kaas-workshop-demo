@@ -122,6 +122,8 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
 
 4. Go to Rancher UI, create a `custom` cluster with `calico` cni.
 
+  > Note: Use the default option with PSP disable. 
+
    ![create rke cluster](../img/create-rke.png)
 
    ![choose custom cluster](../img/choose-custom-cluster.png)
