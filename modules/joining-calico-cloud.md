@@ -27,64 +27,44 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
       ![choose-aks](../img/choose-aks.png)
 
 
-    run installation script in your cluster. 
+    Run installation script in your aks cluster. 
     ```bash
     # script should look similar to this
-    curl https://installer.calicocloud.io/xxxxxx_yyyyyyy-saay-management_install.sh | bash
+    kubectl apply -f https://installer.calicocloud.io/manifests/cc-operator/latest/deploy.yaml && curl -H "Authorization: Bearer xxxxxxxxxxxx" "https://www.calicocloud.io/api/managed-cluster/deploy.yaml" | kubectl apply -f -
     ```
-
-    Joining the cluster to Calico Cloud can take a few minutes. Wait for the installation script to finish before you proceed to the next step.
-
-    You should see the output similar to this:
-
-     ![installation script](../img/install-script.png)
-
-    Set the Calico Cluster Name as a variable to use later in this workshop. The Cluster Name can also be obtained from the Calico Cloud Web UI at a later date. For the example above `CALICOCLUSTERNAME` should be set to __######-management-managed-#####__
-    
+    > Output should look similar to:
     ```bash
-    export CALICOCLUSTERNAME=<Cluster Name>
-
-    #For Linux terminal
-    echo export CALICOCLUSTERNAME=$CALICOCLUSTERNAME | tee -a ~/.bash_profile
-
-    #For Mac terminal
-    echo export CALICOCLUSTERNAME=$CALICOCLUSTERNAME | tee -a ~/.zshrc 
+    namespace/calico-cloud created
+    customresourcedefinition.apiextensions.k8s.io/installers.operator.calicocloud.io created
+    serviceaccount/calico-cloud-controller-manager created
+    role.rbac.authorization.k8s.io/calico-cloud-leader-election-role created
+    clusterrole.rbac.authorization.k8s.io/calico-cloud-metrics-reader created
+    clusterrole.rbac.authorization.k8s.io/calico-cloud-proxy-role created
+    rolebinding.rbac.authorization.k8s.io/calico-cloud-leader-election-rolebinding created
+    clusterrolebinding.rbac.authorization.k8s.io/calico-cloud-installer-rbac created
+    clusterrolebinding.rbac.authorization.k8s.io/calico-cloud-proxy-rolebinding created
+    configmap/calico-cloud-manager-config created
+    service/calico-cloud-controller-manager-metrics-service created
+    deployment.apps/calico-cloud-controller-manager created
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                    Dload  Upload   Total   Spent    Left  Speed
+    100   355  100   355    0     0    541      0 --:--:-- --:--:-- --:--:--   541
+    secret/api-key created
+    installer.operator.calicocloud.io/aks-westus created
     ```
-    
-    Set the Elastic Index Name as a variable to use later in this workshop. The Index Name can also be obtained from `intrusion-detection-controller` or `compliance-controller` deployment. For example below, the `ELASTIC_INDEX_SUFFIX` should be set to __pkgr91xc.#####-management-managed-#####__
-    
-    ```bash
-    kubectl describe deployment -n tigera-intrusion-detection   intrusion-detection-controller | grep ELASTIC_INDEX_SUFFIX
-    ```
-    >Output is  
-    ```text
-    ELASTIC_INDEX_SUFFIX:     pkgr91xc.#####-management-managed-eastus-####
-    ```
+    Joining the cluster to Calico Cloud can take a few minutes. Meanwhile the Calico resources can be monitored until they are all reporting `Available` as `True`
 
     ```bash
-    export ELASTIC_INDEX_SUFFIX=<Index Name>  
-    
-    #For Linux terminal
-    echo export ELASTIC_INDEX_SUFFIX=$ELASTIC_INDEX_SUFFIX | tee -a ~/.bash_profile
+    Every 2.0s: kubectl get tigerastatus                                                                                                                    
 
-    #For Mac terminal
-    echo export ELASTIC_INDEX_SUFFIX=$ELASTIC_INDEX_SUFFIX | tee -a ~/.zshrc 
-    ```
-
-    In calico cloud management UI, you can see your own cluster added in "managed cluster", you can also confirm by
-    ```bash
-    kubectl get tigerastatus
-    ```
-    
-    ```bash
-    #make sure all customer resources are "AVAILABLE=True" 
     NAME                            AVAILABLE   PROGRESSING   DEGRADED   SINCE
-    apiserver                       True        False         False      5m38s
-    calico                          True        False         False      4m44s
-    compliance                      True        False         False      4m34s
-    intrusion-detection             True        False         False      4m49s
-    log-collector                   True        False         False      4m19s
-    management-cluster-connection   True        False         False      4m54s
+    apiserver                       True        False         False      96s
+    calico                          True        False         False      16s
+    compliance                      True        False         False      21s
+    intrusion-detection             True        False         False      41s
+    log-collector                   True        False         False      21s
+    management-cluster-connection   True        False         False      51s
+    monitor                         True        False         False      2m1s
     ```
     
 4. Navigating the Calico Cloud UI
@@ -93,11 +73,11 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     
     ![cluster-selection](../img/cluster-selection.png)
 
-5. Configure log aggregation and flush intervals, we will use 15s instead of default value 300s for lab testing only.   
+5. Configure log aggregation and flush intervals in aks cluster, we will use 10s instead of default value 300s for lab testing only.   
 
     ```bash
-    kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFlushInterval":"15s"}}'
-    kubectl patch felixconfiguration.p default -p '{"spec":{"dnsLogsFlushInterval":"15s"}}'
+    kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFlushInterval":"10s"}}'
+    kubectl patch felixconfiguration.p default -p '{"spec":{"dnsLogsFlushInterval":"10s"}}'
     kubectl patch felixconfiguration.p default -p '{"spec":{"flowLogsFileAggregationKindForAllowed":1}}'
     ```
 
