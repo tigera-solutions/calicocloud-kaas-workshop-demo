@@ -47,9 +47,9 @@
 
     ```bash
     NAME                           CREATED AT
-    alienvault.domainthreatfeeds   2021-09-28T15:01:33Z
-    alienvault.c       2021-09-28T15:01:33Z
-    feodo-tracker                  2021-09-28T17:32:13Z
+    alienvault.domainthreatfeeds   2022-02-11T19:21:26Z
+    alienvault.ipthreatfeeds       2022-02-11T19:21:26Z
+    feodo-tracker                  2022-02-11T22:21:43Z 
     ```
     
 2. Generate alerts by accessing the IP from `feodo-tracker` list. 

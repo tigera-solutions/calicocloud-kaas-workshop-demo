@@ -44,7 +44,7 @@
 
     The dynamic `Service Graph` presents network flows from service level perspective. Top level view shows how traffic flows between namespaces as well as external and internal endpoints.
 
-    ![service graph node view](../img/service-graph-node.png)
+    ![service graph node view](../img/service-graph-port.png)
 
     - When you select any node representing a namespace, you will get additional details about the namespace, such as incoming and outgoing traffic, policies evaluating each flow, and DNS metrics.
     - When you select any edge, you will get details about the flows representing that edge.
