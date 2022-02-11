@@ -47,9 +47,11 @@ For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.11/visib
     kubectl delete pods --all -n hipstershop
     ``` 
 
-  Now view the L7 logs in Kibana by selecting the tigera_secure_ee_l7 index pattern. You should also see the relevant HTTP log from service graph.    
+  Now view the L7 logs in Kibana by selecting the `tigera_secure_ee_l7` index pattern. You should also see the relevant HTTP log from service graph.    
 
    ![service graph HTTP log](../img/service-graph-l7.png)
+
+   
    
 
 [Next -> Dynamic packet capture](../modules/dynamic-packet-capture.md) 

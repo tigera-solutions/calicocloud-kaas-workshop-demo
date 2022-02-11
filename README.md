@@ -57,7 +57,7 @@ In this workshop we are going to focus on these main use cases:
 
 - [Observability: Calico Manager UI](modules/manager-ui.md)
 - [Observability: Kibana dashboard](modules/kibana-dashboard.md)
-- [Observability: L7 visibility](modules/enable-l7-visibility.md) 
+- [Observability: L7 visibility](modules/enable-l7-visibility.md) ##RKE clusters not supported
 - [Observability: Dynamic packet capture](modules/dynamic-packet-capture.md) 
 
 ## Charpter B - Intermediate
