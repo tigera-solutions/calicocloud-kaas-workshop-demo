@@ -205,20 +205,49 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
 
 ## Steps
 
-1. Install Docker & K8S components on the master VM and each worker VM. On each VM run:
+1. Install containerd & K8S components on the master VM and each worker VM. On each VM run:
 
    ```bash
-   sudo swapoff -a
-  
-   sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y docker.io
+   sudo modprobe overlay && sudo modprobe br_netfilter
+   ```
    
-   sudo systemctl enable docker.service && sudo apt install -y apt-transport-https curl
+   ```bash
+   cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
+   overlay
+   br_netfilter
+   EOF
+   ```
+
+   ```bash
+   cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+   net.bridge.bridge-nf-call-iptables  = 1
+   net.ipv4.ip_forward                 = 1
+   net.bridge.bridge-nf-call-ip6tables = 1
+   EOF
+   ```
+
+   ```bash
+   sudo sysctl --system && sudo apt-get update -y && sudo apt-get install -y containerd
+   ```
+
+   ```bash
+   sudo mkdir -p /etc/containerd
+   sudo containerd config default | sudo tee /etc/containerd/config.toml
+   sudo sed -i 's/            SystemdCgroup = false/            SystemdCgroup = true/' /etc/containerd/config.toml
+   ```
+
+   ```bash
+   sudo systemctl restart containerd
+   ```
+
+   ```bash
+   sudo apt install -y apt-transport-https curl
    
    sudo sh -c "echo 'deb http://apt.kubernetes.io/ kubernetes-xenial main' >> /etc/apt/sources.list.d/kubernetes.list"
   
    sudo sh -c "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -"
    
-   sudo apt-get update && sudo apt-get install -y kubeadm=1.21.1-00 kubelet=1.21.1-00 kubectl=1.21.1-00
+   sudo apt-get update && sudo apt-get install -y kubeadm=1.23.3-00 kubelet=1.23.3-00 kubectl=1.23.3-00
    
    sudo apt-mark hold kubelet kubeadm kubectl
    ```
@@ -226,7 +255,7 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
 2. Initiate the master node with pod CIDR config. On master node run: 
  
    ```bash
-   sudo kubeadm init --kubernetes-version 1.21.1 --pod-network-cidr 192.168.0.0/16
+   sudo kubeadm init --kubernetes-version 1.23.3 --pod-network-cidr 192.168.0.0/16
    ```
 
    > output include the token for worker node to join to the cluster, you can save them in txt if you want to use it later.  
@@ -263,9 +292,9 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
    >Output is 
    ```bash
    NAME           STATUS     ROLES                  AGE     VERSION
-   master-node    NotReady   control-plane,master   15m     v1.21.1
-   worker-node0   NotReady   <none>                 5m35s   v1.21.1
-   worker-node1   NotReady   <none>                 24s     v1.21.1
+   master-node    NotReady   control-plane,master   2m37s   v1.23.3
+   worker-node0   NotReady   <none>                 79s     v1.23.3
+   worker-node1   NotReady   <none>                 16s     v1.23.3
    ```
 
 6. On the controller, install calico OSS and then we can join this cluster to calico cloud as managed cluster. 
@@ -281,9 +310,9 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
    >Output is  
    ```bash
    NAME           STATUS   ROLES                  AGE   VERSION
-   master-node    Ready    control-plane,master   9h    v1.21.1
-   worker-node0   Ready    <none>                 9h    v1.21.1
-   worker-node1   Ready    <none>                 9h    v1.21.1
+   master-node    Ready    control-plane,master   4m12s   v1.23.3
+   worker-node0   Ready    <none>                 2m54s   v1.23.3
+   worker-node1   Ready    <none>                 111s    v1.23.3
    ```
 
 7. Download this repo into your environment:
