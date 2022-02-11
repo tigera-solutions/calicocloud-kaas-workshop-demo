@@ -85,6 +85,8 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     ```bash
     kubectl edit felixconfigurations default
     ```
+    
+    ![remove backend](../img/remove-backend.png)
 
 6. Configure Felix to collect TCP stats - this uses eBPF TC program and requires miniumum Kernel version of v5.3.0. Further [documentation](https://docs.tigera.io/visibility/elastic/flow/tcpstats)
 
