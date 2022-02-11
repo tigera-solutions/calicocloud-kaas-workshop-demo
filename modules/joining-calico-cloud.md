@@ -27,11 +27,10 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
       ![choose-aks](../img/choose-aks.png)
 
 
-    Run installation script in your aks cluster. 
-    ```bash
-    # script should look similar to this
-    kubectl apply -f https://installer.calicocloud.io/manifests/cc-operator/latest/deploy.yaml && curl -H "Authorization: Bearer xxxxxxxxxxxx" "https://www.calicocloud.io/api/managed-cluster/deploy.yaml" | kubectl apply -f -
-    ```
+    Run installation script in your aks cluster. Script should look similar to this:
+      ![install script](../img/script.png)
+
+
     > Output should look similar to:
     ```bash
     namespace/calico-cloud created
@@ -50,12 +49,12 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
                                     Dload  Upload   Total   Spent    Left  Speed
     100   355  100   355    0     0    541      0 --:--:-- --:--:-- --:--:--   541
     secret/api-key created
-    installer.operator.calicocloud.io/aks-westus created
+    installer.operator.calicocloud.io/aks-cc-repo created
     ```
     Joining the cluster to Calico Cloud can take a few minutes. Meanwhile the Calico resources can be monitored until they are all reporting `Available` as `True`
 
     ```bash
-    Every 2.0s: kubectl get tigerastatus                                                                                                                    
+    kubectl get tigerastatus                                                                                                                    
 
     NAME                            AVAILABLE   PROGRESSING   DEGRADED   SINCE
     apiserver                       True        False         False      96s
