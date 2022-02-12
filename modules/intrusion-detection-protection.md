@@ -263,9 +263,11 @@ Use official documentation for the most recent [configuration instructions](http
 
    ```bash
    sed -i "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
-
-   ##For other variations/shells the following syntax may be required
-	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+   ```
+   
+   For other variations/shells the following syntax may be required
+   ```bash
+   sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
    ```
 
  - Validate the change by cat the variable
