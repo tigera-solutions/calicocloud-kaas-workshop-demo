@@ -186,7 +186,7 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
     HTTP/1.1 200 OK
     ```
     
-    c Query HoneyPod MySQL service
+    c. Query HoneyPod MySQL service
     ```bash
     SVC_URL=$(kubectl -n tigera-internal get svc -l app=tigera-internal-backend -ojsonpath='{.items[0].metadata.name}')
     SVC_PORT=$(kubectl -n tigera-internal get svc -l app=tigera-internal-backend -ojsonpath='{.items[0].spec.ports[0].port}')
@@ -218,34 +218,34 @@ Use official documentation for the most recent [configuration instructions](http
    #press `q` key to quit
    ```
 
-   ```text
+  ```text
 
    # The following AD jobs and thresholds have been configured as env vars in the ad-jobs-deployment.yaml. 
    # In production these values may trigger more alerts than required
-	# - name: AD_max_docs
-	#   value: "100000"
-	# - name: AD_train_interval_minutes
-	#   value: "20"
-	# - name: AD_search_interval_minutes
-	#   value: "5"
-	# - name: AD_DnsLatency_IsolationForest_score_threshold
-	#   value: "-0.886"
-	# - name: AD_ProcessRestarts_threshold
-	#   value: "5"
-	# - name: AD_port_scan_threshold
-	#   value: "200"
-	# - name: AD_ip_sweep_threshold
-	#   value: "32"
-	# - name: AD_BytesInModel_min_size_for_train
-	#   value: "1000"
-	# - name: AD_SeasonalAD_c
-	#   value: "500"
-	# - name: AD_BytesOutModel_min_size_for_train
-	#   value: "1000"
-	# - name: AD_debug
-	#   value: "True"
+	 # - name: AD_max_docs
+	 #   value: "100000"
+	 # - name: AD_train_interval_minutes
+	 #   value: "20"
+	 # - name: AD_search_interval_minutes
+	 #   value: "5"
+	 # - name: AD_DnsLatency_IsolationForest_score_threshold
+	 #   value: "-0.886"
+	 # - name: AD_ProcessRestarts_threshold
+	 #   value: "5"
+	 # - name: AD_port_scan_threshold
+	 #   value: "200"
+ 	 # - name: AD_ip_sweep_threshold
+	 #   value: "32"
+	 # - name: AD_BytesInModel_min_size_for_train
+ 	 #   value: "1000"
+	 # - name: AD_SeasonalAD_c
+	 #   value: "500"
+	 # - name: AD_BytesOutModel_min_size_for_train
+	 #   value: "1000"
+ 	 # - name: AD_debug
+	 #   value: "True"
 
-   ```
+  ```
 
 
  2. We need to substitute the Cluster Name and config it in the YAML file with the variable `CALICOCLUSTERNAME`. This enables the Machine Learning jobs to target the correct indices in Elastic Search
