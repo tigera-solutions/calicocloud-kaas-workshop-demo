@@ -41,15 +41,26 @@
     vi demo/compliance-reports/compliance-reporter-pod.yaml
     ```
 
-   b. We need to substitute the Cluster Name in the YAML file with the variable `CALICOCLUSTERNAME` we configured before. This enables compliance jobs to target the correct index in Elastic Search
-	```bash
-	sed -i "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/compliance-reports/compliance-reporter-pod.yaml
-	```
-	For other variations/shells the following syntax may be required
+   b. We need to substitute the Cluster Name and config it in the YAML file with the variable `CALICOCLUSTERNAME`. This enables compliance jobs to target the correct index in Elastic Search
 
-	```bash
-	sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/compliance-reports/compliance-reporter-pod.yaml
-	```
+   - Obtain ElasticSearch index and set as variable
+    
+   ```bash
+   CALICOCLUSTERNAME=$(kubectl get deployment -n tigera-intrusion-detection intrusion-detection-controller -ojson | \
+   jq -r '.spec.template.spec.containers[0].env[] | select(.name == "CLUSTER_NAME").value')
+   ```
+  
+   - Replace the vailable in yaml file
+
+   ```bash
+   sed -i "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/compliance-reports/compliance-reporter-pod.yaml
+   ```
+
+   For other variations/shells the following syntax may be required
+   ```bash
+   sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/compliance-reports/compliance-reporter-pod.yaml
+   ```
+	
 
    c. Validate the change by cat the variable
     ```bash
