@@ -13,7 +13,7 @@
 2. Remove calicocloud components from your cluster.
    - Download the script 
    ```bash
-   curl -O https://installer.calicocloud.io/manifests/v3.10.0-0/downgrade.sh
+   curl -O https://installer.calicocloud.io/manifests/v3.11.1-1/downgrade.sh
    ```
 
    - Make the script executable 
@@ -59,7 +59,7 @@
     aws iam delete-role --role-name $IAM_ROLE
     ```
    
-    b. For AKS cluster, please follow the steps below.  
+   b. For AKS cluster, please follow the steps below.  
 
     ```bash
     #Delete AKS cluster.
@@ -72,11 +72,9 @@
     ```
 
 
-
-
    c. For GKE cluster, please follow the steps below.  
 
-   ```bash
+    ```bash
     #Get GKE cluster name.
     gcloud container clusters list --region $REGION    
 
