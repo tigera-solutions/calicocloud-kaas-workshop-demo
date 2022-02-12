@@ -46,8 +46,11 @@
   
    # use below command if you are using `EKS` cluster, as EKS is using hostname instead of ip for loadbalancer
    SVC_IP=$(kubectl -n hipstershop get svc frontend-external -ojsonpath='{.status.loadBalancer.ingress[0].hostname}')
+   ```
 
-   # For RKE/kubeadm clusters, your `frontend-external` lb will be in <pending> mode, you can add external ip or use ingress controller to expose this svc. 
+   For RKE/kubeadm clusters, your `frontend-external` lb will be in <pending> mode, you can either test within cluster, or add external ip or use ingress controller to expose this svc. 
+   ```bash
+   #add external IP for your svc 
    kubectl edit -n hipstershop svc frontend-external
    ```
 
@@ -67,14 +70,18 @@
    ```
 
    > A workaround for DPI alert not able to generate in UI as in policy `allow-tigera.guardian-access` block dpi alert to ES. We will update this policy with `allow tcp` in ingress before curl. 
+   ```bash
+   #curl frontend service within cluster
+   kubectl -n dev exec -t netshoot -- sh -c "curl http://frontend.hipstershop -H 'User-Agent: Mozilla/4.0' -XPOST --data-raw 'smk=1234'"
+   ```
 
    ```bash
-   #curl your loadbalancer with head and smk data from outside of cluster
+   #curl your loadbalancer from outside of cluster
    curl http://$SVC_IP:80 -H 'User-Agent: Mozilla/4.0' -XPOST --data-raw 'smk=1234'
    ```
 
    ```bash
-   #curl your external ip with Nodeport and smk data from outside of cluster
+   #curl your external ip with Nodeport from outside of cluster
    curl http://34.xxx.xxx.88:31209 -H 'User-Agent: Mozilla/4.0' -XPOST --data-raw 'smk=1234'
    ```
 
