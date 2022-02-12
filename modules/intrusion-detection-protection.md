@@ -40,14 +40,14 @@
    
    #curl example.com couple times to trigger the dns aler
    
-   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI example.com 2>/dev/null | grep -i http'
+   kubectl exec -it curl-demo -- sh -c 'curl -m5 -sI example.com 5>/dev/null | grep -i http'
    ```
    
  5. Trigger later movement alert to nginx/dev
 
    ```bash
    #curl nginx in dev ns to trigger the flows alerts
-   kubectl exec -it curl-demo -- sh -c 'curl -m3 -sI http://nginx-svc.dev 2>/dev/null | grep -i http'
+   kubectl exec -it curl-demo -- sh -c 'curl -m5 -sI http://nginx-svc.dev 5>/dev/null | grep -i http'
    ```
 
 
@@ -248,26 +248,29 @@ Use official documentation for the most recent [configuration instructions](http
    ```
 
 
- 2. We need to substitute the Cluster Name in the YAML file with the variable `CALICOCLUSTERNAME` we configured in Module 1. This enables the Machine Learning jobs to target the correct indices in Elastic Search
+ 2. We need to substitute the Cluster Name and config it in the YAML file with the variable `CALICOCLUSTERNAME`. This enables the Machine Learning jobs to target the correct indices in Elastic Search
 	
  - Confirm the Cluster name is align with the "mananed cluster" name in UI  
     
    ```bash
-   echo $ELASTIC_INDEX_SUFFIX
+   # obtain ElasticSearch index and set as variable
+    
+   CALICOCLUSTERNAME=$(kubectl get deployment -n tigera-intrusion-detection intrusion-detection-controller -ojson | \
+   jq -r '.spec.template.spec.containers[0].env[] | select(.name == "CLUSTER_NAME").value')
    ```
 
  - Replace the vailable in yaml file
 
    ```bash
-   sed -i "s/\$ELASTIC_INDEX_SUFFIX/$ELASTIC_INDEX_SUFFIX/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+   sed -i "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
 
    ##For other variations/shells the following syntax may be required
-	sed -i "" "s/\$ELASTIC_INDEX_SUFFIX/${ELASTIC_INDEX_SUFFIX}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
+	 sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
    ```
 
  - Validate the change by cat the variable
    ```bash
-   cat ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml |grep -B 2 -A 0 $ELASTIC_INDEX_SUFFIX
+   cat ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml |grep -B 2 -A 0 $CALICOCLUSTERNAME
    ```
 
    Output will be like:
@@ -290,7 +293,7 @@ Use official documentation for the most recent [configuration instructions](http
 	kubectl -n dev exec netshoot -- nmap -Pn -r -p 1-250 $POD_IP
 	```
 
-    ```bash
+  ```bash
 	 #Output will be like 
 	 Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
 	 Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-23 20:20 UTC
@@ -299,7 +302,7 @@ Use official documentation for the most recent [configuration instructions](http
 	 All 250 scanned ports on 10.240.0.89 are filtered
 
 	 Nmap done: 1 IP address (1 host up) scanned in 201.37 seconds
-	 ```
+	```
 
 	
 	
