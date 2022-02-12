@@ -46,6 +46,7 @@ Calico network policies not only can secure pod to pod communications but also c
 4. Get public IP of node and test the exposed port of `30080` from your shell.
    ```bash
    PUB_IP=$(kubectl get nodes --selector=kubernetes.io/role!=master -o jsonpath={.items[*].status.addresses[?\(@.type==\"ExternalIP\"\)].address} | awk '{ print $1 }')
+   echo $PUB_IP
    ```
 
    Test 30080 port from your shell, the result will be Operation timed out.

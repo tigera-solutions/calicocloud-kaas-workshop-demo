@@ -217,7 +217,7 @@
 
 ### For Kubeadm cluster
 
-### For RKE cluster 
+### RKE cluster not supported
 
 
 
