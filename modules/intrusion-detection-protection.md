@@ -86,15 +86,15 @@ Calico offers [Honeypod](https://docs.tigera.io/threat/honeypod/) capability whi
 
  1. Configure honeypod namespace and Alerts for SSH detection
 
-   ```bash
-   # create dedicated namespace and RBAC for honeypods
-   kubectl apply -f https://docs.tigera.io/manifests/threatdef/honeypod/common.yaml
+    ```bash
+    # create dedicated namespace and RBAC for honeypods
+    kubectl apply -f https://docs.tigera.io/manifests/threatdef/honeypod/common.yaml
     
-   #add tigera pull secret to the namespace. We clone the existing secret from the calico-system NameSpace
-   kubectl get secret tigera-pull-secret --namespace=calico-system -o yaml | \
-   grep -v '^[[:space:]]*namespace:[[:space:]]*calico-system' | \
-   kubectl apply --namespace=tigera-internal -f -
-   ```
+    #add tigera pull secret to the namespace. We clone the existing secret from the calico-system NameSpace
+    kubectl get secret tigera-pull-secret --namespace=calico-system -o yaml | \
+    grep -v '^[[:space:]]*namespace:[[:space:]]*calico-system' | \
+    kubectl apply --namespace=tigera-internal -f -
+    ```
 
  2. Deploy sample honeypods
 
