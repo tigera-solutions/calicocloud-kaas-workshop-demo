@@ -218,7 +218,7 @@ Use official documentation for the most recent [configuration instructions](http
    #press `q` key to quit
    ```
 
-  ```text
+   ```bash
 
    # The following AD jobs and thresholds have been configured as env vars in the ad-jobs-deployment.yaml. 
    # In production these values may trigger more alerts than required
@@ -245,7 +245,7 @@ Use official documentation for the most recent [configuration instructions](http
  	 # - name: AD_debug
 	 #   value: "True"
 
-  ```
+   ```
 
 
  2. We need to substitute the Cluster Name and config it in the YAML file with the variable `CALICOCLUSTERNAME`. This enables the Machine Learning jobs to target the correct indices in Elastic Search
