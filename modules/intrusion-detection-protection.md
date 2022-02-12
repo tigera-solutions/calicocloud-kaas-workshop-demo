@@ -250,11 +250,9 @@ Use official documentation for the most recent [configuration instructions](http
 
  2. We need to substitute the Cluster Name and config it in the YAML file with the variable `CALICOCLUSTERNAME`. This enables the Machine Learning jobs to target the correct indices in Elastic Search
 	
- - Confirm the Cluster name is align with the "mananed cluster" name in UI  
+ - Obtain ElasticSearch index and set as variable
     
    ```bash
-   # obtain ElasticSearch index and set as variable
-    
    CALICOCLUSTERNAME=$(kubectl get deployment -n tigera-intrusion-detection intrusion-detection-controller -ojson | \
    jq -r '.spec.template.spec.containers[0].env[] | select(.name == "CLUSTER_NAME").value')
    ```
@@ -264,7 +262,7 @@ Use official documentation for the most recent [configuration instructions](http
    ```bash
    sed -i "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
    ```
-   
+
    For other variations/shells the following syntax may be required
    ```bash
    sed -i "" "s/\$CALICOCLUSTERNAME/${CALICOCLUSTERNAME}/g" ./demo/anomaly-detection/ad-jobs-deployment-managed.yaml
