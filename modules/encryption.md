@@ -12,7 +12,7 @@
 1. Enable WireGuard encryption across all the nodes using the following command.
     
    ```bash
-   #For EKS, we will use the AWS key pair to SSH each node from cloud9.
+   #For EKS, we will use the AWS key pair to SSH each node from cloud9. or you can use EC2 console for connecting to each nodes.
    ssh -i <path to the private key>/KEYPAIR_NAME.pem ec2-user@<Node_IP>
    ```
 

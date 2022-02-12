@@ -69,9 +69,9 @@
 
    Output will be like:
     ```text
-          value: "warning"
-     - name: ELASTIC_INDEX_SUFFIX
-      value: "usza33l0-management-managed-a03b5f39d13f4802acfc947026eb47-gr7-us-east-2-eks-amazonaws-com"
+      value: "warning"
+    - name: ELASTIC_INDEX_SUFFIX
+      value: "ky48uazv.aks-cc-repo"
     ```    
 
    d. We also need modify start/end time for specify the report time range. For examole:

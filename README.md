@@ -65,7 +65,7 @@ In this workshop we are going to focus on these main use cases:
 - [Security: IDS and IPS](modules/intrusion-detection-protection.md)
 - [Security: Deep packet inspection](modules/deep-packet-inspection.md) 
 - [Security: Compliance reports](modules/compliance-reports.md) 
-- [WIP][Security: Wireguard Encryption](modules/encryption.md) ##Finished EKS & AKS
+- [WIP][Security: Wireguard Encryption](modules/encryption.md) ##Finished EKS & AKS, RKE clusters not supported
 - [WIP][Security: Host protection](modules/host-protection.md) ##Finished EKS & AKS
 
 - [WIP][Change to eBPF dataplane](modules/ebpf-dataplane.md) ##Finished EKS & AKS
