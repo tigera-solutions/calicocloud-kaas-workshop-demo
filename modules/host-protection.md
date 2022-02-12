@@ -49,7 +49,7 @@ Calico network policies not only can secure pod to pod communications but also c
    echo $PUB_IP
    ```
 
-   Test 30080 port from your shell, the result will be Operation timed out.
+   Test connection to frontend 30080 port from your local shell and Cloud9, the result will be Operation timed out.
    ```bash
    nc -zv <PUB_IP> 30080
    ```
@@ -78,28 +78,28 @@ Calico network policies not only can secure pod to pod communications but also c
 
     If the frontend service port was configured correctly, the `nc` command should show you that the port is open.
     ```bash
-    #test connection to frontend 30080 port from your local shell, the result will be 30080 open. 
+    #test connection to frontend 30080 port from your local shell and Cloud9, the result will be 30080 open. 
     nc -zv <PUB_IP> 30080
     ```
 
-7. Implement a Calico policy to control access to the service of NodePort type, which only allow `VM_IP` with port `30080` to frontend service.
+7. Implement a Calico policy to control access to the service of NodePort type, which will deny `VM_IP` with port `30080` to frontend service.
 
     get public IP of Cloud9 instance in the Cloud9 shell
     ```bash
     VM_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
     
     # deploy HEP policy
-    sed -i "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-allow.yaml
+    sed -i "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
 
     #For other variations/shells the following syntax may be required
-    sed -i "" "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-allow.yaml
+    sed -i "" "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
 
-    kubectl apply -f demo/host-end-point/frontend-nodeport-allow.yaml
+    kubectl apply -f demo/host-end-point/frontend-nodeport-deny.yaml
     
-    # test access from Cloud9 shell, the result will be 30080 open.
+    # test access from Cloud9 shell, the result will be 30080 Connection timed out.
     nc -zv $PUB_IP 30080 
 
-    # test access from local shell, the result will be 30080 Operation timed out
+    # test access from local shell, the result will be 30080 open.
     nc -zv <PUB_IP> 30080 
     ```
 
@@ -211,13 +211,13 @@ Calico network policies not only can secure pod to pod communications but also c
 
     get private IP of vm instance. 
     ```bash
-    PRV_IP=$(az vm show -g $RGNAME -n myVM --query privateIps -d --out tsv)
+    VM_IP=$(az vm show -g $RGNAME -n myVM --query privateIps -d --out tsv)
     
     # deploy HEP policy
-    sed -i "s/\${PRV_IP}/${PRV_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
+    sed -i "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
 
     #For other variations/shells the following syntax may be required
-    sed -i "" "s/\${PRV_IP}/${PRV_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
+    sed -i "" "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
 
     kubectl apply -f demo/host-end-point/frontend-nodeport-deny.yaml
     

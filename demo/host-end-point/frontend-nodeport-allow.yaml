@@ -16,7 +16,7 @@ spec:
   - action: Allow
     protocol: TCP
     source:
-      notNets:
+      Nets:
       - ${VM_IP}
     destination:
       ports:
