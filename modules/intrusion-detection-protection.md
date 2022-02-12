@@ -294,14 +294,14 @@ Use official documentation for the most recent [configuration instructions](http
 	```
 
   ```bash
-	 #Output will be like 
-	 Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
-	 Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-23 20:20 UTC
-	 Nmap scan report for 10.240.0.89
-	 Host is up.
-	 All 250 scanned ports on 10.240.0.89 are filtered
+	#Output will be like 
+	Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
+	Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-23 20:20 UTC
+	Nmap scan report for 10.240.0.89
+	Host is up.
+	All 250 scanned ports on 10.240.0.89 are filtered
 
-	 Nmap done: 1 IP address (1 host up) scanned in 201.37 seconds
+	Nmap done: 1 IP address (1 host up) scanned in 201.37 seconds
 	```
 
 	
