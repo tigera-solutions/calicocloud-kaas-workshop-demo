@@ -292,9 +292,9 @@ Use official documentation for the most recent [configuration instructions](http
 	POD_IP=$(kubectl -n dev get po --selector app=centos -o jsonpath='{.items[0].status.podIP}')
 	kubectl -n dev exec netshoot -- nmap -Pn -r -p 1-250 $POD_IP
 	```
-
-   ```bash
-	 #Output will be like 
+  Output will be like 
+   ```text
+	  
 	 Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
 	 Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-23 20:20 UTC
 	 Nmap scan report for 10.240.0.89
