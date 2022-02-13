@@ -327,22 +327,22 @@
    - The traffic between `powershell` in Windows node and `nginx` in Linux node is denied.
   
 
-    ```bash
-    kubectl exec -n calico-demo busybox -- nc -vz $(kubectl get po porter -n calico-demo -o 'jsonpath={.status.podIP}') 80
+     ```bash
+     kubectl exec -n calico-demo busybox -- nc -vz $(kubectl get po porter -n calico-demo -o 'jsonpath={.status.podIP}') 80
    
-    sleep 10
+     sleep 10
 
-    kubectl exec -n calico-demo pwsh -- powershell Invoke-WebRequest -Uri http://$(kubectl get po nginx -n calico-demo -o 'jsonpath={.status.podIP}') -UseBasicParsing -TimeoutSec 5
-    ```
+     kubectl exec -n calico-demo pwsh -- powershell Invoke-WebRequest -Uri http://$(kubectl get po nginx -n calico-demo -o 'jsonpath={.status.podIP}') -UseBasicParsing -TimeoutSec 5
+     ```
    
-    The output will be like:
-    ```bash
-    ##nc command output
-    192.168.40.166 (192.168.40.166:80) open
+     The output will be like:
+     ```bash
+     ##nc command output
+     192.168.40.166 (192.168.40.166:80) open
  
-    ##powershell command output 
-    Invoke-WebRequest : The operation has timed out.
-    ```
+     ##powershell command output 
+     Invoke-WebRequest : The operation has timed out.
+     ```
 
 11. Check the connectivities from service graph and click the red arrow to see the deny flow log.
 
