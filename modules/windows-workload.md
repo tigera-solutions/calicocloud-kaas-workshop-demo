@@ -1,5 +1,5 @@
 # Adding windows workload in your cluster and protect them with Calico policy
->Calico for Windows is a hybrid implementation that requires a Linux cluster for Calico components & Linux workloads, and Windows nodes for Windows workloads.
+>Calico for Windows is a hybrid implementation that requires a Linux cluster for Calico components & Linux workloads, and Windows nodes for Windows workloads. Calicocloud doesn't support windows node in production yet, this is only for lab trial, please also refer to [limitations] (https://docs.tigera.io/getting-started/windows-calico/limitations)
 
 **Goal:** Create client and server pods on Linux and Windows nodes, verify connectivity between the pods, and then isolate pod traffic.
 
@@ -223,7 +223,7 @@
    ```bash
    eksctl create nodegroup \
    --region us-east-2 \
-   --cluster win-calico-cluster \
+   --cluster calicocloud-workshop \
    --name ng-windows \
    --node-type c5.large \
    --nodes 1 \
@@ -237,10 +237,11 @@
    ```
 
    ```text
-   NAME                                           STATUS   ROLES    AGE     VERSION               INTERNAL-IP      EXTERNAL-IP     OS-IMAGE                         KERNEL-VERSION                CONTAINER-RUNTIME
-   ip-192-168-17-219.us-east-2.compute.internal   Ready    <none>   43m     v1.21.5-eks-bc4871b   192.168.17.219   18.190.24.194   Amazon Linux 2                   5.4.156-83.273.amzn2.x86_64   docker://20.10.7
-   ip-192-168-39-125.us-east-2.compute.internal   Ready    <none>   2m14s   v1.21.5-eks-bc4871b   192.168.39.125   3.137.158.224   Windows Server 2019 Datacenter   10.0.17763.2366               docker://20.10.7
-   ip-192-168-57-192.us-east-2.compute.internal   Ready    <none>   43m     v1.21.5-eks-bc4871b   192.168.57.192   3.138.111.75    Amazon Linux 2                   5.4.156-83.273.amzn2.x86_64   docker://20.10.7
+   NAME                                          STATUS   ROLES    AGE     VERSION               INTERNAL-IP     EXTERNAL-IP     OS-IMAGE                         KERNEL-VERSION                CONTAINER-RUNTIME
+   ip-192-168-1-167.us-east-2.compute.internal   Ready    <none>   3m52s   v1.21.5-eks-bc4871b   192.168.1.167   3.145.16.165    Windows Server 2019 Datacenter   10.0.17763.2452               docker://20.10.9
+   ip-192-168-18-53.us-east-2.compute.internal   Ready    <none>   42m     v1.21.5-eks-9017834   192.168.18.53   3.143.241.19    Amazon Linux 2                   5.4.172-90.336.amzn2.x86_64   docker://20.10.7
+   ip-192-168-37-0.us-east-2.compute.internal    Ready    <none>   42m     v1.21.5-eks-9017834   192.168.37.0    3.141.22.30     Amazon Linux 2                   5.4.172-90.336.amzn2.x86_64   docker://20.10.7
+   ip-192-168-94-62.us-east-2.compute.internal   Ready    <none>   42m     v1.21.5-eks-9017834   192.168.94.62   3.134.102.164   Amazon Linux 2                   5.4.172-90.336.amzn2.x86_64   docker://20.10.7
    ```
 
 6. Apply following user role binding to the cluster.
