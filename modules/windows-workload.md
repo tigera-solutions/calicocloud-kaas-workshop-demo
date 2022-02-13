@@ -267,7 +267,91 @@
    kubectl apply -f configs/ClusterRoleBinding-win.yaml
    ```
 
-7. 
+7. Create demo pods in Linux and Windows nodes. Expected Outcome:
+   - Create a client (busybox) and server (nginx) pod on the Linux nodes:
+   - Create a client pod (powershell) and a server (porter) pod on the Windows nodes
+
+    ```bash
+   
+    kubectl apply -f demo/win-demo/linux-pods.yaml
+    kubectl apply -f demo/win-demo/win-pods.yaml
+    ```
+    
+    ```bash
+    # Windows images are large and can take some time to start
+    kubectl get pods -o wide -n calico-demo
+    ```
+
+    ```text
+    ### The output is like when ready:
+    NAME      READY   STATUS    RESTARTS   AGE   IP            NODE                                NOMINATED NODE   READINESS GATES
+    busybox   1/1     Running   0          88m   10.40.0.69    aks-nodepool1-22704843-vmss000002   <none>           <none>
+    nginx     1/1     Running   0          88m   10.40.0.46    aks-nodepool1-22704843-vmss000001   <none>           <none>
+    porter    1/1     Running   0          88m   10.40.0.109   aksnpwin000000                      <none>           <none>
+    pwsh      1/1     Running   0          12m   10.40.0.100   aksnpwin000000                      <none>           <none>
+    ```
+
+8. Check the connectivities between pods. Expected Outcome:  
+   - The traffic between `busybox` in Linux node and `porter` in Windows node is allowed. 
+   - The traffic between `powershell` in Windows node and `nginx` in Linux node is allowed. 
+   
+   ```bash
+   kubectl exec -n calico-demo busybox -- nc -vz $(kubectl get po porter -n calico-demo -o 'jsonpath={.status.podIP}') 80
+
+   sleep 10
+
+   kubectl exec -n calico-demo pwsh -- powershell Invoke-WebRequest -Uri http://$(kubectl get po nginx -n calico-demo -o 'jsonpath={.status.podIP}') -UseBasicParsing -TimeoutSec 5
+
+   ```
+  
+   The output will be like:
+   ```bash
+   ##nc command output
+   192.168.40.166 (192.168.40.166:80) open
+
+   ##powershell command output
+   StatusCode        : 200
+   StatusDescription : OK
+   
+   ```
+
+9. Create policy to explicitly allow the `busybox` pod in Linux node to reach the `porter` pod in Windows node, and deny the `powershell` pod in Windows node to reach the `nginx` pod in Linux node
+   ```bash
+   kubectl apply -f demo/win-demo/allow-busybox.yaml
+   kubectl apply -f demo/win-demo/deny-nginx.yaml
+   
+   ```
+
+10. Check the connectivities between pods. Expected Outcome:  
+   - The traffic between `busybox` in Linux node and `porter` in Windows node is allowed. 
+   - The traffic between `powershell` in Windows node and `nginx` in Linux node is denied.
+  
+    ![topo windows](../img/topo-win.png)
+
+   ```bash
+   kubectl exec -n calico-demo busybox -- nc -vz $(kubectl get po porter -n calico-demo -o 'jsonpath={.status.podIP}') 80
+   
+   sleep 10
+
+   kubectl exec -n calico-demo pwsh -- powershell Invoke-WebRequest -Uri http://$(kubectl get po nginx -n calico-demo -o 'jsonpath={.status.podIP}') -UseBasicParsing -TimeoutSec 5
+   ```
+   
+   The output will be like:
+   ```bash
+   ##nc command output
+   192.168.40.166 (192.168.40.166:80) open
+ 
+   ##powershell command output 
+   Invoke-WebRequest : The operation has timed out.
+   ```
+
+11. Check the connectivities from service graph and click the red arrow to see the deny flow log.
+
+    ![service graph view](../img/win-demo-eks.png)
+
+    ![flow log](../img/win-demo-log-eks.png)
+
+
 
 [Next -> Non K8S node segmentation](../modules/non-k8s-node-segmentation.md)
 
