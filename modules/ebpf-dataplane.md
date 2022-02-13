@@ -78,7 +78,7 @@
        - port: 80
          targetPort: 80
      type: LoadBalancer
-   EOF 
+   EOF
    ```
 
    c. Check the source IP when curl customer svc 
@@ -374,7 +374,7 @@
    ```
 
    ```bash
-   #confirm calico-node restart again
+   #confirm calico-node restart again, if not, restart them.
    kubectl get pods -n calico-system
    ```
 
