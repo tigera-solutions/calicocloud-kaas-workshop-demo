@@ -1,5 +1,5 @@
 # Adding windows workload in your cluster and protect them with Calico policy
->Calico for Windows is a hybrid implementation that requires a Linux cluster for Calico components & Linux workloads, and Windows nodes for Windows workloads. Calicocloud doesn't support windows node in production yet, this is only for lab trial, please also refer to [limitations] (https://docs.tigera.io/getting-started/windows-calico/limitations)
+> Calico for Windows is a hybrid implementation that requires a Linux cluster for Calico components & Linux workloads, and Windows nodes for Windows workloads. Calicocloud doesn't support windows node in production yet, this is only for lab trial, please also refer to [limitations](https://docs.tigera.io/getting-started/windows-calico/limitations)
 
 **Goal:** Create client and server pods on Linux and Windows nodes, verify connectivity between the pods, and then isolate pod traffic.
 
