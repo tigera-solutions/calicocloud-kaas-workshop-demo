@@ -16,7 +16,7 @@ spec:
   - action: Deny
     protocol: TCP
     source:
-      nets:
+      Nets:
       - ${VM_IP}
     destination:
       ports:
