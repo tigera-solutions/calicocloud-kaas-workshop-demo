@@ -66,7 +66,7 @@ In this workshop we are going to focus on these main use cases:
 - [Security: Deep packet inspection](modules/deep-packet-inspection.md) 
 - [Security: Compliance reports](modules/compliance-reports.md) 
 - [Security: Wireguard Encryption](modules/encryption.md) 
-- [WIP][Security: Host protection](modules/host-protection.md) ##Finished EKS & AKS
+- [Security: Host protection](modules/host-protection.md) 
 
 - [WIP][Change to eBPF dataplane](modules/ebpf-dataplane.md) ##Finished EKS & AKS
 - [WIP][Adding windows workload ](modules/windows-workload.md) ##Finished EKS & AKS
