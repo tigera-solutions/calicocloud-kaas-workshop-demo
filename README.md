@@ -70,7 +70,7 @@ In this workshop we are going to focus on these main use cases:
 
 - [WIP][Change to eBPF dataplane](modules/ebpf-dataplane.md) ##Finished EKS & AKS
 - [WIP][Adding windows workload ](modules/windows-workload.md) ##Finished AKS
-- [WIP][Enable Kubernetes Audit log](modules/audit-log.md) ## AKS/GKE clusters not supported
+- [WIP][Enable Kubernetes Audit log](modules/audit-log.md) ## Finished EKS, AKS/GKE clusters not supported
 
 
 ## Charpter C - Advanced
