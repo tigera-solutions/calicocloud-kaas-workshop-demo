@@ -350,6 +350,8 @@
    kubectl apply -f https://raw.githubusercontent.com/tigera/ccol2aws/main/yaobank.yaml
    ```
 
+   EX_IP=$(gcloud compute instances describe rancher-master --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
+
    b. Deploy LB for Frontend Customer Pod.
    ```bash
    kubectl apply -f - <<EOF
@@ -361,12 +363,21 @@
    spec:
      selector:
        app: customer
+     externalIPs:
+       ${EX_IP}  
      ports:
        - port: 80
          targetPort: 80
-     type: NodePort
+     type: LoadBalancer
    EOF
    ```
+
+   spec:
+  clusterIP: 10.43.111.144
+  clusterIPs:
+  - 10.43.111.144
+  externalIPs:    ## Add this line for your service
+  - 34.xxx.xxx.88 ## Add your node public ip which have frontend pod running as endpoint for this value
 
    c. Check the source IP when curl customer svc 
 
