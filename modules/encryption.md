@@ -241,6 +241,14 @@ kubectl apply -f demo/encryption/wireguard-statistics.yaml
   ![wireguard statistics](../img/wireguard-statistics.png)
 
 
+## *[Option]* Disable WireGuard for a cluster
+
+> To disable WireGuard on all nodes modify the default Felix configuration. 
+
+```bash
+kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"wireguardEnabled":false}}'
+```
+
 [Next -> Host protection](../modules/host-protection.md)
 
 [Menu](../README.md)
