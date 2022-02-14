@@ -354,7 +354,7 @@
 
    b. Deploy LB for Frontend Customer Pod.
    ```bash
-   kubectl apply -f - <<EOF
+   cat > configs/yaobank-svc.yaml <<EOF
    apiVersion: v1
    kind: Service
    metadata:
