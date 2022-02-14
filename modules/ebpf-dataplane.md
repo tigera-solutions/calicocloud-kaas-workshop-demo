@@ -354,7 +354,7 @@
 
    b. Deploy LB for Frontend Customer Pod.
    ```bash
-   cat > configs/yaobank-svc.yaml <<EOF
+   kubectl apply -f - <<EOF
    apiVersion: v1
    kind: Service
    metadata:
@@ -364,7 +364,7 @@
      selector:
        app: customer
      externalIPs:
-       ${EX_IP}  
+       - ${EX_IP}  
      ports:
        - port: 80
          targetPort: 80
