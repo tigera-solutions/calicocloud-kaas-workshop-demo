@@ -228,6 +228,90 @@ Calico network policies not only can secure pod to pod communications but also c
     nc -zv $NODE_IP2 30080 
     ```
 
+### For RKE cluster 
+
+1. Enable automatic host endpoints
+   ```bash
+   # check whether auto-creation for HEPs is enabled. Default: Disabled
+   kubectl get kubecontrollersconfiguration.p default -ojsonpath='{.status.runningConfig.controllers.node.hostEndpoint.autoCreate}'
+   ```
+
+   ```bash
+   kubectl patch kubecontrollersconfiguration default --patch='{"spec": {"controllers": {"node": {"hostEndpoint": {"autoCreate": "Enabled"}}}}}'
+
+   ```
+
+   ```bash
+   kubectl get heps -o wide
+   ```
+   >Output is similar as 
+
+   ```bash
+   NAME                       CREATED AT
+   rancher-master-auto-hep    2022-02-14T16:40:00Z
+   rancher-worker0-auto-hep   2022-02-14T16:40:00Z
+   rancher-worker1-auto-hep   2022-02-14T16:40:00Z
+   ```
+
+2. Enable automatic host endpoints flow logs.   
+   
+   ```bash
+   kubectl patch felixconfiguration default -p '{"spec":{"flowLogsEnableHostEndpoint":true}}'
+   ```  
+
+3.  Expose the frontend service via the NodePort service type, we use `30080` port as example.
+   ```bash
+   kubectl -n hipstershop expose deployment frontend --type=NodePort --name=frontend-nodeport --overrides='{"apiVersion":"v1","spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":8080}]}}'
+   ```
+
+4. Get internal IP of node and test the exposed port of `30080` from your `rancher-server`.
+   ```bash
+   JPIP='{range .items[*]}{@.status.addresses[?(@.type == "InternalIP")].address}{"\n"}{end}'
+   NODE_IP1=$(kubectl get nodes --output jsonpath="$JPIP" | awk 'NR==1{print $1 }')
+   NODE_IP2=$(kubectl get nodes --output jsonpath="$JPIP" | awk 'NR==2{print $1 }')
+   echo $NODE_IP1
+   echo $NODE_IP2
+   
+   ```
+
+   ssh to your `rancher-server` from local shell and test the NodePort `30080`, the expecting result would be 'Connection to 10.240.0.XXX 30080 port [tcp/*] succeeded!'
+   ```bash
+   gcloud compute ssh rancher-server
+   sudo apt-get install netcat
+   nc -zv $NODE_IP1 30080
+   nc -zv $NODE_IP2 30080
+   exit
+   ```
+
+5. Label the node for HEP testing.
+   ```bash
+   JPNAME='{range .items[*]}{@.metadata.name}{"\t"}{@.status.addresses[?(@.type == "InternalIP")].address}{"\n"}{end}'
+   NODE_NAME1=$(kubectl get nodes --output jsonpath="$JPNAME" | awk 'NR==1{print $1 }')
+   NODE_NAME2=$(kubectl get nodes --output jsonpath="$JPNAME" | awk 'NR==2{print $1 }')
+   kubectl label nodes $NODE_NAME1 host-end-point=test
+   ```
+
+6. Implement a Calico policy to control access to the service of NodePort type, which will deny `rancher-server` with port `30080` to frontend service.
+
+    get private IP of `rancher-server` instance. 
+    ```bash
+    VM_IP=$(az vm show -g $RGNAME -n myVM --query privateIps -d --out tsv)
+    
+    # deploy HEP policy
+    sed -i "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
+
+    #For other variations/shells the following syntax may be required
+    sed -i "" "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
+
+    kubectl apply -f demo/host-end-point/frontend-nodeport-deny.yaml
+    
+    # test access from vm shell, the expected result is 30080 Operation timed out
+    nc -zv $NODE_IP1 30080 
+
+    # test access from vm shell to other nodes, the expected result will be 30080 open
+    nc -zv $NODE_IP2 30080 
+    ```
+
 
 
 
@@ -235,7 +319,7 @@ Calico network policies not only can secure pod to pod communications but also c
 
 ### For Kubeadm cluster
 
-### For RKE cluster 
+
 
 ### 
 

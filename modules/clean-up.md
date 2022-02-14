@@ -4,7 +4,6 @@
 
     ```bash
     kubectl delete -f demo/setup/dev
-    kubectl delete -f demo/setup/acme
     kubectl delete -f demo/setup/storefront
     kubectl delete -f demo/setup/hipstershop/
     kubectl delete ns yaobank

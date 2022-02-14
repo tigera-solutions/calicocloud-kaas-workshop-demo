@@ -28,9 +28,6 @@
     #deploy dev app stack
     kubectl apply -f demo/setup/dev
     
-    #deploy acme app stack
-    kubectl apply -f demo/setup/acme
-
     #deploy storefront app stack
     kubectl apply -f demo/setup/storefront
 
