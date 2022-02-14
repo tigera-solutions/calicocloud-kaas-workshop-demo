@@ -351,7 +351,9 @@
    ```
    
    b. Get the public IP of master node.
+   ```bash
    EX_IP=$(gcloud compute instances describe rancher-master --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
+   ```
 
    c. Deploy LB for Frontend Customer Pod.
    ```bash
@@ -396,9 +398,8 @@
     ```
 
 2. Avoiding conflicts with kube-proxy.
-   > 
+   > Rancher doesn't allow kube-proxy to be disabled nor provide a stable address for the API server that is suitable for the next step. The best option on RKE platforms is to let Calico Enterprise connect to the API server as through kube-proxy (by skipping the step of create the kubernetes-services-endpoint config map).
 
-   
    ```bash
    #edit the cm yaml file by replacing the API server host address before apply it 
    kubectl patch felixconfiguration.p default --patch='{"spec": {"bpfKubeProxyIptablesCleanupEnabled": false}}'
