@@ -350,8 +350,6 @@
 
     ![flow log](../img/win-demo-log-eks.png)
 
-
-
-[Next -> Non K8S node segmentation](../modules/non-k8s-node-segmentation.md)
+[Next -> Enable Kubernetes Audit log](../modules/audit-log.md)
 
 [Menu](../README.md)
