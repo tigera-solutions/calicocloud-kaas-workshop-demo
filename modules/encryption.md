@@ -7,9 +7,9 @@
 **Supported:** 
 
   The following platforms using only IPv4:
-  Kubernetes, on-premises
-  EKS using Calico CNI
-  EKS using AWS CNI
+  Kubernetes on-premises, 
+  EKS using Calico CNI, 
+  EKS using AWS CNI, 
   AKS using Azure CNI
 
 ## Steps
