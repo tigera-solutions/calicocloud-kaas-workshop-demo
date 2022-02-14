@@ -2,8 +2,14 @@
 
 **Goal:** Swap your kube-proxy from standard Linux dataplane to eBPF dataplane for preserving the source IP of traffic from outside
 
->While the standard dataplane focuses on compatibility by inter-working with kube-proxy, and your own iptables rules, the eBPF dataplane focuses on performance, latency and improving user experience with features that aren’t possible in the standard dataplane. As part of that, the eBPF dataplane replaces kube-proxy with an eBPF implementation. Please refer to [doc](https://docs.tigera.io/maintenance/ebpf/about-ebpf#calico-enterprises-ebpf-dataplane)
+> While the standard dataplane focuses on compatibility by inter-working with kube-proxy, and your own iptables rules, the eBPF dataplane focuses on performance, latency and improving user experience with features that aren’t possible in the standard dataplane. As part of that, the eBPF dataplane replaces kube-proxy with an eBPF implementation. Please refer to [doc](https://docs.tigera.io/maintenance/ebpf/about-ebpf#calico-enterprises-ebpf-dataplane)
 
+**Supported:**
+  x86-64
+
+**Not supported:**
+  GKE
+  EKS using the default Ubuntu or Amazon Linux images.
 
 ## Steps
 
