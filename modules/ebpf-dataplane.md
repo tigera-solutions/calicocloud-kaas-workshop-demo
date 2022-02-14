@@ -456,7 +456,15 @@
    ```bash
    kubectl patch installation.operator.tigera.io default --type merge -p '{"spec":{"calicoNetwork":{"linuxDataplane":"Iptables"}}}'
    ```
-2. Re-enable kube-proxy by removing the node selector added above
+
+   >For RKE cluster, you will need enable `bpfKubeProxy` again. 
+
+   ```bash
+   kubectl patch felixconfiguration.p default --patch='{"spec": {"bpfKubeProxyIptablesCleanupEnabled": true}}'
+   ```
+
+
+2. Re-enable kube-proxy by removing the node selector added above, skip this step for RKE.
 
    ```bash
    kubectl patch ds -n kube-system kube-proxy --type merge -p '{"spec":{"template":{"spec":{"nodeSelector":{"non-calico": null}}}}}'
@@ -469,7 +477,7 @@
    kubectl delete pods -n yaobank --all
    ```
 
-4. Delete the configmap which created for calico-node as we don't need connect to api server directly anymore.
+4. Delete the configmap which created for calico-node as we don't need connect to api server directly anymore, skip this step for RKE.
 
    ```bash
    kubectl delete cm -n tigera-operator kubernetes-services-endpoint 
@@ -486,6 +494,10 @@
    #check the source IP fromm pod log
    export CUSTOMER_POD=$(kubectl get pods -n yaobank -l app=customer -o name)
    curl $SVC_HOST
+
+   #Or use external IP. 
+   curl $SVC_HOST:$SVC_PORT
+   
    kubectl logs -n yaobank $CUSTOMER_POD
    ```
  
@@ -496,7 +508,6 @@
    eksctl scale nodegroup --cluster=$EKS_CLUSTER --nodes=0 --name=ebpf-pool
    eksctl delete nodegroup --cluster=$EKS_CLUSTER --name=ebpf-pool
    ```
-
 
 [Next -> Adding windows workload](../modules/windows-workload.md)
 
