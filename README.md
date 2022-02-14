@@ -57,7 +57,7 @@ In this workshop we are going to focus on these main use cases:
 
 - [Observability: Calico Manager UI](modules/manager-ui.md)
 - [Observability: Kibana dashboard](modules/kibana-dashboard.md)
-- [Observability: L7 visibility](modules/enable-l7-visibility.md) ##RKE clusters not supported
+- [Observability: L7 visibility](modules/enable-l7-visibility.md) 
 - [Observability: Dynamic packet capture](modules/dynamic-packet-capture.md) 
 
 ## Charpter B - Intermediate
@@ -65,7 +65,7 @@ In this workshop we are going to focus on these main use cases:
 - [Security: IDS and IPS](modules/intrusion-detection-protection.md)
 - [Security: Deep packet inspection](modules/deep-packet-inspection.md) 
 - [Security: Compliance reports](modules/compliance-reports.md) 
-- [WIP][Security: Wireguard Encryption](modules/encryption.md) ##Finished EKS & AKS, RKE clusters not supported
+- [Security: Wireguard Encryption](modules/encryption.md) 
 - [WIP][Security: Host protection](modules/host-protection.md) ##Finished EKS & AKS
 
 - [WIP][Change to eBPF dataplane](modules/ebpf-dataplane.md) ##Finished EKS & AKS

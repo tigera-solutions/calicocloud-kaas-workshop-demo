@@ -2,8 +2,13 @@
 
 **Goal:** Enable L7/HTTP flow logs in hipstershop with Calico cloud.
 
-Calico cloud not only can provide L3 flow logs, but also can provide L7 visibility without service mesh headache. 
-For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.11/visibility/elastic/l7/configure) documentaiton.
+> Calico cloud not only can provide L3 flow logs, but also can provide L7 visibility without service mesh headache. For more details refer to [Configure L7 logs](https://docs.tigera.io/v3.11/visibility/elastic/l7/configure) documentaiton.
+
+**Not supported:**
+
+  Windows
+  eBPF dataplane
+  RKE clusters
 
 ## Steps
 
