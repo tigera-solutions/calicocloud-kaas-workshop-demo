@@ -16,7 +16,7 @@
 
   > This demo EKS cluster enable Amazon Cloudwatch logs during creatation. 
 
-     ![eks audit log](../img/eks-audit-log.png)
+   ![eks audit log](../img/eks-audit-log.png)
 
 
 2. Update Calico Enterprise log collector with EKS values.
