@@ -341,7 +341,7 @@
 
 
 ### For RKE cluster 
-> Note: The default gcp vm use kernel 5.3 above, yet please confirm it by ssh to one of nodes and run `uname -r` before moving forward.  
+> Note: The default gcp vm use kernel 5.3 above, yet please confirm it by ssh to one of nodes and run `uname -rv` before moving forward.  
 
 1. Deploy the demo app `yaobank`, and run a quick test to trace the source IP address before changing to eBPF dataplane.
 
@@ -349,10 +349,11 @@
    ```bash
    kubectl apply -f https://raw.githubusercontent.com/tigera/ccol2aws/main/yaobank.yaml
    ```
-
+   
+   b. Get the public IP of master node.
    EX_IP=$(gcloud compute instances describe rancher-master --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
 
-   b. Deploy LB for Frontend Customer Pod.
+   c. Deploy LB for Frontend Customer Pod.
    ```bash
    kubectl apply -f - <<EOF
    apiVersion: v1
@@ -372,19 +373,13 @@
    EOF
    ```
 
-   spec:
-  clusterIP: 10.43.111.144
-  clusterIPs:
-  - 10.43.111.144
-  externalIPs:    ## Add this line for your service
-  - 34.xxx.xxx.88 ## Add your node public ip which have frontend pod running as endpoint for this value
-
-   c. Check the source IP when curl customer svc 
+   d. Check the source IP when curl customer svc 
 
     ```bash
-    SVC_HOST=$(kubectl -n yaobank get svc yaobank-customer -ojsonpath='{.status.loadBalancer.ingress[0].ip}')
-    #Curl the svc ip from your cloud shell/local shell or open in your browser to generate logs.
-    curl $SVC_HOST
+    SVC_HOST=$(kubectl -n yaobank get svc yaobank-customer -ojsonpath='{.spec.externalIPs[0]}')
+    SVC_PORT=$(kubectl -n yaobank get svc yaobank-customer -ojsonpath='{.spec.ports[0].nodePort}')
+    #Curl the svc from your cloud shell/local shell or open in your browser to generate logs.
+    curl $SVC_HOST:$SVC_PORT
     ```
     
     ```bash
@@ -395,77 +390,30 @@
  
     > Output should be similar as below, the node private IP will show up as source IP.
     ```text
-    10.240.0.35 - - [26/Oct/2021 19:20:52] "GET / HTTP/1.1" 200 -
-    10.240.0.35 - - [26/Oct/2021 19:21:16] "GET / HTTP/1.1" 200 -
-    10.240.0.35 - - [26/Oct/2021 19:21:58] "GET / HTTP/1.1" 200 -
+    10.240.0.222 - - [14/Feb/2022 17:38:46] "GET / HTTP/1.1" 200 -
+    10.240.0.222 - - [14/Feb/2022 17:39:24] "GET / HTTP/1.1" 200 -
+    10.240.0.222 - - [14/Feb/2022 18:04:51] "GET / HTTP/1.1" 200 -
     ```
 
-2. Configure Calico to connect directly to the API server. 
+2. Avoiding conflicts with kube-proxy.
+   > 
 
-   ```bash
-   ##Extract API server address
-   kubectl cluster-info | grep Kubernetes
-   ```
-
-   > Output is similar:
-
-   ```bash
-   # "aks-oss-je-aks-rg-xxxxxxxyyyyyyzzzzzz.hcp.eastus.azmk8s.io" is your api server host
-   Kubernetes control plane is running at https://aks-oss-je-aks-rg-xxxxxxxyyyyyyzzzzzz.hcp.eastus.azmk8s.io:443
-   ```
-
-   Create configmap for calico-node to know how to contact Kubernetes API server.
-   ```bash
-   ##use above server host to create configmap. 
-   cat > cm.yaml <<EOF
-   kind: ConfigMap
-   apiVersion: v1
-   metadata:
-     name: kubernetes-services-endpoint
-     namespace: tigera-operator
-   data:
-     KUBERNETES_SERVICE_HOST: "<API server host>"  
-     KUBERNETES_SERVICE_PORT: "443"
-   EOF
-   ```
-
-   ```bash
-   #edit the cm yaml file by replacing the API server host address before apply it 
-   kubectl apply -f cm.yaml
-   ```
-
-
-3. The operator will pick up the change to the config map automatically and do a rolling update to pass on the change. Confirm that pods restart and then reach the Running state with the following command:
-   ```bash
-   kubectl get pods -n calico-system -w
-   ```
-   > If you do not see the pods restart then it’s possible that the ConfigMap wasn’t picked up (sometimes Kubernetes is slow to propagate ConfigMaps (see Kubernetes issue #30189)). You can try restarting the operator.
-   ```bash
-   kubectl delete pods -n calico-system --all
-   #Verify all pods restart successfully
-   kubectl get pods -n calico-system 
-   ```
-
-4. Replace kube-proxy
-   > In eBPF mode, Calico replaces kube-proxy so it wastes resources to run both. To disable kube-proxy reversibly, we recommend adding a node selector to kube-proxy’s DaemonSet that matches no nodes. By doing so, we’re telling kube-proxy not to run on any nodes (because they’re all running Calico):
-
-   ```bash
-   kubectl patch ds -n kube-system kube-proxy -p '{"spec":{"template":{"spec":{"nodeSelector":{"non-calico": "true"}}}}}'
-   ```
    
    ```bash
-   #Confirm kube-proxy is no longer running
-   kubectl get pods -n kube-system
+   #edit the cm yaml file by replacing the API server host address before apply it 
+   kubectl patch felixconfiguration.p default --patch='{"spec": {"bpfKubeProxyIptablesCleanupEnabled": false}}'
+
    ```
 
-5. Enable eBPF mode
+
+3. Enable eBPF mode
    > To enable eBPF mode, change the spec.calicoNetwork.linuxDataplane parameter in the operator’s Installation resource to "BPF"; you must also clear the hostPorts setting because host ports are not supported in BPF mode.
 
    ```bash
    kubectl patch installation.operator.tigera.io default --type merge -p '{"spec":{"calicoNetwork":{"linuxDataplane":"BPF", "hostPorts":null}}}'
    ```
 
-6. Restart kube-dns and yaobank pod.
+4. Restart kube-dns and yaobank pod.
 
    > When the dataplane changes, it disrupts any existing connections, and as a result it’s a good idea to replace the pods that are running. In our specific case, deleting the kube-dns pods will ensure that connectivity for these pods is running fully on the eBPF dataplane, as these pods are integral to Kubernetes functionality.
 
@@ -476,27 +424,26 @@
 
 7. Curl the `yaobank-customer` service again and confirm the public IP address of cloudshell or your local shell show up as source IP in pod logs.
 
-   ```bash
-   SVC_HOST=$(kubectl -n yaobank get svc yaobank-customer -ojsonpath='{.status.loadBalancer.ingress[0].ip}')
-   #Curl the svc ip from your cloud shell/local shell or open in your browser to generate logs.
-   curl $SVC_HOST
-   ```
+    ```bash
+    SVC_HOST=$(kubectl -n yaobank get svc yaobank-customer -ojsonpath='{.spec.externalIPs[0]}')
+    SVC_PORT=$(kubectl -n yaobank get svc yaobank-customer -ojsonpath='{.spec.ports[0].nodePort}')
+    #Curl the svc from your cloud shell/local shell or open in your browser to generate logs.
+    curl $SVC_HOST:$SVC_PORT
+    ```
     
-   ```bash
-   #check the source IP fromm pod log
-   export CUSTOMER_POD=$(kubectl get pods -n yaobank -l app=customer -o name)
-   kubectl logs -n yaobank $CUSTOMER_POD
-   ```
+    ```bash
+    #check the source IP fromm pod log
+    export CUSTOMER_POD=$(kubectl get pods -n yaobank -l app=customer -o name)
+    kubectl logs -n yaobank $CUSTOMER_POD
+    ```
  
-   > Output should be similar as below, the public IP will show up as source IP.
-   ```text
-   40.114.1.180 - - [26/Oct/2021 19:54:13] "GET / HTTP/1.1" 200 -
-   173.178.61.132 - - [26/Oct/2021 19:55:37] "GET / HTTP/1.1" 200 -
-   ```
+    > Output should be similar as below, the public IP will show up as source IP.
+    ```text
+    173.178.61.132 - - [14/Feb/2022 19:34:42] "GET / HTTP/1.1" 200 -
+    173.178.61.132 - - [14/Feb/2022 19:37:45] "GET / HTTP/1.1" 200 -
+    ```
 
 
-uname -r
-5.11.0-1029-gcp
 
 ### For Kubeadm cluster
 
