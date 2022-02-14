@@ -8,8 +8,7 @@
   x86-64
 
 **Not supported:**
-  GKE
-  EKS using the default Ubuntu or Amazon Linux images.
+  GKE, EKS using the default Ubuntu or Amazon Linux images.
 
 ## Steps
 
