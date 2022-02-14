@@ -340,12 +340,6 @@
    ```
 
 
-
-
-
-### For GEK cluster
->Not supported. This is because of an incompatibility with the GKE CNI plugin. A fix for the issue has already been accepted upstream but at the time of writing it is not publicly available.
-
 ### For Kubeadm cluster
 
 ### For RKE cluster 
