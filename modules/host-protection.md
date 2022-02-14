@@ -97,10 +97,10 @@ Calico network policies not only can secure pod to pod communications but also c
     kubectl apply -f demo/host-end-point/frontend-nodeport-deny.yaml
     
     # test access from Cloud9 shell, the result will be 30080 Connection timed out.
-    nc -zv $PUB_IP 30080 
+    nc -zv $PUB_IP 30080 -w 10
 
     # test access from local shell, the result will be 30080 open.
-    nc -zv <PUB_IP> 30080 
+    nc -zv $PUB_IP 30080 -w 10
     ```
 
 
@@ -222,10 +222,10 @@ Calico network policies not only can secure pod to pod communications but also c
     kubectl apply -f demo/host-end-point/frontend-nodeport-deny.yaml
     
     # test access from vm shell, the expected result is 30080 Operation timed out
-    nc -zv $NODE_IP1 30080 
+    nc -zv $NODE_IP1 30080 -w 10
 
     # test access from vm shell to other nodes, the expected result will be 30080 open
-    nc -zv $NODE_IP2 30080 
+    nc -zv $NODE_IP2 30080 -w 10
     ```
 
 ### For RKE cluster 
@@ -295,7 +295,7 @@ Calico network policies not only can secure pod to pod communications but also c
 
     get private IP of `rancher-server` instance. 
     ```bash
-    VM_IP=$(az vm show -g $RGNAME -n myVM --query privateIps -d --out tsv)
+    VM_IP=$(gcloud compute instances describe rancher-server --format='get(networkInterfaces[0].networkIP)')
     
     # deploy HEP policy
     sed -i "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
@@ -306,10 +306,10 @@ Calico network policies not only can secure pod to pod communications but also c
     kubectl apply -f demo/host-end-point/frontend-nodeport-deny.yaml
     
     # test access from vm shell, the expected result is 30080 Operation timed out
-    nc -zv $NODE_IP1 30080 
+    nc -zv $NODE_IP1 30080 -w 10
 
     # test access from vm shell to other nodes, the expected result will be 30080 open
-    nc -zv $NODE_IP2 30080 
+    nc -zv $NODE_IP2 30080 -w 10
     ```
 
 
