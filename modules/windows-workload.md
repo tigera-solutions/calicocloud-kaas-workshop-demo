@@ -5,6 +5,9 @@
 
 **Docs:** https://docs.tigera.io/getting-started/windows-calico/quickstart
 
+**Not supported:**
+  RKE only support windowns node with Flannel network provider.
+
 ## Steps
 
 ### For AKS cluster

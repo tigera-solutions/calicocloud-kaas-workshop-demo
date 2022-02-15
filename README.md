@@ -68,8 +68,8 @@ In this workshop we are going to focus on these main use cases:
 - [Security: Wireguard Encryption](modules/encryption.md) 
 - [Security: Host protection](modules/host-protection.md) 
 
-- [WIP][Change to eBPF dataplane](modules/ebpf-dataplane.md) ##Finished EKS & AKS
-- [WIP][Adding windows workload ](modules/windows-workload.md) ##Finished EKS & AKS
+- [Change to eBPF dataplane](modules/ebpf-dataplane.md) 
+- [Adding windows workload ](modules/windows-workload.md)
 - [WIP][Enable Kubernetes Audit log](modules/audit-log.md) ## Finished EKS, AKS/GKE clusters not supported
 
 
