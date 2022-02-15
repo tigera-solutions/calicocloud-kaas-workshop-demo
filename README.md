@@ -75,11 +75,6 @@ In this workshop we are going to focus on these main use cases:
 
 ## Charpter C - Advanced
 Coming soon...
-- [WIP][Non K8S node segmentation](modules/non-k8s-node-segmentation.md)
-- [WIP][Performance Hotspots](modules/performance-hotspots.md) 
-- [WIP][Egress Gateway](modules/egress-gateway.md) 
-- [WIP][WAF](modules/waf.md)
-
 
 ## Charpter D - Integration
 
