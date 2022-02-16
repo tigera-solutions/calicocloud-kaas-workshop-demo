@@ -6,6 +6,11 @@
 
 **Docs:** https://docs.tigera.io/visibility/elastic/kube-audit
 
+**Not supported:**
+  - OpenShift
+  - AKS
+  - GKE
+
 ## Steps
 
 
