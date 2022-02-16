@@ -317,6 +317,90 @@ Calico network policies not only can secure pod to pod communications but also c
 
 ### For GEK cluster
 
+1. Enable automatic host endpoints
+   ```bash
+   # check whether auto-creation for HEPs is enabled. Default: Disabled
+   kubectl get kubecontrollersconfiguration.p default -ojsonpath='{.status.runningConfig.controllers.node.hostEndpoint.autoCreate}'
+   ```
+
+   ```bash
+   kubectl patch kubecontrollersconfiguration default --patch='{"spec": {"controllers": {"node": {"hostEndpoint": {"autoCreate": "Enabled"}}}}}'
+
+   ```
+
+   ```bash
+   kubectl get heps -o wide
+   ```
+   >Output is similar as 
+
+   ```bash
+   NAME                                                           CREATED AT
+   gke-gke-calicocloud-work-default-pool-4503460e-5dtv-auto-hep   2022-02-15T23:43:19Z
+   gke-gke-calicocloud-work-default-pool-4503460e-nw1v-auto-hep   2022-02-15T23:43:19Z
+   gke-gke-calicocloud-work-default-pool-4503460e-s9fn-auto-hep   2022-02-15T23:43:19Z
+   ```
+
+2. Enable automatic host endpoints flow logs.   
+   
+   ```bash
+   kubectl patch felixconfiguration default -p '{"spec":{"flowLogsEnableHostEndpoint":true}}'
+   ```  
+
+3.  Expose the frontend service via the NodePort service type, we use `30080` port as example.
+    ```bash
+    kubectl -n hipstershop expose deployment frontend --type=NodePort --name=frontend-nodeport --overrides='{"apiVersion":"v1","spec":{"ports":[{"nodePort":30080,"port":80,"targetPort":8080}]}}'
+    ```
+
+4. Get internal IP of node and test the exposed port of `30080` from your first node.
+   ```bash
+   JPIP='{range .items[*]}{@.status.addresses[?(@.type == "InternalIP")].address}{"\n"}{end}'
+   JPNAME='{range .items[*]}{@.metadata.name}{"\t"}{@.status.addresses[?(@.type == "InternalIP")].address}{"\n"}{end}'
+   NODE_NAME1=$(kubectl get nodes --output jsonpath="$JPNAME" | awk 'NR==1{print $1 }')
+   NODE_NAME2=$(kubectl get nodes --output jsonpath="$JPNAME" | awk 'NR==2{print $1 }')
+   NODE_IP2=$(kubectl get nodes --output jsonpath="$JPIP" | awk 'NR==2{print $1 }')
+   NODE_IP3=$(kubectl get nodes --output jsonpath="$JPIP" | awk 'NR==3{print $1 }')
+   echo $NODE_NAME1
+   echo $NODE_IP2
+   echo $NODE_IP3
+   
+   ```
+
+   ssh to your first node from local shell and test the NodePort `30080`, the expecting result would be 'gke-xxx.tigera-solutions.internal [10.142.0.4] 30080 (?) open'
+   ```bash
+   gcloud compute ssh $NODE_NAME1
+   nc -zv $NODE_IP2 30080
+   nc -zv $NODE_IP3 30080
+   exit
+   ```
+
+5. Label the node 2 for HEP testing.
+   ```bash
+   kubectl label nodes $NODE_NAME2 host-end-point=test
+   ```
+
+6. Implement a Calico policy to control access to the service of NodePort type, which will deny node 1 with port `30080` to frontend service.
+
+    get private IP of node 1 instance. 
+    ```bash
+    VM_IP=$(gcloud compute instances describe $NODE_NAME1 --format='get(networkInterfaces[0].networkIP)')
+    
+    # deploy HEP policy
+    sed -i "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
+
+    #For other variations/shells the following syntax may be required
+    sed -i "" "s/\${VM_IP}/${VM_IP}\/32/g" ./demo/host-end-point/frontend-nodeport-deny.yaml
+
+    kubectl apply -f demo/host-end-point/frontend-nodeport-deny.yaml
+    
+    # test access from vm shell, the expected result is 30080 Operation timed out
+    nc -zv $NODE_IP1 30080 -w 10
+
+    # test access from vm shell to other nodes, the expected result will be 30080 open
+    nc -zv $NODE_IP2 30080 -w 10
+    ```
+
+
+
 ### For Kubeadm cluster
 
 
