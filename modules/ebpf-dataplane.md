@@ -4,11 +4,11 @@
 
 > While the standard dataplane focuses on compatibility by inter-working with kube-proxy, and your own iptables rules, the eBPF dataplane focuses on performance, latency and improving user experience with features that aren’t possible in the standard dataplane. As part of that, the eBPF dataplane replaces kube-proxy with an eBPF implementation. Please refer to [doc](https://docs.tigera.io/maintenance/ebpf/use-cases-ebpf)
 
-**Supported:**
-  x86-64
+**Supported:** Only x86-64 architecture 
 
 **Not supported:**
-  GKE, EKS using the default Ubuntu or Amazon Linux images.
+  - GKE
+  - EKS using the default Ubuntu or Amazon Linux images
 
 ## Steps
 
