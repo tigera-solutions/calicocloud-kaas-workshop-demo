@@ -7,6 +7,8 @@
 
 **Not supported:**
   RKE only support windowns node with Flannel network provider.
+  For GKE clusters, the `Intranode visibility (--enable-intra-node-visibility)` is not supported with Windows Server node pools.
+
 
 ## Steps
 
