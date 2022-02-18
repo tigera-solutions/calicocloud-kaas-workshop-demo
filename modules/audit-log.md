@@ -7,19 +7,20 @@
 **Docs:** https://docs.tigera.io/visibility/elastic/kube-audit
 
 **Not supported:**
-  - OpenShift
-  - AKS
-  - GKE
+- OpenShift
+- AKS
+- GKE
+- RKE
+
 
 ## Steps
 
 
 ### For EKS cluster
 
-
 1. Confirm your EKS have audit log enabled in cloudwatch. 
 
-  > This demo EKS cluster enable Amazon Cloudwatch logs during creatation. 
+  > This demo EKS cluster enable Amazon Cloudwatch logs during creation. 
 
    ![eks audit log](../img/eks-audit-log.png)
 
