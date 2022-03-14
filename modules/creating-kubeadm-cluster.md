@@ -255,7 +255,7 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
 2. Initiate the master node with pod CIDR config. On master node run: 
  
    ```bash
-   sudo kubeadm init --kubernetes-version 1.22.4 --pod-network-cidr 192.168.0.0/16
+   sudo kubeadm init --kubernetes-version 1.22.4 --pod-network-cidr 192.168.0.0/16 --apiserver-cert-extra-sans=127.0.0.1
    ```
 
    > output include the token for worker node to join to the cluster, you can save them in txt if you want to use it later.  
