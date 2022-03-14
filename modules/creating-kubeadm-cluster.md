@@ -247,7 +247,7 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
   
    sudo sh -c "curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -"
    
-   sudo apt-get update && sudo apt-get install -y kubeadm=1.23.3-00 kubelet=1.23.3-00 kubectl=1.23.3-00
+   sudo apt-get update && sudo apt-get install -y kubeadm=1.22.4-00 kubelet=1.22.4-00 kubectl=1.22.4-00
    
    sudo apt-mark hold kubelet kubeadm kubectl
    ```
