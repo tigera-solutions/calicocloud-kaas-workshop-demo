@@ -292,16 +292,17 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
    >Output is 
    ```bash
    NAME           STATUS     ROLES                  AGE     VERSION
-   master-node    NotReady   control-plane,master   2m37s   v1.23.3
-   worker-node0   NotReady   <none>                 79s     v1.23.3
-   worker-node1   NotReady   <none>                 16s     v1.23.3
+   master-node    NotReady   control-plane,master   2m20s   v1.22.4
+   worker-node0   NotReady   <none>                 92s     v1.22.4
+   worker-node1   NotReady   <none>                 13s     v1.22.4
    ```
 
 6. On the controller, install calico OSS and then we can join this cluster to calico cloud as managed cluster. 
 
    ```bash
-   kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
-   
+   kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
+   kubectl create -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
+
    
    #Confirm the nodes are ready
    kubectl get nodes
@@ -310,14 +311,21 @@ The compute instances in this lab will be provisioned using [Ubuntu Server](http
    >Output is  
    ```bash
    NAME           STATUS   ROLES                  AGE   VERSION
-   master-node    Ready    control-plane,master   4m12s   v1.23.3
-   worker-node0   Ready    <none>                 2m54s   v1.23.3
-   worker-node1   Ready    <none>                 111s    v1.23.3
+   master-node    Ready    control-plane,master   4m19s   v1.22.4
+   worker-node0   Ready    <none>                 3m31s   v1.22.4
+   worker-node1   Ready    <none>                 2m12s   v1.22.4
    ```
 
-7. Download this repo into your environment:
+7. Remove master taint in order to allow kubernetes to schedule pods on the master node.
 
    ```bash
+   kubectl taint nodes --all node-role.kubernetes.io/master-
+   ```
+
+8. Download this repo into your environment:
+
+   ```bash
+
    git clone https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo.git
 
    cd calicocloud-kaas-workshop-demo
