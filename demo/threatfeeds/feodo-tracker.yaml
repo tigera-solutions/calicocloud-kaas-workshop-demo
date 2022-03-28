@@ -9,4 +9,4 @@ spec:
       url: https://feodotracker.abuse.ch/downloads/ipblocklist.txt
   globalNetworkSet:
     labels:
-      threatfeed: feodo
+      feed: feodo
