@@ -39,7 +39,7 @@
    tigera-dpi-x67sj   1/1     Running   0          3h58m
    ```
 
- 4. Trigger a snort alert basing on existing alert rules, we will use rule [21562](https://www.snort.org/rule_docs/1-21562)    
+ 4. Trigger a snort alert basing on existing alert rules, we will use rule [57461](https://www.snort.org/rule_docs/1-57461)    
 
    ```bash
    SVC_IP=$(kubectl -n hipstershop get svc frontend-external -ojsonpath='{.status.loadBalancer.ingress[0].ip}')
@@ -72,17 +72,17 @@
    > A workaround for DPI alert not able to generate in UI as in policy `allow-tigera.guardian-access` block dpi alert to ES. We will update this policy with `allow tcp` in ingress before curl. 
    ```bash
    #curl frontend service within cluster
-   kubectl -n dev exec -t netshoot -- sh -c "curl http://frontend.hipstershop -H 'User-Agent: Mozilla/4.0' -XPOST --data-raw 'smk=1234'"
+   kubectl -n dev exec -t netshoot -- sh -c "curl http://frontend.hipstershop/secid_canceltoken.cgi -H 'X-CMD: Test' -H 'X-KEY: Test' -XPOST"
    ```
 
    ```bash
    #curl your loadbalancer from outside of cluster
-   curl http://$SVC_IP:80 -H 'User-Agent: Mozilla/4.0' -XPOST --data-raw 'smk=1234'
+   curl http://$SVC_IP:80/secid_canceltoken.cgi -H 'X-CMD: Test' -H 'X-KEY: Test' -XPOST
    ```
 
    ```bash
    #curl your external ip with Nodeport from outside of cluster
-   curl http://34.xxx.xxx.88:31209 -H 'User-Agent: Mozilla/4.0' -XPOST --data-raw 'smk=1234'
+   curl http://34.xxx.xxx.88:31209/secid_canceltoken.cgi -H 'X-CMD: Test' -H 'X-KEY: Test' -XPOST
    ```
 
  5. Confirm the `Signature Triggered Alert` in manager UI and also in Kibana `ee_event`
