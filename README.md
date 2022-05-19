@@ -17,7 +17,7 @@ The intent of this workshop is to educate any person working with K8S cluster in
   - [AKS: using Azure SDK to create an compatible AKS cluster](modules/creating-aks-cluster.md)
   - [GKE: using gcloud SDK to create an compatible GKE cluster](modules/creating-gke-cluster.md)
 
-  - [Kubeadm: using Kubeadm to create an compatible self-managed cluster in GCE](modules/creating-kubeadm-cluster.md)
+  - [Kubeadm: using kops to create an compatible self-managed cluster in AWS](modules/creating-kubeadm-cluster.md)
   - [RKE: using Rancher server to create an compatible RKE cluster in GCE](modules/creating-rke-cluster.md)
   - [WIP][OCP: using Openshift to create an compatible OCP cluster](modules/creating-ocp-cluster.md)
 
@@ -69,7 +69,6 @@ In this workshop we are going to focus on these main use cases:
 - [Security: Host protection](modules/host-protection.md) 
 
 - [Change to eBPF dataplane](modules/ebpf-dataplane.md) 
-- [Adding windows workload ](modules/windows-workload.md)
 - [WIP][Enable Kubernetes Audit log](modules/audit-log.md) ## Finished EKS, AKS/GKE clusters not supported
 
 
