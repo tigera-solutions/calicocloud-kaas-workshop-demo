@@ -13,6 +13,7 @@ The intent of this workshop is to guide users on connecting their K8s cluster to
 ## STEP 1 - Create a compatible k8s cluster 
 
   - [Calico Cloud system requirement](https://docs.calicocloud.io/get-started/connect/)
+
   - [EKS: Use cloud9 IDE to create a compatible EKS cluster](modules/creating-eks-cluster.md)
   - [AKS: Use Azure SDK to create a compatible AKS cluster](modules/creating-aks-cluster.md)
   - [GKE: Use gcloud SDK to create a compatible GKE cluster](modules/creating-gke-cluster.md)
@@ -40,58 +41,52 @@ Use cases:
 
   - **Network policy for segmentation and access control**
   - **Intrusion Detection**
-    - **ThreatFeeds**
-    - **Honeypods**
-    - **Anomaly Detection**
+    - ThreatFeeds
+    - Honeypods
+    - Anomaly Detection
   - **Observability**
-    - **Service Graph**
-    - **Packet Captures**
-    - **Kibana dashboard**
-    - **L7 logging**
- 
-Compliance
-Observability: Dynamic Service Graph & Dynamic Packet Capture & Kibana dashboard
-CIS Kubernetes Benchmark
-Compliance reports
-Network encryption with WireguardCompliance and Security: Compliance & Intrusion Detection and Prevention & Encryption
-Integration: Firewall Integration (Egress Gateway)  & log export SIEM Integration
-Federation - apply network policy between clusters
+    - Service Graph
+    - Packet Captures
+    - Kibana dashboard
+    - L7 logging
+  - **Compliance**
+    - CIS Kubernetes Benchmark
+    - Compliance reports
+  - **Network encryption with Wireguard**
+    - Firewall Integration (Egress Gateway)  & log export.
+    - Federation - apply network policy between clusters
 
+## Network Policy
 
-- **East-West Controls: App service control & Microsegmentation & Host protection**
-- **North-South Controls: DNS Egress Controls & Egress Gateway**
-- **Observability: Dynamic Service Graph & Dynamic Packet Capture & Kibana dashboard**
-- **Compliance and Security: Compliance & Intrusion Detection and Prevention & Encryption**
-- **Integration: Firewall Integration & SIEM Integration**
+- [Segmentation and access control within the cluster](modules/app-service-control.md)
+- [~~East-West: controls-Pod microsegmentation~~](modules/pod-microsegmentation.md)
+- [Apply policy to egress traffic based on FQDN](modules/dns-egress-controls.md)
 
-## Charpter A - Beginner
+## Intrusion and Breach Detection
 
-- [East-West: controls-App service control](modules/app-service-control.md)
-- [East-West: controls-Pod microsegmentation](modules/pod-microsegmentation.md)
-- [North-South: Controls-DNS egress control](modules/dns-egress-controls.md)
-- [North-South: Controls-Global threadfeed](modules/global-threadfeed.md)
-
-- [Observability: Calico Manager UI](modules/manager-ui.md)
-- [Observability: Kibana dashboard](modules/kibana-dashboard.md)
-- [Observability: L7 visibility](modules/enable-l7-visibility.md) 
-- [Observability: Dynamic packet capture](modules/dynamic-packet-capture.md) 
-
-## Charpter B - Intermediate
-
+- [Global ThreadFeed](modules/global-threadfeed.md)
 - [Security: IDS and IPS](modules/intrusion-detection-protection.md)
 - [Security: Deep packet inspection](modules/deep-packet-inspection.md) 
-- [Security: Compliance reports](modules/compliance-reports.md) 
-- [Security: Wireguard Encryption](modules/encryption.md) 
 - [Security: Host protection](modules/host-protection.md) 
+
+## Observability
+
+- [Service Graph(modules/manager-ui.md)
+- [L7 logging](modules/enable-l7-visibility.md) 
+- [Kibana dashboard](modules/kibana-dashboard.md)
+- [Dynamic packet capture](modules/dynamic-packet-capture.md) 
+
+## Compliance
+
+ - [Security: Compliance reports](modules/compliance-reports.md) 
+
+
+## Network encryption with WireGuard
+
+- [Security: Wireguard Encryption](modules/encryption.md) 
 
 - [Change to eBPF dataplane](modules/ebpf-dataplane.md) 
 - [WIP][Enable Kubernetes Audit log](modules/audit-log.md) ## Finished EKS, AKS/GKE clusters not supported
-
-
-## Charpter C - Advanced
-Coming soon...
-
-## Charpter D - Integration
 
 
 ## STEP 6 - Clean up your test environment
