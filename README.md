@@ -62,6 +62,13 @@ Use cases:
 - [~~East-West: controls-Pod microsegmentation~~](modules/pod-microsegmentation.md)
 - [Apply policy to egress traffic based on FQDN](modules/dns-egress-controls.md)
 
+## Observability
+
+- [Service Graph](modules/manager-ui.md)
+- [L7 logging](modules/enable-l7-visibility.md) 
+- [Kibana dashboard](modules/kibana-dashboard.md)
+- [Dynamic packet capture](modules/dynamic-packet-capture.md) 
+
 ## Intrusion and Breach Detection
 
 - [Global ThreadFeed](modules/global-threadfeed.md)
@@ -69,25 +76,13 @@ Use cases:
 - [Security: Deep packet inspection](modules/deep-packet-inspection.md) 
 - [Security: Host protection](modules/host-protection.md) 
 
-## Observability
-
-- [Service Graph(modules/manager-ui.md)
-- [L7 logging](modules/enable-l7-visibility.md) 
-- [Kibana dashboard](modules/kibana-dashboard.md)
-- [Dynamic packet capture](modules/dynamic-packet-capture.md) 
-
 ## Compliance
 
- - [Security: Compliance reports](modules/compliance-reports.md) 
-
+- [Security: Compliance reports](modules/compliance-reports.md) 
 
 ## Network encryption with WireGuard
 
 - [Security: Wireguard Encryption](modules/encryption.md) 
-
-- [Change to eBPF dataplane](modules/ebpf-dataplane.md) 
-- [WIP][Enable Kubernetes Audit log](modules/audit-log.md) ## Finished EKS, AKS/GKE clusters not supported
-
 
 ## STEP 6 - Clean up your test environment
 
