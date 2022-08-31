@@ -1,5 +1,6 @@
-# workshop-demo-master-folder
-This is the master folder for Calicocloud demo for managed K8S clusters in different cloud platform. Every platform will have a separate folder with similar content, yet different installation steps for initizing the cluster. 
+https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo
+
+# Tigera Calico Cloud Workshop
 
 ## Join the Slack Channel
 
@@ -7,39 +8,54 @@ This is the master folder for Calicocloud demo for managed K8S clusters in diffe
 
 ## Workshop objectives
 
-The intent of this workshop is to educate any person working with K8S cluster in one way or another about Calico features and how to use them. While there are many capabilities that Calico provides, this workshop focuses on a subset of those that are used most often by different types of technical users.
-
+The intent of this workshop is to guide users on connecting their K8s cluster to Calico Cloud and test out its security and observability features.
 
 ## STEP 1 - Create a compatible k8s cluster 
 
   - [Calico Cloud system requirement](https://docs.calicocloud.io/get-started/connect/)
-  - [EKS: using cloud9 IDE as workstation to create an compatible EKS cluster](modules/creating-eks-cluster.md)
-  - [AKS: using Azure SDK to create an compatible AKS cluster](modules/creating-aks-cluster.md)
-  - [GKE: using gcloud SDK to create an compatible GKE cluster](modules/creating-gke-cluster.md)
+  - [EKS: Use cloud9 IDE to create a compatible EKS cluster](modules/creating-eks-cluster.md)
+  - [AKS: Use Azure SDK to create a compatible AKS cluster](modules/creating-aks-cluster.md)
+  - [GKE: Use gcloud SDK to create a compatible GKE cluster](modules/creating-gke-cluster.md)
 
-  - [Kubeadm: using kops to create an compatible self-managed cluster in AWS](modules/creating-kubeadm-cluster.md)
-  - [RKE: using Rancher server to create an compatible RKE cluster in GCE](modules/creating-rke-cluster.md)
-  - [WIP][OCP: using Openshift to create an compatible OCP cluster](modules/creating-ocp-cluster.md)
+  - [Kubeadm: Use kops to create a compatible self-managed cluster in GCP](modules/creating-kubeadm-cluster.md)
+  - [RKE: Use Rancher server to create a compatible RKE cluster in GCP](modules/creating-rke-cluster.md)
+  - [WIP][OCP: Use Openshift to create a compatible OCP cluster](modules/creating-ocp-cluster.md)
 
 
-## STEP 2 - Sign up in Calicocloud  
+## STEP 2 - Sign up for Calico Cloud  
 
-  - [Calico Cloud trial account](https://www.calicocloud.io/home/)
-  - for instructor-led workshop use instructions in the email you receive to request a Calico Trial account
-  - for self-paced workshop follow the [link to register](https://www.calicocloud.io/home) for a Calico Trial account
+  - Use this[link to register](https://www.calicocloud.io/) for a Calico Trial account
 
-## STEP 3 - Joining your cluster to Calico Cloud
+## STEP 3 - Connect your cluster to Calico Cloud
 
-  - [Joining cluster to Calico Cloud](modules/joining-calico-cloud.md)
-
+  - [Connect your cluster to Calico Cloud](modules/joining-calico-cloud.md)
 
 ## STEP 4 - Configure demo applications
 
-  - [Configuring demo applications](modules/configuring-demo-apps.md)
+  - [Configure demo applications](modules/configuring-demo-apps.md)
 
-## STEP 5 - Try out some use cases
+## STEP 5 - Test Calico Cloud features
 
-In this workshop we are going to focus on these main use cases:
+Use cases:
+
+  - **Network policy for segmentation and access control**
+  - **Intrusion Detection**
+    - **ThreatFeeds**
+    - **Honeypods**
+    - **Anomaly Detection**
+  - **Observability**
+    - **Service Graph**
+    - **Packet Captures**
+    - **Kibana dashboard**
+    - **L7 logging**
+ 
+Compliance
+Observability: Dynamic Service Graph & Dynamic Packet Capture & Kibana dashboard
+CIS Kubernetes Benchmark
+Compliance reports
+Network encryption with WireguardCompliance and Security: Compliance & Intrusion Detection and Prevention & Encryption
+Integration: Firewall Integration (Egress Gateway)  & log export SIEM Integration
+Federation - apply network policy between clusters
 
 
 - **East-West Controls: App service control & Microsegmentation & Host protection**
