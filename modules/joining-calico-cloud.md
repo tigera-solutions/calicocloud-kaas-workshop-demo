@@ -8,7 +8,11 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
 
 1. Navigate to [https://www.calicocloud.io/](https://www.calicocloud.io/) and sign up for a 14 day trial account - no credit cards required. Returning users can login.
 
-   ![calico-cloud-login](https://user-images.githubusercontent.com/104035488/187937630-19ca91b4-8b21-43a0-8ba8-83cb3bfbca44.png)
+   ![register](https://user-images.githubusercontent.com/104035488/188006082-e13d07eb-fb4a-4a9a-8189-432a8659f100.gif)
+
+2. You will receive a confirmation e-mail.
+
+   ![register_email](https://user-images.githubusercontent.com/104035488/188006198-834195b2-a5c0-416d-9b70-df11be95a699.gif)
 
 2. Upon signing into the Calico Cloud UI the Welcome screen shows four use cases which will give a quick tour for learning more. This step can be skipped. Tip: the menu icons on the left can be expanded to display the worded menu as shown:
 
