@@ -56,34 +56,33 @@ Use cases:
     - Firewall Integration (Egress Gateway)  & log export.
     - Federation - apply network policy between clusters
 
-## Network Policy
+### Network Policy
 
-- [Segmentation and access control within the cluster](modules/app-service-control.md)
-- [~~East-West: controls-Pod microsegmentation~~](modules/pod-microsegmentation.md)
-- [Apply policy to egress traffic based on FQDN](modules/dns-egress-controls.md)
+- [Segmentation and Workload Access Control](modules/app-service-control.md)
+- [Egress Traffic Policy Based on FQDN](modules/dns-egress-controls.md)
+- [Calico Cloud UI and Policy Management](modules/manager-ui.md)
 
-## Observability
+### Observability
 
 - [Service Graph](modules/manager-ui.md)
 - [L7 logging](modules/enable-l7-visibility.md) 
-- [Kibana dashboard](modules/kibana-dashboard.md)
-- [Dynamic packet capture](modules/dynamic-packet-capture.md) 
+- [Kibana Dashboard](modules/kibana-dashboard.md)
+- [Packet Capture](modules/dynamic-packet-capture.md) 
 
-## Intrusion and Breach Detection
+### Intrusion and Breach Detection
 
 - [Global ThreadFeed](modules/global-threadfeed.md)
-- [Security: IDS and IPS](modules/intrusion-detection-protection.md)
-- [Security: Deep packet inspection](modules/deep-packet-inspection.md) 
-- [Security: Host protection](modules/host-protection.md) 
+- [Honeypods and Anomaly Detection](modules/intrusion-detection-protection.md)
+- [Deep Packet Inspection](modules/deep-packet-inspection.md) 
 
-## Compliance
+### Compliance
 
-- [Security: Compliance reports](modules/compliance-reports.md) 
+- [Compliance reports](modules/compliance-reports.md) 
 
-## Network encryption with WireGuard
+### Network Encryption with WireGuard
 
-- [Security: Wireguard Encryption](modules/encryption.md) 
+- [WireGuard Encryption](modules/encryption.md) 
 
 ## STEP 6 - Clean up your test environment
 
-- [clean up](modules/clean-up.md)
+- [Clean Up](modules/clean-up.md)
