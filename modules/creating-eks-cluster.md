@@ -255,4 +255,4 @@ You should now have a Kubernetes cluster running with 3 nodes. You do not see th
 
 [:arrow_right: Join the cluster to Calico Cloud](./joining-calico-cloud.md)
 
-[:leftwards_arrow_with_hook: Menu](../README.md#step-1---create-a-compatible-k8s-cluster)
+[:leftwards_arrow_with_hook: Menu - STEP 1 - Create a compatible k8s cluster](../README.md#step-1---create-a-compatible-k8s-cluster)

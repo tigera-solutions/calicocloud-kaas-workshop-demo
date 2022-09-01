@@ -25,7 +25,7 @@ The intent of this workshop is to guide users on connecting their K8s cluster to
 
 ## STEP 2 - Sign up for Calico Cloud  
 
-  - Use this[link to register](https://www.calicocloud.io/) for a Calico Trial account
+  - Use this [link to register](https://www.calicocloud.io/) for a Calico Trial account
 
 ## STEP 3 - Connect your cluster to Calico Cloud
 
