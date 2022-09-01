@@ -2,11 +2,11 @@
 
 **Goal:** Join cluster to Calico Cloud management plane.
 
-IMPORTANT: In order to complete this module, you must have <a href="https://www.calicocloud.io/home" target="_blank">Calico Cloud trial account</a>. Issues with being unable to navigate menus in the UI are often due to browsers blocking scripts - please ensure you disable any script blockers.
+IMPORTANT: In order to complete this module, you must have <a href="https://www.calicocloud.io/home" target="_blank" rel="noopener">Calico Cloud trial account</a>. Issues with being unable to navigate menus in the UI are often due to browsers blocking scripts - please ensure you disable any script blockers.
 
 ## Steps
 
-1. Navigate to [https://www.calicocloud.io/home](https://www.calicocloud.io/home){target="_blank"} and sign up for a 14 day trial account - no credit cards required. Returning users can login.
+1. Navigate to [https://www.calicocloud.io/home](https://www.calicocloud.io/home) and sign up for a 14 day trial account - no credit cards required. Returning users can login.
 
    ![calico-cloud-login](../img/calico-cloud-login.png)
 
