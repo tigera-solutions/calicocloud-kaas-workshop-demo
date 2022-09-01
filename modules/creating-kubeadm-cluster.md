@@ -1,11 +1,8 @@
-# Creating Kubeadm cluster
+# Create a Kubeadm cluster
 
 The following guide is based upon the doc from Calico OSS [self-managed GCE k8s installation](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-public-cloud/gce) for provisioning compute resources.
 
 **Goal:** Create self-managed cluster.
-
-> This workshop uses GCE and other resources in GCP as default configuration settings. To create an self-managed cluster with other cloud providers such as AAWS & Azure, please refer to [self-managed installation](hhttps://docs.projectcalico.org/getting-started/kubernetes/self-managed-public-cloud/) 
-
 
 ## Prerequisite Tasks
 
@@ -337,6 +334,6 @@ You should now have a Kubernetes cluster running with 3 nodes. The Control Plane
 <br>    
 
 
-[Next ->Joining cluster to Calico Cloud](../modules/joining-calico-cloud.md)
+[:arrow_right: Join the cluster to Calico Cloud](./joining-calico-cloud.md)
 
-[Menu](../README.md)
+[:leftwards_arrow_with_hook: README.md - STEP 1 - Create a compatible k8s cluster](../README.md#step-1---create-a-compatible-k8s-cluster)

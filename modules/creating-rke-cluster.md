@@ -1,11 +1,10 @@
-# Creating RKE cluster
+# Create a RKE cluster
 
-The following guide is based upon the doc from [Rancher](https://rancher.com/docs/rke/latest/en/installation/).
-
+The following guide is based upon the [Rancher's documentation](https://rancher.com/docs/rke/latest/en/installation/).
 
 **Goal:** Create RKE cluster.
 
-> This workshop uses RKE cluster with Linux containers in GCP. 
+> This workshop creates an RKE cluster with Linux containers on GCP. 
 
 ## Prerequisite Tasks
 
@@ -190,10 +189,10 @@ The following guide is based upon the doc from [Rancher](https://rancher.com/doc
 --- 
 ## Next steps
 
-You should now have a Kubernetes cluster RKE running with 3 nodes. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
+You should now have an RKE cluster running with 3 nodes. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
 <br>    
 
 
-[Next ->Joining cluster to Calico Cloud](../modules/joining-calico-cloud.md)
+[:arrow_right: Join the cluster to Calico Cloud](./joining-calico-cloud.md)
 
-[Menu](../README.md)
+[:leftwards_arrow_with_hook: README.md - STEP 1 - Create a compatible k8s cluster](../README.md#step-1---create-a-compatible-k8s-cluster)

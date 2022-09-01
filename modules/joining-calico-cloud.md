@@ -96,9 +96,8 @@ IMPORTANT: In order to complete this module, you must have [Calico Cloud trial a
     kubectl patch felixconfiguration default -p '{"spec":{"flowLogsCollectTcpStats":true}}'
     ```
 
-    
+ 
 
+[:arrow_right: Configuring demo applications](./configuring-demo-apps.md)
 
-[Next -> Configuring demo applications](../modules/configuring-demo-apps.md)
-
-[Menu](../README.md)
+[:leftwards_arrow_with_hook: README.md - STEP 1 - Create a compatible k8s cluster](../README.md#step-4---configure-demo-applications)

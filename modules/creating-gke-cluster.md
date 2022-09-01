@@ -1,4 +1,4 @@
-# Creating GKE cluster
+# Create a GKE cluster
 
 **Goal:** Create GKE cluster.
 
@@ -103,8 +103,6 @@ You should now have a Kubernetes cluster running with 3 nodes. You do not see th
 <br>    
 
     
-[Next ->Joining cluster to Calico Cloud](../modules/joining-calico-cloud.md)
+[:arrow_right: Join the cluster to Calico Cloud](./joining-calico-cloud.md)
 
-[Menu](../README.md)
-
-
+[:leftwards_arrow_with_hook: README.md - STEP 1 - Create a compatible k8s cluster](../README.md#step-1---create-a-compatible-k8s-cluster)

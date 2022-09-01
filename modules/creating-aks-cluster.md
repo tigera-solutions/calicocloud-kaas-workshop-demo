@@ -1,4 +1,4 @@
-# Creating AKS cluster
+# Create an AKS cluster
 
 The following guide is based upon the repos from [lastcoolnameleft](https://github.com/lastcoolnameleft/kubernetes-workshop/blob/master/create-aks-cluster.md) and [Azure Kubernetes Hackfest](https://github.com/Azure/kubernetes-hackfest/tree/master/labs/create-aks-cluster#readme).
 
@@ -23,7 +23,7 @@ Follow the prequisite steps if you need to verify your Azure subscription.
     ```
     
     ```bash
-    # Set correct subscription (if needed)
+    # Set correct subscription (if needed)/
     az account set --subscription <subscription_id>
   
     # Verify correct subscription is now set
@@ -178,7 +178,6 @@ Follow the prequisite steps if you need to verify your Azure subscription.
 You should now have a Kubernetes cluster running with 3 nodes. You do not see the master servers for the cluster because these are managed by Microsoft. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
 <br>    
 
+[:arrow_right: Join the cluster to Calico Cloud](./joining-calico-cloud.md)
 
-[Next ->Joining cluster to Calico Cloud](../modules/joining-calico-cloud.md)
-
-[Menu](../README.md)
+[:leftwards_arrow_with_hook: README.md - STEP 1 - Create a compatible k8s cluster](../README.md#step-1---create-a-compatible-k8s-cluster)

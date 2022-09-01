@@ -1,5 +1,3 @@
-https://github.com/tigera-solutions/calicocloud-kaas-workshop-demo
-
 # Tigera Calico Cloud Workshop
 
 ## Join the Slack Channel
@@ -20,7 +18,7 @@ The intent of this workshop is to guide users on connecting their K8s cluster to
 
   - [Kubeadm: Use kops to create a compatible self-managed cluster in GCP](modules/creating-kubeadm-cluster.md)
   - [RKE: Use Rancher server to create a compatible RKE cluster in GCP](modules/creating-rke-cluster.md)
-  - [WIP][OCP: Use Openshift to create a compatible OCP cluster](modules/creating-ocp-cluster.md)
+  - [WIP] [OCP: Use Openshift to create a compatible OCP cluster](modules/creating-ocp-cluster.md)
 
 
 ## STEP 2 - Sign up for Calico Cloud  

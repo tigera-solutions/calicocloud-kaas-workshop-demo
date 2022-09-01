@@ -1,5 +1,3 @@
-> Note - using cloud9 seems to require quite a bit of configuration. Perhaps easier to use AWS CloudShell? Not sure if you can git clone using CloudShell though. Suggest using AWS console to create EKS cluster
-
 # Step 1: Setting up cloud9 work environment
 
 **Goal:** Set up and configure your cloud9 instance to work with AWS resources.
@@ -255,4 +253,4 @@ You should now have a Kubernetes cluster running with 3 nodes. You do not see th
 
 [:arrow_right: Join the cluster to Calico Cloud](./joining-calico-cloud.md)
 
-[:leftwards_arrow_with_hook: Menu - STEP 1 - Create a compatible k8s cluster](../README.md#step-1---create-a-compatible-k8s-cluster)
+[:leftwards_arrow_with_hook: README.md - STEP 1 - Create a compatible k8s cluster](../README.md#step-1---create-a-compatible-k8s-cluster)
