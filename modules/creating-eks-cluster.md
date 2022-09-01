@@ -1,3 +1,4 @@
+> Note - using cloud9 seems to require quite a bit of configuration. Perhaps easier to use AWS CloudShell? Not sure if you can git clone using CloudShell though. Suggest using AWS console to create EKS cluster
 
 # Step 1: Setting up cloud9 work environment
 
@@ -16,7 +17,7 @@
     - [EKS kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html)
     - `jq` and `netcat` utilities
 
-    Check whether these tools already present in your environment. If not, install the missing ones.
+    Check whether these tools are already present in your environment. If not, install the missing ones.
 
     ```bash
     # run these commands to check whether the tools are installed in your environment
@@ -31,7 +32,7 @@
     nc --version
     ```
 
-    >If `aws` version is `1.x`, upgrade it to version `2.x`.
+    >If the `aws` version is `1.x`, upgrade it to version `2.x`.
 
     ```bash
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -54,11 +55,11 @@
 
 4. Configure AMI role for Cloud9 workspace.
 
-    >This is necessary when using Cloud9 environment which has an IAM role automatically associated with it. You need to replace this role with a custom IAM role that provides necessary permissions to build EKS cluster so that you can work with the cluster using `kubectl` CLI.
+    >This is necessary when using a Cloud9 environment which has an IAM role automatically associated with it. You need to replace this role with a custom IAM role that provides necessary permissions to build EKS cluster so that you can work with the cluster using `kubectl` CLI.
 
     When using Cloud9 instance, by default the instance has AWS managed temporary credentials that provide limited permissions to AWS resources. In order to manage IAM resources from the Cloud9 workspace, export your user's [AWS Access Key/ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) via environment variables. If you already have them under your `~/.aws/credentials` then you can skip this step.
 
-    >It is recommended to use your personal AWS account which would have full access to AWS resources. If using a corporate AWS account, make sure to check with account administrators to provide you with sufficient permissions to create and manage EKS clusters and Load Balancer resources.
+    >It is recommended to use your personal AWS account which would have full access to AWS resources. If you are using a corporate AWS account, make sure to check with account administrators to provide you with sufficient permissions to create and manage EKS clusters and Load Balancer resources.
 
     a. Export your AWS key 
 
@@ -71,7 +72,6 @@
     b. Create IAM role.
 
     ```bash
-
     IAM_ROLE='calicocloud-workshop-admin'
     # assign AdministratorAccess default policy. You can use a custom policy if required.
     ADMIN_POLICY_ARN=$(aws iam list-policies --query 'Policies[?PolicyName==`AdministratorAccess`].Arn' --output text)
@@ -124,11 +124,11 @@
     ```
 
 
-# Step 2: Creating EKS cluster
+# Step 2: Create an EKS cluster
 
 **Goal:** Create EKS cluster.
 
->This workshop uses EKS cluster with most of the default configuration settings. To create an EKS cluster and tune the default settings, consider exploring [EKS Workshop](https://www.eksworkshop.com) materials.
+>This workshop uses an EKS cluster with most of the default configuration settings. To create an EKS cluster and tune the default settings, consider exploring [EKS Workshop](https://www.eksworkshop.com) materials.
 
 
 1. Configure variables.
@@ -253,6 +253,6 @@
 You should now have a Kubernetes cluster running with 3 nodes. You do not see the master servers for the cluster because these are managed by Amazon. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
 <br>    
 
-[Next ->Joining cluster to Calico Cloud](../modules/joining-calico-cloud.md)
+[Next ->Join the cluster to Calico Cloud](./joining-calico-cloud.md)
 
 [Menu](../README.md)
