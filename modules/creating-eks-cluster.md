@@ -253,6 +253,6 @@
 You should now have a Kubernetes cluster running with 3 nodes. You do not see the master servers for the cluster because these are managed by Amazon. The Control Plane services which manage the Kubernetes cluster such as scheduling, API access, configuration data store and object controllers are all provided as services to the nodes.
 <br>    
 
-[Next ->Join the cluster to Calico Cloud](./joining-calico-cloud.md)
+[:arrow_right: Join the cluster to Calico Cloud](./joining-calico-cloud.md)
 
-[Menu](../README.md)
+[:leftwards_arrow_with_hook: Menu](../README.md)
