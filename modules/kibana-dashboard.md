@@ -1,4 +1,4 @@
-# Observability: Kibana Dashboard
+# Kibana Dashboard
 
 **Goal:** Explore Calico observability tools in Kibana UI.
 
@@ -46,7 +46,8 @@
      ![kibana audit logs](../img/kibana-audit-log.png)
 
 
+---
 
-[Next -> L7 visibility](../modules/enable-l7-visibility.md) 
+[:arrow_right: Packet Capture](./dynamic-packet-capture.md)
 
-[Menu](../README.md)
+[:leftwards_arrow_with_hook: Back to README.md](../README.md)

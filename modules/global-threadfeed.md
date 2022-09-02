@@ -1,4 +1,4 @@
-# North-South Controls: Global Threadfeed
+# Global Threadfeeds
 
 **Goal:** Configure egress access control for outside threadfeed policy so workloads within cluster are not allow to external networkset
 
@@ -84,6 +84,8 @@
      ![alert list](../img/alert-list.png)
         
 
-[Next -> Manager UI](../modules/manager-ui.md)
+---
 
-[Menu](../README.md)
+[:arrow_right: Honeypods and Anomaly Detection](./intrusion-detection-protection.md)
+
+[:leftwards_arrow_with_hook: Back to README.md](../README.md)

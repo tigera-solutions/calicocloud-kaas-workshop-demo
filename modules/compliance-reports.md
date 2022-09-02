@@ -1,4 +1,4 @@
-# Security: Compliance reports
+# Compliance reports
 
 **Goal:** Use global reports to satisfy compliance requirements.
 
@@ -98,12 +98,8 @@
 	```
 
 
-<br>
+---
 
-<br>
+[:arrow_right: Wireguard Encryption](./encryption.md) 
 
-
-[Next -> Wireguard Encryption](../modules/encryption.md) 
-
-
-[Menu](../README.md)
+[:leftwards_arrow_with_hook: Back to README.md](../README.md)

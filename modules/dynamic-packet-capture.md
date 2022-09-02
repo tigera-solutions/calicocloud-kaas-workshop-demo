@@ -1,4 +1,4 @@
-# Observability: Dynamic packet capture
+# Dynamic packet capture
 
 **Goal:** Configure packet capture for specific pods and review captured payload. 
 
@@ -51,8 +51,8 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
   ![fail to fetch](../img/fail-pc-file.png)
 
 
+---
 
+[:arrow_right: Global ThreatFeeds](./global-threadfeed.md)
 
-[Next -> IDS/IPS](../modules/intrusion-detection-protection.md)
-
-[Menu](../README.md)
+[:leftwards_arrow_with_hook: Back to README.md](../README.md)

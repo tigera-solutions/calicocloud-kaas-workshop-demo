@@ -69,7 +69,7 @@ Use cases:
 
 ### Intrusion and Breach Detection
 
-- [Global ThreadFeed](modules/global-threadfeed.md)
+- [Global ThreadFeeds](modules/global-threadfeed.md)
 - [Honeypods and Anomaly Detection](modules/intrusion-detection-protection.md)
 - [Deep Packet Inspection](modules/deep-packet-inspection.md) 
 

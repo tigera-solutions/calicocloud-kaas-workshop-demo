@@ -1,4 +1,4 @@
-# Security: Deep packet inspection 
+# Deep packet inspection 
 
 
 **Goal:** Use DPI on select workloads to efficiently make use of cluster resources and minimize the impact of false positives. 
@@ -92,6 +92,8 @@
     ![ee event log](../img/ee-event-log.png)
 
 
-[Next -> Compliance reports](../modules/compliance-reports.md) 
+---
 
-[Menu](../README.md)
+[:arrow_right: Compliance reports](./compliance-reports.md) 
+
+[:leftwards_arrow_with_hook: Back to README.md](../README.md)

@@ -1,4 +1,4 @@
-# # Observability: L7 Visibility 
+# L7 Logging 
 
 **Goal:** Enable L7/HTTP flow logs in hipstershop with Calico cloud.
 
@@ -56,10 +56,9 @@
 
    ![service graph HTTP log](../img/service-graph-l7.png)
 
-   
-   
 
-[Next -> Dynamic packet capture](../modules/dynamic-packet-capture.md) 
+--- 
 
-[Menu](../README.md)
+[:arrow_right: Service Graph](./service-graph.md)
 
+[:leftwards_arrow_with_hook: Back to README.md](../README.md)

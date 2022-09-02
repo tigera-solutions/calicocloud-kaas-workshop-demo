@@ -1,4 +1,4 @@
-# Security: Intrusion Detection and Prevention
+# Honeypods and Anomaly Detection
 
 **Goal:** Use global alerts to notify security and operations teams about unsanctioned or suspicious activity.
 
@@ -312,7 +312,10 @@ Use official documentation for the most recent [configuration instructions](http
 
    ![anomaly detection alerts](../img/anomaly-detection-alerts.png)
 
-[Next -> Deep packet inspection](../modules/deep-packet-inspection.md) 
 
 
-[Menu](../README.md)
+---
+
+[:arrow_right: Deep Packet Inspection](./deep-packet-inspection.md)
+
+[:leftwards_arrow_with_hook: Back to README.md](../README.md)

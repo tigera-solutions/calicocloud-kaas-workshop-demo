@@ -1,4 +1,4 @@
-# Security: Wireguard Encryption
+# Wireguard Encryption
 
 **Goal:** Enable wireguard as node to node encryption for data in transit 
 
@@ -247,6 +247,7 @@ kubectl apply -f demo/encryption/wireguard-statistics.yaml
 kubectl patch felixconfiguration default --type='merge' -p '{"spec":{"wireguardEnabled":false}}'
 ```
 
-[Next -> Host protection](../modules/host-protection.md)
 
-[Menu](../README.md)
+---
+
+[:leftwards_arrow_with_hook: Back to README.md - STEP 6 - Clean up](../README.md#step-6---clean-up-your-test-environment)
