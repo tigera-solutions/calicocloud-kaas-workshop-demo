@@ -94,6 +94,6 @@ When you change the cluster, the whole Calico Cloud context will change immediat
 
 --- 
 
-[:arrow_right: Configure you cluster for the workshop](./workshop-cluster-configuration.md)
+[:arrow_right: Configure you cluster and demo applications for the workshop](./configuring-demo-apps.md)
 
 [:leftwards_arrow_with_hook: README.md - STEP 1 - Create a compatible k8s cluster](../README.md#step-4---configure-demo-applications)
