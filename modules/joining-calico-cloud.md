@@ -10,7 +10,7 @@ IMPORTANT: In order to complete this module, you will need to create a [Calico C
 
     ![register](https://user-images.githubusercontent.com/104035488/188006082-e13d07eb-fb4a-4a9a-8189-432a8659f100.gif)
 
-2. You will receive the verification e-mail - if you did not received it after a few moments you registered check your SPAM folder. Click in the "VERIFY YOUR ACCOUNT" bottom in the e-mail. You should see a web pager with the email verification successed message. Click in the "Back to Calico Cloud" link to return to Calico Cloud.
+2. You will receive the verification e-mail - if you did not received it after a few moments you registered check your SPAM folder. Click in the "VERIFY YOUR ACCOUNT" button in the e-mail. You should see a web pager with the email verification successed message. Click in the "Back to Calico Cloud" link to return to Calico Cloud. Enter your profile information and submit. In a few moments your trial environment will be ready for you to use.
 
     ![register_email](https://user-images.githubusercontent.com/104035488/188006198-834195b2-a5c0-416d-9b70-df11be95a699.gif)
 
@@ -18,11 +18,13 @@ This concludes the Calico Cloud trial account creation. From now on you have 14 
 
 ## Step 2 - Connecting your cluster to Calico Cloud.
 
-2. Upon signing into the Calico Cloud UI the Welcome screen shows four use cases which will give a quick tour for learning more. This step can be skipped. Tip: the menu icons on the left can be expanded to display the worded menu as shown:
+1. When returning to the [Calico Cloud](https://www.calicocloud.io/) website, use the "Login as an Existing User" link, enter your e-mail and password to log back into your trial environment. Upon signing into the Calico Cloud UI the welcome screen will show four use cases which will give a tailored tour for learning more. You can select whichever better fits your needs. After that you can connect your first cluster. This option lead you to the Managed Clusters section. Click on the "Connect Cluster" button to start the process of connecting a new cluster.
 
     ![first_login](https://user-images.githubusercontent.com/104035488/188036056-1fd0221b-8402-4841-99c3-dc891810b678.gif)
 
-![registering_get_key](https://user-images.githubusercontent.com/104035488/188036064-f85cac4f-66c0-4c09-bdd3-67922640679d.gif)
+2. The Connect Cluster window will allow you to choose the name of your cluster in Calico Cloud and specify what is the service you are using to run your Kubernetes cluster. The next window is  
+
+    ![registering_get_key](https://user-images.githubusercontent.com/104035488/188036064-f85cac4f-66c0-4c09-bdd3-67922640679d.gif)
 
 ![installing](https://user-images.githubusercontent.com/104035488/188036070-71cd3cb7-639b-46f2-bd5e-dbdb401b48e3.gif)
 
