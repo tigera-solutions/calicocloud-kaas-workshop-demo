@@ -53,17 +53,10 @@
 
     We are going to deploy some policies into policy tier to take advantage of hierarcical policy management.
 
-    You can copy and past the command below,
+    You can copy and past the command below:
 
     ```yaml
     kubectl apply -f - <<-EOF
-    apiVersion: projectcalico.org/v3
-    kind: Tier
-    metadata:
-      name: platform
-    spec:
-      order: 700
-    ---
     apiVersion: projectcalico.org/v3
     kind: Tier
     metadata:
@@ -71,9 +64,17 @@
     spec:
       order: 500
     EOF
+    ---
+    apiVersion: projectcalico.org/v3
+    kind: Tier
+    metadata:
+      name: platform
+    spec:
+      order: 700
+    EOF
     ```
     
-    or 
+    or run:
 
     ```bash
     kubectl apply -f demo/setup/tiers/
@@ -84,6 +85,8 @@
 2. Deploy base policy.
 
     In order to explicitly allow workloads to connect to the Kubernetes DNS component, we are going to implement a policy that controls such traffic. We also deploy allow policy for logging and contraint for PCI compliance.
+
+    You can copy and past the command below:
 
     ```yaml
     kubectl apply -f - <<-EOF
@@ -171,6 +174,7 @@
       - Egress
     EOF
     ```
+     or run:
 
     ```bash
     kubectl apply -f demo/setup/stage0/
@@ -197,7 +201,7 @@
 
     >The compliance reports will be needed for one of a later lab, is cronjob in your cluster, you can change the schedule by edit it.
 
-    Global Reports YAML
+    Global Reports YAML (copy&paste)
 
     ```yaml
     kubectl apply -f - <<-EOF
@@ -241,7 +245,7 @@
       schedule: '0 * * * *'
     EOF
     ```
-    or
+    or run:
 
     ```bash
     kubectl apply -f demo/compliance-reports/cis-benchmark-report.yaml
