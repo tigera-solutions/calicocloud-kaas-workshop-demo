@@ -1,4 +1,4 @@
-# North-South Controls: DNS Egress Controls
+# Apply policy to egress traffic based on FQDN
 
 **Goal:** Configure egress access control for specific workloads so they are allow to external DNS domain.
 
@@ -56,6 +56,8 @@
     kubectl -n dev exec -t centos -- sh -c 'curl -m3 -skI https://www.google.com 2>/dev/null | grep -i http'
     ```
 
-[Next -> Global threadfeed](../modules/global-threadfeed.md)
+---
 
-[Menu](../README.md)
+[:arrow_right: Apply policy to egress traffic based on FQDN](./manager-ui.md)
+
+[:leftwards_arrow_with_hook: Back to README.md](../README.md)

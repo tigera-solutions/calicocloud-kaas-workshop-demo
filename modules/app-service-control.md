@@ -1,4 +1,4 @@
-# East-West controls: App service control
+# Segmentation and Workload Access Control
 
 **Goal:** Leverage network policies to segment connections within Kubernetes cluster.
 
@@ -119,12 +119,10 @@
     The access should be allowed once the egress policy is in place.
 
 
-> Now as we have proper policies in place, we can play around with `staged.default-deny` policy as a beta version to test your E-W control, for examle adding `default` namespace and curl the google, you should be able to see the deny flow under `staged.default-deny` policy, once you are happy with the results, you can using the `Policies Board` view in the Enterirpse Manager UI to enforce it as `default-deny` policy manifest. 
+> Now as we have proper policies in place, we can play around with `staged.default-deny` policy as a beta version to test your E-W control, for examle adding `default` namespace and curl the google, you should be able to see the deny flow under `staged.default-deny` policy, once you are happy with the results, you can using the `Policies Board` view in the Calico Cloud Manager UI to enforce it as `default-deny` policy manifest. 
 
+---
 
-[Next -> Pod Microsegmentation](../modules/pod-microsegmentation.md)
+[:arrow_right: Apply policy to egress traffic based on FQDN](./dns-egress-controls.md)
 
-[Menu](../README.md)
-
-
-
+[:leftwards_arrow_with_hook: Back to README.md](../README.md)

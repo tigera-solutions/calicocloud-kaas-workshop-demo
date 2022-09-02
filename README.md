@@ -62,8 +62,8 @@ Use cases:
 
 ### Observability
 
+- [L7 logging](modules/enable-l7-visibility.md)
 - [Service Graph](modules/manager-ui.md)
-- [L7 logging](modules/enable-l7-visibility.md) 
 - [Kibana Dashboard](modules/kibana-dashboard.md)
 - [Packet Capture](modules/dynamic-packet-capture.md) 
 
