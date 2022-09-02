@@ -19,7 +19,27 @@
     ```bash
     kubectl edit felixconfigurations default
     ```
-    
+
+    ```yaml
+    # Please edit the object below. Lines beginning with a '#' will be ignored,
+    # and an empty file will abort the edit. If an error occurs while saving this file will be
+    # reopened with the relevant failures.
+    #
+    apiVersion: projectcalico.org/v3
+    kind: FelixConfiguration
+    metadata:
+      creationTimestamp: "2022-09-01T15:46:45Z"
+      name: default
+      resourceVersion: "3276"
+      uid: 2314864e-d31e-457a-a002-da2c1f0e867d
+    spec:
+      floatingIPs: Disabled
+      iptablesBackend: auto  # <--- Remove this line and save --- #
+      healthPort: 9099
+      logSeverityScreen: Info
+      reportingInterval: 0s
+      tproxyMode: Disabled
+    ```
     ![remove backend](../img/remove-backend.png)
 
 2. Configure Felix to collect TCP stats - this uses eBPF TC program and requires miniumum Kernel version of v5.3.0/v4.18.0-193. Further [documentation](https://docs.tigera.io/visibility/elastic/flow/tcpstats).
