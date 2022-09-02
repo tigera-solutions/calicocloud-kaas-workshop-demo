@@ -2,21 +2,25 @@
 
 **Goal:** Join cluster to Calico Cloud management plane.
 
-IMPORTANT: In order to complete this module, you must have [Calico Cloud trial account](https://www.calicocloud.io/). Issues with being unable to navigate menus in the UI are often due to browsers blocking scripts - please ensure you disable any script blockers.
+IMPORTANT: In order to complete this module, you will need to create a [Calico Cloud trial account](https://www.calicocloud.io/). Issues with being unable to navigate menus in the UI are often due to browsers blocking scripts - please ensure that you disabled all blocker scripts.
 
-## Steps
+## Step 1 - Creating a Calico Cloud trial account
 
-1. Navigate to [https://www.calicocloud.io/](https://www.calicocloud.io/) and sign up for a 14 day trial account - no credit cards required. Returning users can login.
+1. Navigate to [https://www.calicocloud.io/](https://www.calicocloud.io/) and sign up for a 14 day trial account - no credit cards required. Provide a valid e-mail and create a password following the guidelines provided. Continue and a verification e-mail will be sent to the address you provided. 
 
-   ![register](https://user-images.githubusercontent.com/104035488/188006082-e13d07eb-fb4a-4a9a-8189-432a8659f100.gif)
+    ![register](https://user-images.githubusercontent.com/104035488/188006082-e13d07eb-fb4a-4a9a-8189-432a8659f100.gif)
 
-2. You will receive a confirmation e-mail.
+2. You will receive the verification e-mail - if you did not received it after a few moments you registered check your SPAM folder. Click in the "VERIFY YOUR ACCOUNT" bottom in the e-mail. You should see a web pager with the email verification successed message. Click in the "Back to Calico Cloud" link to return to Calico Cloud.
 
-   ![register_email](https://user-images.githubusercontent.com/104035488/188006198-834195b2-a5c0-416d-9b70-df11be95a699.gif)
+    ![register_email](https://user-images.githubusercontent.com/104035488/188006198-834195b2-a5c0-416d-9b70-df11be95a699.gif)
+
+This concludes the Calico Cloud trial account creation. From now on you have 14 days to test Calico Cloud. You can log in back at any time using the "Login as an Existing User" link in the [Calico Cloud](https://www.calicocloud.io/) website.
+
+## Step 2 - Connecting your cluster to Calico Cloud.
 
 2. Upon signing into the Calico Cloud UI the Welcome screen shows four use cases which will give a quick tour for learning more. This step can be skipped. Tip: the menu icons on the left can be expanded to display the worded menu as shown:
 
-![first_login](https://user-images.githubusercontent.com/104035488/188036056-1fd0221b-8402-4841-99c3-dc891810b678.gif)
+    ![first_login](https://user-images.githubusercontent.com/104035488/188036056-1fd0221b-8402-4841-99c3-dc891810b678.gif)
 
 ![registering_get_key](https://user-images.githubusercontent.com/104035488/188036064-f85cac4f-66c0-4c09-bdd3-67922640679d.gif)
 
