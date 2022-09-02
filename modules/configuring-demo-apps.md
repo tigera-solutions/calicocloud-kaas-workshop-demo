@@ -2,7 +2,7 @@
 
 **Goal:** Configure Calico parameters for a quicker visualization of the changes done during the workshop, and install and configure demo applications.
 
-## Step 1 - Configure Calico paramenters.
+## Step 1 - Configure Calico paramenters
 
 1. Configure log aggregation and flush intervals in your cluster, we will use 15s instead of default value 300s for lab testing only.   
 
@@ -47,7 +47,7 @@
     kubectl patch felixconfiguration default -p '{"spec":{"flowLogsCollectTcpStats":true}}'
     ```
 
-## Step 2 - Create policy tier and essential policies.
+## Step 2 - Create policy tier and essential policies
 
 1. Deploy policy tiers.
 
@@ -196,6 +196,52 @@
 1. Deploy compliance reports which schedule as cronjob in every hour for cluster report and a daily cis benchmark report.
 
     >The compliance reports will be needed for one of a later lab, is cronjob in your cluster, you can change the schedule by edit it.
+
+    Global Reports YAML
+
+    ```yaml
+    kubectl apply -f - <<-EOF
+    apiVersion: projectcalico.org/v3
+    kind: GlobalReport
+    metadata:
+      name: cis-results
+      labels:
+        deployment: production
+    spec:
+      reportType: cis-benchmark
+      schedule: '0 * * * *'
+      cis:
+        highThreshold: 100
+        medThreshold: 50
+        includeUnscoredTests: true
+        numFailedTests: 5
+    ---
+    apiVersion: projectcalico.org/v3
+    kind: GlobalReport
+    metadata:
+      name: cluster-inventory
+    spec:
+      reportType: inventory
+      schedule: '0 * * * *'
+    ---
+    apiVersion: projectcalico.org/v3
+    kind: GlobalReport
+    metadata:
+      name: cluster-network-access
+    spec:
+      reportType: network-access
+      schedule: '0 * * * *' 
+    ---
+    apiVersion: projectcalico.org/v3
+    kind: GlobalReport
+    metadata:
+      name: cluster-policy-audit
+    spec:
+      reportType: policy-audit
+      schedule: '0 * * * *'
+    EOF
+    ```
+    or
 
     ```bash
     kubectl apply -f demo/compliance-reports/cis-benchmark-report.yaml
