@@ -31,7 +31,7 @@ The intent of this workshop is to guide users on connecting their K8s cluster to
 
 ## STEP 4 - Configure demo applications
 
-  - [Configure demo applications](modules/configuring-demo-apps.md)
+  - [Configure your cluster and install demo applications](modules/configuring-demo-apps.md)
 
 ## STEP 5 - Test Calico Cloud features
 
