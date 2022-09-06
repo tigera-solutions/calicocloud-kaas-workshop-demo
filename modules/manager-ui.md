@@ -42,6 +42,6 @@
 
 ---
 
-[:arrow_right: Apply policy to egress traffic based on FQDN](./enable-l7-visibility.md)
+[:arrow_right: L7 logging](./enable-l7-visibility.md)
 
 [:leftwards_arrow_with_hook: Back to README.md](../README.md)
