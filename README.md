@@ -36,24 +36,7 @@ The intent of this workshop is to guide users on connecting their K8s cluster to
 
 Use cases:
 
-  - **Network policy for segmentation and access control**
-  - **Intrusion Detection**
-    - ThreatFeeds
-    - Honeypods
-    - Anomaly Detection
-  - **Observability**
-    - Service Graph
-    - Packet Captures
-    - Kibana dashboard
-    - L7 logging
-  - **Compliance**
-    - CIS Kubernetes Benchmark
-    - Compliance reports
-  - **Network encryption with Wireguard**
-    - Firewall Integration (Egress Gateway)  & log export.
-    - Federation - apply network policy between clusters
-
-### Network Policy
+### Network Policy for segmentation and access control
 
 - [Segmentation and Workload Access Control](modules/app-service-control.md)
 - [Egress Traffic Policy Based on FQDN](modules/dns-egress-controls.md)
