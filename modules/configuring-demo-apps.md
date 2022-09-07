@@ -51,7 +51,7 @@
 
 1. Deploy policy tiers.
 
-    We are going to deploy some policies into policy tier to take advantage of hierarcical policy management.
+    We are going to deploy sample tiered policies in the cluster some .
 
     You can copy and past the command below:
 
@@ -84,7 +84,7 @@
 
 2. Deploy base policy.
 
-    In order to explicitly allow workloads to connect to the Kubernetes DNS component, we are going to implement a policy that controls such traffic. We also deploy allow policy for logging and contraint for PCI compliance.
+    Sample policies are deployed for allowing DNS access, logging and PCI segementation.
 
     You can copy and past the command below:
 

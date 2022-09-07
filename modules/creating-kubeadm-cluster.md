@@ -1,8 +1,8 @@
 # Create a Kubeadm cluster
 
-The following guide is based upon the doc from Calico OSS [self-managed GCE k8s installation](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-public-cloud/gce) for provisioning compute resources.
+The following guide is based on the documentation from Calico OSS [self-managed GCE k8s installation](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-public-cloud/gce) for provisioning compute resources.
 
-**Goal:** Create self-managed cluster.
+**Goal:** Create a self-managed K8s cluster.
 
 ## Prerequisite Tasks
 

@@ -1,6 +1,6 @@
 # Create a GKE cluster
 
-**Goal:** Create GKE cluster.
+**Goal:** Create a GKE cluster.
 
 > This workshop uses GKE cluster with most of the default configuration settings. To create an GKE cluster with a regional cluster with a multi-zone node pool, please refer to [GKE doc](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-regional-cluster#create-regional-multi-zone-nodepool) 
 

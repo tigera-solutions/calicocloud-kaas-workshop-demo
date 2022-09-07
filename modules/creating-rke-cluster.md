@@ -1,6 +1,6 @@
 # Create a RKE cluster
 
-The following guide is based upon the [Rancher's documentation](https://rancher.com/docs/rke/latest/en/installation/).
+The following guide is based on the [Rancher's documentation](https://rancher.com/docs/rke/latest/en/installation/).
 
 **Goal:** Create RKE cluster.
 
