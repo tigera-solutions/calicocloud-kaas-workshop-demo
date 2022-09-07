@@ -6,7 +6,7 @@
 
 ## Workshop objectives
 
-The intent of this workshop is to guide users on connecting their K8s cluster to Calico Cloud and test out its security and observability features.
+The intent of this workshop is to guide users on connecting their K8s cluster to Calico Cloud and to test out its security and observability features.
 
 ## STEP 1 - Create a compatible k8s cluster 
 
@@ -51,7 +51,7 @@ Use cases:
 
 ### Intrusion and Breach Detection
 
-- [Global ThreadFeeds](modules/global-threadfeed.md)
+- [Global ThreatFeeds](modules/global-threatfeed.md)
 - [Honeypods and Anomaly Detection](modules/intrusion-detection-protection.md)
 - [Deep Packet Inspection](modules/deep-packet-inspection.md) 
 

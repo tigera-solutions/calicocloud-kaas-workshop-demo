@@ -53,6 +53,6 @@ Calico enterprise/cloud provide enhanced packet capture feature for DevOps troub
 
 ---
 
-[:arrow_right: Global ThreatFeeds](./global-threadfeed.md)
+[:arrow_right: Global ThreatFeeds](./global-threatfeed.md)
 
 [:leftwards_arrow_with_hook: Back to README.md](../README.md)
