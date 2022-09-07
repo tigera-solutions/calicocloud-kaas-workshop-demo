@@ -3,9 +3,9 @@
 **Goal:** Set up and configure your cloud9 instance to work with AWS resources.
 
 
-1. Create Cloud9 workspace environment.
+1. Create a Cloud9 workspace environment.
 
-    To configure a Cloud9 instance, open AWS Console and navigate to `Services` > `Cloud9`. Create environment in the desired region. You can use all the default settings when creating the environment, but consider using `t3.small` instance as the `t2.micro` instance could be a bit slow. You can name it as `tigera-workshop` to quickly find it in case you have many `Cloud9` instances. It usually takes only a few minutes to get the Cloud9 instance running.
+    To configure a Cloud9 instance, open AWS Console and navigate to `Services` > `Cloud9`. Create an environment in the desired region. You can use all the default settings when creating the environment, but consider using a `t3.small` instance as the `t2.micro` instance could be slow to run. You can name it as `tigera-workshop` to quickly find it in case you have many `Cloud9` instances. It usually takes only a few minutes to get the Cloud9 instance running.
 
 2. Ensure your environment has these tools:
 
@@ -245,6 +245,7 @@
     ```bash
     eksctl scale nodegroup --cluster=$EKS_CLUSTER --nodes=3 --name=nix-t3-large
     ``` 
+
     
 ## Next steps
 
