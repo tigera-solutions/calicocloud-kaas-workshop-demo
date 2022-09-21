@@ -63,7 +63,6 @@
       name: security
     spec:
       order: 500
-    EOF
     ---
     apiVersion: projectcalico.org/v3
     kind: Tier
