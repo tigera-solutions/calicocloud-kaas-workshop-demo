@@ -286,6 +286,6 @@
 
 --- 
 
-[:arrow_right: Configure you cluster and demo applications for the workshop](./app-service-control.md)
+[:arrow_right: Segmentation and Workload Access Control](./app-service-control.md)
 
 [:leftwards_arrow_with_hook: Back to README.md](../README.md)
